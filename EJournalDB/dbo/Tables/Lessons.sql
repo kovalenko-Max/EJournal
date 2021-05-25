@@ -9,3 +9,4 @@
     CONSTRAINT [Lessons_Groups_Id] FOREIGN KEY ([IdGroup]) REFERENCES [dbo].[Groups] ([Id]),
     CONSTRAINT [Lessons_Teachers_Id] FOREIGN KEY ([IdTeacher]) REFERENCES [dbo].[Teachers] ([Id])
 );
+

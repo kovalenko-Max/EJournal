@@ -9,3 +9,4 @@
     [IsDelete]        BIT            CONSTRAINT [DF__Students__IsDele__239E4DCF] DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_STUDENTS] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+

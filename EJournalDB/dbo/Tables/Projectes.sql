@@ -7,3 +7,4 @@
     CONSTRAINT [PK_PROJECTES] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [Projectes_ProjectGroups_Id] FOREIGN KEY ([IdProjectCroup]) REFERENCES [dbo].[ProjectGroups] ([Id])
 );
+
