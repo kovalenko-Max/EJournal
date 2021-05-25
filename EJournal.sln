@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJournalBLL", "EJournalBLL\EJournalBLL.csproj", "{48DE6D6E-1D99-4671-854E-E23C5F765349}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalBLL", "EJournalBLL\EJournalBLL.csproj", "{48DE6D6E-1D99-4671-854E-E23C5F765349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJournalUI", "EJournalUI\EJournalUI.csproj", "{9EF85526-2478-4DCF-B3D6-841F10A8C01B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalUI", "EJournalUI\EJournalUI.csproj", "{9EF85526-2478-4DCF-B3D6-841F10A8C01B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJournalDAL", "EJournalDAL\EJournalDAL.csproj", "{E7514C2F-C78F-43F4-A1D2-0645B38B529D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalDAL", "EJournalDAL\EJournalDAL.csproj", "{E7514C2F-C78F-43F4-A1D2-0645B38B529D}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EJournalDB", "EJournalDB\EJournalDB.sqlproj", "{1A7F62D4-764D-4638-8C2E-A85E297A9001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJournalBLL.Tests", "EJournalBLL.Tests\EJournalBLL.Tests.csproj", "{50C87E86-5A3C-4579-AAD2-5F496841D16A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalBLL.Tests", "EJournalBLL.Tests\EJournalBLL.Tests.csproj", "{50C87E86-5A3C-4579-AAD2-5F496841D16A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJournalDAL.Tests", "EJournalDAL.Tests\EJournalDAL.Tests.csproj", "{76CD4A5A-B846-4332-A51B-0B08C26424F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalDAL.Tests", "EJournalDAL.Tests\EJournalDAL.Tests.csproj", "{76CD4A5A-B846-4332-A51B-0B08C26424F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJournalUI.Tests", "EJournalUI.Tests\EJournalUI.Tests.csproj", "{088750EE-EAE2-47A3-9480-AA1AB0BBFDD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalUI.Tests", "EJournalUI.Tests\EJournalUI.Tests.csproj", "{088750EE-EAE2-47A3-9480-AA1AB0BBFDD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

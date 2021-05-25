@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>EJournalDB</Name>
+    <Name>Database1</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{1a7f62d4-764d-4638-8c2e-a85e297a9001}</ProjectGuid>
+    <ProjectGuid>{caf6357c-91b9-4924-a330-2cd85f45076f}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>EJournalDB</RootNamespace>
-    <AssemblyName>EJournalDB</AssemblyName>
+    <RootNamespace>Database1</RootNamespace>
+    <AssemblyName>Database1</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -56,48 +56,5 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo" />
-    <Folder Include="dbo\Tables" />
-    <Folder Include="Stored Procedures" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="dbo\Tables\Attendances.sql" />
-    <Build Include="dbo\Tables\Comments.sql" />
-    <Build Include="dbo\Tables\CommentTypes.sql" />
-    <Build Include="dbo\Tables\CourseNames.sql" />
-    <Build Include="dbo\Tables\Groups.sql" />
-    <Build Include="dbo\Tables\GroupStudents.sql" />
-    <Build Include="dbo\Tables\GroupTeachers.sql" />
-    <Build Include="dbo\Tables\Exercises.sql" />
-    <Build Include="dbo\Tables\Lessons.sql" />
-    <Build Include="dbo\Tables\Projectes.sql" />
-    <Build Include="dbo\Tables\ProjectGroups.sql" />
-    <Build Include="dbo\Tables\Students.sql" />
-    <Build Include="dbo\Tables\Teachers.sql" />
-    <Build Include="dbo\Tables\StudentsExercises.sql" />
-    <Build Include="Stored Procedures\AddCourse.sql" />
-    <Build Include="Stored Procedures\AddGroup.sql" />
-    <Build Include="Stored Procedures\AddHomeWork.sql" />
-    <Build Include="Stored Procedures\AddStudent.sql" />
-    <Build Include="Stored Procedures\AddTeacher.sql" />
-    <Build Include="Stored Procedures\DeleteCourse.sql" />
-    <Build Include="Stored Procedures\DeleteGroup.sql" />
-    <Build Include="Stored Procedures\DeleteHomeWork.sql" />
-    <Build Include="Stored Procedures\DeleteStudent.sql" />
-    <Build Include="Stored Procedures\DeleteTeacher.sql" />
-    <Build Include="Stored Procedures\GetAllCourses.sql" />
-    <Build Include="Stored Procedures\GetAllGroups.sql" />
-    <Build Include="Stored Procedures\GetAllHomeWorks.sql" />
-    <Build Include="Stored Procedures\GetAllStudents.sql" />
-    <Build Include="Stored Procedures\GetAllTeachers.sql" />
-    <Build Include="Stored Procedures\GetCourse.sql" />
-    <Build Include="Stored Procedures\GetGroup.sql" />
-    <Build Include="Stored Procedures\GetHomeWork.sql" />
-    <Build Include="Stored Procedures\GetStudent.sql" />
-    <Build Include="Stored Procedures\GetTeacher.sql" />
-    <Build Include="Stored Procedures\UpdateCourse.sql" />
-    <Build Include="Stored Procedures\UpdateGroups.sql" />
-    <Build Include="Stored Procedures\UpdateHomeWork.sql" />
-    <Build Include="Stored Procedures\UpdateTeacher.sql" />
   </ItemGroup>
 </Project>
