@@ -6,14 +6,14 @@
     <Name>EJournalDB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{1a7f62d4-764d-4638-8c2e-a85e297a9001}</ProjectGuid>
+    <ProjectGuid>{3cf48975-9731-4fc2-b95d-c98aa8f7378e}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
     <RootNamespace>EJournalDB</RootNamespace>
     <AssemblyName>EJournalDB</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1049,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -22,6 +22,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Cyrillic_General_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,14 +58,56 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo" />
-    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
+    <Build Include="dbo\Tables\Attendances.sql" />
+    <Build Include="dbo\Tables\Comments.sql" />
+    <Build Include="dbo\Tables\CommentTypes.sql" />
+    <Build Include="dbo\Tables\Courses.sql" />
+    <Build Include="dbo\Tables\Exercises.sql" />
+    <Build Include="dbo\Tables\Groups.sql" />
+    <Build Include="dbo\Tables\GroupStudents.sql" />
+    <Build Include="dbo\Tables\GroupTeachers.sql" />
+    <Build Include="dbo\Tables\Lessons.sql" />
+    <Build Include="dbo\Tables\Projectes.sql" />
+    <Build Include="dbo\Tables\ProjectGroups.sql" />
+    <Build Include="dbo\Tables\Students.sql" />
+    <Build Include="dbo\Tables\StudentsExercises.sql" />
+    <Build Include="dbo\Tables\Teachers.sql" />
+    <Build Include="dbo\Stored Procedures\AddCourse.sql" />
+    <Build Include="dbo\Stored Procedures\AddGroup.sql" />
+    <Build Include="dbo\Stored Procedures\AddExercises.sql" />
+    <Build Include="dbo\Stored Procedures\AddStudent.sql" />
+    <Build Include="dbo\Stored Procedures\AddTeacher.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteCourse.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteGroup.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteExercises.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteStudent.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteTeacher.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllCourses.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllGroups.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllExercises.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllStudents.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllTeachers.sql" />
+    <Build Include="dbo\Stored Procedures\GetCourse.sql" />
+    <Build Include="dbo\Stored Procedures\GetGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetExercises.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudent.sql" />
+    <Build Include="dbo\Stored Procedures\GetTeacher.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCourse.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateGroups.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateExercises.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateTeacher.sql" />
     <Build Include="dbo\Stored Procedures\AddLesson.sql" />
     <Build Include="dbo\Stored Procedures\DeleteLesson.sql" />
     <Build Include="dbo\Stored Procedures\GetLesson.sql" />
     <Build Include="dbo\Stored Procedures\GetLessons.sql" />
     <Build Include="dbo\Stored Procedures\UpdateLesson.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="EJournalDB.refactorlog" />
   </ItemGroup>
 </Project>
