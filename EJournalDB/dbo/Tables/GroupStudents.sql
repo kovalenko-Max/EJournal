@@ -4,3 +4,4 @@
     CONSTRAINT [GroupStudents_Groups_Id] FOREIGN KEY ([IdGroup]) REFERENCES [dbo].[Groups] ([Id]),
     CONSTRAINT [GroupStudents_Students_Id] FOREIGN KEY ([IdStudents]) REFERENCES [dbo].[Students] ([Id])
 );
+

@@ -6,4 +6,4 @@
       ,[IdCourse]
       ,[IsFinish]
   FROM [AcademyDB].[dbo].[Groups]
-  where Id = @Id and IsDelete = 0 
+  where Id = @Id and IsDelete = 0

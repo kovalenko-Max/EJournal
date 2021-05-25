@@ -3,4 +3,4 @@
    SELECT  [Id]
       ,[Name]
   FROM [AcademyDB].[dbo].[Teachers]
-  where IsDelete = 0 
+  where IsDelete = 0

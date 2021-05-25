@@ -3,4 +3,3 @@
    AS
    insert into Courses (Name)
    values(@Name)
-   
