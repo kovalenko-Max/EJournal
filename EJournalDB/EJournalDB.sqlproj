@@ -56,5 +56,29 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Stored Procedures\AddComment.sql" />
+    <Build Include="dbo\Stored Procedures\AddComments.sql" />
+    <Build Include="dbo\Stored Procedures\AddProject.sql" />
+    <Build Include="dbo\Stored Procedures\AddProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\AddStudent.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteComments.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteProject.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteStudent.sql" />
+    <Build Include="dbo\Stored Procedures\GetComment.sql" />
+    <Build Include="dbo\Stored Procedures\GetProject.sql" />
+    <Build Include="dbo\Stored Procedures\GetProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetProjectGroups.sql" />
+    <Build Include="dbo\Stored Procedures\GetProjects.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudent.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudents.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateComments.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProject.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateStudents.sql" />
   </ItemGroup>
 </Project>
