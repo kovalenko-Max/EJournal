@@ -3,9 +3,8 @@
     [Name]       NVARCHAR (100) NOT NULL,
     [IdStudent]  INT            NOT NULL,
     [IdComments] INT            NOT NULL,
-    [IsDelete]   BIT            DEFAULT ('0') NOT NULL,
+    [IsDelete]   BIT            CONSTRAINT [DF__ProjectGroups__IsDele__239E4DCF] DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_PROJECTGROUPS] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [ProjectGroups_fk0] FOREIGN KEY ([IdStudent]) REFERENCES [dbo].[Students] ([Id]),
-    CONSTRAINT [ProjectGroups_fk1] FOREIGN KEY ([IdComments]) REFERENCES [dbo].[Comments] ([Id])
+    CONSTRAINT [ProjectGroups_Students_Id] FOREIGN KEY ([IdStudent]) REFERENCES [dbo].[Students] ([Id]),
+    CONSTRAINT [ProjectGroups_Comments_Id] FOREIGN KEY ([IdComments]) REFERENCES [dbo].[Comments] ([Id])
 );
-

@@ -1,10 +1,9 @@
 ﻿CREATE TABLE [dbo].[Groups] (
-    [Id]       INT            IDENTITY (1, 1) NOT NULL,
-    [Name]     NVARCHAR (100) NOT NULL,
-    [IdCourse] INT            NOT NULL,
-    [IsFinish] BIT            DEFAULT ('0') NOT NULL,
-    [IsDelete] BIT            DEFAULT ('0') NOT NULL,
+    [Id]        INT            IDENTITY (1, 1) NOT NULL,
+    [NameGroup] NVARCHAR (100) NOT NULL,
+    [IdCourse]  INT            NOT NULL,
+    [IsFinish]  BIT            NOT NULL,
+    [IsDelete]  BIT            CONSTRAINT [DF__Groups__IsDele__239E4DCF] DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_GROUPS] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [Groups_fk0] FOREIGN KEY ([IdCourse]) REFERENCES [dbo].[Courses] ([Id])
+    CONSTRAINT [Groups_CourseNames_Id] FOREIGN KEY ([IdCourse]) REFERENCES [dbo].[CourseNames] ([Id])
 );
-
