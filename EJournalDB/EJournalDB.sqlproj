@@ -101,6 +101,11 @@
     <Build Include="dbo\Stored Procedures\UpdateGroups.sql" />
     <Build Include="dbo\Stored Procedures\UpdateExercises.sql" />
     <Build Include="dbo\Stored Procedures\UpdateTeacher.sql" />
+    <Build Include="dbo\Stored Procedures\AddLesson.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteLesson.sql" />
+    <Build Include="dbo\Stored Procedures\GetLesson.sql" />
+    <Build Include="dbo\Stored Procedures\GetLessons.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateLesson.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />
