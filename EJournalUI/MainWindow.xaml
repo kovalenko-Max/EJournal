@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainWindow" Height="1280" Width="1920">
+	<Grid>
+		<TabControl>
+		<DataGrid Margin ="12, 15">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header ="Group" Width ="150"/>
+				<DataGridTextColumn Header ="Count of students" Width ="150"/>
+				<DataGridCheckBoxColumn Header ="Is finished" Width ="80"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		</TabControl>
+	</Grid>
 </Window>
