@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
 using System.Data;
 using DAL.Models.BasicModels;
@@ -19,6 +16,27 @@ namespace EJournalDAL.Repository
             ConnectionString = connectionString;
         }
 
+        public GroupDTO AddGroupDTO(string name, int IdCourse)
+        {
+            string command = "exec DeleteGroup @Name, @IdCourse";
+            GroupDTO groupDTO = null;
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                groupDTO = db.Query<GroupDTO>(command, new { name, IdCourse }).FirstOrDefault();
+            }
+
+            return groupDTO;
+        }
+
+        public void DeleteGroupDTO(int Id)
+        {
+            string command = "exec DeleteGroup @Id";
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(command, new { Id });
+            }
+        }
+
         public List<GroupDTO> GetAllGroupsDTO()
         {
             string command = "exec GetAllGroups";
@@ -31,16 +49,25 @@ namespace EJournalDAL.Repository
             return groupsDTO;
         }
 
-        public GroupDTO GetGroupDTO(int Id)
+        public GroupDTO GetGroupDTO(int id)
         {
             string command = "exec GetGroup @Id";
             GroupDTO groupDTO = null;
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                groupDTO = db.Query<GroupDTO>(command, new { Id }).FirstOrDefault();
+                groupDTO = db.Query<GroupDTO>(command, new { id }).FirstOrDefault();
             }
 
             return groupDTO;
+        }
+
+        public void UpdateGroupDTO(GroupDTO groupDTO)
+        {
+            string command = "exec UpdateGroup @Id, @Name, @IdCourse";
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(command, new { groupDTO.Id, groupDTO.Name, groupDTO.IdCourse });
+            }
         }
     }
 }
