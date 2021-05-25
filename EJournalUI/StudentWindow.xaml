@@ -1,0 +1,80 @@
+﻿<Page x:Class="EJournalUI.Concrete_student1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EJournalUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="Concrete_student1">
+
+    <Grid>
+        <TabControl>
+            <TabItem Header = "Info">
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Full name" Width ="150"/>
+                        <DataGridCheckBoxColumn Header ="Email" Width ="80"/>
+                        <DataGridTextColumn Header ="Phone" Width ="150"/>
+                        <DataGridTextColumn Header ="Git" Width ="150"/>
+                        <DataGridTextColumn Header ="Agreement number" Width ="150"/>
+                        <DataGridTextColumn Header ="Performance" Width ="150"/>
+                        <DataGridCheckBoxColumn Header ="Status" Width ="80"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header = "Attendance">
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Name" Width ="150"/>
+                        <DataGridCheckBoxColumn Header ="Lesson 1" Width ="80"/>
+                        <DataGridCheckBoxColumn Header ="Lesson 2" Width ="80"/>
+                        <DataGridCheckBoxColumn Header ="Lesson 3" Width ="80"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header = "Projects">
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Name" Width ="150"/>
+                        <DataGridTextColumn Header ="Description" Width ="150"/>
+                        <DataGridCheckBoxColumn Header ="Status" Width ="80"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header = "Exercises">
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Description" Width ="150"/>
+                        <DataGridTextColumn Header ="Deadline" Width ="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header = "Comments">
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Hard" Width ="150"/>
+                        <DataGridTextColumn Header ="Soft" Width ="150"/>
+                        <DataGridTextColumn Header ="General" Width ="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header = "Teams">
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Project" Width ="150"/>
+                        <DataGridTextColumn Header ="Team title" Width ="150"/>
+                        <DataGridTextColumn Header ="Team comments" Width ="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Page>

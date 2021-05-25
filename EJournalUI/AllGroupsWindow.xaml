@@ -1,0 +1,44 @@
+﻿<Window x:Class="EJournalUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EJournalUI"
+        mc:Ignorable="d"
+        Title="GroupsWindow" Height="600" Width="752">
+  <Grid>
+    <TabControl>
+      <TabItem Header = "Groups">
+          <DataGrid Margin ="12, 15">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header ="Group" Width ="150"/>
+        <DataGridTextColumn Header ="City" Width ="80"/>
+        <DataGridTextColumn Header ="Count of students" Width ="150"/>
+        <DataGridCheckBoxColumn Header ="Is finished" Width ="80"/>
+      </DataGrid.Columns>
+    </DataGrid>
+      </TabItem>
+      
+    <TabItem Header = "Teachers">
+          <DataGrid Margin ="12, 15">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header ="Name" Width ="150"/>
+        <DataGridTextColumn Header ="Surname" Width ="150"/>
+      </DataGrid.Columns>
+    </DataGrid>
+      </TabItem>
+      
+      <TabItem Header = "MyAccount">
+          <DataGrid Margin ="12, 15">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header ="MyGroups" Width ="150"/>
+        <DataGridTextColumn Header ="Count of students" Width ="150"/>
+        <DataGridTextColumn Header ="City" Width ="80"/>
+        <DataGridCheckBoxColumn Header ="Is finished" Width ="80"/>
+      </DataGrid.Columns>
+    </DataGrid>
+      </TabItem>
+    
+    </TabControl>
+  </Grid>
+</Window>
