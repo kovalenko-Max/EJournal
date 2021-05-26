@@ -18,11 +18,16 @@ namespace EJournalUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AllGroupsWindow : Window
     {
-        public MainWindow()
+        public AllGroupsWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GroupsWrapPanel.Children.Add(new GroupCard());
         }
     }
 }
