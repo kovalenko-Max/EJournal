@@ -35,14 +35,14 @@ namespace EJournalUI
 
             textBlock = new TextBlock();
             textBlock.Text = "Email";
-            textBlock.Margin = new Thickness(0, 23, 59, 23);
+            textBlock.Margin = new Thickness(0, 23, 20, 23);
             textBlock.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(textBlock, 1);
             grid.Children.Add(textBlock);
 
             textBlock = new TextBlock();
             textBlock.Text = "Git";
-            textBlock.Margin = new Thickness(89, 23, 1, 23);
+            textBlock.Margin = new Thickness(89, 23, 1, 20);
             textBlock.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(textBlock, 1);
             grid.Children.Add(textBlock);

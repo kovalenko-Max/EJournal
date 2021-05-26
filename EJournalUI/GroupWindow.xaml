@@ -10,7 +10,7 @@
 
 	<Grid>
 		<TabControl>
-			<TabItem Header = "Groups">
+			<TabItem Header = "Group students">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="75" MinHeight="75"/>
@@ -21,11 +21,15 @@
 					</DockPanel>
 					<ScrollViewer Grid.Row="1">
 						<WrapPanel  x:Name="GroupsWrapPanel">
-						</WrapPanel>
+                            <local:StudentCard/>
+                            
+
+
+                        </WrapPanel>
 					</ScrollViewer>
 				</Grid>
 			</TabItem>
-			<TabItem Header = "Projects">
+			<!--<TabItem Header = "Projects">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="75" MinHeight="75"/>
@@ -35,13 +39,35 @@
 					<DockPanel Grid.Row="0">
 						<Button Content="Create project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2"/>
 					</DockPanel>
-					<ScrollViewer Grid.Row="1">
-						<WrapPanel  x:Name="ProjectsWrapPanel">
-						</WrapPanel>
-					</ScrollViewer>
+                    <ScrollViewer Grid.Row="1">
+                        <WrapPanel  x:Name="ProjectsWrapPanel">
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
+			</TabItem>-->
 
-				</Grid>
-			</TabItem>
-		</TabControl>
+            <!--<TabItem Header = "Teams">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" MinHeight="75"/>
+                        <RowDefinition Height="480*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0">
+                        <Button Content="Create team" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2"/>
+                    </DockPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <WrapPanel  x:Name="TeamsWrapPanel">
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>-->
+
+            <TabItem Header = "Attendance">
+                <Grid>
+                    <ScrollViewer Grid.Row="1">
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
 	</Grid>
 </Page>

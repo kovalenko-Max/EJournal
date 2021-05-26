@@ -17,7 +17,7 @@
 
                     <DockPanel Grid.Row="0">
                         <Button Content="Create group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click"/>
-						<Button Content="Manage group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="20,2,2,2" Click="Button_Click1"/>
+						<!--<Button Content="Manage group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="20,2,2,2" Click="Button_Click1"/>-->
 					</DockPanel>
                     <ScrollViewer Grid.Row="1">
                         <WrapPanel  x:Name="GroupsWrapPanel">
