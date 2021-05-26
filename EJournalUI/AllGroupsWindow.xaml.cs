@@ -29,5 +29,10 @@ namespace EJournalUI
         {
             GroupsWrapPanel.Children.Add(new GroupCard());
         }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
