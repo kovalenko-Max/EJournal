@@ -16,24 +16,23 @@ namespace EJournalDAL.Repository
             ConnectionString = connectionString;
         }
 
-        public GroupDTO AddGroupDTO(string name, int IdCourse)
+        public GroupDTO AddGroupDTO(GroupDTO groupDTO)
         {
-            string command = "exec DeleteGroup @Name, @IdCourse";
-            GroupDTO groupDTO = null;
+            string command = "exec AddGroup @Name, @IdCourse";
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                groupDTO = db.Query<GroupDTO>(command, new { name, IdCourse }).FirstOrDefault();
+                groupDTO = db.Query<GroupDTO>(command, new { groupDTO.Name, groupDTO.IdCourse }).FirstOrDefault();
             }
 
             return groupDTO;
         }
 
-        public void DeleteGroupDTO(int Id)
+        public void DeleteGroupDTO(GroupDTO groupDTO)
         {
             string command = "exec DeleteGroup @Id";
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                db.Execute(command, new { Id });
+                db.Execute(command, new { groupDTO.Id });
             }
         }
 

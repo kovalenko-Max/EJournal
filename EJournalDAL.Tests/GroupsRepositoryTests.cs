@@ -23,7 +23,6 @@ namespace EJournalDAL.Tests
         public void GetAllGroupsDTO_ShouldReturnAllGroups(int expectedMockNumb)
         {
             List<GroupDTO> expectedGroupsDTO = GroupsDTOMock.GetAllGroupsDTOMock(expectedMockNumb);
-
             List<GroupDTO> actualGroupsDTO = GroupsRepository.GetAllGroupsDTO();
 
             for (int i = 0; i < actualGroupsDTO.Count; ++i)
