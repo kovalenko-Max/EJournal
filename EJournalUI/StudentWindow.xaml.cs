@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace EJournalUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Concrete_student1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Concrete_student1 : Page
     {
-        public MainWindow()
+        public Concrete_student1()
         {
             InitializeComponent();
         }
