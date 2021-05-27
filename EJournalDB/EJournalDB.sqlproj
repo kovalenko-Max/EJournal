@@ -98,7 +98,7 @@
     <Build Include="dbo\Stored Procedures\GetStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetTeacher.sql" />
     <Build Include="dbo\Stored Procedures\UpdateCourse.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateGroups.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateGroup.sql" />
     <Build Include="dbo\Stored Procedures\UpdateExercises.sql" />
     <Build Include="dbo\Stored Procedures\UpdateTeacher.sql" />
     <Build Include="dbo\Stored Procedures\AddLesson.sql" />

@@ -7,5 +7,5 @@
       ,[Phone]
       ,[Git]
       ,[AgreementNumber]
-  FROM [AcademyDB].[dbo].[Students]
+  FROM [EJournalDB].[dbo].[Students]
   where IsDelete = 0
