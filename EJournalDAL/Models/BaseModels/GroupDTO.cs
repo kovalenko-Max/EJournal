@@ -1,16 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DAL.Models.BasicModels
+﻿namespace DAL.Models.BasicModels
 {
     public class GroupDTO
     {
         public int Id;
         public string Name { get; set; }
         public int? IdCourse { get; set; }
-        public int? IdFinish { get; set; }
-        public bool IsDelete { get; set; }
+        public int? IsFinish { get; set; }
+        public int IsDelete { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            bool isEquals = false;
+            
+            if (obj is GroupDTO)
+            {
+                GroupDTO groupDTO = (GroupDTO)obj;
+
+                isEquals = Id == groupDTO.Id
+                    && Name == groupDTO.Name
+                    && IdCourse == groupDTO.IdCourse
+                    && IsDelete == groupDTO.IsDelete;
+            }
+
+            return isEquals;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id} {Name} {IdCourse} {IsFinish} {IsDelete}";
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
