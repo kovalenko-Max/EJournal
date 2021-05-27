@@ -11,5 +11,6 @@ namespace DAL.Models.BasicModels
         public int? IdCourse { get; set; }
         public int? IdFinish { get; set; }
         public bool IsDelete { get; set; }
+
     }
 }

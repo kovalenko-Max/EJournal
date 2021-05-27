@@ -4,5 +4,5 @@
       ,[Description]
       ,[Deadline]
       ,[IdGroup]
-  FROM [AcademyDB].[dbo].[Exercises]
+  FROM [dbo].[Exercises]
   where IsDelete = 0

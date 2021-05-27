@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE UpdateGroups
+﻿CREATE PROCEDURE UpdateGroup
 @Id int,
 @Name nvarchar (100),
 @IdCourse int

@@ -7,4 +7,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Deadline" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="e1cbb174-0180-4db5-abaa-f7d88b6e7a38" ChangeDateTime="05/26/2021 05:50:42">
+    <Property Name="ElementName" Value="[dbo].[UpdateStudents]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[UpdateStudent]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="51c83756-1b2e-4a1b-8bf7-7b137008ff79" ChangeDateTime="05/26/2021 05:51:22">
+    <Property Name="ElementName" Value="[dbo].[UpdateGroups]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="UpdateGroup" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5492cd3d-bf97-41f7-a239-1d865c558482" ChangeDateTime="05/26/2021 05:51:48">
+    <Property Name="ElementName" Value="[dbo].[UpdateExercises]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="UpdateExercise" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="84d881a3-5cf0-4c95-ba65-63c531de6b9d" ChangeDateTime="05/26/2021 05:52:29">
+    <Property Name="ElementName" Value="[dbo].[UpdateComments]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[UpdateComment]" />
+  </Operation>
 </Operations>

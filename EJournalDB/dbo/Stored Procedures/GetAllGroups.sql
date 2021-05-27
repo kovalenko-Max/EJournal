@@ -4,5 +4,5 @@
       ,[Name]
       ,[IdCourse]
       ,[IsFinish]
-  FROM [AcademyDB].[dbo].[Groups]
+  FROM .[dbo].[Groups]
   where IsDelete = 0
