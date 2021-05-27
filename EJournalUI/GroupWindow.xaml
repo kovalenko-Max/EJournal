@@ -21,30 +21,24 @@
 					</DockPanel>
 					<ScrollViewer Grid.Row="1">
 						<WrapPanel  x:Name="GroupsWrapPanel">
-                            <local:StudentCard/>
-                            
-
-
+                            <!--<local:StudentCard/>-->
                         </WrapPanel>
 					</ScrollViewer>
 				</Grid>
 			</TabItem>
-			<!--<TabItem Header = "Projects">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="75" MinHeight="75"/>
-						<RowDefinition Height="480*"/>
-					</Grid.RowDefinitions>
-
-					<DockPanel Grid.Row="0">
-						<Button Content="Create project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2"/>
-					</DockPanel>
+			<TabItem Header = "Exercises">
+                <Grid>
+                    <DataGrid Margin ="12, 15">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header ="Description" Width ="150"/>
+                            <DataGridTextColumn Header ="Deadline" Width ="150"/>
+                            <DataGridCheckBoxColumn Header ="Status" Width ="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <ScrollViewer Grid.Row="1">
-                        <WrapPanel  x:Name="ProjectsWrapPanel">
-                        </WrapPanel>
                     </ScrollViewer>
                 </Grid>
-			</TabItem>-->
+			</TabItem>
 
             <!--<TabItem Header = "Teams">
                 <Grid>
@@ -64,6 +58,12 @@
 
             <TabItem Header = "Attendance">
                 <Grid>
+                    <DataGrid Margin ="12, 15">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header ="Homework" Width ="200"/>
+                            <DataGridTextColumn Header ="Deadline" Width ="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <ScrollViewer Grid.Row="1">
                     </ScrollViewer>
                 </Grid>

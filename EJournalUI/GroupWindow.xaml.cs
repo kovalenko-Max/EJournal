@@ -27,7 +27,7 @@ namespace EJournalUI
 
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            GroupsWrapPanel.Children.Add(new StudentCard());
+            //GroupsWrapPanel.Children.Add(new StudentCard());
         }
     }
 }

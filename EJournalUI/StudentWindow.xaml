@@ -40,6 +40,7 @@
                         <DataGridTextColumn Header ="Hard" Width ="150"/>
                         <DataGridTextColumn Header ="Soft" Width ="150"/>
                         <DataGridTextColumn Header ="General" Width ="150"/>
+                        <DataGridTextColumn Header ="Team comments" Width ="150"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

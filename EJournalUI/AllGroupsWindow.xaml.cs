@@ -27,12 +27,12 @@ namespace EJournalUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GroupsWrapPanel.Children.Add(new GroupCard());
+            //GroupsWrapPanel.Children.Add(new GroupCard());
         }
 
-        private void Button_Click1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            //GroupsWrapPanel.Children.Add(new GroupCard());
         }
     }
 }
