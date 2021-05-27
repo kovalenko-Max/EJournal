@@ -1,0 +1,71 @@
+﻿<Window x:Class="EJournalUI.GroupWindow1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EJournalUI"
+        mc:Ignorable="d"
+        Title="GroupWindow1" Height="450" Width="800">
+    <TabControl>
+        <TabItem Header = "Group students">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" MinHeight="75"/>
+                    <RowDefinition Height="480*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0">
+                    <Button Content="Add student" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click2"/>
+                    <Button Content="Add student to group" DockPanel.Dock="Left" Width="150" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click3"/>
+                </DockPanel>
+                <ScrollViewer Grid.Row="1">
+                    <WrapPanel  x:Name="GroupsWrapPanel">
+                        <!--<local:StudentCard/>-->
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid>
+        </TabItem>
+        <TabItem Header = "Exercises">
+            <Grid>
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Description" Width ="150"/>
+                        <DataGridTextColumn Header ="Deadline" Width ="150"/>
+                        <DataGridCheckBoxColumn Header ="Status" Width ="80"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ScrollViewer Grid.Row="1">
+                </ScrollViewer>
+            </Grid>
+        </TabItem>
+
+        <!--<TabItem Header = "Teams">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" MinHeight="75"/>
+                        <RowDefinition Height="480*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0">
+                        <Button Content="Create team" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2"/>
+                    </DockPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <WrapPanel  x:Name="TeamsWrapPanel">
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>-->
+
+        <TabItem Header = "Attendance">
+            <Grid>
+                <DataGrid Margin ="12, 15">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Homework" Width ="200"/>
+                        <DataGridTextColumn Header ="Description" Width ="200"/>
+                        <DataGridTextColumn Header ="Deadline" Width ="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ScrollViewer Grid.Row="1">
+                </ScrollViewer>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

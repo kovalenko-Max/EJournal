@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace EJournalUI
 {
     /// <summary>
-    /// Interaction logic for Students.xaml
+    /// Interaction logic for StudentWindow1.xaml
     /// </summary>
-    public partial class Students : Page
+    public partial class StudentWindow1 : Window
     {
-        public Students()
+        public StudentWindow1()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click2(object sender, RoutedEventArgs e)
-        {
-            //GroupsWrapPanel.Children.Add(new StudentCard());
         }
     }
 }

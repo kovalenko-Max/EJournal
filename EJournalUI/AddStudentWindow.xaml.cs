@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace EJournalUI
 {
     /// <summary>
-    /// Interaction logic for Concrete_student1.xaml
+    /// Interaction logic for AddStudentWindow.xaml
     /// </summary>
-    public partial class Concrete_student1 : Page
+    public partial class AddStudentWindow : Window
     {
-        public Concrete_student1()
+        public AddStudentWindow()
         {
             InitializeComponent();
         }
