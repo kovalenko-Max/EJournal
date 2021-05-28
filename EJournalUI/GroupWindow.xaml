@@ -21,7 +21,6 @@
 					</DockPanel>
 					<ScrollViewer Grid.Row="1">
 						<WrapPanel  x:Name="GroupsWrapPanel">
-                            <!--<local:StudentCard/>-->
                         </WrapPanel>
 					</ScrollViewer>
 				</Grid>
@@ -39,22 +38,6 @@
                     </ScrollViewer>
                 </Grid>
 			</TabItem>
-
-            <!--<TabItem Header = "Teams">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="75" MinHeight="75"/>
-                        <RowDefinition Height="480*"/>
-                    </Grid.RowDefinitions>
-                    <DockPanel Grid.Row="0">
-                        <Button Content="Create team" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2"/>
-                    </DockPanel>
-                    <ScrollViewer Grid.Row="1">
-                        <WrapPanel  x:Name="TeamsWrapPanel">
-                        </WrapPanel>
-                    </ScrollViewer>
-                </Grid>
-            </TabItem>-->
 
             <TabItem Header = "Attendance">
                 <Grid>
