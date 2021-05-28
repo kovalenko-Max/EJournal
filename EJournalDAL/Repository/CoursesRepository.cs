@@ -7,7 +7,7 @@ using EJournalDAL.Models.BaseModels;
 
 namespace EJournalDAL.Repository
 {
-    class CoursesRepository
+    public class CoursesRepository
     {
         public string ConnectionString;
 

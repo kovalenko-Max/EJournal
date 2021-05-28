@@ -6,8 +6,8 @@ namespace EJournalDAL.Models.BaseModels
     {
         public int Id;
         public string Name { get; set; }
-        public int? IdCourse { get; set; }
-        public int? IsFinish { get; set; }
+        public int IdCourse { get; set; }
+        public int IsFinish { get; set; }
         public int IsDelete { get; set; }
 
         public override bool Equals(object obj)
