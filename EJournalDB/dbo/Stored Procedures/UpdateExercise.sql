@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE UpdateExercises
+﻿CREATE PROCEDURE UpdateExercise
 @Id int,
 @Description nvarchar (255),
 @Deadline datetime,

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJournalBLL
+namespace EJournalDAL.Models.BaseModels
 {
-    class Class1
+    public class AttendanceDTO
     {
     }
 }

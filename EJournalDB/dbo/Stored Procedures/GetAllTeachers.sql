@@ -2,5 +2,5 @@
    AS
    SELECT  [Id]
       ,[Name]
-  FROM [EJournalDB].[dbo].[Teachers]
+  FROM [dbo].[Teachers]
   where IsDelete = 0

@@ -99,7 +99,7 @@
     <Build Include="dbo\Stored Procedures\GetTeacher.sql" />
     <Build Include="dbo\Stored Procedures\UpdateCourse.sql" />
     <Build Include="dbo\Stored Procedures\UpdateGroup.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateExercises.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateExercise.sql" />
     <Build Include="dbo\Stored Procedures\UpdateTeacher.sql" />
     <Build Include="dbo\Stored Procedures\AddLesson.sql" />
     <Build Include="dbo\Stored Procedures\DeleteLesson.sql" />
@@ -122,10 +122,12 @@
     <Build Include="dbo\Stored Procedures\GetProjects.sql" />
     <Build Include="dbo\Stored Procedures\GetStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetStudents.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateComments.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateComment.sql" />
     <Build Include="dbo\Stored Procedures\UpdateProject.sql" />
     <Build Include="dbo\Stored Procedures\UpdateProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStudents.sql" />
+    <Build Include="dbo\Stored Procedures\GetGroupsAndNumberOfStudentsInThemAndGroupStatus.sql" />
+
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />
