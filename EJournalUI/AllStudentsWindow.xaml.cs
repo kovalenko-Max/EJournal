@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace EJournalUI
 {
     /// <summary>
-    /// Interaction logic for AllGroupsWindow1.xaml
+    /// Interaction logic for AllStudentsWindow.xaml
     /// </summary>
-    public partial class AllGroupsWindow1 : Window
+    public partial class AllStudentsWindow : Window
     {
-        public AllGroupsWindow1()
+        public AllStudentsWindow()
         {
             InitializeComponent();
         }

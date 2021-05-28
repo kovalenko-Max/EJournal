@@ -1,0 +1,28 @@
+﻿<Window x:Class="EJournalUI.AddNewStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EJournalUI"
+        mc:Ignorable="d"
+        Title="AddNewStudentWindow" Height="466" Width="1100">
+    <Grid>
+        <TabControl>
+            <TabItem Header = "Group students">
+                <DataGrid Margin="20,18,20,82">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header ="Full name" Width ="150"/>
+                        <DataGridTextColumn Header ="City" Width ="150"/>
+                        <DataGridCheckBoxColumn Header ="Email" Width ="80"/>
+                        <DataGridTextColumn Header ="Phone" Width ="150"/>
+                        <DataGridTextColumn Header ="Git" Width ="150"/>
+                        <DataGridTextColumn Header ="Agreement number" Width ="150"/>
+                        <DataGridTextColumn Header ="Performance" Width ="150"/>
+                        <DataGridCheckBoxColumn Header ="Status" Width ="80"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <Button Content="Add new student" HorizontalAlignment="Center" Margin="0,387,0,0" VerticalAlignment="Top" Width="144" Height="40"/>
+    </Grid>
+</Window>

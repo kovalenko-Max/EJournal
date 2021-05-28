@@ -14,8 +14,8 @@
                     <RowDefinition Height="480*"/>
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0">
-                    <Button Content="Add student" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click2"/>
-                    <Button Content="Add student to group" DockPanel.Dock="Left" Width="150" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click3"/>
+                    <Button Content="Add new student" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click"/>
+                    <Button x:Name="btn_Add_existing_student" Content="Add existing student" DockPanel.Dock="Left" Width="150" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click_1"/>
                 </DockPanel>
                 <ScrollViewer Grid.Row="1">
                     <WrapPanel  x:Name="GroupsWrapPanel">
@@ -67,5 +67,6 @@
                 </ScrollViewer>
             </Grid>
         </TabItem>
+        
     </TabControl>
 </Window>

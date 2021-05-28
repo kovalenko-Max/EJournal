@@ -17,9 +17,9 @@ namespace EJournalUI
     /// <summary>
     /// Interaction logic for AddStudentWindow.xaml
     /// </summary>
-    public partial class AddStudentWindow : Window
+    public partial class AddNewStudentWindow : Window
     {
-        public AddStudentWindow()
+        public AddNewStudentWindow()
         {
             InitializeComponent();
         }

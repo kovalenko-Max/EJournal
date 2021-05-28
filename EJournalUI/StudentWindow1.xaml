@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="StudentWindow1" Height="430" Width="800">
+        Title="StudentWindow1" Height="430" Width="1100">
     <Grid>
-        <TabControl>
+        <TabControl Margin="0,0,0,0">
             <TabItem Header = "Student info">
-                <DataGrid Margin ="12,0,12,0" Height="506">
+                <DataGrid Margin ="12,0,12,0" Height="148">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header ="Full name" Width ="150"/>
+                        <DataGridTextColumn Header ="City" Width ="150"/>
                         <DataGridCheckBoxColumn Header ="Email" Width ="80"/>
                         <DataGridTextColumn Header ="Phone" Width ="150"/>
                         <DataGridTextColumn Header ="Git" Width ="150"/>

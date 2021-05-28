@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="GroupsWindow" Height="606" Width="1248">
+        Title="GroupsWindow" Height="606" Width="600">
     <Grid>
         <TabControl>
             <TabItem Header = "Groups">
@@ -17,12 +17,11 @@
 
                     <DockPanel Grid.Row="0">
                         <Button Content="Create group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
-					</DockPanel>
+                    </DockPanel>
                     <ScrollViewer Grid.Row="1">
                         <WrapPanel  x:Name="GroupsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
-
                 </Grid>
             </TabItem>
             <TabItem Header = "Projects">
@@ -31,14 +30,22 @@
                         <RowDefinition Height="75" MinHeight="75"/>
                         <RowDefinition Height="480*"/>
                     </Grid.RowDefinitions>
-
                     <DockPanel Grid.Row="0">
+                        <Button Content="Add project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
+                        <Button Content="Add team" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
                     </DockPanel>
-                    <ScrollViewer Grid.Row="1">
-                        <WrapPanel  x:Name="ProjectsWrapPanel">
-                        </WrapPanel>
-                    </ScrollViewer>
-
+                    
+                    <DataGrid Margin="20,0,10,71" SelectionChanged="DataGrid_SelectionChanged" Height="412" Grid.Row="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header ="Project name" Width ="150"/>
+                            <DataGridTextColumn Header ="Description" Width ="150"/>
+                            <DataGridTextColumn Header ="Teams" Width ="80"/>
+                        </DataGrid.Columns>
+                        <ScrollViewer Grid.Column="1">
+                            <WrapPanel  x:Name="GroupsWrapPanel2">
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>

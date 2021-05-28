@@ -15,24 +15,13 @@ using System.Windows.Shapes;
 namespace EJournalUI
 {
     /// <summary>
-    /// Interaction logic for GroupWindow1.xaml
+    /// Interaction logic for CreateProjectTeam.xaml
     /// </summary>
-    public partial class GroupWindow1 : Window
+    public partial class CreateProjectTeam : Window
     {
-        public GroupWindow1()
+        public CreateProjectTeam()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            AllStudentsWindow allStudents = new AllStudentsWindow();
-            allStudents.Show();
         }
     }
 }
