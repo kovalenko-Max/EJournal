@@ -23,16 +23,14 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        string ConnectionString;
         GroupStorage GroupStorage;
 
         public AllGroupsWindow()
         {
             InitializeComponent();
-            ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
+            string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
             GroupStorage = new GroupStorage(ConnectionString);
-            GroupStorage.GetAllGroupsFromDB();
             PrintAllGroups();
         }
 

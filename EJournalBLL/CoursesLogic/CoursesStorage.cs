@@ -33,10 +33,10 @@ namespace EJournalBLL.CoursesLogic
             CoursesRepository coursesRepository = new CoursesRepository(ConnectionString);
             List<CourseDTO> coursesDTO = coursesRepository.GetAllCoursesDTO();
 
-            return ConvertCourseDTOtoCourse(coursesDTO);
+            return ConvertCoursesDTOToCourses(coursesDTO);
         }
 
-        private List<Course> ConvertCourseDTOtoCourse(List<CourseDTO> coursesDTO)
+        private List<Course> ConvertCoursesDTOToCourses(List<CourseDTO> coursesDTO)
         {
             List<Course> courses = new List<Course>();
             foreach(CourseDTO courseDTO in coursesDTO)
