@@ -21,10 +21,19 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
+        string ConnectionString;
+        GroupStorage groupStorage;
+
         public AllGroupsWindow()
         {
             InitializeComponent();
+            ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=EJournalDB;"
+        + "Integrated Security=true;";
             Name = "AllGroupsWindow";
+            
+            groupStorage = new GroupStorage(ConnectionString);
+            groupStorage.GetAllGroupsFromDB();
+            PrintAllGroups();
         }
 
         private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
@@ -38,6 +47,15 @@ namespace EJournalUI
             else
             {
 
+            }
+        }
+
+        private void PrintAllGroups()
+        {
+            foreach(Group group in groupStorage.Groups)
+            {
+                GroupCard groupCard = new GroupCard(group);
+                GroupsWrapPanel.Children.Add(groupCard);
             }
         }
     }

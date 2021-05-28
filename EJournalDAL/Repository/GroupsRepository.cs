@@ -7,9 +7,9 @@ using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
 
 
-namespace EJournalDAL
+namespace EJournalDAL.Repository
 {
-    class GroupsRepository
+    public class GroupsRepository
     {
         public string ConnectionString;
 
