@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.Models.BasicModels
+namespace EJournalDAL.Models.BaseModels
 {
     public class TeacherDTO
     {
