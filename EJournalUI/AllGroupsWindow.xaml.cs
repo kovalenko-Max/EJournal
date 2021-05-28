@@ -21,12 +21,10 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        List<Group> Groups;
         public AllGroupsWindow()
         {
             InitializeComponent();
             Name = "AllGroupsWindow";
-            Groups = new List<Group>();
         }
 
         private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
@@ -35,16 +33,12 @@ namespace EJournalUI
 
             if (addGroupWindow.ShowDialog() == true)
             {
-                Groups.Add(addGroupWindow.Group);
-                GroupsWrapPanel.Children.Add(new GroupCard(addGroupWindow.Group));
+                
             }
             else
             {
 
             }
-
         }
-
-        
     }
 }

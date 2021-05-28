@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AddGroupWindow" Height="156" Width="250">
+        Title="Add new group" Height="156" Width="250">
     <StackPanel>
         <TextBlock Text="Group name:"/>
         <TextBox x:Name="GroupNameTextBox"/>
