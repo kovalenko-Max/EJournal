@@ -4,5 +4,5 @@
       ,[Name]
       ,[IdCourse]
       ,[IsFinish]
-  FROM [EJournalDB].[dbo].[Groups]
+  FROM .[dbo].[Groups]
   where IsDelete = 0

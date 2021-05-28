@@ -7,6 +7,8 @@ AS
       ,[Email]
       ,[Phone]
       ,[Git]
+      ,[City]
+      ,[Ranking]
       ,[AgreementNumber]
-  FROM [Students]
+  FROM [dbo].[Students]
   Where IsDelete=0 AND Id=@Id
