@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EJournalBLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,16 +24,21 @@ namespace EJournalUI
         public AllGroupsWindow()
         {
             InitializeComponent();
+            Name = "AllGroupsWindow";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            //GroupsWrapPanel.Children.Add(new GroupCard());
-        }
+            AddGroupWindow addGroupWindow = new AddGroupWindow();
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //GroupsWrapPanel.Children.Add(new GroupCard());
+            if (addGroupWindow.ShowDialog() == true)
+            {
+                
+            }
+            else
+            {
+
+            }
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EJournalBLL;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 
@@ -12,11 +9,12 @@ namespace EJournalUI
 {
     public class GroupCard : Border
     {
-        public GroupCard()
+        public GroupCard(Group group)
         {
             Height = 70;
             Width = 563;
             BorderThickness = new Thickness(3);
+            Background = Brushes.White;
             BorderBrush = Brushes.Black;
             Margin = new Thickness(2);
 
@@ -27,7 +25,7 @@ namespace EJournalUI
 
             Child = grid;
             TextBlock textBlock = new TextBlock();
-            textBlock.Text = "SomeText";
+            textBlock.Text = group.Name;
             textBlock.Margin = new Thickness(15, 22, 15, 24);
             textBlock.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(textBlock, 0);
@@ -55,6 +53,29 @@ namespace EJournalUI
             Grid.SetColumn(button, 2);
 
             grid.Children.Add(button);
+
+            MouseEnter += StudentCard_MouseEnter;
+            MouseLeave += StudentCard_MouseLeave;
+        }
+
+        private void StudentCard_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is GroupCard)
+            {
+                GroupCard groupCard = (GroupCard)sender;
+
+                groupCard.BorderBrush = Brushes.Blue;
+            }
+        }
+
+        private void StudentCard_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is GroupCard)
+            {
+                GroupCard groupCard = (GroupCard)sender;
+
+                groupCard.BorderBrush = Brushes.Black;
+            }
         }
     }
 }
