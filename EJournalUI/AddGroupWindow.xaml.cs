@@ -1,4 +1,6 @@
-﻿using EJournalBLL.CoursesLogic;
+﻿using EJournalBLL;
+using EJournalBLL.CoursesLogic;
+using EJournalBLL.GroupsLogic;
 using System.Configuration;
 using System.Windows;
 
@@ -9,18 +11,18 @@ namespace EJournalUI
     /// </summary>
     public partial class AddGroupWindow : Window
     {
-        string ConnectionString;
+        public Group Group;
         public AddGroupWindow()
         {
             InitializeComponent();
-            ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-
-            CoursesStorage coursesStorage = new CoursesStorage(ConnectionString);
+            string connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
+            CoursesStorage coursesStorage = new CoursesStorage(connectionString);
             CourseComboBox.ItemsSource = coursesStorage.Courses;
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
+            Group = new Group(GroupNameTextBox.Text, (Course)CourseComboBox.SelectedItem);
             this.DialogResult = true;
         }
     }
