@@ -9,7 +9,7 @@ namespace EJournalUI
 {
     public class GroupCard : Border
     {
-        public GroupCard(Group group)
+        public GroupCard()
         {
             Height = 70;
             Width = 563;
@@ -25,7 +25,7 @@ namespace EJournalUI
 
             Child = grid;
             TextBlock textBlock = new TextBlock();
-            textBlock.Text = group.Name;
+            textBlock.Text = "Group Name";
             textBlock.Margin = new Thickness(15, 22, 15, 24);
             textBlock.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(textBlock, 0);
