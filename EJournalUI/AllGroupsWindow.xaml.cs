@@ -44,6 +44,7 @@ namespace EJournalUI
             {
                 GroupStorage.Groups.Add(addGroupWindow.Group);
                 GroupsWrapPanel.Children.Add(new GroupCard(addGroupWindow.Group));
+                GroupStorage.AddGroupToDB(addGroupWindow.Group);
             }
             else
             {
@@ -53,7 +54,7 @@ namespace EJournalUI
 
         private void PrintAllGroups()
         {
-            foreach(Group group in GroupStorage.Groups)
+            foreach (Group group in GroupStorage.Groups)
             {
                 GroupCard groupCard = new GroupCard(group);
                 GroupsWrapPanel.Children.Add(groupCard);

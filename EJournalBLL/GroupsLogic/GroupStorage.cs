@@ -35,6 +35,16 @@ namespace EJournalBLL.GroupsLogic
             }
         }
 
+        public void AddGroupToDB(Group group)
+        {
+            GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
+            GroupDTO groupDTO = new GroupDTO();
+            groupDTO.Name = group.Name;
+            groupDTO.IdCourse = group.Course.Id;
+            groupDTO = groupsRepository.AddGroupDTO(groupDTO);
+            group.Id = groupDTO.Id;
+        }
+
         private Group GetGroupFromGroupDTO(GroupDTO groupDTO, CourseDTO courseDTO)
         {
             Group group = new Group(groupDTO.Name, new Course(courseDTO.Name));
