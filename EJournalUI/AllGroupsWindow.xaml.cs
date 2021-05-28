@@ -54,6 +54,7 @@ namespace EJournalUI
 
         private void PrintAllGroups()
         {
+            GroupsWrapPanel.Children.Clear();
             foreach (Group group in GroupStorage.Groups)
             {
                 GroupCard groupCard = new GroupCard(group);
