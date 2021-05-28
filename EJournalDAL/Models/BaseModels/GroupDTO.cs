@@ -1,4 +1,6 @@
-﻿namespace DAL.Models.BasicModels
+﻿using System.Collections.Generic;
+
+namespace EJournalDAL.Models.BaseModels
 {
     public class GroupDTO
     {
