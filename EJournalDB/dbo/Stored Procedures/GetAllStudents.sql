@@ -6,6 +6,8 @@
       ,[Email]
       ,[Phone]
       ,[Git]
+      ,[City]
+      ,[Ranking]
       ,[AgreementNumber]
-  FROM [EJournalDB].[dbo].[Students]
+  FROM [dbo].[Students]
   where IsDelete = 0
