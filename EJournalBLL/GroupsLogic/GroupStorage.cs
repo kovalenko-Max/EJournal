@@ -7,7 +7,7 @@ using EJournalDAL;
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 
-namespace EJournalBLL
+namespace EJournalBLL.GroupsLogic
 {
     public class GroupStorage
     {
@@ -33,6 +33,16 @@ namespace EJournalBLL
                 Group group = new Group(groupDTO, course);
                 Groups.Add(group);
             }
+        }
+
+        public void AddGroupToDB(Group group)
+        {
+            GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
+            GroupDTO groupDTO = new GroupDTO();
+            groupDTO.Name = group.Name;
+            groupDTO.IdCourse = group.Course.Id;
+            groupDTO = groupsRepository.AddGroupDTO(groupDTO);
+            group.Id = groupDTO.Id;
         }
 
         private Group GetGroupFromGroupDTO(GroupDTO groupDTO, CourseDTO courseDTO)
