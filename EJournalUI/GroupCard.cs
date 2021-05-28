@@ -1,4 +1,4 @@
-﻿using EJournalBLL;
+﻿using EJournalBLL.GroupsLogic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

@@ -1,6 +1,8 @@
 ﻿using EJournalBLL;
+using EJournalBLL.GroupsLogic;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,10 +29,8 @@ namespace EJournalUI
         public AllGroupsWindow()
         {
             InitializeComponent();
-            ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=EJournalDB;"
-        + "Integrated Security=true;";
+            ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
-            
             groupStorage = new GroupStorage(ConnectionString);
             groupStorage.GetAllGroupsFromDB();
             PrintAllGroups();

@@ -4,6 +4,7 @@ using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
+using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
@@ -21,7 +22,7 @@ namespace EJournalDAL.Repository
             string command = "exec AddCourse @Name";
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                courseDTO = db.Query<CourseDTO>(command, new { courseDTO.Name}).FirstOrDefault();
+                courseDTO = db.Query<CourseDTO>(command, new { courseDTO.Name }).FirstOrDefault();
             }
 
             return courseDTO;

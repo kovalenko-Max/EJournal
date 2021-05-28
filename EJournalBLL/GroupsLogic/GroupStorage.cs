@@ -7,7 +7,7 @@ using EJournalDAL;
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 
-namespace EJournalBLL
+namespace EJournalBLL.GroupsLogic
 {
     public class GroupStorage
     {
