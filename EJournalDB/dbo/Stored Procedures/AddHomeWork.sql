@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetExercises]
+﻿CREATE PROCEDURE [dbo].[CreateHomeWork]
 	@param1 int = 0,
 	@param2 int
 AS

@@ -8,4 +8,8 @@
     <ProjectReference Include="..\EJournalDAL\EJournalDAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ExercisesLogic\" />
+  </ItemGroup>
+
 </Project>
