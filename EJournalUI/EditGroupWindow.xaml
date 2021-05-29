@@ -1,4 +1,4 @@
-﻿<Window x:Class="EJournalUI.AddGroupWindow"
+﻿<Window x:Class="EJournalUI.EditGroupWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Add new group" Height="156" Width="250">
+        Title="Group Editor" Height="156" Width="250">
     <StackPanel>
         <TextBlock Text="Group name:"/>
         <TextBox x:Name="GroupNameTextBox"/>
         <TextBlock Text="Course:"/>
         <ComboBox x:Name="CourseComboBox" IsEditable="True"/>
-        <Button x:Name="CreateButton" Content="Create" Width="86" Margin="0,10,0,0" HorizontalAlignment="Center" Click="CreateButton_Click"/>
+        <Button x:Name="AcceptButton" Content="Аccept" Width="86" Margin="0,10,0,0" HorizontalAlignment="Center" Click="Button_Accept_Click"/>
     </StackPanel>
 </Window>

@@ -40,6 +40,17 @@ namespace EJournalBLL.GroupsLogic
             group.Id = groupDTO.Id;
         }
 
+        public void UpdateGroupInDB(Group group)
+        {
+            GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
+            GroupDTO groupDTO = new GroupDTO();
+            groupDTO.Id = group.Id;
+            groupDTO.Name = group.Name;
+            groupDTO.IdCourse = group.Course.Id;
+            groupDTO.IsFinish = group.IsFinish ? 1 : 0;
+            groupsRepository.UpdateGroupDTO(groupDTO);
+        }
+
         private List<Group> GetAllGroupsFromDB()
         {
             GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);

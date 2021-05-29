@@ -9,10 +9,10 @@ namespace EJournalUI
     /// <summary>
     /// Interaction logic for AddGroupWindow.xaml
     /// </summary>
-    public partial class AddGroupWindow : Window
+    public partial class EditGroupWindow : Window
     {
         public Group Group;
-        public AddGroupWindow()
+        public EditGroupWindow()
         {
             InitializeComponent();
             string connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
@@ -20,9 +20,18 @@ namespace EJournalUI
             CourseComboBox.ItemsSource = coursesStorage.Courses;
         }
 
-        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Accept_Click(object sender, RoutedEventArgs e)
         {
-            Group = new Group(GroupNameTextBox.Text, (Course)CourseComboBox.SelectedItem);
+            if (Group is null)
+            {
+                Group = new Group(GroupNameTextBox.Text, (Course)CourseComboBox.SelectedItem);
+            }
+            else
+            {
+                Group.Name = GroupNameTextBox.Text;
+                Group.Course = (Course)CourseComboBox.SelectedItem;
+            }
+
             this.DialogResult = true;
         }
     }

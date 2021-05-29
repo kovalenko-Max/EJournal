@@ -1,4 +1,5 @@
 ﻿using EJournalBLL.GroupsLogic;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -34,6 +35,7 @@ namespace EJournalUI
             grid.Children.Add(textBlock);
 
             textBlock = new TextBlock();
+            textBlock.Name = "GroupNameTextBlock";
             textBlock.Text = Group.Name;
             textBlock.Margin = new Thickness(100, 10, 5, 35);
             textBlock.TextAlignment = TextAlignment.Left;
