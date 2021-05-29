@@ -121,11 +121,9 @@
     <Build Include="dbo\Stored Procedures\GetProjectGroups.sql" />
     <Build Include="dbo\Stored Procedures\GetProjects.sql" />
     <Build Include="dbo\Stored Procedures\GetStudent.sql" />
-    <Build Include="dbo\Stored Procedures\GetStudents.sql" />
     <Build Include="dbo\Stored Procedures\UpdateComment.sql" />
     <Build Include="dbo\Stored Procedures\UpdateProject.sql" />
     <Build Include="dbo\Stored Procedures\UpdateProjectGroup.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateStudents.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupsAndNumberOfStudentsInThemAndGroupStatus.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupAndStudentsInIt.sql" />
   </ItemGroup>

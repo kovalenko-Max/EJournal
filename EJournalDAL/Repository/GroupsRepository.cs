@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
 
 
-namespace EJournalDAL
+namespace EJournalDAL.Repository
 {
     public class GroupsRepository
     {
@@ -23,7 +23,7 @@ namespace EJournalDAL
             string command = "exec AddGroup @Name, @IdCourse";
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                groupDTO = db.Query<GroupDTO>(command, new { groupDTO.Name, groupDTO.IdCourse }).FirstOrDefault();
+                groupDTO.Id = db.Query<int>(command, new { groupDTO.Name, groupDTO.IdCourse }).FirstOrDefault();
             }
 
             return groupDTO;

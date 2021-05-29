@@ -14,7 +14,7 @@ namespace EJournalDAL.Tests
         [SetUp]
         public void Setup()
         {
-            ConnectionString = @"Data Source=DESKTOP-JJ674ET;Initial Catalog=StudentsFeedback;Integrated Security=True";
+            ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=EJournalDB;Integrated Security=True";
 
             GroupStudentsRepository = new GroupStudentsRepository(ConnectionString);
         }

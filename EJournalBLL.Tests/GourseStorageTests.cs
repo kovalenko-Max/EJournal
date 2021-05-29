@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJournalBLL
+namespace EJournalBLL.Tests
 {
-    class Class1
+    class GourseStorageTests
     {
+
     }
 }
