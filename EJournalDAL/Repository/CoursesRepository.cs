@@ -4,6 +4,7 @@ using Dapper;
 using System.Data;
 using DAL.Models.BasicModels;
 using System.Data.SqlClient;
+using EJournalDAL.Models.BaseModels;
 
 namespace EJournalDAL.Repository
 {

@@ -17,6 +17,9 @@ namespace EJournalDAL.Models.BaseModels
         public string AgreementNumber { get; set; }
         public bool IsDelete { get; set; }
 
+        public LessonDTO lesson;
+        public List<LessonDTO> lessons { get; set; }
+
         public override bool Equals(object obj)
         {
             StudentDTO student = obj as StudentDTO;

@@ -1,8 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[GetProjects]
 	
 AS
-	SELECT Id
-	,Name
-	,IdProjectCroup
+	SELECT 
+	Name
+	,Desription
+
 FROM Projects
 WHERE IsDelete =0

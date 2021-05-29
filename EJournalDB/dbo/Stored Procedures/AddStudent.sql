@@ -7,6 +7,7 @@
    @City NVARCHAR(100)  NULL,
    @Ranking INT ,
    @AgreementNumber NVARCHAR(50)
+   , @Id INT output
    AS
    INSERT INTO Students(Name, Surname, Email, Phone, Git, City, Ranking, AgreementNumber)
    VALUES (@Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber)
