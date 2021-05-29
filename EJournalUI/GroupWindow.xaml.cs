@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EJournalBLL.GroupsLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace EJournalUI
     /// </summary>
     public partial class GroupWindow : Window
     {
-        public GroupWindow()
+        Group Group;
+        public GroupWindow(Group group)
         {
             InitializeComponent();
+            Group = group;
+            GroupNameTextBox.Text = Group.Name;
+            GroupCourseTextBox.Text = Group.Course.Name;
         }
     }
 }

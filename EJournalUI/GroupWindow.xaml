@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="GroupWindow" 
         Height="450" Width="800"
-        MinHeight="75"
-        MinWidth="400">
+        MinHeight="290"
+        MinWidth="605">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" MinHeight="75"/>
@@ -19,7 +19,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="300*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Group name: " Grid.Column="0" Height="20" Margin="0,0,115,55"/>
@@ -28,6 +28,8 @@
             <TextBlock x:Name="GroupCourseTextBox"  Text="Some course" Grid.Column="0" Height="20" Margin="90,25,0,31"/>
             <TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="0,50,115,5"/>
             <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>
+            
+            <Button Content="EditGroup" Height="20" Width="60" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top"/>
         </Grid>
         <TabControl Grid.Row="1">
             <TabItem Header = "Students of group">

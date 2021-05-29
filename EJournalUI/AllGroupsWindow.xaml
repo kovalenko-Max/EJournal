@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="GroupsWindow" Height="606" Width="1248">
+        Title="GroupsWindow" Height="606" MinHeight="290" Width="1248" MinWidth="605">
     <Grid>
         <TabControl>
             <TabItem Header = "Groups">
