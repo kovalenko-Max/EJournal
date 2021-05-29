@@ -1,11 +1,13 @@
-﻿namespace DAL.Models.BasicModels
+﻿using System.Collections.Generic;
+
+namespace EJournalDAL.Models.BaseModels
 {
     public class GroupDTO
     {
         public int Id;
         public string Name { get; set; }
-        public int? IdCourse { get; set; }
-        public int? IsFinish { get; set; }
+        public int IdCourse { get; set; }
+        public int IsFinish { get; set; }
         public int IsDelete { get; set; }
 
         public override bool Equals(object obj)

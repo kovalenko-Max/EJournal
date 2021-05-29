@@ -1,4 +1,4 @@
-using DAL.Models.BasicModels;
+using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using NUnit.Framework;
 using System.Collections;

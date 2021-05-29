@@ -6,7 +6,7 @@ namespace EJournalDAL.Models.BaseModels
 {
     public class CourseDTO
     {
-        public int? Id;
+        public int Id;
         public string Name { get; set; }
         public bool IsDelete { get; set; }
     }

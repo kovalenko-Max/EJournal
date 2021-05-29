@@ -1,5 +1,8 @@
-﻿using System;
+﻿using EJournalBLL;
+using EJournalBLL.GroupsLogic;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +23,41 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
+        GroupStorage GroupStorage;
+
         public AllGroupsWindow()
         {
             InitializeComponent();
+            string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
+            Name = "AllGroupsWindow";
+            GroupStorage = new GroupStorage(ConnectionString);
+            PrintAllGroups();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            //GroupsWrapPanel.Children.Add(new GroupCard());
+            AddGroupWindow addGroupWindow = new AddGroupWindow();
+
+            if (addGroupWindow.ShowDialog() == true)
+            {
+                GroupStorage.Groups.Add(addGroupWindow.Group);
+                GroupsWrapPanel.Children.Add(new GroupCard(addGroupWindow.Group));
+                GroupStorage.AddGroupToDB(addGroupWindow.Group);
+            }
+            else
+            {
+
+            }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void PrintAllGroups()
         {
-            //GroupsWrapPanel.Children.Add(new GroupCard());
+            GroupsWrapPanel.Children.Clear();
+            foreach (Group group in GroupStorage.Groups)
+            {
+                GroupCard groupCard = new GroupCard(group);
+                GroupsWrapPanel.Children.Add(groupCard);
+            }
         }
     }
 }

@@ -16,11 +16,27 @@
                     </Grid.RowDefinitions>
 
                     <DockPanel Grid.Row="0">
-                        <Button Content="Create group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click"/>
-						<!--<Button Content="Manage group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="20,2,2,2" Click="Button_Click1"/>-->
-					</DockPanel>
+                        <Button Content="Create group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
+                    </DockPanel>
                     <ScrollViewer Grid.Row="1">
                         <WrapPanel  x:Name="GroupsWrapPanel">
+                            <!--<Border Height = "70" Width = "563" BorderThickness="2" BorderBrush="Black">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220*"/>
+                                        <ColumnDefinition Width="150*"/>
+                                        <ColumnDefinition Width="190*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Margin="15,10,125,35" Text="Group name:" TextAlignment="Left"/>
+                                    <TextBlock Grid.Column="0" Margin="100,10,5,35" Text="Group name:" TextAlignment="Left"/>
+                                    <TextBlock Grid.Column="0" Margin="15,40,125,8" Text="Course:" TextAlignment="Left"/>
+                                    <TextBlock Grid.Column="0" Margin="100,40,5,8" Text="Course:" TextAlignment="Left"/>
+                                    <TextBlock Grid.Column="1" Margin="0,23,59,23" Text="student count" TextAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Margin="89,23,1,23" Text="20" TextAlignment="Center"/>
+
+
+                                </Grid>
+                            </Border>-->
                         </WrapPanel>
                     </ScrollViewer>
 
@@ -34,7 +50,6 @@
                     </Grid.RowDefinitions>
 
                     <DockPanel Grid.Row="0">
-                        <!--<Button Content="Create project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_Click_1"/>-->
                     </DockPanel>
                     <ScrollViewer Grid.Row="1">
                         <WrapPanel  x:Name="ProjectsWrapPanel">
