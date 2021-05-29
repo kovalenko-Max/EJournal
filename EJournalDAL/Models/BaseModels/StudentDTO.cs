@@ -14,6 +14,8 @@ namespace EJournalDAL.Models.BaseModels
         public string Git { get; set; }
         public string City { get; set; }
         public int Ranking { get; set; }
+        public int? IdComment { get; set; }
+        public int? IdProjectGroup { get; set; }
         public string AgreementNumber { get; set; }
         public bool IsDelete { get; set; }
 

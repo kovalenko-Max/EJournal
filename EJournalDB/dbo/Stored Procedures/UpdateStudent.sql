@@ -7,6 +7,8 @@
    @Git NVARCHAR(100) = NULL,
    @City NVARCHAR(100)  NULL,
    @Ranking INT ,
+   @IdComment INT NULL,
+   @IdProjectGroup INT NULL,
    @AgreementNumber NVARCHAR(50)
 AS
 	UPDATE Students
@@ -18,5 +20,7 @@ AS
    Git =@Git,
    City=@City,
    Ranking=@Ranking,
+   IdComment = @IdComment,
+   IdProjectGroup= @IdProjectGroup,
   AgreementNumber =@AgreementNumber
    Where Id=@Id

@@ -8,7 +8,6 @@ namespace EJournalDAL.Models.BaseModels
     {
         public int? Id;
         public string Name { get; set; }
-        public int? IdStudent { get; set; }
         public int? IdComments { get; set; }
         public bool IsDelete { get; set; }
     }

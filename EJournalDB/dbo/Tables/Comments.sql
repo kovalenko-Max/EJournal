@@ -1,6 +1,5 @@
 ﻿CREATE TABLE [dbo].[Comments] (
     [Id]            INT            IDENTITY (1, 1) NOT NULL,
-    [IdStudent]     INT            NOT NULL,
     [Comment]       NVARCHAR (255) NOT NULL,
     [IdTeacher]     INT            NOT NULL,
     [IdCommentType] INT            NOT NULL,

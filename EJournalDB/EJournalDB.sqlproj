@@ -107,7 +107,7 @@
     <Build Include="dbo\Stored Procedures\GetLessons.sql" />
     <Build Include="dbo\Stored Procedures\UpdateLesson.sql" />
     <Build Include="dbo\Stored Procedures\AddComment.sql" />
-    <Build Include="dbo\Stored Procedures\AddComments.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllComments.sql" />
     <Build Include="dbo\Stored Procedures\AddProject.sql" />
     <Build Include="dbo\Stored Procedures\AddProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
@@ -121,7 +121,6 @@
     <Build Include="dbo\Stored Procedures\GetProjectGroups.sql" />
     <Build Include="dbo\Stored Procedures\GetProjects.sql" />
     <Build Include="dbo\Stored Procedures\GetStudent.sql" />
-    <Build Include="dbo\Stored Procedures\GetStudents.sql" />
     <Build Include="dbo\Stored Procedures\UpdateComment.sql" />
     <Build Include="dbo\Stored Procedures\UpdateProject.sql" />
     <Build Include="dbo\Stored Procedures\UpdateProjectGroup.sql" />
