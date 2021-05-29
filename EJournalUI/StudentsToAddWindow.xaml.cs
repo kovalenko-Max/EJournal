@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace EJournalUI
 {
     /// <summary>
-    /// Interaction logic for CreateProjectTeam.xaml
+    /// Interaction logic for StudentsToAddWindow.xaml
     /// </summary>
-    public partial class CreateProjectTeam : Window
+    public partial class StudentsToAddWindow : Window
     {
-        public CreateProjectTeam()
+        public StudentsToAddWindow()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

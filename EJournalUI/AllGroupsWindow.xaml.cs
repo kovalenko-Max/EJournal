@@ -40,5 +40,13 @@ namespace EJournalUI
 
             }
         }
+        private void Button_CreateTeam_Click(object sender, RoutedEventArgs e)
+        {
+            StudentsToAddWindow studentstoadd = new StudentsToAddWindow();
+            studentstoadd.Show();
+
+            ProjectTeamWindow projectteam = new ProjectTeamWindow();
+            projectteam.Show();
+        }
     }
 }

@@ -1,0 +1,22 @@
+﻿<Window x:Class="EJournalUI.StudentsToAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EJournalUI"
+        mc:Ignorable="d"
+        Title="StudentsToAddWindow" Height="450" Width="775">
+    <Grid Margin="0,0,10,0">
+        <DataGrid Margin="10,10,0,96" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header ="Full name" Width ="300"/>
+                <DataGridTextColumn Header ="City" Width ="200"/>
+                <DataGridTextColumn Header ="Group" Width ="150"/>
+                <DataGridCheckBoxColumn Header ="Add" Width ="100"/>
+            </DataGrid.Columns>
+            <WrapPanel  x:Name="GroupsWrapPanel">
+            </WrapPanel>
+        </DataGrid>
+        <Button Content="Add selected students" HorizontalAlignment="Center" Margin="0,368,0,0" VerticalAlignment="Top" Width="200" Height="40"/>
+    </Grid>
+</Window>

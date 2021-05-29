@@ -32,10 +32,10 @@
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <Button Content="Add project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
-                        <Button Content="Add team" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
+                        <Button Content="Add team" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateTeam_Click"/>
                     </DockPanel>
                     
-                    <DataGrid Margin="20,0,10,71" SelectionChanged="DataGrid_SelectionChanged" Height="412" Grid.Row="1">
+                    <DataGrid Margin="20,0,10,71" Height="412" Grid.Row="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header ="Project name" Width ="150"/>
                             <DataGridTextColumn Header ="Description" Width ="150"/>
