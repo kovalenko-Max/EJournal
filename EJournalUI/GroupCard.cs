@@ -1,4 +1,4 @@
-﻿using EJournalBLL;
+﻿using EJournalBLL.GroupsLogic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,17 +19,39 @@ namespace EJournalUI
             Margin = new Thickness(2);
 
             Grid grid = new Grid();
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(126, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(149, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(282, GridUnitType.Star) });
-
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(220, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(150, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(190, GridUnitType.Star) });
             Child = grid;
+
             TextBlock textBlock = new TextBlock();
-            textBlock.Text = group.Name;
-            textBlock.Margin = new Thickness(15, 22, 15, 24);
-            textBlock.TextAlignment = TextAlignment.Center;
+            textBlock.Text = "Group name:";
+            textBlock.Margin = new Thickness(15, 10, 125, 35);
+            textBlock.TextAlignment = TextAlignment.Left;
             Grid.SetColumn(textBlock, 0);
             grid.Children.Add(textBlock);
+
+            textBlock = new TextBlock();
+            textBlock.Text = group.Name;
+            textBlock.Margin = new Thickness(100, 10, 5, 35);
+            textBlock.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(textBlock, 0);
+            grid.Children.Add(textBlock);
+
+            textBlock = new TextBlock();
+            textBlock.Text = "Course:";
+            textBlock.Margin = new Thickness(15, 40, 125, 8);
+            textBlock.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(textBlock, 0);
+            grid.Children.Add(textBlock);
+
+            textBlock = new TextBlock();
+            textBlock.Text = group.Course.Name;
+            textBlock.Margin = new Thickness(100, 40, 5, 8);
+            textBlock.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(textBlock, 0);
+            grid.Children.Add(textBlock);
+
 
             textBlock = new TextBlock();
             textBlock.Text = "Students count:";
@@ -54,27 +76,34 @@ namespace EJournalUI
 
             grid.Children.Add(button);
 
-            MouseEnter += StudentCard_MouseEnter;
-            MouseLeave += StudentCard_MouseLeave;
+            MouseEnter += GroupCard_MouseEnter;
+            MouseLeave += GroupCard_MouseLeave;
+            MouseLeftButtonDown += GroupCard_MouseLeftButtonDown;
         }
 
-        private void StudentCard_MouseEnter(object sender, MouseEventArgs e)
+        private void GroupCard_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is GroupCard)
             {
                 GroupCard groupCard = (GroupCard)sender;
-
                 groupCard.BorderBrush = Brushes.Blue;
             }
         }
 
-        private void StudentCard_MouseLeave(object sender, MouseEventArgs e)
+        private void GroupCard_MouseLeave(object sender, MouseEventArgs e)
         {
             if (sender is GroupCard)
             {
                 GroupCard groupCard = (GroupCard)sender;
-
                 groupCard.BorderBrush = Brushes.Black;
+            }
+        }
+
+        private void GroupCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                MessageBox.Show("Double Click");
             }
         }
     }

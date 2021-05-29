@@ -9,7 +9,7 @@ namespace EJournalBLL
 {
     public class Course
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public Course(string name)

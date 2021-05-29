@@ -1,6 +1,8 @@
 ﻿using EJournalBLL;
+using EJournalBLL.GroupsLogic;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,18 +23,14 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        string ConnectionString;
-        GroupStorage groupStorage;
+        GroupStorage GroupStorage;
 
         public AllGroupsWindow()
         {
             InitializeComponent();
-            ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=EJournalDB;"
-        + "Integrated Security=true;";
+            string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
-            
-            groupStorage = new GroupStorage(ConnectionString);
-            groupStorage.GetAllGroupsFromDB();
+            GroupStorage = new GroupStorage(ConnectionString);
             PrintAllGroups();
         }
 
@@ -42,7 +40,9 @@ namespace EJournalUI
 
             if (addGroupWindow.ShowDialog() == true)
             {
-                
+                GroupStorage.Groups.Add(addGroupWindow.Group);
+                GroupsWrapPanel.Children.Add(new GroupCard(addGroupWindow.Group));
+                GroupStorage.AddGroupToDB(addGroupWindow.Group);
             }
             else
             {
@@ -52,7 +52,8 @@ namespace EJournalUI
 
         private void PrintAllGroups()
         {
-            foreach(Group group in groupStorage.Groups)
+            GroupsWrapPanel.Children.Clear();
+            foreach (Group group in GroupStorage.Groups)
             {
                 GroupCard groupCard = new GroupCard(group);
                 GroupsWrapPanel.Children.Add(groupCard);
