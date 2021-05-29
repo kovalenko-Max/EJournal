@@ -9,7 +9,7 @@ using EJournalDAL.Models.BaseModels;
 
 namespace EJournalDAL
 {
-    class GroupsRepository
+    public class GroupsRepository
     {
         public string ConnectionString;
 
