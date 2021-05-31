@@ -27,5 +27,35 @@ namespace EJournalDAL.Repository
 
             return groupStudentsDTO;
         }
+
+        public GroupStudentsDTO GetGroupAndStudentsInIt(int id)
+        {
+            string command = $"exec GetGroupAndStudentsInIt {id}";
+            GroupStudentsDTO groupStudentsDTO = new GroupStudentsDTO();
+            List<StudentDTO> students = null;
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Query<GroupStudentsDTO, StudentDTO, GroupStudentsDTO>(command,
+                (group, student) =>
+                {
+                    if (students is null)
+                    {
+                        students = new List<StudentDTO>();
+                    }
+
+                    students.Add(student);
+
+                    group.students = students;
+                    group.IdGroup = id;
+                    groupStudentsDTO = group;
+
+                    return groupStudentsDTO;
+                },
+                splitOn: "Id"
+                );
+            }
+
+            return groupStudentsDTO;
+        }
     }
 }

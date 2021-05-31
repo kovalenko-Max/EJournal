@@ -32,5 +32,10 @@ namespace EJournalDAL.Models.BaseModels
 
             return false;
         }
+
+        public override string ToString()
+        {
+            return $"{Id} {Name} {Surname} {Email} {Phone} {Git} {AgreementNumber}";
+        }
     }
 }
