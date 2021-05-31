@@ -11,5 +11,7 @@ namespace EJournalDAL.Models.BaseModels
         public int NumberOfStudents { get; set; }
 
         public List<StudentDTO> students;
+
+        
     }
 }

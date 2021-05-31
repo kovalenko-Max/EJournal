@@ -18,31 +18,34 @@ namespace EJournalDAL.Repository
         public ProjectGroupDTO GetStudentsFromOneGroup(int idProjectGroup)
         {
             ProjectGroupDTO projectGroup = new ProjectGroupDTO();
-            List<StudentDTO> students = new List<StudentDTO>();
+            List<StudentDTO> students = null;
 
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = $"exec GetListStudentsInOneProjectGroup {idProjectGroup}";
+                string connectionQuery = $"exec GetListStudentsInOneProjectGroup @idProjectGroup";
 
-              db.Query<ProjectGroupDTO, StudentDTO, ProjectGroupDTO>(connectionQuery,
+                db.Query<ProjectGroupDTO, StudentDTO, ProjectGroupDTO>(connectionQuery,
 
-                    (projectsGroupStudents, student) =>
-                    {
-                        if (students is null)
-                        {
-                            students = new List<StudentDTO>();
-                        }
+                      (projectsGroupStudents, student) =>
+                      {
+                          if (students is null)
+                          {
+                              students = new List<StudentDTO>();
+                          }
 
-                        students.Add(student);
 
-                        projectsGroupStudents.Students = students;
-                        projectsGroupStudents.Id = idProjectGroup;
-                        projectGroup = projectsGroupStudents;
-                        return projectGroup;
+                          students.Add(student);
 
-                    },
-                    splitOn: "Id"
-                    );
+
+                          projectsGroupStudents.Students = students;
+                          projectsGroupStudents.Id = idProjectGroup;
+                          projectGroup = projectsGroupStudents;
+                          return projectGroup;
+
+                      }
+                      , param: new { idProjectGroup }
+                      , splitOn: "Id"
+                      );
                 return projectGroup;
             }
 

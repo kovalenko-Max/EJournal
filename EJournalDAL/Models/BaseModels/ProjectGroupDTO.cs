@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EJournalDAL.Models.BaseModels
 {
@@ -10,6 +9,7 @@ namespace EJournalDAL.Models.BaseModels
         public int? Id;
         public string Name { get; set; }
         public int? IdComments { get; set; }
+        public string Comments { get; set; }
         public bool IsDelete { get; set; }
 
         public List<StudentDTO> Students { get; set; }

@@ -16,11 +16,9 @@ namespace EJournalDAL.Models.BaseModels
         public int Ranking { get; set; }
         public string AgreementNumber { get; set; }
         public bool IsDelete { get; set; }
+        public List<CommentDTO> comments { get; set; }
 
-        List<ProjectGroupDTO> projectGroups;
-        List<CommentDTO> comments;
 
-       
 
         public override bool Equals(object obj)
         {
