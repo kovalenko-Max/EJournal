@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetExercises
+﻿CREATE PROCEDURE GetExercise
 @Id int
    AS
    SELECT  [Id]

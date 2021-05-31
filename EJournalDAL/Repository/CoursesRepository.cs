@@ -2,7 +2,6 @@
 using System.Linq;
 using Dapper;
 using System.Data;
-using DAL.Models.BasicModels;
 using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
 using System.Configuration;

@@ -18,7 +18,7 @@ namespace EJournalDAL.Repository
 
         public List<GroupStudentsDTO> GetGroupsAndNumberOfStudentsInThemAndGroupStatus()
         {
-            string command = "exec GetGroupsAndNumberOfStudentsInThemAndGroupStatus";
+            string command = "exec GetGroupsAndNumberOfStudentsInThemAndGroupStatus ";
             List<GroupStudentsDTO> groupStudentsDTO = new List<GroupStudentsDTO>();
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {

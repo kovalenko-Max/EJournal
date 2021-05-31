@@ -14,20 +14,20 @@ namespace EJournalDAL.Models.BaseModels
         public string Git { get; set; }
         public string City { get; set; }
         public int Ranking { get; set; }
-        public int? IdComment { get; set; }
-        public int? IdProjectGroup { get; set; }
         public string AgreementNumber { get; set; }
         public bool IsDelete { get; set; }
 
-        public LessonDTO lesson;
-        public List<LessonDTO> lessons { get; set; }
+        List<ProjectGroupDTO> projectGroups;
+        List<CommentDTO> comments;
+
+       
 
         public override bool Equals(object obj)
         {
             StudentDTO student = obj as StudentDTO;
             if(student!= null  && Id==student.Id && Name==student.Name && Surname==student.Surname 
                 && Email==student.Email && Phone==student.Phone && Git ==student.Git && City==student.City 
-                && Ranking ==student.Ranking && AgreementNumber == student.AgreementNumber)
+                 && Ranking ==student.Ranking && AgreementNumber == student.AgreementNumber)
             {
                 return true;
             }

@@ -7,11 +7,7 @@
     [Git]             NVARCHAR (100) NULL,
     [City]            NVARCHAR(MAX)  NULL,
     [Ranking]         INT NULL,
-    [IdComment] INT NULL,
-    [IdProjectGroup] INT  NULL,
     [AgreementNumber] NVARCHAR (50)  NOT NULL,
     [IsDelete]        BIT            NOT NULL,
-    CONSTRAINT [PK_STUDENTS] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [Students_ProjectsGroup_Id] FOREIGN KEY ([IdProjectGroup]) REFERENCES [dbo].[ProjectGroups] ([Id]),
-     CONSTRAINT [Students_Comments_Id] FOREIGN KEY ([IdComment]) REFERENCES [dbo].[Comments] ([Id])
+    CONSTRAINT [PK_STUDENTS] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
