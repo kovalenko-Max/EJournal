@@ -40,7 +40,7 @@ namespace EJournalDAL.Repository
 
         public List<GroupDTO> GetAllGroupsDTO()
         {
-            string command = "exec GetAllGroups";
+            string command = "exec GetStudentsCountByGroups";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {

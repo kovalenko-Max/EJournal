@@ -41,7 +41,7 @@ namespace EJournalUI
             HighlightSelected(groupCard);
             GroupNameTextBox.Text = groupCard.Group.Name;
             GroupCourseTextBox.Text = groupCard.Group.Course.Name;
-            PrintStudentsByGroup();
+            GetStudentsByGroup();
         }
 
         private void HighlightSelected(GroupCard groupCard)
@@ -106,10 +106,11 @@ namespace EJournalUI
             }
         }
 
-        private void PrintStudentsByGroup()
+        private void GetStudentsByGroup()
         {
             GroupStudentsWrapPanel.Children.Clear();
             _studentsLogic.GetStudentsByGroup(SelectedGroupCard.Group.Id);
+            SelectedGroupCard.Group.Students = _studentsLogic.Students;
             foreach(Student student in _studentsLogic.Students)
             {
                 StudentCard studentCard = new StudentCard(student);

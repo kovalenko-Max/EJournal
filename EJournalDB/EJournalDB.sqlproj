@@ -127,6 +127,7 @@
     <Build Include="dbo\Stored Procedures\GetGroupsAndNumberOfStudentsInThemAndGroupStatus.sql" />
     <Build Include="dbo\Stored Procedures\GetStudentsByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetStudentByGroup2.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudentsCountByGroups.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />
