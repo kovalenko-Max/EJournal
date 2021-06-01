@@ -85,5 +85,14 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery);
             }
         }
+
+        public void HardDelete(StudentDTO studentDTO)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec HardDeleteStudent @Id";
+                db.Execute(connectionQuery, new { studentDTO.Id});
+            }
+        }
     }
 }
