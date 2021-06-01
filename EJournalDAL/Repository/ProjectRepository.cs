@@ -49,6 +49,7 @@ namespace EJournalDAL.Repository
             }
             return project;
         }
+
         public void Update(ProjectDTO project)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -57,6 +58,7 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery, project);
             }
         }
+
         public void Delete(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -65,12 +67,22 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery, new { id });
             }
         }
+
         public void HardDelete(ProjectDTO projectDTO)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 string connectionQuery = "exec DeleteProject @Id";
                 db.Execute(connectionQuery, new { projectDTO.Id });
+            }
+        }
+
+        public void HardDeleteAll()
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec HardDeleteAllProjects";
+                db.Execute(connectionQuery);
             }
         }
     }

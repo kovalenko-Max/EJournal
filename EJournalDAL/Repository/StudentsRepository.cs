@@ -77,11 +77,11 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public void DeleteAll()
+        public void HardDeleteAll()
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec ";
+                string connectionQuery = "exec HardDeleteAllStudents";
                 db.Execute(connectionQuery);
             }
         }
