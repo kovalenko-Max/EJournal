@@ -19,12 +19,12 @@ namespace EJournalDAL.Repository
             connectionString = @"Data Source=СЕРГЕЙ-ПК\SQLEXPRESS;Initial Catalog=AcademyDB;Integrated Security=True";
         }
 
-        public List <CommentDTO> GetAllComments()
+        public List<CommentDTO> GetAllComments()
         {
+            string connectionQuery = "exec GetAllComments";
             List<CommentDTO> comments = new List<CommentDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec GetAllComments";
                 comments = db.Query<CommentDTO>(connectionQuery).ToList();
             }
             return comments;
@@ -32,10 +32,10 @@ namespace EJournalDAL.Repository
 
         public CommentDTO GetComment(int id)
         {
+            string connectionQuery = "exec GetComment @Id";
             CommentDTO comment = null;
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec GetComment @Id";
                 comment = db.Query<CommentDTO>(connectionQuery, new { id }).FirstOrDefault();
             }
             return comment;
@@ -43,9 +43,9 @@ namespace EJournalDAL.Repository
 
         public CommentDTO CreateComment(CommentDTO comment)
         {
+            string connectionQuery = "exec AddComment @Comments, @IdTeacher, @IdCommentType";
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec AddComment @Comments, @IdTeacher, @IdCommentType";
                 int? commentId = db.Query<int>(connectionQuery, comment).FirstOrDefault();
                 comment.Id = commentId;
             }
@@ -54,18 +54,27 @@ namespace EJournalDAL.Repository
 
         public void UpdateComment(CommentDTO comment)
         {
+            string connectionQuery = "exec UpdateComment @Id, @Comments, @IdTeacher, @IdCommentType";
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec UpdateComment @Id, @Comments, @IdTeacher, @IdCommentType";
                 db.Execute(connectionQuery, comment);
-            }    
+            }
         }
 
         public void DeleteComment(int id)
         {
+            string connectionQuery = "exec DeleteComments @Id";
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = " exec DeleteComments @Id";
+                db.Execute(connectionQuery, new { id });
+            }
+        }
+
+        public void HardDeleteComment(int id)
+        {
+            string connectionQuery = "exec HadrDeleteComment @Id";
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
                 db.Execute(connectionQuery, new { id });
             }
         }

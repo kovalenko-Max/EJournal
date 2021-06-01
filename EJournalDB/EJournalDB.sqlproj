@@ -131,6 +131,9 @@
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
     <Build Include="dbo\Tables\StudetsProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupAndStudentsInIt.sql" />
+    <Build Include="dbo\Stored Procedures\HardDeleteComment.sql" />
+    <Build Include="dbo\Stored Procedures\HardDeleteCourse.sql" />
+    <Build Include="dbo\Stored Procedures\HardDeleteGroup.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

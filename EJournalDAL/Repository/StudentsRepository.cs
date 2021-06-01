@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace EJournalDAL.Repository
 {
-    public class StudentsRepository : IRepository<StudentDTO>
+    public class StudentsRepository
     {
         string connectionString;
         public StudentsRepository()
