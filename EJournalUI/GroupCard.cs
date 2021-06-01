@@ -69,7 +69,7 @@ namespace EJournalUI
             grid.Children.Add(textBlock);
 
             _studentCountTextBox = new TextBlock();
-            _studentCountTextBox.Text = "20";
+            _studentCountTextBox.Text = "0";
             _studentCountTextBox.Margin = new Thickness(95, 23, 5, 23);
             _studentCountTextBox.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(_studentCountTextBox, 1);
