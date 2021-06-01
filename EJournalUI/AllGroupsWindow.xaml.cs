@@ -23,8 +23,8 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        GroupStorage GroupStorage;
-
+        public GroupStorage GroupStorage;
+        public GroupCard SelectedGroupCard;
         public AllGroupsWindow()
         {
             InitializeComponent();
@@ -32,6 +32,24 @@ namespace EJournalUI
             Name = "AllGroupsWindow";
             GroupStorage = new GroupStorage(ConnectionString);
             PrintAllGroupsFromDB();
+        }
+        
+        public void PrintAllGroupsFromDB()
+        {
+            GroupsWrapPanel.Children.Clear();
+            foreach (Group group in GroupStorage.Groups)
+            {
+                GroupCard groupCard = new GroupCard(group);
+                groupCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                GroupsWrapPanel.Children.Add(groupCard);
+            }
+        }
+
+        public void Select(GroupCard groupCard)
+        {
+            HighlightSelected(groupCard);
+            GroupNameTextBox.Text = groupCard.Group.Name;
+            GroupCourseTextBox.Text = groupCard.Group.Course.Name;
         }
 
         private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
@@ -50,14 +68,27 @@ namespace EJournalUI
             }
         }
 
-        public void PrintAllGroupsFromDB()
+        private void GroupCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            GroupsWrapPanel.Children.Clear();
-            foreach (Group group in GroupStorage.Groups)
+            if (sender is GroupCard)
             {
-                GroupCard groupCard = new GroupCard(group);
-                GroupsWrapPanel.Children.Add(groupCard);
+                if (e.ClickCount == 1)
+                {
+                    Select((GroupCard)sender);
+                }
             }
+        }
+        
+        private void HighlightSelected(GroupCard groupCard)
+        {
+            if (SelectedGroupCard != null)
+            {
+                SelectedGroupCard.Background = Brushes.White;
+            }
+
+            SelectedGroupCard = groupCard;
+            BrushConverter brushConverter = new BrushConverter();
+            SelectedGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
         }
     }
 }
