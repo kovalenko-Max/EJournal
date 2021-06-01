@@ -10,8 +10,7 @@ namespace EJournalBLL.Models
     {
         public int Id;
         public string Name { get; set; }
-        public int IdComments { get; set; }
-        public string Comments { get; set; }
+      
         public bool IsDelete { get; set; }
 
         public List<Student> Students { get; set; }

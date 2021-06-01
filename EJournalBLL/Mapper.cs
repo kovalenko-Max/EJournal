@@ -47,6 +47,8 @@ namespace EJournalBLL
                     .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType))
                     .ForMember(dto => dto.IdTeacher, map => map.Ignore())
                     .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
+
+                
                 
             });
             return config.CreateMapper();

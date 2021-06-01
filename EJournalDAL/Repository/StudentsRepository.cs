@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace EJournalDAL.Repository
 {
-    public class StudentsRepository
+    public class StudentsRepository : IRepository<StudentDTO>
     {
         string connectionString;
         public StudentsRepository()
@@ -15,7 +15,7 @@ namespace EJournalDAL.Repository
             connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=EJournalDB; Integrated Security=True;";
         }
 
-        public List<StudentDTO> GetStudents()
+        public List<StudentDTO> GetAll()
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
@@ -27,7 +27,7 @@ namespace EJournalDAL.Repository
             return students;
         }
 
-        public StudentDTO Get(int id)
+        public StudentDTO GetOne(int id)
         {
             StudentDTO student = null;
 
@@ -59,12 +59,30 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public void Delete(int id)
+        public void DeleteSoft(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 string connectionQuery = "exec DeleteStudent @id";
                 db.Execute(connectionQuery, new { id });
+            }
+        }
+
+        public void DeleteOne(int Id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec ";
+                db.Execute(connectionQuery, new { Id });
+            }
+        }
+
+        public void DeleteAll()
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec ";
+                db.Execute(connectionQuery);
             }
         }
     }
