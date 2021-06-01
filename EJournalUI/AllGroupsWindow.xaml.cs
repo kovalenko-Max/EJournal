@@ -21,7 +21,6 @@ namespace EJournalUI
             Name = "AllGroupsWindow";
             _groupStorage = new GroupStorage(ConnectionString);
             PrintAllGroupsFromDB();
-            SelectGroupCard((GroupCard)GroupsWrapPanel.Children[0]);
         }
 
         public void PrintAllGroupsFromDB()
@@ -66,10 +65,6 @@ namespace EJournalUI
                 _groupStorage.AddGroupToDB(addGroupWindow.Group);
                 groupCard.MouseUp += GroupCard_MouseLeftButtonDown;
                 SelectGroupCard(groupCard);
-            }
-            else
-            {
-
             }
         }
 
