@@ -12,6 +12,10 @@ namespace EJournalUI
     {
         public Group Group { get; set; }
 
+        private TextBlock _groupNameTextBox;
+        private TextBlock _courseNameTextBox;
+        private TextBlock _studentCountTextBox;
+
         public GroupCard(Group group)
         {
             Group = group;
@@ -34,13 +38,13 @@ namespace EJournalUI
             Grid.SetColumn(textBlock, 0);
             grid.Children.Add(textBlock);
 
-            textBlock = new TextBlock();
-            textBlock.Name = "GroupNameTextBlock";
-            textBlock.Text = Group.Name;
-            textBlock.Margin = new Thickness(100, 10, 5, 35);
-            textBlock.TextAlignment = TextAlignment.Left;
-            Grid.SetColumn(textBlock, 0);
-            grid.Children.Add(textBlock);
+            _groupNameTextBox = new TextBlock();
+            _groupNameTextBox.Name = "GroupNameTextBlock";
+            _groupNameTextBox.Text = Group.Name;
+            _groupNameTextBox.Margin = new Thickness(100, 10, 5, 35);
+            _groupNameTextBox.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(_groupNameTextBox, 0);
+            grid.Children.Add(_groupNameTextBox);
 
             textBlock = new TextBlock();
             textBlock.Text = "Course:";
@@ -49,12 +53,12 @@ namespace EJournalUI
             Grid.SetColumn(textBlock, 0);
             grid.Children.Add(textBlock);
 
-            textBlock = new TextBlock();
-            textBlock.Text = Group.Course.Name;
-            textBlock.Margin = new Thickness(100, 40, 5, 8);
-            textBlock.TextAlignment = TextAlignment.Left;
-            Grid.SetColumn(textBlock, 0);
-            grid.Children.Add(textBlock);
+            _courseNameTextBox = new TextBlock();
+            _courseNameTextBox.Text = Group.Course.Name;
+            _courseNameTextBox.Margin = new Thickness(100, 40, 5, 8);
+            _courseNameTextBox.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(_courseNameTextBox, 0);
+            grid.Children.Add(_courseNameTextBox);
 
 
             textBlock = new TextBlock();
@@ -64,15 +68,21 @@ namespace EJournalUI
             Grid.SetColumn(textBlock, 1);
             grid.Children.Add(textBlock);
 
-            textBlock = new TextBlock();
-            textBlock.Text = "20";
-            textBlock.Margin = new Thickness(95, 23, 5, 23);
-            textBlock.TextAlignment = TextAlignment.Center;
-            Grid.SetColumn(textBlock, 1);
-            grid.Children.Add(textBlock);
+            _studentCountTextBox = new TextBlock();
+            _studentCountTextBox.Text = "20";
+            _studentCountTextBox.Margin = new Thickness(95, 23, 5, 23);
+            _studentCountTextBox.TextAlignment = TextAlignment.Center;
+            Grid.SetColumn(_studentCountTextBox, 1);
+            grid.Children.Add(_studentCountTextBox);
 
             MouseEnter += GroupCard_MouseEnter;
             MouseLeave += GroupCard_MouseLeave;
+        }
+
+        public void UpdateFields()
+        {
+            _groupNameTextBox.Text = Group.Name;
+            _courseNameTextBox.Text = Group.Course.Name;
         }
 
         private void GroupCard_MouseEnter(object sender, MouseEventArgs e)

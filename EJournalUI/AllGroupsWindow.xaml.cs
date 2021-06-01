@@ -1,20 +1,8 @@
-﻿using EJournalBLL;
-using EJournalBLL.GroupsLogic;
-using System;
-using System.Collections.Generic;
+﻿using EJournalBLL.GroupsLogic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EJournalUI
 {
@@ -23,21 +11,22 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        public GroupStorage GroupStorage;
+        private GroupStorage _groupStorage;
+
         public GroupCard SelectedGroupCard;
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
-            GroupStorage = new GroupStorage(ConnectionString);
+            _groupStorage = new GroupStorage(ConnectionString);
             PrintAllGroupsFromDB();
         }
         
         public void PrintAllGroupsFromDB()
         {
             GroupsWrapPanel.Children.Clear();
-            foreach (Group group in GroupStorage.Groups)
+            foreach (Group group in _groupStorage.Groups)
             {
                 GroupCard groupCard = new GroupCard(group);
                 groupCard.MouseDown += GroupCard_MouseLeftButtonDown;
@@ -58,9 +47,9 @@ namespace EJournalUI
 
             if (addGroupWindow.ShowDialog() == true)
             {
-                GroupStorage.Groups.Add(addGroupWindow.Group);
+                _groupStorage.Groups.Add(addGroupWindow.Group);
                 GroupsWrapPanel.Children.Add(new GroupCard(addGroupWindow.Group));
-                GroupStorage.AddGroupToDB(addGroupWindow.Group);
+                _groupStorage.AddGroupToDB(addGroupWindow.Group);
             }
             else
             {
@@ -89,6 +78,26 @@ namespace EJournalUI
             SelectedGroupCard = groupCard;
             BrushConverter brushConverter = new BrushConverter();
             SelectedGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
+        }
+
+        private void Button_EditGroup_Click(object sender, RoutedEventArgs e)
+        {
+            EditGroupWindow editGroupWindow = new EditGroupWindow();
+            editGroupWindow.Group = SelectedGroupCard.Group;
+            editGroupWindow.GroupNameTextBox.Text = editGroupWindow.Group.Name;
+            int index = editGroupWindow.CourseComboBox.Items.IndexOf(SelectedGroupCard.Group.Course);
+            editGroupWindow.CourseComboBox.SelectedItem = editGroupWindow.CourseComboBox.Items[index];
+
+            if (editGroupWindow.ShowDialog() == true)
+            {
+                GroupStorage groupStorage = new GroupStorage(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                groupStorage.UpdateGroupInDB(SelectedGroupCard.Group);
+                SelectedGroupCard.UpdateFields();
+            }
+            else
+            {
+
+            }
         }
     }
 }
