@@ -59,5 +59,15 @@ namespace EJournalUI
                 GroupsWrapPanel.Children.Add(groupCard);
             }
         }
+
+        private void Button_CreateProject_Click(object sender, RoutedEventArgs e)
+        {
+            EditProjectWindow addProjectWindow = new EditProjectWindow();
+
+            if (addProjectWindow.ShowDialog() == true)
+            {
+
+            }
+        }
     }
 }
