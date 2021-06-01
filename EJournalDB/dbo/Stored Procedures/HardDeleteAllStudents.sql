@@ -1,0 +1,4 @@
+CREATE PROCEDURE HardDeleteAllStudents
+AS
+DELETE FROM [Students]
+DBCC CHECKIDENT ([Students], RESEED, 0)
