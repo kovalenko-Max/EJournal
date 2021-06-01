@@ -1,0 +1,4 @@
+CREATE PROCEDURE HardDeleteAllComments
+AS
+DELETE FROM [Comments]
+DBCC CHECKIDENT ([Comments], RESEED, 0)

@@ -1,0 +1,4 @@
+CREATE PROCEDURE HardDeleteAllCourses
+AS
+DELETE FROM [Courses]
+DBCC CHECKIDENT ([Courses], RESEED, 0)

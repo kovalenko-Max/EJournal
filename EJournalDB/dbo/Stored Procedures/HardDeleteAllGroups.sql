@@ -1,0 +1,4 @@
+CREATE PROCEDURE HardDeleteAllGroups
+AS
+DELETE FROM [Groups]
+DBCC CHECKIDENT ([Groups], RESEED, 0)

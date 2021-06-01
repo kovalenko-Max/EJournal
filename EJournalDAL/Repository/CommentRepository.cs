@@ -78,5 +78,14 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery, new { id });
             }
         }
+
+        public void HardDeleteAllComments()
+        {
+            string connectionQuery = "exec HardDeleteAllComments";
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                db.Execute(connectionQuery);
+            }
+        }
     }
 }

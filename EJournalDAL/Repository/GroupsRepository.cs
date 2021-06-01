@@ -79,5 +79,14 @@ namespace EJournalDAL.Repository
                 db.Execute(command, new { groupDTO.Id });
             }
         }
+
+        public void HardDeleteAllGroups()
+        {
+            string command = "exec HardDeleteAllGroups";
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(command);
+            }
+        }
     }
 }
