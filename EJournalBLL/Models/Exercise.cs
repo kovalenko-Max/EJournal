@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace EJournalDAL.Models.BaseModels
+namespace EJournalBLL.Models
 {
-    public class ExerciseDTO
+    public class Exercise
     {
         public int? Id;
         public string Description { get; set; }

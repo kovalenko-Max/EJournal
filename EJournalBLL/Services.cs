@@ -12,8 +12,8 @@ namespace EJournalBLL
         StudentsRepository repository;
         public void RepositoryStudent()
         {
-            repository = new StudentsRepository();
-            List<StudentDTO> StudentDTO = repository.GetStudents();
+            //repository = new StudentsRepository();
+            //List<StudentDTO> StudentDTO = repository.GetStudents();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace EJournalDAL.Models.BaseModels
             bool equal = false;
             ProjectGroupDTO projectGroupDTO = obj as ProjectGroupDTO;
             if(!(projectGroupDTO is null) && Id == projectGroupDTO.Id
-                && Name ==projectGroupDTO.Name && IdComments== projectGroupDTO.IdComments)
+                && Name ==projectGroupDTO.Name)
             {
                 equal = Students.SequenceEqual(projectGroupDTO.Students);
             }

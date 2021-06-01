@@ -11,23 +11,23 @@ namespace EJournalDAL.Tests
 {
     class CommentTests
     {
-        [SetUp]
-        CommentRepository commentRepository;
-        public void Setup()
-        {
-            commentRepository = new CommentRepository();
-        }
+        //[SetUp]
+        //CommentRepository commentRepository;
+        //public void Setup()
+        //{
+        //    commentRepository = new CommentRepository();
+        //}
 
-        [TestCaseSource(nameof(DataExpectedCollection))]
-        public void GetAllComments_WhenAddSomeComments_ShouldAddComments(List<CommentDTO> expected)
-        {
-            var allComments = commentRepository.
+        //[TestCaseSource(nameof(DataExpectedCollection))]
+        //public void GetAllComments_WhenAddSomeComments_ShouldAddComments(List<CommentDTO> expected)
+        //{
+        //    var allComments = commentRepository.
 
-            CollectionAssert.AreEqual(expected, allComments);
-        }
-        private static IEnumerable<object[]> DataExpectedCollection()
-        {
+        //    CollectionAssert.AreEqual(expected, allComments);
+        //}
+        //private static IEnumerable<object[]> DataExpectedCollection()
+        //{
 
-        }
+        //}
     }
 }
