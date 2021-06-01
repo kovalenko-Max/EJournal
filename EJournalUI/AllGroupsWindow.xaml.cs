@@ -21,8 +21,9 @@ namespace EJournalUI
             Name = "AllGroupsWindow";
             _groupStorage = new GroupStorage(ConnectionString);
             PrintAllGroupsFromDB();
+            SelectGroupCard((GroupCard)GroupsWrapPanel.Children[0]);
         }
-        
+
         public void PrintAllGroupsFromDB()
         {
             GroupsWrapPanel.Children.Clear();
@@ -34,40 +35,13 @@ namespace EJournalUI
             }
         }
 
-        public void Select(GroupCard groupCard)
+        public void SelectGroupCard(GroupCard groupCard)
         {
             HighlightSelected(groupCard);
             GroupNameTextBox.Text = groupCard.Group.Name;
             GroupCourseTextBox.Text = groupCard.Group.Course.Name;
         }
 
-        private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
-        {
-            EditGroupWindow addGroupWindow = new EditGroupWindow();
-
-            if (addGroupWindow.ShowDialog() == true)
-            {
-                _groupStorage.Groups.Add(addGroupWindow.Group);
-                GroupsWrapPanel.Children.Add(new GroupCard(addGroupWindow.Group));
-                _groupStorage.AddGroupToDB(addGroupWindow.Group);
-            }
-            else
-            {
-
-            }
-        }
-
-        private void GroupCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is GroupCard)
-            {
-                if (e.ClickCount == 1)
-                {
-                    Select((GroupCard)sender);
-                }
-            }
-        }
-        
         private void HighlightSelected(GroupCard groupCard)
         {
             if (SelectedGroupCard != null)
@@ -80,23 +54,52 @@ namespace EJournalUI
             SelectedGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
         }
 
-        private void Button_EditGroup_Click(object sender, RoutedEventArgs e)
+        private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            EditGroupWindow editGroupWindow = new EditGroupWindow();
-            editGroupWindow.Group = SelectedGroupCard.Group;
-            editGroupWindow.GroupNameTextBox.Text = editGroupWindow.Group.Name;
-            int index = editGroupWindow.CourseComboBox.Items.IndexOf(SelectedGroupCard.Group.Course);
-            editGroupWindow.CourseComboBox.SelectedItem = editGroupWindow.CourseComboBox.Items[index];
+            EditGroupWindow addGroupWindow = new EditGroupWindow();
 
-            if (editGroupWindow.ShowDialog() == true)
+            if (addGroupWindow.ShowDialog() == true)
             {
-                GroupStorage groupStorage = new GroupStorage(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
-                groupStorage.UpdateGroupInDB(SelectedGroupCard.Group);
-                SelectedGroupCard.UpdateFields();
+                _groupStorage.Groups.Add(addGroupWindow.Group);
+                GroupCard groupCard = new GroupCard(addGroupWindow.Group);
+                GroupsWrapPanel.Children.Add(groupCard);
+                _groupStorage.AddGroupToDB(addGroupWindow.Group);
+                groupCard.MouseUp += GroupCard_MouseLeftButtonDown;
+                SelectGroupCard(groupCard);
             }
             else
             {
 
+            }
+        }
+
+        private void Button_EditGroup_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedGroupCard != null)
+            {
+                EditGroupWindow editGroupWindow = new EditGroupWindow();
+                editGroupWindow.Group = SelectedGroupCard.Group;
+                editGroupWindow.GroupNameTextBox.Text = editGroupWindow.Group.Name;
+                int index = editGroupWindow.CourseComboBox.Items.IndexOf(SelectedGroupCard.Group.Course);
+                editGroupWindow.CourseComboBox.SelectedItem = editGroupWindow.CourseComboBox.Items[index];
+
+                if (editGroupWindow.ShowDialog() == true)
+                {
+                    GroupStorage groupStorage = new GroupStorage(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    groupStorage.UpdateGroupInDB(SelectedGroupCard.Group);
+                    SelectedGroupCard.UpdateFields();
+                }
+            }
+        }
+        
+        private void GroupCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is GroupCard)
+            {
+                if (e.ClickCount == 1)
+                {
+                    SelectGroupCard((GroupCard)sender);
+                }
             }
         }
     }
