@@ -1,4 +1,5 @@
-﻿using EJournalBLL.GroupsLogic;
+﻿using EJournalBLL.Logics;
+using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
@@ -11,7 +12,7 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        private GroupStorage _groupStorage;
+        private GroupsLogic _groupStorage;
 
         public GroupCard SelectedGroupCard;
         public AllGroupsWindow()
@@ -19,7 +20,7 @@ namespace EJournalUI
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
-            _groupStorage = new GroupStorage(ConnectionString);
+            _groupStorage = new GroupsLogic(ConnectionString);
             PrintAllGroupsFromDB();
             SelectGroupCard((GroupCard)GroupsWrapPanel.Children[0]);
         }
@@ -85,7 +86,7 @@ namespace EJournalUI
 
                 if (editGroupWindow.ShowDialog() == true)
                 {
-                    GroupStorage groupStorage = new GroupStorage(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    GroupsLogic groupStorage = new GroupsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
                     groupStorage.UpdateGroupInDB(SelectedGroupCard.Group);
                     SelectedGroupCard.UpdateFields();
                 }

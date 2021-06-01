@@ -1,7 +1,6 @@
 ﻿using EJournalDAL.Models.BaseModels;
-using System;
 
-namespace EJournalBLL.GroupsLogic
+namespace EJournalBLL.Models
 {
     public class Group
     {

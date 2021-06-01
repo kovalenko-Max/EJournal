@@ -1,14 +1,11 @@
-﻿using EJournalDAL.Models.BaseModels;
+﻿using System.Collections.Generic;
+using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EJournalBLL.Models;
 
-namespace EJournalBLL.CoursesLogic
+namespace EJournalBLL.Logics
 {
-    public class CoursesStorage
+    public class CoursesLogic
     {
         public string ConnectionString { get; set; }
         public List<Course> Courses
@@ -23,7 +20,7 @@ namespace EJournalBLL.CoursesLogic
             }
         }
 
-        public CoursesStorage(string connectionString)
+        public CoursesLogic(string connectionString)
         {
             ConnectionString = connectionString;
         }
