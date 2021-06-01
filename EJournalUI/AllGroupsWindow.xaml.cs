@@ -31,12 +31,12 @@ namespace EJournalUI
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
             GroupStorage = new GroupStorage(ConnectionString);
-            PrintAllGroups();
+            PrintAllGroupsFromDB();
         }
 
         private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            AddGroupWindow addGroupWindow = new AddGroupWindow();
+            EditGroupWindow addGroupWindow = new EditGroupWindow();
 
             if (addGroupWindow.ShowDialog() == true)
             {
@@ -50,7 +50,7 @@ namespace EJournalUI
             }
         }
 
-        private void PrintAllGroups()
+        public void PrintAllGroupsFromDB()
         {
             GroupsWrapPanel.Children.Clear();
             foreach (Group group in GroupStorage.Groups)

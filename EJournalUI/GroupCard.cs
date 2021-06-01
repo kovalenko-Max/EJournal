@@ -1,4 +1,5 @@
 ﻿using EJournalBLL.GroupsLogic;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,8 +10,10 @@ namespace EJournalUI
 {
     public class GroupCard : Border
     {
+        public Group Group { get; set; }
         public GroupCard(Group group)
         {
+            Group = group;
             Height = 70;
             Width = 563;
             BorderThickness = new Thickness(3);
@@ -32,7 +35,8 @@ namespace EJournalUI
             grid.Children.Add(textBlock);
 
             textBlock = new TextBlock();
-            textBlock.Text = group.Name;
+            textBlock.Name = "GroupNameTextBlock";
+            textBlock.Text = Group.Name;
             textBlock.Margin = new Thickness(100, 10, 5, 35);
             textBlock.TextAlignment = TextAlignment.Left;
             Grid.SetColumn(textBlock, 0);
@@ -46,7 +50,7 @@ namespace EJournalUI
             grid.Children.Add(textBlock);
 
             textBlock = new TextBlock();
-            textBlock.Text = group.Course.Name;
+            textBlock.Text = Group.Course.Name;
             textBlock.Margin = new Thickness(100, 40, 5, 8);
             textBlock.TextAlignment = TextAlignment.Left;
             Grid.SetColumn(textBlock, 0);
@@ -103,7 +107,8 @@ namespace EJournalUI
         {
             if (e.ClickCount == 2)
             {
-                MessageBox.Show("Double Click");
+                GroupWindow groupWindow = new GroupWindow(Group);
+                groupWindow.Show();
             }
         }
     }
