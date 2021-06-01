@@ -6,7 +6,7 @@ namespace EJournalDAL.Models.BaseModels
 {
     public class ProjectDTO
     {
-        public int? Id;
+        public int? Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int? IdProjectGroup { get; set; }
