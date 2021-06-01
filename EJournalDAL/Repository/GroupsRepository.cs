@@ -70,5 +70,14 @@ namespace EJournalDAL.Repository
                 db.Execute(command, new { groupDTO.Id, groupDTO.Name, groupDTO.IdCourse });
             }
         }
+
+        public void HardDeleteGroup(GroupDTO groupDTO)
+        {
+            string command = "exec HardDeleteGroup @Id";
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(command, new { groupDTO.Id });
+            }
+        }
     }
 }

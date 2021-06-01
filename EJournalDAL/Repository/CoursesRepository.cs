@@ -69,5 +69,14 @@ namespace EJournalDAL.Repository
                 db.Execute(command, new { courseDTO.Id, courseDTO.Name });
             }
         }
+
+        public void HardDeleteCourse(int id)
+        {
+            string command = "exec HardDeleteCourse @Id";
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(command, new { id });
+            }
+        }
     }
 }
