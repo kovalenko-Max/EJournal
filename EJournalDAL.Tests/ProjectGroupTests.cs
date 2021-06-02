@@ -8,11 +8,13 @@ namespace EJournalDAL.Tests
     class ProjectGroupTests
     {
         ProjectGroupRepository projectGroupRepository;
+        ProjectRepository projectRepository;
 
         [SetUp]
         public void Setup()
         {
             projectGroupRepository = new ProjectGroupRepository();
+            projectRepository = new ProjectRepository();
         }
 
         [TestCaseSource(nameof(DataExpectedCollection))]
@@ -32,6 +34,29 @@ namespace EJournalDAL.Tests
                 new StudentDTO(){ Id = 2, Name = "Ira", Surname = "Montgomery", Email = "lacus@nonummyacfeugiat.com", Phone="1-215-269-3373", Git="nonummy ultricies",City="Steendorp",Ranking=62,AgreementNumber="636" }
                }
             } };
+        }
+
+        [TestCaseSource(nameof(ExpectedCollection))]
+        public void GetAllProjects_WhenAddSomeStudents_ShouldAddStudent(List<ProjectDTO> expected)
+        {
+            var actual = projectRepository.GetAllProjects();
+
+            Assert.Pass();
+        }
+        private static IEnumerable<object[]> ExpectedCollection()
+        {
+            yield return new object[] { new List<ProjectDTO>()
+            {
+                new ProjectDTO()
+                {
+                    Id=1,
+                    Description="aaa",
+                    Name= "ddd",
+                    IsDelete=false,
+                    projectGroups= new List<ProjectGroupDTO>(){}
+                }
+            }
+             };
         }
     }
 }

@@ -7,6 +7,7 @@ namespace EJournalDAL.Models.BaseModels
         public int Id;
         public string Name { get; set; }
         public int IdCourse { get; set; }
+        public CourseDTO Course { get; set; }
         public int IsFinish { get; set; }
         public int IsDelete { get; set; }
 

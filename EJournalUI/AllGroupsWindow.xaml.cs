@@ -25,7 +25,7 @@ namespace EJournalUI
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
             _groupStorage = new GroupStorage(ConnectionString);
-            //_projectServices = new ProjectServices(ConnectionString);
+            _projectServices = new ProjectServices();
             PrintAllGroupsFromDB();
             PrintAllProjectsFromDB();
         }
@@ -33,7 +33,7 @@ namespace EJournalUI
         public void PrintAllProjectsFromDB()
         {
             ProjectsWrapPanel.Children.Clear();
-            foreach (Project project in _projectServices.Projects)
+            foreach (Project project in _projectServices.GetAllProjects())
             {
                 ProjectCard projectCard = new ProjectCard(project);
                 projectCard.MouseDown += GroupCard_MouseLeftButtonDown;

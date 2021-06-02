@@ -36,5 +36,27 @@ namespace EJournalBLL
             List<Project> project = ObjectMapper.Mapper.Map<List<Project>>(projectDTO);
             return project;
         }
+        public void AddProject(Project projectInput)
+        {
+
+            ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
+            projectRepository.Create(project);
+
+        }
+
+        public void UpdateProject(Project projectInput)
+        {
+
+            ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
+            projectRepository.Update(project);
+
+        }
+
+        public void DeleteProject(int Id)
+        {
+            projectRepository.Delete(Id);
+
+        }
+
     }
 }

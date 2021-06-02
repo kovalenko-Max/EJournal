@@ -102,7 +102,7 @@
                                 <!--<TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="2,50,115,5"/>
                                 <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>-->
 
-                                <Button x:Name="EditProjectButton" Content="Edit project" Height="25" Width="70" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,23,0" VerticalAlignment="Top" Click="Button_EditProject_Click"/>
+                                <!--<Button x:Name="EditProjectButton" Content="Edit project" Height="25" Width="70" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,23,0" VerticalAlignment="Top" Click="Button_EditProject_Click"/>-->
                             </Grid>
                             <TabControl Grid.Row="1">
                                 <TabItem Header = "Project groups">

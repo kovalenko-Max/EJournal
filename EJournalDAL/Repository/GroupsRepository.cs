@@ -49,6 +49,34 @@ namespace EJournalDAL.Repository
 
             return groupsDTO;
         }
+        public List<GroupDTO> GetAllGroupsDTOWithCourse()
+        {
+            string command = "exec GroupsWithCources";
+            List<GroupDTO> groupsDTO = new List<GroupDTO>();
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Query<CourseDTO, GroupDTO, List<GroupDTO>>(command,
+                       (course, group) =>
+                       {
+
+                           if (course is null)
+                           {
+                               course = new CourseDTO();
+                           }
+                           group.Course = course;
+                           groupsDTO.Add(group);
+
+                           return groupsDTO;
+
+                       }
+                       , splitOn: "Id"
+                       );
+            }
+
+            return groupsDTO;
+        }
+
 
         public GroupDTO GetGroupDTO(int id)
         {
