@@ -10,6 +10,7 @@ namespace EJournalDAL.Models.BaseModels
         public CourseDTO Course { get; set; }
         public int IsFinish { get; set; }
         public int IsDelete { get; set; }
+        public int? StudentsCount { get; set; }
 
         public override bool Equals(object obj)
         {

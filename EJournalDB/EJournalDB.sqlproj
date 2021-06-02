@@ -131,6 +131,8 @@
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
     <Build Include="dbo\Tables\StudetsProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupAndStudentsInIt.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudentByGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudentsCountByGroups.sql" />
     <Build Include="dbo\Stored Procedures\GroupsWithCources.sql" />
   </ItemGroup>
   <ItemGroup>

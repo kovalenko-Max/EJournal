@@ -37,3 +37,28 @@ namespace EJournalBLL.Models
         }
     }
 }
+
+        public Student(string name, string surname, string email)
+        {
+            Name = name;
+            Surname = surname;
+            Email = email;
+        }
+        public Student(StudentDTO studentDTO)
+        {
+            Id = (int)studentDTO.Id;
+            Name = studentDTO.Name;
+            Surname = studentDTO.Surname;
+            Email = studentDTO.Email;
+            Git = studentDTO.Git;
+            City = studentDTO.City;
+            AgreementNumber = studentDTO.AgreementNumber;
+        }
+        public override string ToString()
+        {
+            return $"{Name} {Surname} {Email} {City} {AgreementNumber}";
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EJournalBLL.Models;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 
@@ -12,49 +9,76 @@ namespace EJournalUI
 {
     public class StudentCard : Border
     {
-        public StudentCard()
+        public Student Student { get; set; }
+        private TextBlock _fullName;
+        private TextBlock _email;
+        private TextBlock _git;
+
+        public StudentCard(Student student)
         {
+            Student = student;
             Height = 70;
-            Width = 563;
+            Width = 450;
             BorderThickness = new Thickness(3);
             BorderBrush = Brushes.Black;
+            Background = Brushes.White;
             Margin = new Thickness(2);
 
             Grid grid = new Grid();
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(126, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(149, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(282, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(120, GridUnitType.Pixel) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
 
             Child = grid;
             TextBlock textBlock = new TextBlock();
-            textBlock.Text = "Full name";
-            textBlock.Margin = new Thickness(15, 22, 15, 24);
-            textBlock.TextAlignment = TextAlignment.Center;
-            Grid.SetColumn(textBlock, 0);
-            grid.Children.Add(textBlock);
 
-            textBlock = new TextBlock();
-            textBlock.Text = "Email";
-            textBlock.Margin = new Thickness(0, 23, 20, 23);
-            textBlock.TextAlignment = TextAlignment.Center;
-            Grid.SetColumn(textBlock, 1);
-            grid.Children.Add(textBlock);
+            _fullName = new TextBlock();
+            _fullName.Text = $"{Student.Surname} {Student.Name}";
+            _fullName.Margin = new Thickness(5, 22, 0, 24);
+            _fullName.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(_fullName, 0);
+            grid.Children.Add(_fullName);
 
-            textBlock = new TextBlock();
-            textBlock.Text = "Git";
-            textBlock.Margin = new Thickness(89, 23, 1, 20);
-            textBlock.TextAlignment = TextAlignment.Center;
-            Grid.SetColumn(textBlock, 1);
-            grid.Children.Add(textBlock);
+            _email = new TextBlock();
+            _email.Text = Student.Email;
+            _email.Margin = new Thickness(5, 10, 5, 35);
+            _email.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(_email, 1);
+            grid.Children.Add(_email);
 
-            Button button = new Button();
-            button.Width = 40;
-            button.Margin = new Thickness(140, 20, 4, 20);
+            _git = new TextBlock();
+            _git.Text = Student.Git;
+            _git.Margin = new Thickness(5, 35, 5, 10);
+            _git.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(_git, 1);
+            grid.Children.Add(_git);
 
-            button.Content = "Edit";
-            Grid.SetColumn(button, 2);
+            MouseEnter += StudentCard_MouseEnter;
+            MouseLeave += StudentCard_MouseLeave;
+        }
 
-            grid.Children.Add(button);
+        public void UpdateFields()
+        {
+            _fullName.Text = $"{Student.Surname} {Student.Name}";
+            _email.Text = Student.Email;
+            _git.Text = Student.Git;
+        }
+
+        private void StudentCard_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is StudentCard)
+            {
+                StudentCard studentCard = (StudentCard)sender;
+                studentCard.BorderBrush = Brushes.Blue;
+            }
+        }
+
+        private void StudentCard_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is StudentCard)
+            {
+                StudentCard studentCard = (StudentCard)sender;
+                studentCard.BorderBrush = Brushes.Black;
+            }
         }
     }
 }

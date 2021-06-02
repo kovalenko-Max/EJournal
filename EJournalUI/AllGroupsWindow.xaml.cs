@@ -1,5 +1,4 @@
-﻿using EJournalBLL;
-using EJournalBLL.GroupsLogic;
+﻿using EJournalBLL.Logics;
 using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
@@ -14,7 +13,8 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        private GroupStorage _groupStorage;
+        private GroupsLogic _groupStorage;
+        private StudentsLogic _studentsLogic;
 
         public GroupCard SelectedGroupCard;
 
@@ -23,8 +23,8 @@ namespace EJournalUI
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-            Name = "AllGroupsWindow";
-            _groupStorage = new GroupStorage(ConnectionString);
+            _groupStorage = new GroupsLogic(ConnectionString);
+            _studentsLogic = new StudentsLogic(ConnectionString);
             _projectServices = new ProjectServices();
             PrintAllGroupsFromDB();
             PrintAllProjectsFromDB();
@@ -57,6 +57,7 @@ namespace EJournalUI
             HighlightSelected(groupCard);
             GroupNameTextBox.Text = groupCard.Group.Name;
             GroupCourseTextBox.Text = groupCard.Group.Course.Name;
+            GetStudentsByGroup();
         }
 
         private void HighlightSelected(GroupCard groupCard)
@@ -98,9 +99,10 @@ namespace EJournalUI
 
                 if (editGroupWindow.ShowDialog() == true)
                 {
-                    GroupStorage groupStorage = new GroupStorage(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    GroupsLogic groupStorage = new GroupsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
                     groupStorage.UpdateGroupInDB(SelectedGroupCard.Group);
                     SelectedGroupCard.UpdateFields();
+                    SelectGroupCard(SelectedGroupCard);
                 }
             }
         }
@@ -113,6 +115,18 @@ namespace EJournalUI
                 {
                     SelectGroupCard((GroupCard)sender);
                 }
+            }
+        }
+
+        private void GetStudentsByGroup()
+        {
+            GroupStudentsWrapPanel.Children.Clear();
+            _studentsLogic.GetStudentsByGroup(SelectedGroupCard.Group.Id);
+            SelectedGroupCard.Group.Students = _studentsLogic.Students;
+            foreach(Student student in _studentsLogic.Students)
+            {
+                StudentCard studentCard = new StudentCard(student);
+                GroupStudentsWrapPanel.Children.Add(studentCard);
             }
         }
     }
