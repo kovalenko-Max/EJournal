@@ -69,10 +69,6 @@ namespace EJournalUI
                 groupCard.MouseUp += GroupCard_MouseLeftButtonDown;
                 SelectGroupCard(groupCard);
             }
-            else
-            {
-
-            }
         }
 
         private void Button_EditGroup_Click(object sender, RoutedEventArgs e)
