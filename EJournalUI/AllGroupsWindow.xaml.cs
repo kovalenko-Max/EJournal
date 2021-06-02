@@ -1,10 +1,11 @@
-﻿using EJournalBLL.Logics;
+﻿using EJournalBLL;
+using EJournalBLL.Logics;
 using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using Group = EJournalBLL.GroupsLogic.Group;
+
 
 namespace EJournalUI
 {

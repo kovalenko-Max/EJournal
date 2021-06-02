@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EJournalDAL.Models.BaseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,24 +21,6 @@ namespace EJournalBLL.Models
         public bool IsDelete { get; set; }
         public List<Comments> Comments { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            bool equal = false;
-
-            Student student = obj as Student;
-
-            if (student != null && Id == student.Id && Name == student.Name && Surname == student.Surname
-                && Email == student.Email && Phone == student.Phone && Git == student.Git
-                && City == student.City && Ranking == student.Ranking && AgreementNumber == student.AgreementNumber
-                && IsDelete == student.IsDelete )
-            {
-                equal = Comments.SequenceEqual(student.Comments);
-            }
-            return equal;
-        }
-    }
-}
-
         public Student(string name, string surname, string email)
         {
             Name = name;
@@ -54,6 +37,21 @@ namespace EJournalBLL.Models
             City = studentDTO.City;
             AgreementNumber = studentDTO.AgreementNumber;
         }
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+
+            Student student = obj as Student;
+
+            if (student != null && Id == student.Id && Name == student.Name && Surname == student.Surname
+                && Email == student.Email && Phone == student.Phone && Git == student.Git
+                && City == student.City && Ranking == student.Ranking && AgreementNumber == student.AgreementNumber
+                && IsDelete == student.IsDelete )
+            {
+                equal = Comments.SequenceEqual(student.Comments);
+            }
+            return equal;
+        }
         public override string ToString()
         {
             return $"{Name} {Surname} {Email} {City} {AgreementNumber}";
@@ -62,3 +60,5 @@ namespace EJournalBLL.Models
         {
             return base.GetHashCode();
         }
+    }
+}

@@ -29,26 +29,14 @@ namespace EJournalDAL.Repository
 
         public StudentDTO GetOne(int id)
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "exec GetStudentByGroup @id";
-                students = db.Query<StudentDTO>(connectionQuery, new { id }).ToList<StudentDTO>();
-            }
-
-            return students;
-        }
-
-        public StudentDTO GetStudent(int id)
-        {
-            StudentDTO student = null;
+            StudentDTO student = new StudentDTO();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec GetStudent @Id";
                 student = db.Query<StudentDTO>(connectionQuery, new { id }).FirstOrDefault();
             }
+
             return student;
         }
 
@@ -83,7 +71,7 @@ namespace EJournalDAL.Repository
 
         public void DeleteOne(int Id)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec ";
                 db.Execute(connectionQuery, new { Id });
@@ -92,11 +80,23 @@ namespace EJournalDAL.Repository
 
         public void DeleteAll()
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec ";
                 db.Execute(connectionQuery);
             }
+        }
+        public List<StudentDTO> GetStudentsByGroup(int id)
+        {
+            List<StudentDTO> students = new List<StudentDTO>();
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec GetStudentByGroup @id";
+                students = db.Query<StudentDTO>(connectionQuery, new { id }).ToList<StudentDTO>();
+            }
+
+            return students;
         }
     }
 }
