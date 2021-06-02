@@ -9,17 +9,17 @@ namespace EJournalDAL.Repository
 {
     public class StudentsRepository
     {
-        string connectionString;
-        public StudentsRepository()
+        public string ConnectionString { get; set; }
+        public StudentsRepository(string connectionString)
         {
-            connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=EJournalDB; Integrated Security=True;";
+            ConnectionString = connectionString;
         }
 
-        public List<StudentDTO> GetStudents()
+        public List<StudentDTO> GetAllStudents()
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec GetAllStudents";
                 students = db.Query<StudentDTO>(connectionQuery).ToList<StudentDTO>();
@@ -27,11 +27,24 @@ namespace EJournalDAL.Repository
             return students;
         }
 
-        public StudentDTO Get(int id)
+        public List<StudentDTO> GetStudentsByGroup(int id)
+        {
+            List<StudentDTO> students = new List<StudentDTO>();
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec GetStudentByGroup @id";
+                students = db.Query<StudentDTO>(connectionQuery, new { id }).ToList<StudentDTO>();
+            }
+
+            return students;
+        }
+
+        public StudentDTO GetStudent(int id)
         {
             StudentDTO student = null;
 
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "GetStudent @Id";
                 student = db.Query<StudentDTO>(connectionQuery, new { id }).FirstOrDefault();
@@ -41,7 +54,7 @@ namespace EJournalDAL.Repository
 
         public StudentDTO Create(StudentDTO student)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
                 int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
@@ -52,7 +65,7 @@ namespace EJournalDAL.Repository
 
         public void Update(StudentDTO student)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
                 db.Execute(connectionQuery, student);
@@ -61,7 +74,7 @@ namespace EJournalDAL.Repository
 
         public void Delete(int id)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "DeleteStudent @id";
                 db.Execute(connectionQuery, new { id });

@@ -12,13 +12,13 @@ namespace EJournalBLL.Tests
         [SetUp]
         public void Setup()
         {
-            studentsRepository = new StudentsRepository();
+            studentsRepository = new StudentsRepository(@"Data Source=.\SQLEXPRESS;Initial Catalog=EJournalDB;Integrated Security=True");
         }
 
         [TestCaseSource(nameof(DataExpectedCollection))]
         public void GetAllStudent_WhenAddSomeStudents_ShouldAddStudent(List<StudentDTO> expected)
         {
-            var allStudents = studentsRepository.GetStudents();
+            var allStudents = studentsRepository.GetAllStudents();
 
             CollectionAssert.AreEqual(expected, allStudents);
         }

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EJournalDAL;
+﻿using System.Collections.Generic;
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
+using EJournalBLL.Models;
 
-namespace EJournalBLL.GroupsLogic
+namespace EJournalBLL.Logics
 {
-    public class GroupStorage
+    public class GroupsLogic
     {
         public string ConnectionString;
         public List<Group> Groups
@@ -24,7 +20,7 @@ namespace EJournalBLL.GroupsLogic
             }
         }
 
-        public GroupStorage(string connectionString)
+        public GroupsLogic(string connectionString)
         {
             Groups = new List<Group>();
             ConnectionString = connectionString;

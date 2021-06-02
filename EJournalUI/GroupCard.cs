@@ -1,5 +1,4 @@
-﻿using EJournalBLL.GroupsLogic;
-using System;
+﻿using EJournalBLL.Models;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -69,7 +68,7 @@ namespace EJournalUI
             grid.Children.Add(textBlock);
 
             _studentCountTextBox = new TextBlock();
-            _studentCountTextBox.Text = "0";
+            _studentCountTextBox.Text = Group.StudentsCount.ToString();
             _studentCountTextBox.Margin = new Thickness(95, 23, 5, 23);
             _studentCountTextBox.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(_studentCountTextBox, 1);
@@ -83,6 +82,7 @@ namespace EJournalUI
         {
             _groupNameTextBox.Text = Group.Name;
             _courseNameTextBox.Text = Group.Course.Name;
+            _studentCountTextBox.Text = Group.Students.Count.ToString();
         }
 
         private void GroupCard_MouseEnter(object sender, MouseEventArgs e)
