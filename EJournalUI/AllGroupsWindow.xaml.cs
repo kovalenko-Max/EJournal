@@ -18,8 +18,10 @@ namespace EJournalUI
         private StudentsLogic _studentsLogic;
 
         public GroupCard SelectedGroupCard;
+        public StudentCard StudentCard;
 
         private ProjectServices _projectServices;
+        private StudentServices _studentServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
@@ -27,8 +29,21 @@ namespace EJournalUI
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
             _projectServices = new ProjectServices();
+            _studentServices = new StudentServices(ConnectionString);
             PrintAllGroupsFromDB();
-            PrintAllProjectsFromDB();
+            //PrintAllProjectsFromDB();
+            PrintAllStudentsFromDB();
+        }
+
+        public void PrintAllStudentsFromDB()
+        {
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
+            {
+                StudentCard studentCard = new StudentCard(student);
+                //studentCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
+            }
         }
 
         public void PrintAllProjectsFromDB()
