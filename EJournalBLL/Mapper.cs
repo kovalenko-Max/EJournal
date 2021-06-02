@@ -37,9 +37,9 @@ namespace EJournalBLL
                     .ForMember(dto => dto.Git, map => map.MapFrom(source => source.Git))
                     .ForMember(dto => dto.Ranking, map => map.MapFrom(source => source.Ranking))
                     .ForMember(dto => dto.City, map => map.MapFrom(source => source.City))
-                    .ForMember(dto => dto.comments, map => map.MapFrom(source => source.comments))
-                    .ForMember(dto => dto.AgreementNumber, map => map.MapFrom(source => source.AgreementNumber))
-                    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
+                    //.ForMember(dto => dto.comments, map => map.MapFrom(source => source.comments))
+                    .ForMember(dto => dto.AgreementNumber, map => map.MapFrom(source => source.AgreementNumber));
+                    //.ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
                 cfg.CreateMap<CommentDTO, Comments>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))

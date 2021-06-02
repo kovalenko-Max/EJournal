@@ -8,8 +8,10 @@ namespace EJournalBLL.Models
         public string Name;
         public string Surname;
         public string Email;
+        public string Phone;
         public string Git;
         public string City;
+        public int Ranking;
         public string AgreementNumber;
 
         public Student(string name, string surname, string email)
@@ -25,8 +27,10 @@ namespace EJournalBLL.Models
             Name = studentDTO.Name;
             Surname = studentDTO.Surname;
             Email = studentDTO.Email;
+            Phone = studentDTO.Phone;
             Git = studentDTO.Git;
             City = studentDTO.City;
+            Ranking = studentDTO.Ranking;
             AgreementNumber = studentDTO.AgreementNumber;
         }
 
@@ -40,8 +44,10 @@ namespace EJournalBLL.Models
                     Name == student.Name &&
                     Surname == student.Surname &&
                     Email == student.Email &&
+                    Phone == student.Phone &&
                     Git == student.Git &&
                     City == student.City &&
+                    Ranking == student.Ranking &&
                     AgreementNumber == student.AgreementNumber;
             }
             return isEquals;
@@ -49,7 +55,7 @@ namespace EJournalBLL.Models
 
         public override string ToString()
         {
-            return $"{Name} {Surname} {Email} {City} {AgreementNumber}";
+            return $"{Name} {Surname} {Email} {Phone} {Git} {City} {Ranking} {AgreementNumber}";
         }
         public override int GetHashCode()
         {

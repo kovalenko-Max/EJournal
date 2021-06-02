@@ -52,11 +52,11 @@ namespace EJournalDAL.Repository
             return student;
         }
 
-        public StudentDTO Create(StudentDTO student)
+        public StudentDTO AddStudent(StudentDTO student)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
+                string connectionQuery = "exec AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
                 student.Id = userId;
             }
@@ -67,7 +67,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = " exec UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
+                string connectionQuery = "exec UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 db.Execute(connectionQuery, student);
             }
         }
@@ -83,7 +83,7 @@ namespace EJournalDAL.Repository
 
         public void HardDeleteAll()
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec HardDeleteAllStudents";
                 db.Execute(connectionQuery);
@@ -92,7 +92,7 @@ namespace EJournalDAL.Repository
 
         public void HardDelete(StudentDTO studentDTO)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec HardDeleteStudent @Id";
                 db.Execute(connectionQuery, new { studentDTO.Id});
