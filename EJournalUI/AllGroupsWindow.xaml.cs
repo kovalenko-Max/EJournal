@@ -1,8 +1,11 @@
-﻿using EJournalBLL.GroupsLogic;
+﻿using EJournalBLL;
+using EJournalBLL.GroupsLogic;
+using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using Group = EJournalBLL.GroupsLogic.Group;
 
 namespace EJournalUI
 {
@@ -14,13 +17,28 @@ namespace EJournalUI
         private GroupStorage _groupStorage;
 
         public GroupCard SelectedGroupCard;
+
+        private ProjectServices _projectServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             Name = "AllGroupsWindow";
             _groupStorage = new GroupStorage(ConnectionString);
+            //_projectServices = new ProjectServices(ConnectionString);
             PrintAllGroupsFromDB();
+            PrintAllProjectsFromDB();
+        }
+
+        public void PrintAllProjectsFromDB()
+        {
+            ProjectsWrapPanel.Children.Clear();
+            foreach (Project project in _projectServices.Projects)
+            {
+                ProjectCard projectCard = new ProjectCard(project);
+                projectCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                ProjectsWrapPanel.Children.Add(projectCard);
+            }
         }
 
         public void PrintAllGroupsFromDB()

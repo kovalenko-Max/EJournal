@@ -13,6 +13,18 @@ namespace EJournalBLL
     {
         ProjectRepository projectRepository;
 
+        public List<Project> Projects
+        {
+            get
+            {
+                return Projects = GetAllProjects();
+            }
+            set
+            {
+
+            }
+        }
+
         public ProjectServices()
         {
             projectRepository = new ProjectRepository();
