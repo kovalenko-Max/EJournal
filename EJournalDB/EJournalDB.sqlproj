@@ -125,8 +125,8 @@
     <Build Include="dbo\Stored Procedures\UpdateProject.sql" />
     <Build Include="dbo\Stored Procedures\UpdateProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupsAndNumberOfStudentsInThemAndGroupStatus.sql" />
-    <Build Include="dbo\Stored Procedures\GetStudentsByGroup.sql" />
-    <Build Include="dbo\Stored Procedures\GetStudentByGroup2.sql" />
+    <Build Include="dbo\Stored Procedures\GetGroupAndStudentsInIt.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudentByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetStudentsCountByGroups.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -33,7 +33,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec GetStudentByGroup2 @id";
+                string connectionQuery = "exec GetStudentByGroup @id";
                 students = db.Query<StudentDTO>(connectionQuery, new { id }).ToList<StudentDTO>();
             }
 

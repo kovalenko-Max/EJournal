@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetStudentByGroup2]
+﻿CREATE PROCEDURE [dbo].[GetStudentByGroup]
 	@Id int 
 AS
 select 
