@@ -13,36 +13,13 @@ namespace EJournalBLL.Tests
         [SetUp]
         public void Setup()
         {
-            
+            studentsRepository = new StudentsRepository(@"Data Source=.\SQLEXPRESS;Initial Catalog=EJournalDB;Integrated Security=True");
         }
 
         [Test]
         public void StudentDTO_WhenMapToStudent_ShouldMapCorrectly()
         {
-            var studentDTO = new StudentDTO
-            {
-                Name = "A",
-                AgreementNumber = "S",
-                City = "Q",
-                Email = "A@com",
-                Git = "git",
-                Id = 1,
-                Phone = "1111",
-                Ranking = 99,
-                Surname = "aa",
-                IsDelete = true,
-                comments = new List<CommentDTO>
-                {
-                    new CommentDTO
-                    {
-                        Id = 1,
-                        Comment = "comment",
-                        IdCommentType = 1,
-                        IdTeacher = 2,
-                        IsDelete = false
-                    }
-                }
-            };
+            var allStudents = studentsRepository.GetAllStudents();
 
             var result = ObjectMapper.Mapper.Map<Student>(studentDTO);
 
