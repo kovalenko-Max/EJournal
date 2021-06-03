@@ -11,8 +11,8 @@ namespace EJournalBLL.Models
         public bool IsFinish;
         public int StudentsCount { get; }
 
-
-        public List<Student> Students;
+        public List<Student> Students { get; set; }
+        public List<Lesson> Lessons { get; set; }
 
         public Group(string name, Course course)
         {

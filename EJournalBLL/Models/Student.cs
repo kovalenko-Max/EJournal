@@ -31,6 +31,13 @@ namespace EJournalBLL.Models
             City = city;
             AgreementNumber = agreementNumber;
         }
+
+        public Student(string name, string surname)
+        {
+            Name = name;
+            Surname = surname;
+        }
+
         public Student(StudentDTO studentDTO)
         {
             Id = (int)studentDTO.Id;

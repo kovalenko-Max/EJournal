@@ -23,7 +23,7 @@
                             <ColumnDefinition Width="421"/>
                             <ColumnDefinition Width="145*"/>
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer Grid.Column="0">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0">
                             <WrapPanel  x:Name="GroupsWrapPanel"></WrapPanel>
                         </ScrollViewer>
                         <Grid Grid.Column="1" Margin="1,0,0,0">
@@ -52,6 +52,11 @@
                                 <TabItem Header = "Students of group">
                                     <ScrollViewer Grid.Row="1">
                                         <WrapPanel x:Name="GroupStudentsWrapPanel"></WrapPanel>
+                                    </ScrollViewer>
+                                </TabItem>
+                                <TabItem x:Name="AttendancesTabItem" Header="Attendances">
+                                    <ScrollViewer  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
                                     </ScrollViewer>
                                 </TabItem>
                             </TabControl>
