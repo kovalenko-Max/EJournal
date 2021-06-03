@@ -44,7 +44,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
+                string connectionQuery = "exec AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
                 student.Id = userId;
             }
@@ -55,7 +55,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = " exec UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
+                string connectionQuery = " exec UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 db.Execute(connectionQuery, student);
             }
         }

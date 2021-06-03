@@ -23,7 +23,7 @@
                             <ColumnDefinition Width="421"/>
                             <ColumnDefinition Width="145*"/>
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer Grid.Column="0">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0">
                             <WrapPanel  x:Name="GroupsWrapPanel"></WrapPanel>
                         </ScrollViewer>
                         <Grid Grid.Column="1" Margin="1,0,0,0">
@@ -52,6 +52,11 @@
                                 <TabItem Header = "Students of group">
                                     <ScrollViewer Grid.Row="1">
                                         <WrapPanel x:Name="GroupStudentsWrapPanel"></WrapPanel>
+                                    </ScrollViewer>
+                                </TabItem>
+                                <TabItem x:Name="AttendancesTabItem" Header="Attendances">
+                                    <ScrollViewer  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
                                     </ScrollViewer>
                                 </TabItem>
                             </TabControl>
@@ -112,6 +117,28 @@
                             </TabControl>
                         </Grid>
                     </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header = "Students">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="724.08"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="AddStudentButton" Content="Add" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="36" Width="133" FontSize="15" Click="Button_AddStudent_Click"/>
+                    <Button Name="DeleteStudentButton" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Width="134" FontSize="15" Margin="173,14,0,0"/>
+                    <Grid Margin="10,70,10,10">
+                        <ScrollViewer>
+                            <WrapPanel x:Name="AllStudentCardsWrapPanel">
+
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="247" Height="36" Margin="1103,14,0,0"/>
+                    <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Text="Search" FontSize="15" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="36" Margin="922,14,0,0"/>
+
                 </Grid>
             </TabItem>
         </TabControl>

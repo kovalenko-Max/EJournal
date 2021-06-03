@@ -10,38 +10,35 @@ namespace EJournalBLL
 {
     public class StudentServices
     {
-        StudentsRepository projectRepository;
-        string connectionString;
-        public StudentServices(string connectionString)
+        string connection;
+        StudentsRepository studentsRepository;
+
+        public StudentServices(string connection)
         {
-            this.connectionString = connectionString;
-            projectRepository = new StudentsRepository(connectionString);
+            this.connection = connection;
+            studentsRepository = new StudentsRepository(connection);
         }
 
         public List<Student> GetAllStudent()
         {
-            List<StudentDTO> studentDTO = projectRepository.GetAll();
+            List<StudentDTO> studentDTO = studentsRepository.GetAll();
             List<Student> student = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
             return student;
         }
-        public void AddProject(Student studentInput)
+        public void AddStudent(Student studentInput)
         {
-
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            projectRepository.Create(student);
-
+            studentsRepository.Create(student);
         }
         public void Update(Student studentInput)
         {
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            projectRepository.Update(student);
+            studentsRepository.Update(student);
         }
 
         public void Delete(int Id)
         {
-            projectRepository.DeleteSoft(Id);
+            studentsRepository.DeleteSoft(Id);
         }
     }
 }
-
-

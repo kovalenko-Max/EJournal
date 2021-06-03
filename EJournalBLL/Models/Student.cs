@@ -21,12 +21,23 @@ namespace EJournalBLL.Models
         public bool IsDelete { get; set; }
         public List<Comments> Comments { get; set; }
 
-        public Student(string name, string surname, string email)
+        public Student(string name, string surname, string email, string phone,string git, string city, string agreementNumber)
         {
             Name = name;
             Surname = surname;
             Email = email;
+            Phone = phone;
+            Git = git;
+            City = city;
+            AgreementNumber = agreementNumber;
         }
+
+        public Student(string name, string surname)
+        {
+            Name = name;
+            Surname = surname;
+        }
+
         public Student(StudentDTO studentDTO)
         {
             Id = (int)studentDTO.Id;

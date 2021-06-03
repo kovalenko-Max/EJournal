@@ -1,18 +1,29 @@
-﻿using System;
+﻿using EJournalDAL.Models.BaseModels;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EJournalBLL.Models
 {
     public class Lesson
     {
-        public int Id;
+        public int Id { get; set; }
         public string Topic { get; set; }
         public DateTime DateLesson { get; set; }
-        public int IdGroup { get; set; }
-        public int IdTeacher { get; set; }
-        public bool IsDelete { get; set; }
+
+        public List<Attendances> Attendances;
+
+        public Lesson()
+        {
+            DateLesson = DateTime.Now;
+        }
+
+        public Lesson(LessonDTO lessonDTO)
+        {
+            Id = lessonDTO.Id;
+            Topic = lessonDTO.Topic;
+            DateLesson = lessonDTO.DateLesson;
+
+
+        }
     }
 }

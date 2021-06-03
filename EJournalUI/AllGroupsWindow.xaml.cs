@@ -5,6 +5,8 @@ using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Controls;
+using System.Collections.Generic;
 
 
 namespace EJournalUI
@@ -19,16 +21,21 @@ namespace EJournalUI
         private ProjectServices _projectServices;
 
         public GroupCard SelectedGroupCard;
+        public StudentCard StudentCard;
         public ProjectCard SelectedProjectCard;
 
+
+        private StudentServices _studentServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
-            _projectServices = new ProjectServices();
+            _studentServices = new StudentServices(ConnectionString);
+            _projectServices = new ProjectServices(); 
             PrintAllGroupsFromDB();
+            PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
         }
 
@@ -40,6 +47,17 @@ namespace EJournalUI
                 ProjectCard projectCard = new ProjectCard(project);
                 projectCard.MouseDown += ProjectCard_MouseLeftButtonDown;
                 ProjectsWrapPanel.Children.Add(projectCard);
+            }
+        }
+
+        public void PrintAllStudentsFromDB()
+        {
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
+            {
+                StudentCard studentCard = new StudentCard(student);
+                //studentCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
 
@@ -138,6 +156,7 @@ namespace EJournalUI
             GroupNameTextBox.Text = groupCard.Group.Name;
             GroupCourseTextBox.Text = groupCard.Group.Course.Name;
             GetStudentsByGroup();
+            GetLessonsAttendancesByGroup();
         }
 
         private void HighlightSelected(GroupCard groupCard)
@@ -186,7 +205,7 @@ namespace EJournalUI
                 }
             }
         }
-        
+
         private void GroupCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is GroupCard)
@@ -203,10 +222,33 @@ namespace EJournalUI
             GroupStudentsWrapPanel.Children.Clear();
             _studentsLogic.GetStudentsByGroup(SelectedGroupCard.Group.Id);
             SelectedGroupCard.Group.Students = _studentsLogic.Students;
-            foreach(Student student in _studentsLogic.Students)
+            foreach (Student student in _studentsLogic.Students)
             {
                 StudentCard studentCard = new StudentCard(student);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+        private void Button_AddStudent_Click(object sender, RoutedEventArgs e)
+        {
+            EditStudentWindow addStudentWindow = new EditStudentWindow();
+
+            if(addStudentWindow.ShowDialog() == true)
+            {
+                _studentServices.AddStudent(addStudentWindow.student);
+                StudentCard studentCard = new StudentCard(addStudentWindow.student);
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+        private void GetLessonsAttendancesByGroup()
+        {
+            LessonsLogic lessonsLogic = new LessonsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+            List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
+
+            foreach (var lesson in lessons)
+            {
+                AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));
             }
         }
     }
