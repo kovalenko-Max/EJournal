@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetAllStudents
+﻿CREATE PROCEDURE [dbo].[GetAllStudents]
    AS
    SELECT [Id]
       ,[Name]

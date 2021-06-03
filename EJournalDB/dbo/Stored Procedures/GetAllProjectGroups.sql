@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[GetAllProjectGroups]
 AS
-		SELECT [Id]
+	SELECT [Id]
 	,[Name]
 	,[IdComments]
 FROM ProjectGroups

@@ -4,5 +4,5 @@ AS
 	SELECT Id,
 	Comment
 	,IdCommentType
-FROM Comments
+FROM [dbo].[Comments]
 WHERE IsDelete=0 AND Id=@Id

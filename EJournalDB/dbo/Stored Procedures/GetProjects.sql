@@ -1,5 +1,5 @@
-﻿CREATE PROCEDURE GetProjects
+﻿CREATE PROCEDURE [dbo].[GetProjects]
 AS
 Select Id, Name, Description
-From Projectes
+From [dbo].[Projectes]
 Where IsDelete = 0

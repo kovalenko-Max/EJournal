@@ -4,8 +4,7 @@
 	, @IdProject Int
 AS
 
-	UPDATE ProjectGroups
-
-SET Name = @Name
-,IdProject = @IdProject
-WHERE Id = @Id
+	UPDATE [dbo].[ProjectGroups]
+	SET Name = @Name
+	,IdProject = @IdProject
+	WHERE Id = @Id

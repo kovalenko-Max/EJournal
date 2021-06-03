@@ -4,7 +4,7 @@
 	,@Description NVARCHAR(255)
 	,@ChekUpdate BIT OUTPUT
 AS
-	UPDATE Projectes
+	UPDATE [dbo].[Projectes]
 	SET Name=@Name
 	,Description =@Description
 	Where Id = @Id

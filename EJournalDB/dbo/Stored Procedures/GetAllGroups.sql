@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetAllGroups
+﻿CREATE PROCEDURE [dbo].[GetAllGroups]
    AS
    SELECT  [Id]
       ,[Name]

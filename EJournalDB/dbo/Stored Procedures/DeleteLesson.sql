@@ -1,7 +1,5 @@
-CREATE PROCEDURE [dbo].[DeleteLesson]
-	  @Id INT 
-   AS
-  UPDATE Lessons
-  SET IsDelete=1
-  WHERE Id=@Id
-
+CREATE PROCEDURE [dbo].[DeleteLesson] @Id INT
+AS
+UPDATE [dbo].[Lessons]
+SET IsDelete = 1
+WHERE Id = @Id

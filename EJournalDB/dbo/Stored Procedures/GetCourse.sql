@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetCourse
+﻿CREATE PROCEDURE [dbo].[GetCourse]
 @Id int
    AS
    SELECT [Id]

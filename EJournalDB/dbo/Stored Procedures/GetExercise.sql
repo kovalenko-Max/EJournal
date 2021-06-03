@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetExercise
+﻿CREATE PROCEDURE [dbo].[GetExercise]
 @Id int
    AS
    SELECT  [Id]

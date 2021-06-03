@@ -9,7 +9,7 @@
    ,@Ranking INT
    ,@AgreementNumber NVARCHAR(50)
 AS
-	UPDATE Students
+	UPDATE [dbo].[Students]
 
    SET Name = @Name
    ,Surname = @Surname

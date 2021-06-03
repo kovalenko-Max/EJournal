@@ -5,7 +5,7 @@ CREATE PROCEDURE [dbo].[UpdateLesson]
 	@IdGroup int,
 	@IdTeacher int
 AS
-	UPDATE Lessons
+	UPDATE [dbo].[Lessons]
 
    SET Topic= @Topic
    , DateLesson= @DateLesson

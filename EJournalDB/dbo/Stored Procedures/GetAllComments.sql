@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[GetAllComments]
 AS
-	SELECT Id,
-	Comment
+SELECT Id
+	,Comment
 	,IdTeacher
 	,IdCommentType
-FROM Comments
-WHERE IsDelete=0
+FROM [dbo].[Comments]
+WHERE IsDelete = 0

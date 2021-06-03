@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetGroup
+﻿CREATE PROCEDURE [dbo].[GetGroup]
 @Id int
    AS
    SELECT  [Id]

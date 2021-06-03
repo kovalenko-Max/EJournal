@@ -1,7 +1,14 @@
-﻿CREATE PROCEDURE AddExercises
-@Description nvarchar (255),
-@Deadline datetime,
-@IdGroup int
-   AS
-   insert into Exercises (Description, Deadline, IdGroup)
-   values(@Description, @Deadline, @IdGroup)
+﻿CREATE PROCEDURE [dbo].[AddExercises] @Description NVARCHAR(255)
+	,@Deadline DATETIME
+	,@IdGroup INT
+AS
+INSERT INTO [dbo].[Exercises] (
+	Description
+	,Deadline
+	,IdGroup
+	)
+VALUES (
+	@Description
+	,@Deadline
+	,@IdGroup
+	)

@@ -1,6 +1,11 @@
-﻿CREATE PROCEDURE AddTeacher
-@Name nvarchar (100),
-@Surname nvarchar (100)
-   AS
-   insert into Teachers (Name, Surname)
-   values(@Name, @Surname)
+﻿CREATE PROCEDURE [dbo].[AddTeacher] @Name NVARCHAR(100)
+	,@Surname NVARCHAR(100)
+AS
+INSERT INTO [dbo].[Teachers] (
+	Name
+	,Surname
+	)
+VALUES (
+	@Name
+	,@Surname
+	)

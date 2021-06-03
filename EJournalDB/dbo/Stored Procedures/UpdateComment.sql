@@ -4,7 +4,7 @@
 	@IdTeacher int,
 	@IdCommentType int
 AS
-	UPDATE Comments
+	UPDATE [dbo].[Comments]
 
    SET Comment= @Comments
    , IdTeacher= @IdTeacher
