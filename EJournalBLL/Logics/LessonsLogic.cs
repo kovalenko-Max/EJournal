@@ -4,6 +4,7 @@ using EJournalDAL.Repository;
 using EJournalDAL.Models;
 using EJournalDAL.Models.BaseModels;
 using System.ComponentModel;
+using System.Data;
 
 namespace EJournalBLL.Logics
 {
@@ -33,13 +34,17 @@ namespace EJournalBLL.Logics
         public void UpdateLessonAttendances(Lesson lesson)
         {
             LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
-            int[] iDs = new int[lesson.Attendances.Count];
-            for(int i = 0; i<lesson.Attendances.Count;++i)
-            { 
-                iDs[i] = lesson.Attendances[i].Student.Id;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("LessonsIds");
+            dt.Columns.Add("StudentId");
+            dt.Columns.Add("isPresense");
+
+            foreach(var a in lesson.Attendances)
+            {
+                dt.Rows.Add( new object[] {lesson.Id, a.Student.Id, a.isPresent });
             }
 
-            lessonsRepository.UpdateLessonAttendances(iDs);
+            lessonsRepository.UpdateLessonAttendances(dt);
         }
 
         private List<Lesson> ConvertLessonsDTOToLessons(List<LessonDTO> lessonsDTO)

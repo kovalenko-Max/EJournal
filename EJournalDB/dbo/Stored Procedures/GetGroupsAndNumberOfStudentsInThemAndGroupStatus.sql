@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[GetGroupsAndNumberOfStudentsInThemAndGroupStatus]
+﻿CREATE PROCEDURE [dbo].[GetGroupsAndNumberOfStudentsInThemAndGroupStatus]
 AS
 SELECT GS.IdGroup, G.Name, COUNT(*) NumberOfStudents, G.IsFinish
 FROM dbo.GroupStudents GS

@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[UpdateLesson]
+﻿CREATE PROCEDURE [dbo].[UpdateLesson]
 	@Id int,
 	@Topic NVARCHAR(250) ,
 	@DateLesson datetime,

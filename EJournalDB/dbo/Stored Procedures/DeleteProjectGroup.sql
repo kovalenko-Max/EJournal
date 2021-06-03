@@ -4,4 +4,3 @@ AS
 	 UPDATE ProjectGroups
   SET IsDelete=1
   WHERE Id=@Id
-

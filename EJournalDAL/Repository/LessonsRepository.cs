@@ -25,7 +25,7 @@ namespace EJournalDAL.Repository
             using (IDbConnection dbConnection = new SqlConnection(ConnectionString))
             {
                 dbConnection.Query<LessonDTO, StudentAttendanceDTO, LessonDTO>(qr,
-                    
+
                     (lesson, student) =>
                     {
                         LessonDTO currentLesson = null;
@@ -58,15 +58,14 @@ namespace EJournalDAL.Repository
             return lessonsDTO;
         }
 
-        public void UpdateLessonAttendances(int[] lessonsIds)
+        public void UpdateLessonAttendances(DataTable dt)
         {
             string command = "exec UpdateLessonAttendances @LessonsIds";
-            List< LessonDTO> lessonDTO;
+            List<LessonDTO> lessonDTO;
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                lessonDTO =  db.Query<LessonDTO>(command, new { lessonsIds }).AsList<LessonDTO>();
+                db.Execute(command, new { LessonsIds = dt.AsTableValuedParameter("[dbo].[LessonsIds]") });
             }
-            return;
         }
     }
 }
