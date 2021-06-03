@@ -8,5 +8,5 @@
    @Ranking INT,
    @AgreementNumber NVARCHAR(50)
    AS
-   INSERT INTO Students(Name, Surname, Email, Phone, Git, City, Ranking, AgreementNumber)
-   VALUES (@Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber)
+   INSERT INTO Students(Name, Surname, Email, Phone, Git, City, Ranking, AgreementNumber, IsDelete)
+   VALUES (@Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber, 0)

@@ -66,8 +66,6 @@ namespace EJournalBLL
                         .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
                         .ForMember(dto => dto.IsFinish, map => map.MapFrom(source => source.IsFinish))
                         .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
-                    //.ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
-                    //.ForMember(dto => dto.IdCourse, map => map.MapFrom(source => source.IdCourse))
 
                     cfg.CreateMap<LessonDTO, Lesson>()
                         .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
