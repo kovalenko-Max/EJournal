@@ -145,5 +145,17 @@ namespace EJournalUI
                 GroupStudentsWrapPanel.Children.Add(studentCard);
             }
         }
+
+        private void Button_AddStudent_Click(object sender, RoutedEventArgs e)
+        {
+            EditStudentWindow addStudentWindow = new EditStudentWindow();
+
+            if(addStudentWindow.ShowDialog() == true)
+            {
+                _studentServices.AddStudent(addStudentWindow.student);
+                StudentCard studentCard = new StudentCard(addStudentWindow.student);
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
+            }
+        }
     }
 }
