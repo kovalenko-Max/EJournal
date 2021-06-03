@@ -13,14 +13,14 @@ namespace EJournalDAL.Tests
         [SetUp]
         public void Setup()
         {
-            projectGroupRepository = new ProjectGroupRepository();
+            //projectGroupRepository = new ProjectGroupRepository();
             projectRepository = new ProjectRepository();
         }
 
         [TestCaseSource(nameof(DataExpectedCollection))]
         public void GetAllStudent_WhenAddSomeStudents_ShouldAddStudent(ProjectGroupDTO expected)
         {
-            var actual = projectGroupRepository.GetStudentsFromOneGroup(3);
+            var actual = projectGroupRepository.GetStudentsFromOneProjectGroup(3);
 
             Assert.Pass();
         }
@@ -39,7 +39,7 @@ namespace EJournalDAL.Tests
         [TestCaseSource(nameof(ExpectedCollection))]
         public void GetAllProjects_WhenAddSomeStudents_ShouldAddStudent(List<ProjectDTO> expected)
         {
-            var actual = projectRepository.GetAllProjects();
+            var actual = projectRepository.GetProjects();
 
             Assert.Pass();
         }

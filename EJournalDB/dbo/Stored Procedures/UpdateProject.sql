@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE [dbo].[UpdateProject]
-	@Id INT
+﻿CREATE PROCEDURE [dbo].[UpdateProject] @Id INT
 	,@Name NVARCHAR(50)
 	,@Description NVARCHAR(255)
-	,@IdProjectGroup INT
+	--,@ChekUpdate BIT OUTPUT
 AS
-	UPDATE Projects
-	SET Name=@Name
-	,Description =@Description
-	,IdProjectGroup=@IdProjectGroup
-	Where Id = @Id
+UPDATE Projectes
+SET Name = @Name
+	,Description = @Description
+WHERE Id = @Id
+
+--SELECT @ChekUpdate = @@ROWCOUNT
