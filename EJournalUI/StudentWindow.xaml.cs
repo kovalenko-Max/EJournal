@@ -18,9 +18,9 @@ namespace EJournalUI
     /// <summary>
     /// Interaction logic for Concrete_student1.xaml
     /// </summary>
-    public partial class Concrete_student1 : Page
+    public partial class StudentWindow : Page
     {
-        public Concrete_student1()
+        public StudentWindow()
         {
             InitializeComponent();
         }

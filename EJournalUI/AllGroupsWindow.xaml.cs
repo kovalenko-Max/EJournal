@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace EJournalUI
 {
@@ -42,6 +44,7 @@ namespace EJournalUI
             GroupNameTextBox.Text = groupCard.Group.Name;
             GroupCourseTextBox.Text = groupCard.Group.Course.Name;
             GetStudentsByGroup();
+            GetLessonsAttendancesByGroup();
         }
 
         private void HighlightSelected(GroupCard groupCard)
@@ -90,7 +93,7 @@ namespace EJournalUI
                 }
             }
         }
-        
+
         private void GroupCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is GroupCard)
@@ -107,10 +110,21 @@ namespace EJournalUI
             GroupStudentsWrapPanel.Children.Clear();
             _studentsLogic.GetStudentsByGroup(SelectedGroupCard.Group.Id);
             SelectedGroupCard.Group.Students = _studentsLogic.Students;
-            foreach(Student student in _studentsLogic.Students)
+            foreach (Student student in _studentsLogic.Students)
             {
                 StudentCard studentCard = new StudentCard(student);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+        private void GetLessonsAttendancesByGroup()
+        {
+            LessonsLogic lessonsLogic = new LessonsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+            List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
+
+            foreach (var lesson in lessons)
+            {
+                AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));
             }
         }
     }

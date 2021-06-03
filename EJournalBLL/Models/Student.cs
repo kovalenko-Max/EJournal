@@ -4,13 +4,13 @@ namespace EJournalBLL.Models
 {
     public class Student
     {
-        public int Id;
-        public string Name;
-        public string Surname;
-        public string Email;
-        public string Git;
-        public string City;
-        public string AgreementNumber;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Git { get; set; }
+        public string City { get; set; }
+        public string AgreementNumber { get; set; }
 
         public Student(string name, string surname, string email)
         {
@@ -33,6 +33,7 @@ namespace EJournalBLL.Models
         public override bool Equals(object obj)
         {
             bool isEquals = false;
+
             if(obj is Student)
             {
                 Student student = (Student)obj;
@@ -44,6 +45,7 @@ namespace EJournalBLL.Models
                     City == student.City &&
                     AgreementNumber == student.AgreementNumber;
             }
+
             return isEquals;
         }
 

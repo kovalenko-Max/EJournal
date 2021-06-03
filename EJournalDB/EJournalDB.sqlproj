@@ -128,6 +128,8 @@
     <Build Include="dbo\Stored Procedures\GetGroupAndStudentsInIt.sql" />
     <Build Include="dbo\Stored Procedures\GetStudentByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetStudentsCountByGroups.sql" />
+    <Build Include="dbo\Stored Procedures\GetLessonsByGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetLessonsAttendancesByGroup.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

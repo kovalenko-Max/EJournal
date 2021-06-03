@@ -54,6 +54,9 @@
                                         <WrapPanel x:Name="GroupStudentsWrapPanel"></WrapPanel>
                                     </ScrollViewer>
                                 </TabItem>
+                                <TabItem x:Name="AttendancesTabItem" Header="Attendances">
+                                    <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
+                                </TabItem>
                             </TabControl>
                         </Grid>
                     </Grid>
