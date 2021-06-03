@@ -1,7 +1,14 @@
-﻿CREATE PROCEDURE [dbo].[AddComment]
-	@Comments NVARCHAR(255) ,
-	@IdTeacher int,
-	@IdCommentType int
+﻿CREATE PROCEDURE [dbo].[AddComment] @Comments NVARCHAR(255)
+	,@IdTeacher INT
+	,@IdCommentType INT
 AS
-	INSERT INTO Comments (Comment, IdTeacher, IdCommentType)
-	VALUES (@Comments, @IdTeacher, @IdCommentType)
+INSERT INTO [dbo].[Comments] (
+	Comment
+	,IdTeacher
+	,IdCommentType
+	)
+VALUES (
+	@Comments
+	,@IdTeacher
+	,@IdCommentType
+	)

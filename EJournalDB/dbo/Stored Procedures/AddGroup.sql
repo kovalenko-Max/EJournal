@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE AddGroup @Name NVARCHAR(100)
+﻿CREATE PROCEDURE [dbo].[AddGroup] @Name NVARCHAR(100)
 	,@IdCourse INT
 AS
-INSERT INTO Groups (
+INSERT INTO [dbo].[Groups] (
 	Name
 	,IdCourse
 	)

@@ -1,14 +1,12 @@
-CREATE PROCEDURE [dbo].[UpdateLesson]
-	@Id int,
-	@Topic NVARCHAR(250) ,
-	@DateLesson datetime,
-	@IdGroup int,
-	@IdTeacher int
+CREATE PROCEDURE [dbo].[UpdateLesson] @Id INT
+	,@Topic NVARCHAR(250)
+	,@DateLesson DATETIME
+	,@IdGroup INT
+	,@IdTeacher INT
 AS
-	UPDATE Lessons
-
-   SET Topic= @Topic
-   , DateLesson= @DateLesson
-   , IdGroup= @IdGroup
-   , IdTeacher = @IdTeacher
-   Where Id=@Id
+UPDATE [dbo].[Lessons]
+SET Topic = @Topic
+	,DateLesson = @DateLesson
+	,IdGroup = @IdGroup
+	,IdTeacher = @IdTeacher
+WHERE Id = @Id

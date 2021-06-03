@@ -1,6 +1,5 @@
-﻿CREATE PROCEDURE DeleteTeacher
-@Id int
-   AS
-   update Teachers
-   set IsDelete = 1
-  where Id = @Id
+﻿CREATE PROCEDURE [dbo].[DeleteTeacher] @Id INT
+AS
+UPDATE [dbo].[Teachers]
+SET IsDelete = 1
+WHERE Id = @Id
