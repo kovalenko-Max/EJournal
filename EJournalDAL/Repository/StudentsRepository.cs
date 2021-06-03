@@ -15,7 +15,7 @@ namespace EJournalDAL.Repository
             ConnectionString = connectionString;
         }
 
-        public List<StudentDTO> GetAllStudents()
+        public List<StudentDTO> GetAll()
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
@@ -27,6 +27,65 @@ namespace EJournalDAL.Repository
             return students;
         }
 
+        public StudentDTO GetOne(int id)
+        {
+            StudentDTO student = new StudentDTO();
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec GetStudent @Id";
+                student = db.Query<StudentDTO>(connectionQuery, new { id }).FirstOrDefault();
+            }
+
+            return student;
+        }
+
+        public StudentDTO Create(StudentDTO student)
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
+                int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
+                student.Id = userId;
+            }
+            return student;
+        }
+
+        public void Update(StudentDTO student)
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = " exec UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
+                db.Execute(connectionQuery, student);
+            }
+        }
+
+        public void DeleteSoft(int id)
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec DeleteStudent @id";
+                db.Execute(connectionQuery, new { id });
+            }
+        }
+
+        public void DeleteOne(int Id)
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec ";
+                db.Execute(connectionQuery, new { Id });
+            }
+        }
+
+        public void DeleteAll()
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec ";
+                db.Execute(connectionQuery);
+            }
+        }
         public List<StudentDTO> GetStudentsByGroup(int id)
         {
             List<StudentDTO> students = new List<StudentDTO>();
@@ -38,47 +97,6 @@ namespace EJournalDAL.Repository
             }
 
             return students;
-        }
-
-        public StudentDTO GetStudent(int id)
-        {
-            StudentDTO student = null;
-
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "GetStudent @Id";
-                student = db.Query<StudentDTO>(connectionQuery, new { id }).FirstOrDefault();
-            }
-            return student;
-        }
-
-        public StudentDTO Create(StudentDTO student)
-        {
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
-                int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
-                student.Id = userId;
-            }
-            return student;
-        }
-
-        public void Update(StudentDTO student)
-        {
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AdreementNumber";
-                db.Execute(connectionQuery, student);
-            }
-        }
-
-        public void Delete(int id)
-        {
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "DeleteStudent @id";
-                db.Execute(connectionQuery, new { id });
-            }
         }
     }
 }

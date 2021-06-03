@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace EJournalDAL.Models.BaseModels
+namespace EJournalBLL.Models
 {
-    public class LessonDTO
+    public class Lesson
     {
         public int Id;
         public string Topic { get; set; }
@@ -12,8 +14,5 @@ namespace EJournalDAL.Models.BaseModels
         public int IdGroup { get; set; }
         public int IdTeacher { get; set; }
         public bool IsDelete { get; set; }
-
-        public StudentDTO student;
-        public List<StudentDTO> students;
     }
 }

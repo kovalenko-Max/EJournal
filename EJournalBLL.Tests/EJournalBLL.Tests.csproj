@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EJournalDAL\EJournalDAL.csproj" />
+    <ProjectReference Include="..\EJournalBLL\EJournalBLL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,11 @@
-﻿using EJournalBLL.Logics;
+﻿using EJournalBLL;
+using EJournalBLL.Logics;
 using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+
 
 namespace EJournalUI
 {
@@ -16,14 +18,33 @@ namespace EJournalUI
         private StudentsLogic _studentsLogic;
 
         public GroupCard SelectedGroupCard;
+        public StudentCard StudentCard;
+
+
+        private StudentServices _studentServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
+            _studentServices = new StudentServices(ConnectionString);
             PrintAllGroupsFromDB();
+            PrintAllStudentsFromDB();
         }
+
+        public void PrintAllStudentsFromDB()
+        {
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
+            {
+                StudentCard studentCard = new StudentCard(student);
+                //studentCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+ 
 
         public void PrintAllGroupsFromDB()
         {
@@ -111,6 +132,18 @@ namespace EJournalUI
             {
                 StudentCard studentCard = new StudentCard(student);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+        private void Button_AddStudent_Click(object sender, RoutedEventArgs e)
+        {
+            EditStudentWindow addStudentWindow = new EditStudentWindow();
+
+            if(addStudentWindow.ShowDialog() == true)
+            {
+                _studentServices.AddStudent(addStudentWindow.student);
+                StudentCard studentCard = new StudentCard(addStudentWindow.student);
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
     }

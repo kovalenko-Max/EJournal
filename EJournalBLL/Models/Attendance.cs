@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJournalDAL.Models.BaseModels
+namespace EJournalBLL.Models
 {
-    public class AttendanceDTO
+    public class Attendance
     {
         public int IdLesson { get; set; }
         public string Topic { get; set; }
@@ -14,8 +14,5 @@ namespace EJournalDAL.Models.BaseModels
         public bool IsPresence { get; set; }
         public int IdStudent { get; set; }
         public string Name { get; set; }
-
-        public List<LessonDTO> lesson { get; set; }
-        public List<StudentDTO> students { get; set; }
     }
 }
