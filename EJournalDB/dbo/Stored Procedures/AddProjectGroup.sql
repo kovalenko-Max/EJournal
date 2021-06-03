@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[AddProjectGroup]
 	@Name NVARCHAR(100)
-	, @IdComments Int
+	, @IdProject Int
 AS
-	INSERT INTO ProjectGroups ( Name, IdComments)
-VALUES (@Name, @IdComments)
+	INSERT INTO ProjectGroups ( Name, IdProject)
+VALUES (@Name, @IdProject)

@@ -20,7 +20,7 @@ namespace EJournalDAL.Tests
         [TestCaseSource(nameof(DataExpectedCollection))]
         public void GetAllStudent_WhenAddSomeStudents_ShouldAddStudent(ProjectGroupDTO expected)
         {
-            var actual = projectGroupRepository.GetStudentsFromOneGroup(3);
+            var actual = projectGroupRepository.GetStudentsFromOneProjectGroup(3);
 
             Assert.Pass();
         }

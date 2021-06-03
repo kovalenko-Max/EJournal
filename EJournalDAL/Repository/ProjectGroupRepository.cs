@@ -4,18 +4,20 @@ using System.Data;
 using System.Data.SqlClient;
 using Dapper;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
     public class ProjectGroupRepository
     {
         string connectionString;
-        public ProjectGroupRepository()
+        public ProjectGroupRepository(string connectionString)
         {
-            connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=EJournalDB; Integrated Security=True;";
+            this.connectionString = connectionString;
+            var conString = ConfigurationManager.ConnectionStrings["example"];
         }
 
-        public ProjectGroupDTO GetStudentsFromOneGroup(int idProjectGroup)
+        public ProjectGroupDTO GetStudentsFromOneProjectGroup(int idProjectGroup)
         {
             ProjectGroupDTO projectGroup = new ProjectGroupDTO();
             List<StudentDTO> students = null;
@@ -50,5 +52,35 @@ namespace EJournalDAL.Repository
             }
 
         }
+
+        public ProjectGroupDTO Create(ProjectGroupDTO projectGroup)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec AddProjectGroup @Name, @IdProject";
+                int? projectGroupId = db.Query<int>(connectionQuery, projectGroup).FirstOrDefault();
+                projectGroup.Id = projectGroupId;
+            }
+            return projectGroup;
+        }
+
+        public void Delete(int id)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec DeleteProjectGroup @id";
+                db.Execute(connectionQuery, new { id });
+            }
+        }
+        public void Update(ProjectGroupDTO projectGroup)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec UpdateProject @Id,  @IdProject";
+                db.Execute(connectionQuery, projectGroup);
+            }
+        }
+
+
     }
 }

@@ -27,7 +27,7 @@ namespace EJournalUI
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
             _projectServices = new ProjectServices();
-            PrintAllGroupsFromDB();
+            //PrintAllGroupsFromDB();
             PrintAllProjectsFromDB();
         }
 

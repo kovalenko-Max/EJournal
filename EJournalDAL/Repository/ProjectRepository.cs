@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using EJournalDAL.Models.BaseModels;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace EJournalDAL.Repository
         string connectionString;
         public ProjectRepository()
         {
-            connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=EJournalDB; Integrated Security=True;";
+            //connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=EJournalDB; Integrated Security=True;";
+             connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
         }
 
         public List<ProjectDTO> GetAllProjects()
@@ -43,7 +45,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec AddProject @Name, @Description, @IdProjectGroup";
+                string connectionQuery = "exec AddProject @Name, @Description";
                 int? projectId = db.Query<int>(connectionQuery, project).FirstOrDefault();
                 project.Id = projectId;
             }

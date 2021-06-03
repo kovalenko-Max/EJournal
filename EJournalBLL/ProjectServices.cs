@@ -11,7 +11,7 @@ namespace EJournalBLL
 {
     public class ProjectServices
     {
-        ProjectRepository projectRepository;
+        private ProjectRepository _projectRepository;
 
         public List<Project> Projects
         {
@@ -27,12 +27,12 @@ namespace EJournalBLL
 
         public ProjectServices()
         {
-            projectRepository = new ProjectRepository();
+            _projectRepository = new ProjectRepository();
         }
 
         public List<Project> GetAllProjects()
         {
-            List<ProjectDTO> projectDTO = projectRepository.GetAllProjects();
+            List<ProjectDTO> projectDTO = _projectRepository.GetAllProjects();
             List<Project> project = ObjectMapper.Mapper.Map<List<Project>>(projectDTO);
             return project;
         }
@@ -40,7 +40,7 @@ namespace EJournalBLL
         {
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
-            projectRepository.Create(project);
+            _projectRepository.Create(project);
 
         }
 
@@ -48,13 +48,13 @@ namespace EJournalBLL
         {
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
-            projectRepository.Update(project);
+            _projectRepository.Update(project);
 
         }
 
         public void DeleteProject(int Id)
         {
-            projectRepository.Delete(Id);
+            _projectRepository.Delete(Id);
 
         }
 
