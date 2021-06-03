@@ -136,6 +136,7 @@
     <Build Include="dbo\Stored Procedures\GetLessonsByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetLessonsAttendancesByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GroupsWithCources.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateLessonAttendances.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

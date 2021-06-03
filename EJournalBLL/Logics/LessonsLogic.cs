@@ -30,6 +30,18 @@ namespace EJournalBLL.Logics
             return Lessons;
         }
 
+        public void UpdateLessonAttendances(Lesson lesson)
+        {
+            LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
+            int[] iDs = new int[lesson.Attendances.Count];
+            for(int i = 0; i<lesson.Attendances.Count;++i)
+            { 
+                iDs[i] = lesson.Attendances[i].Student.Id;
+            }
+
+            lessonsRepository.UpdateLessonAttendances(iDs);
+        }
+
         private List<Lesson> ConvertLessonsDTOToLessons(List<LessonDTO> lessonsDTO)
         {
             List<Lesson> lessons = new List<Lesson>();

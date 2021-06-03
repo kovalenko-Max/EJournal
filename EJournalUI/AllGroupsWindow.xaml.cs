@@ -246,5 +246,18 @@ namespace EJournalUI
                 AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));
             }
         }
+
+        private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var c in AttendancesStackPanel.Children)
+            {
+                if(c is AttendancesCard)
+                {
+                    AttendancesCard ac = (AttendancesCard)c;
+                    LessonsLogic lessonsLogic = new LessonsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    lessonsLogic.UpdateLessonAttendances(ac.Lesson);
+                }
+            }
+        }
     }
 }

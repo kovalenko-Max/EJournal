@@ -57,5 +57,16 @@ namespace EJournalDAL.Repository
 
             return lessonsDTO;
         }
+
+        public void UpdateLessonAttendances(int[] lessonsIds)
+        {
+            string command = "exec UpdateLessonAttendances @LessonsIds";
+            List< LessonDTO> lessonDTO;
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                lessonDTO =  db.Query<LessonDTO>(command, new { lessonsIds }).AsList<LessonDTO>();
+            }
+            return;
+        }
     }
 }
