@@ -32,7 +32,7 @@ namespace EJournalBLL
 
         public List<Project> GetAllProjects()
         {
-            List<ProjectDTO> projectDTO = _projectRepository.GetAllProjects();
+            List<ProjectDTO> projectDTO = _projectRepository.GetProjects();
             List<Project> project = ObjectMapper.Mapper.Map<List<Project>>(projectDTO);
             return project;
         }
@@ -40,7 +40,8 @@ namespace EJournalBLL
         {
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
-            return _projectRepository.Create(project);
+            projectInput.Id= _projectRepository.Create(project);
+            return projectInput.Id;
 
         }
 

@@ -18,7 +18,7 @@ namespace EJournalDAL.Repository
              connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
         }
 
-        public List<ProjectDTO> GetAllProjects()
+        public List<ProjectDTO> GetProjects()
         {
             List<ProjectDTO> projects = new List<ProjectDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))

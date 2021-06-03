@@ -39,7 +39,7 @@ namespace EJournalDAL.Tests
         [TestCaseSource(nameof(ExpectedCollection))]
         public void GetAllProjects_WhenAddSomeStudents_ShouldAddStudent(List<ProjectDTO> expected)
         {
-            var actual = projectRepository.GetAllProjects();
+            var actual = projectRepository.GetProjects();
 
             Assert.Pass();
         }

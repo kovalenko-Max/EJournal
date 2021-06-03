@@ -14,7 +14,7 @@ namespace EJournalDAL.Repository
         public ProjectGroupRepository(string connectionString)
         {
             this.connectionString = connectionString;
-            var conString = ConfigurationManager.ConnectionStrings["example"];
+         
         }
 
         public ProjectGroupDTO GetStudentsFromOneProjectGroup(int idProjectGroup)
