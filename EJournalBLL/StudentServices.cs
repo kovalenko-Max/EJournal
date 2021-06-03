@@ -27,10 +27,8 @@ namespace EJournalBLL
         }
         public void AddStudent(Student studentInput)
         {
-
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
             studentsRepository.Create(student);
-
         }
         public void Update(Student studentInput)
         {
