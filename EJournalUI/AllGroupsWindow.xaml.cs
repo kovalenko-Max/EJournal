@@ -16,10 +16,11 @@ namespace EJournalUI
     {
         private GroupsLogic _groupStorage;
         private StudentsLogic _studentsLogic;
+        private ProjectServices _projectServices;
 
         public GroupCard SelectedGroupCard;
+        public ProjectCard SelectedProjectCard;
 
-        private ProjectServices _projectServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
@@ -52,6 +53,70 @@ namespace EJournalUI
                 ProjectCard projectCard = new ProjectCard(addProjectWindow.Project);
                 ProjectsWrapPanel.Children.Add(projectCard);
             }
+        }
+
+        private void Button_DeleteProject_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedProjectCard != null)
+            {
+                SelectedProjectCard.Project.IsDelete = true;
+                ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
+            }
+        }
+
+        public void SelectProjectCard(ProjectCard projectCard)
+        {
+            HighlightSelectedProject(projectCard);
+            ProjectNameTextBox.Text = projectCard.Project.Name;
+            ProjectDescriptionTextBox.Text = projectCard.Project.Description;
+            //GetStudentsByGroup();
+        }
+
+        private void HighlightSelectedProject(ProjectCard projectCard)
+        {
+            if (SelectedProjectCard != null)
+            {
+                SelectedProjectCard.Background = Brushes.White;
+            }
+
+            SelectedProjectCard = projectCard;
+            BrushConverter brushConverter = new BrushConverter();
+            SelectedProjectCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
+        }
+
+        private void ProjectCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ProjectCard)
+            {
+                if (e.ClickCount == 1)
+                {
+                    SelectProjectCard((ProjectCard)sender);
+                }
+            }
+        }
+
+        private void Button_EditProject_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedProjectCard != null)
+            {
+                EditProjectWindow editProjectWindow = new EditProjectWindow();
+                editProjectWindow.Project = SelectedProjectCard.Project;
+                editProjectWindow.ProjectNameTextBox.Text = editProjectWindow.Project.Name;
+                editProjectWindow.DescriptionTextBox.Text = editProjectWindow.Project.Description;
+
+                if (editProjectWindow.ShowDialog() == true)
+                {
+                    ProjectServices projectServices = new ProjectServices();
+                    projectServices.UpdateProject(SelectedProjectCard.Project);
+                    SelectedProjectCard.UpdateFields();
+                    SelectGroupCard(SelectedGroupCard);
+                }
+            }
+        }
+
+        private void GetTeamsByProject()
+        {
+            
         }
 
         public void PrintAllGroupsFromDB()

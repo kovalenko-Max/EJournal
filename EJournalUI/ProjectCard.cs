@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace EJournalUI
@@ -60,12 +61,33 @@ namespace EJournalUI
             _projectDescriptionTextBox.TextAlignment = TextAlignment.Left;
             Grid.SetColumn(_projectDescriptionTextBox, 0);
             grid.Children.Add(_projectDescriptionTextBox);
+
+            MouseEnter += ProjectCard_MouseEnter;
+            MouseLeave += ProjectCard_MouseLeave;
         }
 
         public void UpdateFields()
         {
             _projectNameTextBox.Text = Project.Name;
             _projectDescriptionTextBox.Text = Project.Description;
+        }
+
+        private void ProjectCard_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is ProjectCard)
+            {
+                ProjectCard projectCard = (ProjectCard)sender;
+                projectCard.BorderBrush = Brushes.Blue;
+            }
+        }
+
+        private void ProjectCard_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is ProjectCard)
+            {
+                ProjectCard projectCard = (ProjectCard)sender;
+                projectCard.BorderBrush = Brushes.Black;
+            }
         }
     }
 }
