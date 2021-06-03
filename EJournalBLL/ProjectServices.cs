@@ -37,7 +37,6 @@ namespace EJournalBLL
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
             projectInput.Id= _projectRepository.Create(project);
-            GetAllProjects();
             return projectInput.Id;
 
         }
