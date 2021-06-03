@@ -14,13 +14,13 @@
         <Label Content="Git" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
         <Label Content="City" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
         <Label Content="Agreement №" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="126,31,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="126,57,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="126,83,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="126,109,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="126,136,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="126,162,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="126,188,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Confirm" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <TextBox Name ="TextBox_Name"  HorizontalAlignment="Left" Margin="126,31,0,0" Text="Enter name" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="TextBox_Surname" HorizontalAlignment="Left" Margin="126,57,0,0" Text="Enter surname" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="TextBox_Email" HorizontalAlignment="Left" Margin="126,83,0,0" Text="Enter email" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="TextBox_Phone" HorizontalAlignment="Left" Margin="126,109,0,0" Text="Enter phone" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="TextBox_Git" HorizontalAlignment="Left" Margin="126,136,0,0" Text="Enter git" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="TextBox_City" HorizontalAlignment="Left" Margin="126,162,0,0" Text="Enter city" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name ="TextBox_AgreementNumber" HorizontalAlignment="Left" Margin="126,188,0,0" Text="Enter Agreement№" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Name="Button_ConfirmAddStudent" Content="Confirm" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="Button_ConfirmAddStudent_Click"/>
     </Grid>
 </Window>
