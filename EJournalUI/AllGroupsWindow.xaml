@@ -67,7 +67,7 @@
                     </Grid.RowDefinitions>
 
                     <DockPanel Grid.Row="0">
-                        <Button Content="Create project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
+                        <Button Content="Create project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateProject_Click"/>
                     </DockPanel>
                     <Grid Grid.Row="1" Background="LightSlateGray">
                         <Grid.ColumnDefinitions>

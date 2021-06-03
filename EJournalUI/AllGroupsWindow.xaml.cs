@@ -130,5 +130,18 @@ namespace EJournalUI
                 GroupStudentsWrapPanel.Children.Add(studentCard);
             }
         }
+
+        private void Button_CreateProject_Click(object sender, RoutedEventArgs e)
+        {
+            EditProjectWindow addProjectWindow = new EditProjectWindow();
+
+            if (addProjectWindow.ShowDialog() == true)
+            {
+                _projectServices.Projects.Add(addProjectWindow.Project);
+                ProjectCard projectCard = new ProjectCard(addProjectWindow.Project);
+                ProjectsWrapPanel.Children.Add(projectCard);
+                _projectServices.AddProject(addProjectWindow.Project);                
+            }
+        }
     }
 }
