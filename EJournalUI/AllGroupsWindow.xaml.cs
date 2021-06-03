@@ -28,7 +28,7 @@ namespace EJournalUI
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
             _projectServices = new ProjectServices();
-            //PrintAllGroupsFromDB();
+            PrintAllGroupsFromDB();
             PrintAllProjectsFromDB();
         }
 
@@ -38,7 +38,7 @@ namespace EJournalUI
             foreach (Project project in _projectServices.GetAllProjects())
             {
                 ProjectCard projectCard = new ProjectCard(project);
-                projectCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                projectCard.MouseDown += ProjectCard_MouseLeftButtonDown;
                 ProjectsWrapPanel.Children.Add(projectCard);
             }
         }
@@ -51,6 +51,7 @@ namespace EJournalUI
             {
                 _projectServices.AddProject(addProjectWindow.Project);
                 ProjectCard projectCard = new ProjectCard(addProjectWindow.Project);
+                projectCard.MouseUp += ProjectCard_MouseLeftButtonDown;
                 ProjectsWrapPanel.Children.Add(projectCard);
             }
         }
@@ -59,6 +60,7 @@ namespace EJournalUI
         {
             if (SelectedProjectCard != null)
             {
+                _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
                 SelectedProjectCard.Project.IsDelete = true;
                 ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
             }
@@ -109,7 +111,7 @@ namespace EJournalUI
                     ProjectServices projectServices = new ProjectServices();
                     projectServices.UpdateProject(SelectedProjectCard.Project);
                     SelectedProjectCard.UpdateFields();
-                    SelectGroupCard(SelectedGroupCard);
+                    SelectProjectCard(SelectedProjectCard);
                 }
             }
         }

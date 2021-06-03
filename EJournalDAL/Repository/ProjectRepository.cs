@@ -64,13 +64,13 @@ namespace EJournalDAL.Repository
             }
 
         }
-        public void Delete(int id)
+        public void Delete(int Id)
         {
            
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec DeleteProject @id";
-                db.Execute(connectionQuery, new { id });
+                string connectionQuery = "exec DeleteProject @Id";
+                db.Execute(connectionQuery, new { Id });
             }
         }
     }
