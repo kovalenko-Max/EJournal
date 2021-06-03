@@ -12,7 +12,7 @@ namespace EJournalDAL.Tests
         [SetUp]
         public void Setup()
         {
-            studentsRepository = new StudentsRepository();
+            //studentsRepository = new StudentsRepository();
         }
 
         [TestCaseSource(nameof(DataExpectedCollection))]

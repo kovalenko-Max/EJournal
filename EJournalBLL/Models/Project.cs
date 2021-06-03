@@ -13,6 +13,11 @@ namespace EJournalBLL.Models
         public string Description { get; set; }
         public bool IsDelete { get; set; }
 
+        public Project(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
         public override bool Equals(object obj)
         {
             bool equal = false;

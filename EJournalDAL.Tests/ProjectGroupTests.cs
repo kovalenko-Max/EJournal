@@ -13,7 +13,7 @@ namespace EJournalDAL.Tests
         [SetUp]
         public void Setup()
         {
-            projectGroupRepository = new ProjectGroupRepository();
+            //projectGroupRepository = new ProjectGroupRepository();
             projectRepository = new ProjectRepository();
         }
 
