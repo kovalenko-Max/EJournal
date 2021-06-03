@@ -1,9 +1,9 @@
 CREATE PROCEDURE [dbo].[GetLessons]
 AS
 SELECT [Id]
-,[Topic]
-,[DateLesson]
-,[IdGroup]
-,[IdTeacher]
+	,[Topic]
+	,[DateLesson]
+	,[IdGroup]
+	,[IdTeacher]
 FROM [dbo].[Lessons]
-WHERE IsDelete=0
+WHERE IsDelete = 0

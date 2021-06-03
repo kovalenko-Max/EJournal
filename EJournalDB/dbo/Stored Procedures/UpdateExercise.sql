@@ -1,9 +1,10 @@
-﻿CREATE PROCEDURE UpdateExercise
-@Id int,
-@Description nvarchar (255),
-@Deadline datetime,
-@IdGroup int
-   AS
-   update Exercises
-   set Description = @Description, Deadline = @Deadline, IdGroup = @IdGroup
-   where Id = @Id
+﻿CREATE PROCEDURE UpdateExercise @Id INT
+	,@Description NVARCHAR(255)
+	,@Deadline DATETIME
+	,@IdGroup INT
+AS
+UPDATE Exercises
+SET Description = @Description
+	,Deadline = @Deadline
+	,IdGroup = @IdGroup
+WHERE Id = @Id

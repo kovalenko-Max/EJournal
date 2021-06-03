@@ -1,17 +1,15 @@
-﻿CREATE PROCEDURE [dbo].[GetStudentByGroup]
-	@Id int 
+﻿CREATE PROCEDURE [dbo].[GetStudentByGroup] @Id INT
 AS
-select 
- [Id]
-,[Name]
-,[Surname]
-,[Email]
-,[Phone]
-,[Git]
-,[City]
-,[Ranking]
-,[AgreementNumber]
-
-from [dbo].[Students] as S
-left join [dbo].[GroupStudents] GS on S.Id = GS.IdStudents
-where GS.IdGroup = @Id and s.IsDelete = 0
+SELECT [Id]
+	,[Name]
+	,[Surname]
+	,[Email]
+	,[Phone]
+	,[Git]
+	,[City]
+	,[Ranking]
+	,[AgreementNumber]
+FROM [dbo].[Students] AS S
+LEFT JOIN [dbo].[GroupStudents] GS ON S.Id = GS.IdStudents
+WHERE GS.IdGroup = @Id
+	AND s.IsDelete = 0

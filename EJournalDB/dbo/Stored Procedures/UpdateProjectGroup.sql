@@ -1,10 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[UpdateProjectGroup]
-	@Id INT
+﻿CREATE PROCEDURE [dbo].[UpdateProjectGroup] @Id INT
 	,@Name NVARCHAR(100)
-	, @IdProject Int
+	,@IdProject INT
 AS
-
-	UPDATE [dbo].[ProjectGroups]
-	SET Name = @Name
+UPDATE [dbo].[ProjectGroups]
+SET Name = @Name
 	,IdProject = @IdProject
-	WHERE Id = @Id
+WHERE Id = @Id

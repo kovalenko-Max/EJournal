@@ -1,10 +1,10 @@
-CREATE PROCEDURE [dbo].[GetLesson]
-		@Id INT
+CREATE PROCEDURE [dbo].[GetLesson] @Id INT
 AS
-	SELECT [Id]
+SELECT [Id]
 	,[Topic]
 	,[DateLesson]
 	,[IdGroup]
 	,[IdTeacher]
 FROM [dbo].[Lessons]
-WHERE IsDelete=0 AND Id=@Id
+WHERE IsDelete = 0
+	AND Id = @Id

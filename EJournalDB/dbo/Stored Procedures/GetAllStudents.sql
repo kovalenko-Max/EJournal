@@ -1,13 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[GetAllStudents]
-   AS
-   SELECT [Id]
-      ,[Name]
-      ,[Surname]
-      ,[Email]
-      ,[Phone]
-      ,[Git]
-      ,[City]
-      ,[Ranking]
-      ,[AgreementNumber]
-  FROM [dbo].[Students]
-  where IsDelete = 0
+AS
+SELECT [Id]
+	,[Name]
+	,[Surname]
+	,[Email]
+	,[Phone]
+	,[Git]
+	,[City]
+	,[Ranking]
+	,[AgreementNumber]
+FROM [dbo].[Students]
+WHERE IsDelete = 0

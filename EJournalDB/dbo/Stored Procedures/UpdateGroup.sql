@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[UpdateGroup]
-@Id int,
-@Name nvarchar (100),
-@IdCourse int
-   AS
-   update [dbo].[Groups]
-   set Name = @Name, IdCourse = @IdCourse
-   where Id = @Id
+﻿CREATE PROCEDURE [dbo].[UpdateGroup] @Id INT
+	,@Name NVARCHAR(100)
+	,@IdCourse INT
+AS
+UPDATE [dbo].[Groups]
+SET Name = @Name
+	,IdCourse = @IdCourse
+WHERE Id = @Id

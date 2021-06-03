@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[GetCourse]
-@Id int
-   AS
-   SELECT [Id]
-      ,[Name]
-  FROM [dbo].[Courses]
-  where Id = @Id and isDelete = 0
+﻿CREATE PROCEDURE [dbo].[GetCourse] @Id INT
+AS
+SELECT [Id]
+	,[Name]
+FROM [dbo].[Courses]
+WHERE Id = @Id
+	AND isDelete = 0

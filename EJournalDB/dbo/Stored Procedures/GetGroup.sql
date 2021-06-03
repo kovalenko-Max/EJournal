@@ -1,9 +1,9 @@
-﻿CREATE PROCEDURE [dbo].[GetGroup]
-@Id int
-   AS
-   SELECT  [Id]
-      ,[Name]
-      ,[IdCourse]
-      ,[IsFinish]
-  FROM [dbo].[Groups]
-  where Id = @Id and IsDelete = 0
+﻿CREATE PROCEDURE [dbo].[GetGroup] @Id INT
+AS
+SELECT [Id]
+	,[Name]
+	,[IdCourse]
+	,[IsFinish]
+FROM [dbo].[Groups]
+WHERE Id = @Id
+	AND IsDelete = 0
