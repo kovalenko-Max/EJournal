@@ -53,7 +53,7 @@ namespace EJournalDAL.Repository
 
         }
 
-        public ProjectGroupDTO Create(ProjectGroupDTO projectGroup)
+        public int Create(ProjectGroupDTO projectGroup)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -61,7 +61,7 @@ namespace EJournalDAL.Repository
                 int? projectGroupId = db.Query<int>(connectionQuery, projectGroup).FirstOrDefault();
                 projectGroup.Id = projectGroupId;
             }
-            return projectGroup;
+            return projectGroup.Id.Value;
         }
 
         public void Delete(int id)

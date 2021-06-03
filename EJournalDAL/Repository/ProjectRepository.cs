@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
@@ -13,7 +14,7 @@ namespace EJournalDAL.Repository
         string connectionString;
         public ProjectRepository()
         {
-            //connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=EJournalDB; Integrated Security=True;";
+            
              connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
         }
 
@@ -22,7 +23,7 @@ namespace EJournalDAL.Repository
             List<ProjectDTO> projects = new List<ProjectDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec GetProjects";
+                string connectionQuery = $"exec {MethodBase.GetCurrentMethod().Name}";
                 projects = db.Query<ProjectDTO>(connectionQuery).ToList();
 
             }
@@ -41,7 +42,7 @@ namespace EJournalDAL.Repository
             return project;
         }
 
-        public ProjectDTO Create(ProjectDTO project)
+        public int Create(ProjectDTO project)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -49,18 +50,23 @@ namespace EJournalDAL.Repository
                 int? projectId = db.Query<int>(connectionQuery, project).FirstOrDefault();
                 project.Id = projectId;
             }
-            return project;
+            return project.Id.Value;
         }
         public void Update(ProjectDTO project)
         {
+            bool checkUpdate;
+
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec UpdateProject @Id, @Name, @Description, @IdProjectGroup";
+                string connectionQuery = "exec UpdateProject @Id, @Name, @Description";
                 db.Execute(connectionQuery, project);
+                
             }
+
         }
         public void Delete(int id)
         {
+           
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 string connectionQuery = "exec DeleteProject @id";
