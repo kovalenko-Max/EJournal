@@ -1,4 +1,5 @@
-﻿using EJournalBLL.Logics;
+﻿using EJournalBLL;
+using EJournalBLL.Logics;
 using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
@@ -6,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Collections.Generic;
+
 
 namespace EJournalUI
 {
@@ -16,15 +18,125 @@ namespace EJournalUI
     {
         private GroupsLogic _groupStorage;
         private StudentsLogic _studentsLogic;
+        private ProjectServices _projectServices;
 
         public GroupCard SelectedGroupCard;
+        public StudentCard StudentCard;
+        public ProjectCard SelectedProjectCard;
+
+
+        private StudentServices _studentServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
+            _studentServices = new StudentServices(ConnectionString);
+            _projectServices = new ProjectServices(); 
             PrintAllGroupsFromDB();
+            PrintAllStudentsFromDB();
+            PrintAllProjectsFromDB();
+        }
+
+        public void PrintAllProjectsFromDB()
+        {
+            ProjectsWrapPanel.Children.Clear();
+            foreach (Project project in _projectServices.GetAllProjects())
+            {
+                ProjectCard projectCard = new ProjectCard(project);
+                projectCard.MouseDown += ProjectCard_MouseLeftButtonDown;
+                ProjectsWrapPanel.Children.Add(projectCard);
+            }
+        }
+
+        public void PrintAllStudentsFromDB()
+        {
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
+            {
+                StudentCard studentCard = new StudentCard(student);
+                //studentCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+        private void Button_CreateProject_Click(object sender, RoutedEventArgs e)
+        {
+            EditProjectWindow addProjectWindow = new EditProjectWindow();
+
+            if (addProjectWindow.ShowDialog() == true)
+            {
+                _projectServices.AddProject(addProjectWindow.Project);
+                ProjectCard projectCard = new ProjectCard(addProjectWindow.Project);
+                projectCard.MouseUp += ProjectCard_MouseLeftButtonDown;
+                ProjectsWrapPanel.Children.Add(projectCard);
+            }
+        }
+
+        private void Button_DeleteProject_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedProjectCard != null)
+            {
+                _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
+                SelectedProjectCard.Project.IsDelete = true;
+                ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
+            }
+        }
+
+        public void SelectProjectCard(ProjectCard projectCard)
+        {
+            HighlightSelectedProject(projectCard);
+            ProjectNameTextBox.Text = projectCard.Project.Name;
+            ProjectDescriptionTextBox.Text = projectCard.Project.Description;
+            //GetStudentsByGroup();
+        }
+
+        private void HighlightSelectedProject(ProjectCard projectCard)
+        {
+            if (SelectedProjectCard != null)
+            {
+                SelectedProjectCard.Background = Brushes.White;
+            }
+
+            SelectedProjectCard = projectCard;
+            BrushConverter brushConverter = new BrushConverter();
+            SelectedProjectCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
+        }
+
+        private void ProjectCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ProjectCard)
+            {
+                if (e.ClickCount == 1)
+                {
+                    SelectProjectCard((ProjectCard)sender);
+                }
+            }
+        }
+
+        private void Button_EditProject_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedProjectCard != null)
+            {
+                EditProjectWindow editProjectWindow = new EditProjectWindow();
+                editProjectWindow.Project = SelectedProjectCard.Project;
+                editProjectWindow.ProjectNameTextBox.Text = editProjectWindow.Project.Name;
+                editProjectWindow.DescriptionTextBox.Text = editProjectWindow.Project.Description;
+
+                if (editProjectWindow.ShowDialog() == true)
+                {
+                    ProjectServices projectServices = new ProjectServices();
+                    projectServices.UpdateProject(SelectedProjectCard.Project);
+                    SelectedProjectCard.UpdateFields();
+                    SelectProjectCard(SelectedProjectCard);
+                }
+            }
+        }
+
+        private void GetTeamsByProject()
+        {
+            
         }
 
         public void PrintAllGroupsFromDB()
@@ -114,6 +226,18 @@ namespace EJournalUI
             {
                 StudentCard studentCard = new StudentCard(student);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+        private void Button_AddStudent_Click(object sender, RoutedEventArgs e)
+        {
+            EditStudentWindow addStudentWindow = new EditStudentWindow();
+
+            if(addStudentWindow.ShowDialog() == true)
+            {
+                _studentServices.AddStudent(addStudentWindow.student);
+                StudentCard studentCard = new StudentCard(addStudentWindow.student);
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
 

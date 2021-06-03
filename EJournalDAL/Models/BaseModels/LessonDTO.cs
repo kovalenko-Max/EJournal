@@ -13,5 +13,8 @@ namespace EJournalDAL.Models.BaseModels
         public int IdGroup { get; set; }
         public int IdTeacher { get; set; }
         public bool IsDelete { get; set; }
+
+        public StudentDTO student;
+        public List<StudentDTO> students;
     }
 }

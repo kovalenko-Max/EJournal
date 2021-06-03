@@ -11,7 +11,7 @@ namespace EJournalBLL.Models
 
         public Attendances(StudentAttendanceDTO studentAttendanceDTO)
         {
-            Student = new Student(studentAttendanceDTO.Name, studentAttendanceDTO.Surname, string.Empty);
+            Student = new Student(studentAttendanceDTO.Name, studentAttendanceDTO.Surname);
             StudentName = Student.ToString();
             Student.Id = studentAttendanceDTO.IdStudent;
             isPresent = studentAttendanceDTO.IsPresence == 1;

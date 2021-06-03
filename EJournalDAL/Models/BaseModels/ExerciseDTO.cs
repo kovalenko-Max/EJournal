@@ -8,7 +8,7 @@ namespace EJournalDAL.Models.BaseModels
     {
         public int? Id;
         public string Description { get; set; }
-        public DateTime? Dedline { get; set; }
+        public DateTime? Deadline { get; set; }
         public int? IdGroup { get; set; }
         public int? IdExerciseType { get; set; }
         public bool IsDelete { get; set; }
