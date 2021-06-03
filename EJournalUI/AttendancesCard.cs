@@ -33,9 +33,17 @@ namespace EJournalUI
             grid.Children.Add(_lessonDateTextBlock);
 
             DataGrid dataGrid = new DataGrid();
-            dataGrid.Columns.Add(new DataGridTextColumn() {Header = "Students", Binding = new Binding("Name"), Width = 135 });
-            dataGrid.Columns.Add(new DataGridCheckBoxColumn() { Header = "IsPresent", Binding = new Binding(), Width = 60 });
+            dataGrid.AutoGenerateColumns = false;
             dataGrid.ItemsSource = Lesson.Attendances;
+            
+            dataGrid.Columns.Add(new DataGridTextColumn() 
+            {
+                Width = 130,
+                Header = "Students Name",
+                Binding = new Binding("Student"),
+                IsReadOnly = true
+            });
+            dataGrid.Columns.Add(new DataGridCheckBoxColumn() { Header = "IsPresent", Binding = new Binding("isPresent"), Width = 58 });
             
             Grid.SetRow(dataGrid, 1);
             grid.Children.Add(dataGrid);

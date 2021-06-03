@@ -23,7 +23,7 @@
                             <ColumnDefinition Width="421"/>
                             <ColumnDefinition Width="145*"/>
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer Grid.Column="0">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0">
                             <WrapPanel  x:Name="GroupsWrapPanel"></WrapPanel>
                         </ScrollViewer>
                         <Grid Grid.Column="1" Margin="1,0,0,0">
@@ -55,7 +55,9 @@
                                     </ScrollViewer>
                                 </TabItem>
                                 <TabItem x:Name="AttendancesTabItem" Header="Attendances">
-                                    <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
+                                    <ScrollViewer  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
+                                    </ScrollViewer>
                                 </TabItem>
                             </TabControl>
                         </Grid>
