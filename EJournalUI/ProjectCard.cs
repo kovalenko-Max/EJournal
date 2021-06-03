@@ -48,7 +48,7 @@ namespace EJournalUI
             grid.Children.Add(_projectNameTextBox);
 
             textBlock = new TextBlock();
-            textBlock.Text = "Course:";
+            textBlock.Text = "Description:";
             textBlock.Margin = new Thickness(15, 40, 0, 8);
             textBlock.TextAlignment = TextAlignment.Left;
             Grid.SetColumn(textBlock, 0);
