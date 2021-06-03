@@ -2,6 +2,6 @@
 AS
 SELECT [Name]
 	,[Description]
-FROM [dbo].[Projectes]
+FROM [dbo].[Projects]
 WHERE IsDelete = 0
 	AND Id = @Id

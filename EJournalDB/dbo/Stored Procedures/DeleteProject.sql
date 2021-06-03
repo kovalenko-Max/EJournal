@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteProject] @Id INT
 AS
-UPDATE [dbo].[Projectes]
+UPDATE [dbo].[Projects]
 SET IsDelete = 1
 WHERE Id = @Id
