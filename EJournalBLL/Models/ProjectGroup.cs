@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace EJournalBLL.Models
 {
-    class ProjectGroup
+    public class ProjectGroup
     {
         public int Id;
         public string Name { get; set; }

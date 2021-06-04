@@ -1,10 +1,11 @@
 ﻿using EJournalBLL.Models;
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
+using System.Collections.Generic;
 
 namespace EJournalBLL
 {
-    class ProjectGroupSevices
+    public class ProjectGroupSevices
     {
         private ProjectGroupRepository _projectGroupRepository;
         private string _connectionString;
@@ -14,7 +15,7 @@ namespace EJournalBLL
             _projectGroupRepository = new ProjectGroupRepository(connectionString);
         }
 
-        public ProjectGroup GetProjectGroups(int IdProjectGroup)
+        public ProjectGroup GetStudentsFromProjectGroups(int IdProjectGroup)
         {
             ProjectGroupDTO projectGroupDTO = _projectGroupRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
             ProjectGroup projectGroup = ObjectMapper.Mapper.Map<ProjectGroup>(projectGroupDTO);
@@ -37,6 +38,13 @@ namespace EJournalBLL
         public void Delete(int Id)
         {
             _projectGroupRepository.Delete(Id);
+        }
+
+        public List<ProjectGroup> GetProjectGroups()
+        {
+            List<ProjectGroupDTO> projectGroupsDTO = _projectGroupRepository.GetAllProjects();
+            List<ProjectGroup> projectGroups = ObjectMapper.Mapper.Map<List<ProjectGroup>>(projectGroupsDTO);
+            return projectGroups;
         }
     }
 }

@@ -109,10 +109,38 @@
                             </Grid>
                             <TabControl Grid.Row="1">
                                 <TabItem Header = "Project groups">
-                                    <ScrollViewer Grid.Row="1">
-                                        <WrapPanel x:Name="ProjectTeamsWrapPanel">
-                                        </WrapPanel>
-                                    </ScrollViewer>
+                                    <Grid Grid.Row="1" Grid.Column="1" Background="SeaGreen" ShowGridLines="True">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="75" MinHeight="75"/>
+                                            <RowDefinition Height="480*"/>
+                                        </Grid.RowDefinitions>
+                                        <DockPanel>
+                                            <Button Content="Create team" DockPanel.Dock="Left" Width="92" Height="33" Margin="2,2,2,2" Click="Button_CreateTeam_Click"/>
+                                            <Button Content="Edit team" Width="114" Height="33" Margin="2,2,2,2" Click="Button_EditTeam_Click"/>
+                                            <Button Content="Delete team" Width="114" Height="33" Margin="2,2,2,2" Click="Button_DeleteTeam_Click"/>
+
+
+                                        </DockPanel>
+
+                                        <!--<TextBlock Text="Team name: " Grid.Column="0" Margin="8,9,833,46"/>
+                                        <TextBlock x:Name="TeamNameTextBox" Text="Name" Grid.Column="0" Margin="96,10,563,45"/>
+                                        <TextBlock Text="Team comments: " Grid.Column="0" Margin="8,38,606,17"/>
+                                        <TextBlock x:Name="TeamCommentsTextBox"  Text="Description" Grid.Column="0" Margin="128,25,0,493"/>-->
+                                        <Grid Grid.Row="1" Background="DarkOliveGreen">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="400"/>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="500"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ScrollViewer Grid.Row="1">
+                                                <WrapPanel x:Name="ProjectTeamsWrapPanel">
+                                                </WrapPanel>
+                                            </ScrollViewer>
+                                            <Grid Grid.Column="2" Background="LightYellow">
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
                                 </TabItem>
                             </TabControl>
                         </Grid>

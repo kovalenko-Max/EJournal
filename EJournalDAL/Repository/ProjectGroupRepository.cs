@@ -81,6 +81,16 @@ namespace EJournalDAL.Repository
             }
         }
 
+        public List<ProjectGroupDTO> GetAllProjects()
+        {
+            List<ProjectGroupDTO> projectGroups = new List<ProjectGroupDTO>();
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec GetProjects";
+                projectGroups = db.Query<ProjectGroupDTO>(connectionQuery).ToList();
 
+            }
+            return projectGroups;
+        }
     }
 }
