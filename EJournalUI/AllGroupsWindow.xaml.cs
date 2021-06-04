@@ -1,11 +1,9 @@
-﻿using EJournalBLL;
-using EJournalBLL.Logics;
+﻿using EJournalBLL.Services;
 using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Controls;
 using System.Collections.Generic;
 
 
@@ -16,24 +14,24 @@ namespace EJournalUI
     /// </summary>
     public partial class AllGroupsWindow : Window
     {
-        private GroupsLogic _groupStorage;
-        private StudentsLogic _studentsLogic;
-        private ProjectServices _projectServices;
+        private GroupsService _groupStorage;
+        private StudentsService _studentsLogic;
+        private ProjectService _projectServices;
 
         public GroupCard SelectedGroupCard;
         public StudentCard StudentCard;
         public ProjectCard SelectedProjectCard;
 
 
-        private StudentServices _studentServices;
+        private StudentsService _studentServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-            _groupStorage = new GroupsLogic(ConnectionString);
-            _studentsLogic = new StudentsLogic(ConnectionString);
-            _studentServices = new StudentServices(ConnectionString);
-            _projectServices = new ProjectServices(); 
+            _groupStorage = new GroupsService(ConnectionString);
+            _studentsLogic = new StudentsService(ConnectionString);
+            _studentServices = new StudentsService(ConnectionString);
+            _projectServices = new ProjectService(); 
             PrintAllGroupsFromDB();
             PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
@@ -124,7 +122,7 @@ namespace EJournalUI
 
                 if (editProjectWindow.ShowDialog() == true)
                 {
-                    ProjectServices projectServices = new ProjectServices();
+                    ProjectService projectServices = new ProjectService();
                     projectServices.UpdateProject(SelectedProjectCard.Project);
                     SelectedProjectCard.UpdateFields();
                     SelectProjectCard(SelectedProjectCard);
@@ -192,7 +190,7 @@ namespace EJournalUI
 
                 if (editGroupWindow.ShowDialog() == true)
                 {
-                    GroupsLogic groupStorage = new GroupsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    GroupsService groupStorage = new GroupsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
                     groupStorage.UpdateGroupInDB(SelectedGroupCard.Group);
                     SelectedGroupCard.UpdateFields();
                     SelectGroupCard(SelectedGroupCard);
@@ -238,7 +236,7 @@ namespace EJournalUI
         private void GetLessonsAttendancesByGroup()
         {
             AttendancesStackPanel.Children.Clear();
-            LessonsLogic lessonsLogic = new LessonsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+            LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
             List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
 
             foreach (var lesson in lessons)
@@ -254,7 +252,7 @@ namespace EJournalUI
                 if(c is AttendancesCard)
                 {
                     AttendancesCard ac = (AttendancesCard)c;
-                    LessonsLogic lessonsLogic = new LessonsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
                     lessonsLogic.UpdateLessonAttendances(ac.Lesson);
                 }
             }

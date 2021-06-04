@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
 using EJournalBLL.Models;
 using EJournalDAL.Models.BaseModels;
-using EJournalDAL.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EJournalBLL
 {
@@ -61,21 +55,6 @@ namespace EJournalBLL
                         .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
                         .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
-                    cfg.CreateMap<GroupDTO, Group>()
-                        .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                        .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
-                        .ForMember(dto => dto.IsFinish, map => map.MapFrom(source => source.IsFinish))
-                        .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
-
-                    //cfg.CreateMap<LessonDTO, Lesson>()
-                    //    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                    //    .ForMember(dto => dto.DateLesson, map => map.MapFrom(source => source.DateLesson))
-                    //    .ForMember(dto => dto.Topic, map => map.MapFrom(source => source.Topic))
-                    //    .ForMember(dto => dto.IdTeacher, map => map.MapFrom(source => source.IdTeacher))
-                    //    .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup))
-                    //    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
-                    
-
                     cfg.CreateMap<ExerciseDTO, Exercise>()
                         .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                         .ForMember(dto => dto.Description, map => map.MapFrom(source => source.Description))
@@ -97,24 +76,40 @@ namespace EJournalBLL
                         .ForMember(dto => dto.AgreementNumber, map => map.MapFrom(source => source.AgreementNumber))
                         .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
+                    cfg.CreateMap<ProjectGroup, ProjectGroupDTO>()
+                       .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                       .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                       .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
+                       .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
+
                     cfg.CreateMap<Project, ProjectDTO>()
                        .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                        .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
                        .ForMember(dto => dto.Description, map => map.MapFrom(source => source.Description))
                        .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
+
+                    cfg.CreateMap<CourseDTO, Course>()
+                    .ForMember(dto => dto.Id, map => map.MapFrom(sourse => sourse.Id))
+                    .ForMember(dto => dto.Name, map => map.MapFrom(sourse => sourse.Name));
+
+                    cfg.CreateMap<Course, CourseDTO>()
+                    .ForMember(dto => dto.Id, map => map.MapFrom(sourse => sourse.Id))
+                    .ForMember(dto => dto.Name, map => map.MapFrom(sourse => sourse.Name));
+
+                    cfg.CreateMap<GroupDTO, Group>()
+                        .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                        .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                        .ForMember(dto => dto.IsFinish, map => map.MapFrom(source => source.IsFinish))
+                        .ForMember(dto => dto.StudentsCount, map => map.MapFrom(source => source.StudentsCount))
+                        .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
+
                     cfg.CreateMap<Group, GroupDTO>()
                         .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                         .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
                         .ForMember(dto => dto.IsFinish, map => map.MapFrom(source => source.IsFinish))
+                        .ForMember(dto => dto.StudentsCount, map => map.MapFrom(source => source.StudentsCount))
                         .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
-
-                    cfg.CreateMap<ProjectGroup, ProjectGroupDTO>()
-                        .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                        .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
-                        .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
-                        .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
-
                 });
                 return config.CreateMapper();
 

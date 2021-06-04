@@ -125,12 +125,10 @@
     <Build Include="dbo\Stored Procedures\GetAllCourses.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetAllGroups.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllHomeWorks.sql" />
     <Build Include="dbo\Stored Procedures\GetAllStudents.sql" />
     <Build Include="dbo\Stored Procedures\GetAllTeachers.sql" />
     <Build Include="dbo\Stored Procedures\GetCourse.sql" />
     <Build Include="dbo\Stored Procedures\GetGroup.sql" />
-    <Build Include="dbo\Stored Procedures\GetHomeWork.sql" />
     <Build Include="dbo\Stored Procedures\GetStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetTeacher.sql" />
     <Build Include="dbo\Stored Procedures\UpdateCourse.sql" />
