@@ -257,10 +257,5 @@ namespace EJournalUI
                 }
             }
         }
-
-        private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
-        {
-            //SelectedGroupCard.Group.Lessons.Add()
-        }
     }
 }
