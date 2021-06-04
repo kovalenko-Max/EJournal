@@ -45,7 +45,7 @@ namespace EJournalUI
             _projectGroupNameTextBox.Name = "ProjectGroupNameTextBlock";
             _projectGroupNameTextBox.Text = ProjectGroup.Name;
             _projectGroupNameTextBox.Margin = new Thickness(100, 10, 5, 35);
-            _projectGroupNameTextBox.TextAlignment = TextAlignment.Left;
+            _projectGroupNameTextBox.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(_projectGroupNameTextBox, 0);
             grid.Children.Add(_projectGroupNameTextBox);
 

@@ -8,11 +8,10 @@ namespace EJournalBLL
     public class ProjectGroupSevices
     {
         private ProjectGroupRepository _projectGroupRepository;
-        private string _connectionString;
-        public ProjectGroupSevices(string connectionString)
+     
+        public ProjectGroupSevices()
         {
-            this._connectionString = connectionString;
-            _projectGroupRepository = new ProjectGroupRepository(connectionString);
+            _projectGroupRepository = new ProjectGroupRepository();
         }
 
         public ProjectGroup GetStudentsFromProjectGroups(int IdProjectGroup)
@@ -40,9 +39,9 @@ namespace EJournalBLL
             _projectGroupRepository.Delete(Id);
         }
 
-        public List<ProjectGroup> GetProjectGroups()
+        public List<ProjectGroup> GetProjectGroups(int IdProject)
         {
-            List<ProjectGroupDTO> projectGroupsDTO = _projectGroupRepository.GetAllProjects();
+            List<ProjectGroupDTO> projectGroupsDTO = _projectGroupRepository.GetAllProjects(IdProject);
             List<ProjectGroup> projectGroups = ObjectMapper.Mapper.Map<List<ProjectGroup>>(projectGroupsDTO);
             return projectGroups;
         }

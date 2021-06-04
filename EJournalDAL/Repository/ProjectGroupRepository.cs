@@ -11,10 +11,10 @@ namespace EJournalDAL.Repository
     public class ProjectGroupRepository
     {
         string connectionString;
-        public ProjectGroupRepository(string connectionString)
+        public ProjectGroupRepository()
         {
-            this.connectionString = connectionString;
-         
+            connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
+
         }
 
         public ProjectGroupDTO GetStudentsFromOneProjectGroup(int idProjectGroup)
@@ -81,13 +81,13 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public List<ProjectGroupDTO> GetAllProjects()
+        public List<ProjectGroupDTO> GetAllProjects(int IdProject)
         {
             List<ProjectGroupDTO> projectGroups = new List<ProjectGroupDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec GetProjects";
-                projectGroups = db.Query<ProjectGroupDTO>(connectionQuery).ToList();
+                string connectionQuery = "exec GetAllProjectGroups  @IdProject";
+                projectGroups = db.Query<ProjectGroupDTO>(connectionQuery, new { IdProject}).ToList();
 
             }
             return projectGroups;

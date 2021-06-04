@@ -34,17 +34,20 @@ namespace EJournalUI
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
             _studentServices = new StudentServices(ConnectionString);
-            _projectServices = new ProjectServices(); 
+            _projectServices = new ProjectServices();
+            _projectGroupServices = new ProjectGroupSevices();
+
+
             PrintAllGroupsFromDB();
             PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
         }
 
-        public void PrintAllProjectGroupsFromDB()
+        public void PrintAllProjectGroupsFromDB(int IdProject)
         {
             ProjectTeamsWrapPanel.Children.Clear();
 
-            foreach (ProjectGroup projectGroup in _projectGroupServices.GetProjectGroups())
+            foreach (ProjectGroup projectGroup in _projectGroupServices.GetProjectGroups(IdProject))
             {
                 ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
                 //projectGroupCard.MouseDown += ProjectGroupCard_MouseLeftButtonDown;
@@ -148,7 +151,7 @@ namespace EJournalUI
             HighlightSelectedProject(projectCard);
             ProjectNameTextBox.Text = projectCard.Project.Name;
             ProjectDescriptionTextBox.Text = projectCard.Project.Description;
-            PrintAllProjectGroupsFromDB();
+            PrintAllProjectGroupsFromDB(projectCard.Project.Id);
         }
 
         private void HighlightSelectedProject(ProjectCard projectCard)

@@ -115,9 +115,9 @@
                                             <RowDefinition Height="480*"/>
                                         </Grid.RowDefinitions>
                                         <DockPanel>
-                                            <Button Content="Create team" DockPanel.Dock="Left" Width="92" Height="33" Margin="2,2,2,2" Click="Button_CreateTeam_Click"/>
+                                            <!--<Button Content="Create team" DockPanel.Dock="Left" Width="92" Height="33" Margin="2,2,2,2" Click="Button_CreateTeam_Click"/>
                                             <Button Content="Edit team" Width="114" Height="33" Margin="2,2,2,2" Click="Button_EditTeam_Click"/>
-                                            <Button Content="Delete team" Width="114" Height="33" Margin="2,2,2,2" Click="Button_DeleteTeam_Click"/>
+                                            <Button Content="Delete team" Width="114" Height="33" Margin="2,2,2,2" Click="Button_DeleteTeam_Click"/>-->
 
 
                                         </DockPanel>
