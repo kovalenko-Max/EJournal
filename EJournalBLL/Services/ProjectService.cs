@@ -3,9 +3,9 @@ using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
 
-namespace EJournalBLL
+namespace EJournalBLL.Services
 {
-    public class ProjectServices
+    public class ProjectService
     {
         private ProjectRepository _projectRepository;
 
@@ -21,7 +21,7 @@ namespace EJournalBLL
             }
         }
 
-        public ProjectServices()
+        public ProjectService()
         {
             _projectRepository = new ProjectRepository();
         }
@@ -34,26 +34,20 @@ namespace EJournalBLL
         }
         public int AddProject(Project projectInput)
         {
-
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
             projectInput.Id= _projectRepository.Create(project);
             return projectInput.Id;
-
         }
 
         public void UpdateProject(Project projectInput)
         {
-
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
             _projectRepository.Update(project);
-
         }
 
         public void DeleteProject(int Id)
         {
             _projectRepository.Delete(Id);
-
         }
-
     }
 }

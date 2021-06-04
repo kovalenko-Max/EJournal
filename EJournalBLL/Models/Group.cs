@@ -9,7 +9,7 @@ namespace EJournalBLL.Models
         public string Name;
         public Course Course;
         public bool IsFinish;
-        public int StudentsCount { get; }
+        public int StudentsCount { get; set; }
 
         public List<Student> Students { get; set; }
         public List<Lesson> Lessons { get; set; }

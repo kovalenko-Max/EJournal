@@ -1,20 +1,17 @@
 ﻿using System.Collections.Generic;
 using EJournalBLL.Models;
 using EJournalDAL.Repository;
-using EJournalDAL.Models;
 using EJournalDAL.Models.BaseModels;
-using System.ComponentModel;
 using System.Data;
 
-namespace EJournalBLL.Logics
+namespace EJournalBLL.Services
 {
-    public class LessonsLogic
+    public class LessonsService
     {
-        public string ConnectionString;
+        public string ConnectionString { get; set; }
+        public List<Lesson> Lessons { get; set; }
 
-        public List<Lesson> Lessons;
-
-        public LessonsLogic(string connectionString)
+        public LessonsService(string connectionString)
         {
             ConnectionString = connectionString;
             Lessons = new List<Lesson>();

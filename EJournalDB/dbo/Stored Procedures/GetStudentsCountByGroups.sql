@@ -8,6 +8,7 @@ SELECT G.Id
 FROM [dbo].[Groups] G
 LEFT JOIN [dbo].[GroupStudents] GS ON G.Id = GS.IdGroup
 LEFT JOIN [dbo].Students S ON S.Id = GS.IdStudents
+
 GROUP BY G.id
 	,G.Name
 	,G.IdCourse
