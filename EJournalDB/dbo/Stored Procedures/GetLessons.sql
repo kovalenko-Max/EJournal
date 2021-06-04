@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[GetLessons]
+﻿CREATE PROCEDURE [dbo].[GetLessons]
 AS
 SELECT [Id]
 	,[Topic]

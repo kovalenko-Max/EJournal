@@ -56,7 +56,6 @@ namespace EJournalUI
             foreach (Student student in _studentServices.GetAllStudent())
             {
                 StudentCard studentCard = new StudentCard(student);
-                //studentCard.MouseDown += GroupCard_MouseLeftButtonDown;
                 AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
@@ -89,7 +88,6 @@ namespace EJournalUI
             HighlightSelectedProject(projectCard);
             ProjectNameTextBox.Text = projectCard.Project.Name;
             ProjectDescriptionTextBox.Text = projectCard.Project.Description;
-            //GetStudentsByGroup();
         }
 
         private void HighlightSelectedProject(ProjectCard projectCard)
@@ -134,11 +132,6 @@ namespace EJournalUI
             }
         }
 
-        private void GetTeamsByProject()
-        {
-            
-        }
-
         public void PrintAllGroupsFromDB()
         {
             GroupsWrapPanel.Children.Clear();
@@ -155,6 +148,7 @@ namespace EJournalUI
             HighlightSelected(groupCard);
             GroupNameTextBox.Text = groupCard.Group.Name;
             GroupCourseTextBox.Text = groupCard.Group.Course.Name;
+            StudentsCountTextBox.Text = groupCard.Group.StudentsCount.ToString(); ;
             GetStudentsByGroup();
             GetLessonsAttendancesByGroup();
         }
@@ -243,12 +237,26 @@ namespace EJournalUI
 
         private void GetLessonsAttendancesByGroup()
         {
+            AttendancesStackPanel.Children.Clear();
             LessonsLogic lessonsLogic = new LessonsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
             List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
 
             foreach (var lesson in lessons)
             {
                 AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));
+            }
+        }
+
+        private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var c in AttendancesStackPanel.Children)
+            {
+                if(c is AttendancesCard)
+                {
+                    AttendancesCard ac = (AttendancesCard)c;
+                    LessonsLogic lessonsLogic = new LessonsLogic(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    lessonsLogic.UpdateLessonAttendances(ac.Lesson);
+                }
             }
         }
     }

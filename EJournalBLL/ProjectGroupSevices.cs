@@ -4,7 +4,7 @@ using EJournalDAL.Repository;
 
 namespace EJournalBLL
 {
-    class ProjectGroupSevices
+    public class ProjectGroupSevices
     {
         private ProjectGroupRepository _projectGroupRepository;
         private string _connectionString;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="GroupsWindow" Height="768" MinHeight="290" Width="1366" MinWidth="605">
+        Title="GroupsWindow" Height="768" MinHeight="290" Width="1470" MinWidth="605">
     <Grid>
         <TabControl>
             <TabItem Header = "Groups">
@@ -55,9 +55,20 @@
                                     </ScrollViewer>
                                 </TabItem>
                                 <TabItem x:Name="AttendancesTabItem" Header="Attendances">
-                                    <ScrollViewer  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                                        <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
-                                    </ScrollViewer>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                            <Button x:Name="AttendancesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_AttendancesSave_Click"/>
+                                            <Button x:Name="AttendancesAddButton" Content="Add" Width="60" Margin="2"/>
+                                        </StackPanel>
+                                        <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
+                                        </ScrollViewer>
+                                    </Grid>
                                 </TabItem>
                             </TabControl>
                         </Grid>
