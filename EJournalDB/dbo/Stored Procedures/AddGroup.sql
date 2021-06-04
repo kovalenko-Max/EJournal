@@ -1,7 +1,13 @@
-﻿CREATE PROCEDURE AddGroup
-@Name nvarchar (100),
-@IdCourse int
-   AS
-   insert into Groups (Name, IdCourse)
-   values(@Name, @IdCourse)
-   SELECT CAST(SCOPE_IDENTITY() as int)
+﻿CREATE PROCEDURE [dbo].[AddGroup] @Name NVARCHAR(100)
+	,@IdCourse INT
+AS
+INSERT INTO [dbo].[Groups] (
+	Name
+	,IdCourse
+	)
+VALUES (
+	@Name
+	,@IdCourse
+	)
+
+SELECT CAST(SCOPE_IDENTITY() AS INT)

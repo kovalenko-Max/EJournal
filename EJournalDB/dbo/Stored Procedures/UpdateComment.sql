@@ -1,12 +1,10 @@
-﻿CREATE PROCEDURE [dbo].[UpdateComment]
-	@Id int,
-	@Comments NVARCHAR(255) ,
-	@IdTeacher int,
-	@IdCommentType int
+﻿CREATE PROCEDURE [dbo].[UpdateComment] @Id INT
+	,@Comments NVARCHAR(255)
+	,@IdTeacher INT
+	,@IdCommentType INT
 AS
-	UPDATE Comments
-
-   SET Comment= @Comments
-   , IdTeacher= @IdTeacher
-   , IdCommentType = @IdCommentType
-   Where Id=@Id
+UPDATE [dbo].[Comments]
+SET Comment = @Comments
+	,IdTeacher = @IdTeacher
+	,IdCommentType = @IdCommentType
+WHERE Id = @Id

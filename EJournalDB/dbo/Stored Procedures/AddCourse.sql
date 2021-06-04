@@ -1,5 +1,4 @@
-﻿CREATE PROCEDURE AddCourse
-@Name nvarchar (100)
-   AS
-   insert into Courses (Name)
-   values(@Name)
+﻿CREATE PROCEDURE [dbo].[AddCourse] @Name NVARCHAR(100)
+AS
+INSERT INTO [dbo].[Courses] (Name)
+VALUES (@Name)

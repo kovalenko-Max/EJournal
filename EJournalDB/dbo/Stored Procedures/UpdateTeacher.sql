@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE UpdateTeacher
-@Id int,
-@Name nvarchar (100),
-@Surname nvarchar (100)
-   AS
-   update Teachers
-   set Name = @Name, Surname = @Surname
-   where Id = @Id
+﻿CREATE PROCEDURE [dbo].[UpdateTeacher] @Id INT
+	,@Name NVARCHAR(100)
+	,@Surname NVARCHAR(100)
+AS
+UPDATE [dbo].[Teachers]
+SET Name = @Name
+	,Surname = @Surname
+WHERE Id = @Id

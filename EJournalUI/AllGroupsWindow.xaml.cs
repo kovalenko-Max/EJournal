@@ -67,7 +67,7 @@ namespace EJournalUI
 
             if (addProjectWindow.ShowDialog() == true)
             {
-                _projectServices.AddProject(addProjectWindow.Project);
+                addProjectWindow.Project.Id=_projectServices.AddProject(addProjectWindow.Project);
                 ProjectCard projectCard = new ProjectCard(addProjectWindow.Project);
                 projectCard.MouseUp += ProjectCard_MouseLeftButtonDown;
                 ProjectsWrapPanel.Children.Add(projectCard);

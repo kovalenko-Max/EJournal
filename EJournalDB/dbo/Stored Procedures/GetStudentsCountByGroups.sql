@@ -1,13 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[GetStudentsCountByGroups]
 AS
-select
-  G.Id
-, G.Name
-, G.IdCourse
-, G.IsFinish
-, COUNT(S.Name) StudentsCount
-
-from [EJournalDB].[dbo].[Groups] G
-left join [EJournalDB].[dbo].[GroupStudents] GS on G.Id = GS.IdGroup
-Left join [EJournalDB].[dbo].Students S on S.Id = GS.IdStudents
-Group By G.id, G.Name, G.IdCourse, G.IsFinish
+SELECT G.Id
+	,G.Name
+	,G.IdCourse
+	,G.IsFinish
+	,COUNT(S.Name) StudentsCount
+FROM [dbo].[Groups] G
+LEFT JOIN [dbo].[GroupStudents] GS ON G.Id = GS.IdGroup
+LEFT JOIN [dbo].Students S ON S.Id = GS.IdStudents
+GROUP BY G.id
+	,G.Name
+	,G.IdCourse
+	,G.IsFinish
