@@ -3,11 +3,11 @@ using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using EJournalBLL.Models;
 
-namespace EJournalBLL.Logics
+namespace EJournalBLL.Services
 {
-    public class GroupsLogic
+    public class GroupsService
     {
-        public string ConnectionString;
+        public string ConnectionString { get; set; }
         public List<Group> Groups
         {
             get
@@ -20,7 +20,7 @@ namespace EJournalBLL.Logics
             }
         }
 
-        public GroupsLogic(string connectionString)
+        public GroupsService(string connectionString)
         {
             Groups = new List<Group>();
             ConnectionString = connectionString;
@@ -52,23 +52,7 @@ namespace EJournalBLL.Logics
             GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
             List<GroupDTO> groupDTOs = groupsRepository.GetAllGroupsDTO();
 
-            return ConvertGroupsDTOToGroups(groupDTOs);
-        }
-
-        private List<Group> ConvertGroupsDTOToGroups(List<GroupDTO> groupsDTO)
-        {
-            CoursesRepository coursesRepository = new CoursesRepository(ConnectionString);
-            List<Group> groups = new List<Group>();
-
-            foreach (GroupDTO groupDTO in groupsDTO)
-            {
-                CourseDTO courseDTO = coursesRepository.GetCourseDTO(groupDTO.IdCourse);
-                Course course = new Course(courseDTO);
-                Group group = new Group(groupDTO, course);
-                groups.Add(group);
-            }
-
-            return groups;
+            return ObjectMapper.Mapper.Map<List<Group>>(groupDTOs);
         }
     }
 }

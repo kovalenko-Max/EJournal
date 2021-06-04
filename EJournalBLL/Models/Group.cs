@@ -1,5 +1,4 @@
-﻿using EJournalDAL.Models.BaseModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EJournalBLL.Models
 {
@@ -9,7 +8,7 @@ namespace EJournalBLL.Models
         public string Name;
         public Course Course;
         public bool IsFinish;
-        public int StudentsCount { get; }
+        public int StudentsCount { get; set; }
 
         public List<Student> Students { get; set; }
         public List<Lesson> Lessons { get; set; }
@@ -19,16 +18,6 @@ namespace EJournalBLL.Models
             Name = name;
             Course = course;
             IsFinish = false;
-            Students = new List<Student>();
-        }
-
-        public Group(GroupDTO groupDTO, Course course)
-        {
-            Id = groupDTO.Id;
-            Name = groupDTO.Name;
-            Course = course;
-            IsFinish = groupDTO.IsFinish == 1;
-            StudentsCount = (int)groupDTO.StudentsCount;
             Students = new List<Student>();
         }
     }

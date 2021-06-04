@@ -2,13 +2,13 @@
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 
-namespace EJournalBLL
+namespace EJournalBLL.Services
 {
-    public class ProjectGroupSevices
+    public class ProjectGroupSevice
     {
         private ProjectGroupRepository _projectGroupRepository;
         private string _connectionString;
-        public ProjectGroupSevices(string connectionString)
+        public ProjectGroupSevice(string connectionString)
         {
             this._connectionString = connectionString;
             _projectGroupRepository = new ProjectGroupRepository(connectionString);
@@ -20,14 +20,13 @@ namespace EJournalBLL
             ProjectGroup projectGroup = ObjectMapper.Mapper.Map<ProjectGroup>(projectGroupDTO);
             return projectGroup;
         }
+
         public void AddProjectGroup (ProjectGroup projectGroupInput)
         {
-
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
             _projectGroupRepository.Create(projectGroup);
-            
-
         }
+
         public void Update(ProjectGroupDTO projectGroupInput)
         {
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
