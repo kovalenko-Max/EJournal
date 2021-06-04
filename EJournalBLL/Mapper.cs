@@ -58,6 +58,7 @@ namespace EJournalBLL
                     cfg.CreateMap<ProjectGroupDTO, ProjectGroup>()
                         .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                         .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                        .ForMember(dto => dto.IdProject, map => map.MapFrom(source => source.IdProject))
                         .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
                         .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
@@ -112,6 +113,7 @@ namespace EJournalBLL
                     cfg.CreateMap<ProjectGroup, ProjectGroupDTO>()
                         .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                         .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                        .ForMember(dto => dto.IdProject, map => map.MapFrom(source => source.IdProject))
                         .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
                         .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 

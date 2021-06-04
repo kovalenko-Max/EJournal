@@ -40,5 +40,11 @@ namespace EJournalBLL
         {
             studentsRepository.DeleteSoft(Id);
         }
+        public List<Student> GetStudentsFromProjectGroups(int IdProjectGroup)
+        {
+            List<StudentDTO> StudentsDTO = studentsRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
+            List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
+            return students;
+        }
     }
 }

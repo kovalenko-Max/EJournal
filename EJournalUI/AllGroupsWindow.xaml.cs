@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using EJournalDAL.Repository;
@@ -17,7 +18,7 @@ namespace EJournalUI
     public partial class AllGroupsWindow : Window
     {
         public ProjectGroup ProjectGroup { get; set; }
-
+        public string PlaceholderText { get; set; }
         private GroupsLogic _groupStorage;
         private StudentsLogic _studentsLogic;
         private ProjectServices _projectServices;
@@ -45,6 +46,17 @@ namespace EJournalUI
             PrintAllProjectsFromDB();
         }
 
+        public void PrintStudentsFromProjectGroup(int IdProjectGroup)
+        {
+            ProjectTeamsStudentsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetStudentsFromProjectGroups(IdProjectGroup))
+            {
+                StudentCard studentCard = new StudentCard(student);
+                studentCard.MouseDown += ProjectGroupCard_MouseLeftButtonDown;
+                ProjectTeamsStudentsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
         public void PrintAllProjectGroupsFromDB(int IdProject)
         {
             ProjectTeamsWrapPanel.Children.Clear();
@@ -59,17 +71,20 @@ namespace EJournalUI
 
         private void Button_CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamNameTextBox.Text != null)
+            if (TeamNameTextBox.Text != string.Empty)
             {
                 ProjectGroup = new ProjectGroup(TeamNameTextBox.Text);
+                ProjectGroup.IdProject = SelectedProjectCard.Project.Id;
                 ProjectGroup.Id = _projectGroupServices.AddProjectGroup(ProjectGroup);
                 ProjectGroupCard projectGroupCard = new ProjectGroupCard(ProjectGroup);
                 projectGroupCard.MouseUp += ProjectGroupCard_MouseLeftButtonDown;
-                ProjectTeamsStudentsWrapPanel.Children.Add(projectGroupCard);
+                ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
             }
+
+
         }
 
-        private void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
+        public void Button_DeleteTeam_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedProjectGroupCard != null)
             {
@@ -82,6 +97,9 @@ namespace EJournalUI
         public void SelectProjectGroupCard(ProjectGroupCard projectGroupCard)
         {
             HighlightSelectedProjectGroup(projectGroupCard);
+            PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup.Id);
+
+
         }
 
         private void HighlightSelectedProjectGroup(ProjectGroupCard projectGroupCard)
@@ -112,7 +130,7 @@ namespace EJournalUI
 
         }
 
-       
+
 
         public void PrintAllProjectsFromDB()
         {
@@ -131,7 +149,7 @@ namespace EJournalUI
 
             if (addProjectWindow.ShowDialog() == true)
             {
-                addProjectWindow.Project.Id=_projectServices.AddProject(addProjectWindow.Project);
+                addProjectWindow.Project.Id = _projectServices.AddProject(addProjectWindow.Project);
                 ProjectCard projectCard = new ProjectCard(addProjectWindow.Project);
                 projectCard.MouseUp += ProjectCard_MouseLeftButtonDown;
                 ProjectsWrapPanel.Children.Add(projectCard);
@@ -200,7 +218,7 @@ namespace EJournalUI
 
         private void GetTeamsByProject()
         {
-            
+
         }
 
         public void PrintAllGroupsFromDB()
@@ -297,7 +315,7 @@ namespace EJournalUI
         {
             EditStudentWindow addStudentWindow = new EditStudentWindow();
 
-            if(addStudentWindow.ShowDialog() == true)
+            if (addStudentWindow.ShowDialog() == true)
             {
                 _studentServices.AddStudent(addStudentWindow.student);
                 StudentCard studentCard = new StudentCard(addStudentWindow.student);

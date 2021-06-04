@@ -17,42 +17,6 @@ namespace EJournalDAL.Repository
 
         }
 
-        public ProjectGroupDTO GetStudentsFromOneProjectGroup(int idProjectGroup)
-        {
-            ProjectGroupDTO projectGroup = new ProjectGroupDTO();
-            List<StudentDTO> students = null;
-
-            using (IDbConnection db = new SqlConnection(connectionString))
-            {
-                string connectionQuery = $"exec GetListStudentsInOneProjectGroup @idProjectGroup";
-
-                db.Query<ProjectGroupDTO, StudentDTO, ProjectGroupDTO>(connectionQuery,
-
-                      (projectsGroupStudents, student) =>
-                      {
-                          if (students is null)
-                          {
-                              students = new List<StudentDTO>();
-                          }
-
-
-                          students.Add(student);
-
-
-                          projectsGroupStudents.Students = students;
-                          projectsGroupStudents.Id = idProjectGroup;
-                          projectGroup = projectsGroupStudents;
-                          return projectGroup;
-
-                      }
-                      , param: new { idProjectGroup }
-                      , splitOn: "Id"
-                      );
-                return projectGroup;
-            }
-
-        }
-
         public int Create(ProjectGroupDTO projectGroup)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -87,7 +51,7 @@ namespace EJournalDAL.Repository
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 string connectionQuery = "exec GetAllProjectGroups  @IdProject";
-                projectGroups = db.Query<ProjectGroupDTO>(connectionQuery, new { IdProject}).ToList();
+                projectGroups = db.Query<ProjectGroupDTO>(connectionQuery, new { IdProject }).ToList();
 
             }
             return projectGroups;

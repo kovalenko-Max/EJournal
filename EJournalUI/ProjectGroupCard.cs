@@ -23,28 +23,32 @@ namespace EJournalUI
         {
             ProjectGroup = projectGroup;
             Height = 70;
-            Width = 400;
+            Width = 380;
             BorderThickness = new Thickness(3);
             Background = Brushes.White;
             BorderBrush = Brushes.Black;
             Margin = new Thickness(2);
 
             Grid grid = new Grid();
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(220, GridUnitType.Star) });
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(180, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(350, GridUnitType.Star) });
+            //grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(180, GridUnitType.Star) });
             Child = grid;
 
-            TextBlock textBlock = new TextBlock();
-            textBlock.Text = "Project group name:";
-            textBlock.Margin = new Thickness(15, 10, 0, 35);
-            textBlock.TextAlignment = TextAlignment.Left;
-            Grid.SetColumn(textBlock, 0);
-            grid.Children.Add(textBlock);
+            //TextBlock textBlock = new TextBlock();
+            //textBlock.Text = "Project group name:";
+            //textBlock.Margin = new Thickness(15, 10, 0, 35);
+            //textBlock.TextAlignment = TextAlignment.;
+            //Grid.SetColumn(textBlock, 0);
+            //grid.Children.Add(textBlock);
 
             _projectGroupNameTextBox = new TextBlock();
             _projectGroupNameTextBox.Name = "ProjectGroupNameTextBlock";
             _projectGroupNameTextBox.Text = ProjectGroup.Name;
-            _projectGroupNameTextBox.Margin = new Thickness(100, 10, 5, 35);
+            _projectGroupNameTextBox.TextWrapping = TextWrapping.Wrap;
+            _projectGroupNameTextBox.Width = 370;
+            _projectGroupNameTextBox.FontSize = 14;
+            _projectGroupNameTextBox.Foreground = Brushes.DarkRed;
+            _projectGroupNameTextBox.Margin = new Thickness(5, 10, 5, 35);
             _projectGroupNameTextBox.TextAlignment = TextAlignment.Center;
             Grid.SetColumn(_projectGroupNameTextBox, 0);
             grid.Children.Add(_projectGroupNameTextBox);

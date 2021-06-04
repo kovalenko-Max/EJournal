@@ -14,12 +14,7 @@ namespace EJournalBLL
             _projectGroupRepository = new ProjectGroupRepository();
         }
 
-        public ProjectGroup GetStudentsFromProjectGroups(int IdProjectGroup)
-        {
-            ProjectGroupDTO projectGroupDTO = _projectGroupRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
-            ProjectGroup projectGroup = ObjectMapper.Mapper.Map<ProjectGroup>(projectGroupDTO);
-            return projectGroup;
-        }
+       
         public int AddProjectGroup (ProjectGroup projectGroupInput)
         {
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);

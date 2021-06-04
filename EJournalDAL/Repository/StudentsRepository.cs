@@ -26,6 +26,19 @@ namespace EJournalDAL.Repository
             }
             return students;
         }
+        public List<StudentDTO> GetStudentsFromOneProjectGroup(int idProjectGroup)
+        {
+
+            List<StudentDTO> students = new List<StudentDTO>();
+            string connectionQuery = $"exec GetListStudentsInOneProjectGroup @idProjectGroup";
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                students = db.Query<StudentDTO>(connectionQuery, new { idProjectGroup }).ToList();
+            }
+            return students;
+
+        }
 
         public StudentDTO GetOne(int id)
         {

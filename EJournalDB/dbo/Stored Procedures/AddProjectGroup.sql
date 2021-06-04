@@ -4,8 +4,12 @@ AS
 INSERT INTO [dbo].[ProjectGroups] (
 	Name
 	,IdProject
+	,IdComments
 	)
 VALUES (
 	@Name
 	,@IdProject
+	,1
 	)
+
+SELECT CAST(SCOPE_IDENTITY() AS INT)
