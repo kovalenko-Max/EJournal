@@ -1,6 +1,4 @@
-﻿using EJournalDAL.Models.BaseModels;
-
-namespace EJournalBLL.Models
+﻿namespace EJournalBLL.Models
 {
     public class Course
     {
@@ -11,13 +9,6 @@ namespace EJournalBLL.Models
         {
             Name = name;
         }
-
-        public Course(CourseDTO courseDTO)
-        {
-            Id = courseDTO.Id;
-            Name = courseDTO.Name;
-        }
-
 
         public override string ToString()
         {
