@@ -1,6 +1,5 @@
-﻿CREATE PROCEDURE [DeleteCourse]
-@Id int
-   AS
-   update Courses
-   set IsDelete = 1
-  where Id = @Id
+﻿CREATE PROCEDURE [dbo].[DeleteCourse] @Id INT
+AS
+UPDATE [dbo].[Courses]
+SET IsDelete = 1
+WHERE Id = @Id

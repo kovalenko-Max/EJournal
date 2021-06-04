@@ -54,7 +54,6 @@ namespace EJournalDAL.Repository
         }
         public void Update(ProjectDTO project)
         {
-            bool checkUpdate;
 
             using (IDbConnection db = new SqlConnection(connectionString))
             {
