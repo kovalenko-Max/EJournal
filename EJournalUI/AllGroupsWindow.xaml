@@ -63,7 +63,7 @@
 
                                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                                             <Button x:Name="AttendancesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_AttendancesSave_Click"/>
-                                            <Button x:Name="AttendancesAddButton" Content="Add" Width="60" Margin="2"/>
+                                            <Button x:Name="AttendancesAddButton" Content="Add" Width="60" Margin="2" Click="Button_AttendancesAdd_Click"/>
                                         </StackPanel>
                                         <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                             <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
