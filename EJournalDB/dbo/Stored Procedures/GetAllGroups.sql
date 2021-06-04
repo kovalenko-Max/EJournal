@@ -3,7 +3,7 @@ AS
 SELECT G.Id
 	,G.Name
 	,COUNT(S.Id) StudentsCount
-	,G.IdCourse
+	,C.Id
 	,C.Name
 	,G.IsFinish
 FROM [dbo].[Groups] G
@@ -13,6 +13,6 @@ left JOIN [dbo].Students S ON S.Id = GS.IdStudents
 where G.IsDelete = 0
 GROUP BY G.id
 	,G.Name
-	,G.IdCourse
+	,C.Id
 	,G.IsFinish
 	,C.Name

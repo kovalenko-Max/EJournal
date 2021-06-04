@@ -50,7 +50,7 @@ namespace EJournalDAL.Repository
                         group.Course = course;
                         return group;
                     },
-                    splitOn: "Id, IdCourse").ToList();
+                    splitOn: "Id").ToList();
             }
 
             return groupsDTO;
