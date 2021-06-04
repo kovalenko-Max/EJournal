@@ -10,15 +10,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace EJournalUI
 {
     /// <summary>
-    /// Interaction logic for Concrete_student1.xaml
+    /// Interaction logic for StudentWindow.xaml
     /// </summary>
-    public partial class StudentWindow : Page
+    public partial class StudentWindow : Window
     {
         public StudentWindow()
         {
