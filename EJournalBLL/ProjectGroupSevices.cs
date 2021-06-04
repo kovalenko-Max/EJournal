@@ -20,13 +20,11 @@ namespace EJournalBLL
             ProjectGroup projectGroup = ObjectMapper.Mapper.Map<ProjectGroup>(projectGroupDTO);
             return projectGroup;
         }
-        public void AddProjectGroup (ProjectGroup projectGroupInput)
+        public int AddProjectGroup (ProjectGroup projectGroupInput)
         {
-
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
-            _projectGroupRepository.Create(projectGroup);
-            
-
+            projectGroupInput.Id = _projectGroupRepository.Create(projectGroup);
+            return projectGroupInput.Id;
         }
         public void Update(ProjectGroupDTO projectGroupInput)
         {

@@ -16,6 +16,17 @@ namespace EJournalBLL.Models
 
         public List<Student> Students { get; set; }
 
+        public ProjectGroup(string projectGroupName)
+        {
+            Name = projectGroupName;
+        }
+
+        public ProjectGroup(string projectGroupName, List<Student> students)
+        {
+            Name = projectGroupName;
+            Students = students;
+        }
+
         public override bool Equals(object obj)
         {
             bool equal = false;
