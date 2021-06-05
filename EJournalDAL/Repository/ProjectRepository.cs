@@ -14,7 +14,6 @@ namespace EJournalDAL.Repository
         string connectionString;
         public ProjectRepository()
         {
-            
              connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
         }
 

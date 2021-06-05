@@ -4,8 +4,6 @@ using EJournalDAL.Models.BaseModels;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-
 
 namespace EJournalDAL.Repository
 {
@@ -18,22 +16,23 @@ namespace EJournalDAL.Repository
             ConnectionString = connectionString;
         }
 
-        public void AddLesson(LessonDTO lessonDTO, DataTable dt)
+        public int AddLesson(LessonDTO lessonDTO, DataTable dt)
         {
-            string command = "exec AddStudentsAttendance @Topic, @DateLesson, @IdGroup, @StudentAttendanceVariable";
+            string command = "AddStudentsAttendance";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Topic", lessonDTO.Topic);
+            parameters.Add("@DateLesson", lessonDTO.DateLesson);
+            parameters.Add("@IdGroup", lessonDTO.IdGroup);
+            parameters.Add("@StudentAttendanceVariable", dt.AsTableValuedParameter("[dbo].[StudentAttendance]"));
+            parameters.Add("@IdLesson", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                db.Execute(command,
-                   new
-                   {
-                       lessonDTO.Topic,
-                       lessonDTO.DateLesson,
-                       lessonDTO.IdGroup,
-                       StudentAttendanceVariable = dt.AsTableValuedParameter("[dbo].[StudentAttendance]")
-                   });
-                    
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
+
+            return parameters.Get<int>("@IdLesson");
         }
 
         public List<LessonDTO> GetLessonsAttendancesByGroup(int groupId)

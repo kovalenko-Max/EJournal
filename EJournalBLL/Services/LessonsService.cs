@@ -8,6 +8,7 @@ namespace EJournalBLL.Services
 {
     public class LessonsService
     {
+        private DataTable _studentAttendanceModel;
         public string ConnectionString { get; set; }
         public List<Lesson> Lessons { get; set; }
 
@@ -15,24 +16,22 @@ namespace EJournalBLL.Services
         {
             ConnectionString = connectionString;
             Lessons = new List<Lesson>();
+            _studentAttendanceModel = new DataTable();
+            _studentAttendanceModel.Columns.Add("LessonsIds");
+            _studentAttendanceModel.Columns.Add("StudentId");
+            _studentAttendanceModel.Columns.Add("isPresense");
         }
 
         public void AddLesson(Lesson lesson)
         {
             LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
-
-            DataTable dt = new DataTable();
-            dt.Columns.Add("LessonsIds");
-            dt.Columns.Add("StudentId");
-            dt.Columns.Add("isPresense");
-
+            _studentAttendanceModel.Clear();
             foreach (var a in lesson.Attendances)
             {
-                dt.Rows.Add(new object[] {null, a.Student.Id, a.isPresent ? 1 : 0 });
+                _studentAttendanceModel.Rows.Add(new object[] { null, a.Student.Id, a.isPresent ? 1 : 0 });
             }
 
-
-            lessonsRepository.AddLesson(ObjectMapper.Mapper.Map<LessonDTO>(lesson), dt);
+            lesson.Id = lessonsRepository.AddLesson(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
         }
 
         public List<Lesson> GetLessonsAttendancesByGroup(Group group)
@@ -49,28 +48,24 @@ namespace EJournalBLL.Services
         public void UpdateLessonAttendances(Lesson lesson)
         {
             LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
-            DataTable dt = new DataTable();
-            dt.Columns.Add("LessonsIds");
-            dt.Columns.Add("StudentId");
-            dt.Columns.Add("isPresense");
-
-            foreach(var a in lesson.Attendances)
+            _studentAttendanceModel.Clear();
+            foreach (var a in lesson.Attendances)
             {
-                dt.Rows.Add( new object[] {lesson.Id, a.Student.Id, a.isPresent });
+                _studentAttendanceModel.Rows.Add(new object[] { lesson.Id, a.Student.Id, a.isPresent });
             }
 
-            lessonsRepository.UpdateLessonAttendances(dt);
+            lessonsRepository.UpdateLessonAttendances(_studentAttendanceModel);
         }
 
         private List<Lesson> ConvertLessonsDTOToLessons(List<LessonDTO> lessonsDTO)
         {
             List<Lesson> lessons = new List<Lesson>();
 
-            foreach(LessonDTO lessonDTO in lessonsDTO)
+            foreach (LessonDTO lessonDTO in lessonsDTO)
             {
-                lessons.Add(new Lesson(lessonDTO) 
+                lessons.Add(new Lesson(lessonDTO)
                 {
-                    Attendances = Attendances.GetAttendancesFromStudentAttendanceDTO(lessonDTO.StudentAttendanceDTO) 
+                    Attendances = Attendances.GetAttendancesFromStudentAttendanceDTO(lessonDTO.StudentAttendanceDTO)
                 });
             }
 

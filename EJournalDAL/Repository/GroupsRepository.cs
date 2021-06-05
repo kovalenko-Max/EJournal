@@ -22,7 +22,7 @@ namespace EJournalDAL.Repository
             string command = "exec AddGroup @Name, @IdCourse";
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                groupDTO.Id = db.Query<int>(command, new { groupDTO.Name, groupDTO.IdCourse }).FirstOrDefault();
+                groupDTO.Id = db.Query<int>(command, new { groupDTO.Name, groupDTO.IdCourse }).First();
             }
 
             return groupDTO;

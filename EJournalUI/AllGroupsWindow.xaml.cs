@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Collections.Generic;
-
+using System;
 
 namespace EJournalUI
 {
@@ -238,6 +238,9 @@ namespace EJournalUI
             AttendancesStackPanel.Children.Clear();
             LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
             List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
+
+            lessons.Sort((x, y) =>
+            DateTime.Compare(x.DateLesson, y.DateLesson));
 
             foreach (var lesson in lessons)
             {

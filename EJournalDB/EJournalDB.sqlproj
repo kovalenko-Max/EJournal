@@ -108,7 +108,6 @@
     <Build Include="dbo\Stored Procedures\AddGroup.sql" />
     <Build Include="dbo\Stored Procedures\AddHomeWork.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
-    <Build Include="dbo\Stored Procedures\CreateAttendence.sql" />
     <Build Include="dbo\Stored Procedures\DeleteCourse.sql" />
     <Build Include="dbo\Stored Procedures\GetAllComments.sql" />
     <Build Include="dbo\Stored Procedures\DeleteGroup.sql" />
