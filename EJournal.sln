@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalDAL.Tests", "EJourn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EJournalUI.Tests", "EJournalUI.Tests\EJournalUI.Tests.csproj", "{088750EE-EAE2-47A3-9480-AA1AB0BBFDD1}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EJournalDB", "EJournalDB\EJournalDB.sqlproj", "{3CF48975-9731-4FC2-B95D-C98AA8F7378E}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "EJournalDB", "EJournalDB\EJournalDB.sqlproj", "{6E3FE2C2-8086-44DF-BCF3-DCB1975C495C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,12 +47,12 @@ Global
 		{088750EE-EAE2-47A3-9480-AA1AB0BBFDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{088750EE-EAE2-47A3-9480-AA1AB0BBFDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{088750EE-EAE2-47A3-9480-AA1AB0BBFDD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CF48975-9731-4FC2-B95D-C98AA8F7378E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CF48975-9731-4FC2-B95D-C98AA8F7378E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CF48975-9731-4FC2-B95D-C98AA8F7378E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{3CF48975-9731-4FC2-B95D-C98AA8F7378E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CF48975-9731-4FC2-B95D-C98AA8F7378E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CF48975-9731-4FC2-B95D-C98AA8F7378E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6E3FE2C2-8086-44DF-BCF3-DCB1975C495C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3FE2C2-8086-44DF-BCF3-DCB1975C495C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3FE2C2-8086-44DF-BCF3-DCB1975C495C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6E3FE2C2-8086-44DF-BCF3-DCB1975C495C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3FE2C2-8086-44DF-BCF3-DCB1975C495C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3FE2C2-8086-44DF-BCF3-DCB1975C495C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
