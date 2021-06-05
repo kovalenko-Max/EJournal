@@ -54,7 +54,13 @@ namespace EJournalBLL.Services
                 _studentAttendanceModel.Rows.Add(new object[] { lesson.Id, a.Student.Id, a.isPresent });
             }
 
-            lessonsRepository.UpdateLessonAttendances(_studentAttendanceModel);
+            lessonsRepository.UpdateLessonAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
+        }
+
+        public void DeleteLesson(Lesson lesson)
+        {
+            LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
+            lessonsRepository.DeleteLesson(lesson.Id);
         }
 
         private List<Lesson> ConvertLessonsDTOToLessons(List<LessonDTO> lessonsDTO)

@@ -77,13 +77,29 @@ namespace EJournalDAL.Repository
             return lessonsDTO;
         }
 
-        public void UpdateLessonAttendances(DataTable dt)
+        public void UpdateLessonAttendances(LessonDTO lessonDTO, DataTable dt)
         {
-            string command = "exec UpdateLessonAttendances @StudentAttendance";
+            string command = "UpdateLessonAttendances";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@StudentAttendance", dt.AsTableValuedParameter("[dbo].[StudentAttendance]"));
+            parameters.Add("@Id", lessonDTO.Id);
+            parameters.Add("@Topic", lessonDTO.Topic);
+            parameters.Add("@DateLesson", lessonDTO.DateLesson);
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                db.Execute(command, new { StudentAttendance = dt.AsTableValuedParameter("[dbo].[StudentAttendance]") });
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void DeleteLesson(int id)
+        {
+            string command = "exec DeleteLessonAndAttendances @Id";
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(command, new { id });
             }
         }
     }
