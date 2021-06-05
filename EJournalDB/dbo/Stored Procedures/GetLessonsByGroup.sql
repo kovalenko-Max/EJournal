@@ -4,7 +4,6 @@ AS
 	SELECT 
 	   L.[Id]
       ,L.[IdGroup]
-      ,L.[IdTeacher]
       ,L.[DateLesson]
       ,L.[Topic]
   FROM [EJournalDB].[dbo].[Lessons] L 

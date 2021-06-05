@@ -1,11 +1,4 @@
-﻿using EJournalDAL.Models.BaseModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EJournalDAL.Models
+﻿namespace EJournalDAL.Models
 {
     public class StudentAttendanceDTO
     {
@@ -13,5 +6,6 @@ namespace EJournalDAL.Models
         public string Name;
         public string Surname;
         public int IsPresence;
+        public int IdLesson;
     }
 }

@@ -63,7 +63,7 @@ namespace EJournalBLL.Models
         }
         public override string ToString()
         {
-            return $"{Name} {Surname} {Email} {City} {AgreementNumber}";
+            return $"{Name} {Surname}";
         }
         public override int GetHashCode()
         {

@@ -6,13 +6,17 @@ namespace EJournalBLL.Models
     public class Attendances
     {
         public Student Student { get; set; }
-        public string StudentName { get; set; }
         public bool isPresent { get; set; }
+
+        public Attendances(Student student)
+        {
+            Student = student;
+            isPresent = true;
+        }
 
         public Attendances(StudentAttendanceDTO studentAttendanceDTO)
         {
             Student = new Student(studentAttendanceDTO.Name, studentAttendanceDTO.Surname);
-            StudentName = Student.ToString();
             Student.Id = studentAttendanceDTO.IdStudent;
             isPresent = studentAttendanceDTO.IsPresence == 1;
         }

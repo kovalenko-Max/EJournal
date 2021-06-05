@@ -4,6 +4,8 @@ using EJournalDAL.Models.BaseModels;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+
 
 namespace EJournalDAL.Repository
 {
@@ -14,6 +16,24 @@ namespace EJournalDAL.Repository
         public LessonsRepository(string connectionString)
         {
             ConnectionString = connectionString;
+        }
+
+        public void AddLesson(LessonDTO lessonDTO, DataTable dt)
+        {
+            string command = "exec AddStudentsAttendance @Topic, @DateLesson, @IdGroup, @StudentAttendanceVariable";
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(command,
+                   new
+                   {
+                       lessonDTO.Topic,
+                       lessonDTO.DateLesson,
+                       lessonDTO.IdGroup,
+                       StudentAttendanceVariable = dt.AsTableValuedParameter("[dbo].[StudentAttendance]")
+                   });
+                    
+            }
         }
 
         public List<LessonDTO> GetLessonsAttendancesByGroup(int groupId)
@@ -60,11 +80,11 @@ namespace EJournalDAL.Repository
 
         public void UpdateLessonAttendances(DataTable dt)
         {
-            string command = "exec UpdateLessonAttendances @LessonsIds";
-            List<LessonDTO> lessonDTO;
+            string command = "exec UpdateLessonAttendances @StudentAttendance";
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                db.Execute(command, new { LessonsIds = dt.AsTableValuedParameter("[dbo].[LessonsIds]") });
+                db.Execute(command, new { StudentAttendance = dt.AsTableValuedParameter("[dbo].[StudentAttendance]") });
             }
         }
     }

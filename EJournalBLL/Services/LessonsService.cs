@@ -17,6 +17,24 @@ namespace EJournalBLL.Services
             Lessons = new List<Lesson>();
         }
 
+        public void AddLesson(Lesson lesson)
+        {
+            LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("LessonsIds");
+            dt.Columns.Add("StudentId");
+            dt.Columns.Add("isPresense");
+
+            foreach (var a in lesson.Attendances)
+            {
+                dt.Rows.Add(new object[] {null, a.Student.Id, a.isPresent ? 1 : 0 });
+            }
+
+
+            lessonsRepository.AddLesson(ObjectMapper.Mapper.Map<LessonDTO>(lesson), dt);
+        }
+
         public List<Lesson> GetLessonsAttendancesByGroup(Group group)
         {
             LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);

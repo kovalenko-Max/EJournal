@@ -15,7 +15,7 @@ namespace EJournalUI
     public partial class AllGroupsWindow : Window
     {
         private GroupsService _groupStorage;
-        private StudentsService _studentsLogic;
+        private StudentsService _studentsService;
         private ProjectService _projectServices;
 
         public GroupCard SelectedGroupCard;
@@ -29,7 +29,7 @@ namespace EJournalUI
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupStorage = new GroupsService(ConnectionString);
-            _studentsLogic = new StudentsService(ConnectionString);
+            _studentsService = new StudentsService(ConnectionString);
             _studentServices = new StudentsService(ConnectionString);
             _projectServices = new ProjectService(); 
             PrintAllGroupsFromDB();
@@ -212,9 +212,9 @@ namespace EJournalUI
         private void GetStudentsByGroup()
         {
             GroupStudentsWrapPanel.Children.Clear();
-            _studentsLogic.GetStudentsByGroup(SelectedGroupCard.Group.Id);
-            SelectedGroupCard.Group.Students = _studentsLogic.Students;
-            foreach (Student student in _studentsLogic.Students)
+            _studentsService.GetStudentsByGroup(SelectedGroupCard.Group.Id);
+            SelectedGroupCard.Group.Students = _studentsService.Students;
+            foreach (Student student in _studentsService.Students)
             {
                 StudentCard studentCard = new StudentCard(student);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
@@ -256,6 +256,21 @@ namespace EJournalUI
                     lessonsLogic.UpdateLessonAttendances(ac.Lesson);
                 }
             }
+        }
+
+        private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Lesson lesson = new Lesson();
+            lesson.IdGroup = SelectedGroupCard.Group.Id;
+            foreach(var student in SelectedGroupCard.Group.Students)
+            {
+                lesson.Attendances.Add(new Attendances(student));
+            }
+
+            AttendancesCard attendancesCard = new AttendancesCard(lesson);
+            AttendancesStackPanel.Children.Insert(0, attendancesCard);
+            LessonsService lessonsService = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+            lessonsService.AddLesson(lesson);
         }
     }
 }
