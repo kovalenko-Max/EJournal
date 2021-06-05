@@ -97,8 +97,6 @@ namespace EJournalUI
         {
             HighlightSelectedProjectGroup(projectGroupCard);
             PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup.Id);
-
-
         }
 
         private void HighlightSelectedProjectGroup(ProjectGroupCard projectGroupCard)
