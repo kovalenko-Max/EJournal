@@ -9,7 +9,7 @@ namespace EJournalBLL.Services
     {
         private ProjectGroupRepository _projectGroupRepository;
      
-        public ProjectGroupSevices()
+        public ProjectGroupSevice()
         {
             _projectGroupRepository = new ProjectGroupRepository();
         }

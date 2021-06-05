@@ -19,8 +19,8 @@ namespace EJournalUI
         private GroupsService _groupStorage;
         private StudentsService _studentsLogic;
         private ProjectService _projectServices;
-        private ProjectGroupSevices _projectGroupServices;
-        private StudentServices _studentServices;
+        private ProjectGroupSevice _projectGroupServices;
+        private StudentsService _studentServices;
 
         public GroupCard SelectedGroupCard;
         public StudentCard StudentCard;
@@ -35,9 +35,8 @@ namespace EJournalUI
             _studentsLogic = new StudentsService(ConnectionString);
             _studentServices = new StudentsService(ConnectionString);
             _projectServices = new ProjectService();
-            private ProjectGroupSevices _projectGroupServices;
-        private StudentServices _studentServices;
-        PrintAllGroupsFromDB();
+            _projectGroupServices = new ProjectGroupSevice();
+            //PrintAllGroupsFromDB();
             PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
         }
@@ -69,10 +68,10 @@ namespace EJournalUI
         {
             if (TeamNameTextBox.Text != string.Empty)
             {
-                ProjectGroup = new ProjectGroup(TeamNameTextBox.Text);
-                ProjectGroup.IdProject = SelectedProjectCard.Project.Id;
-                ProjectGroup.Id = _projectGroupServices.AddProjectGroup(ProjectGroup);
-                ProjectGroupCard projectGroupCard = new ProjectGroupCard(ProjectGroup);
+                ProjectGroup projectGroup= new ProjectGroup(TeamNameTextBox.Text);
+                projectGroup.IdProject = SelectedProjectCard.Project.Id;
+                projectGroup.Id = _projectGroupServices.AddProjectGroup(projectGroup);
+                ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
                 projectGroupCard.MouseUp += ProjectGroupCard_MouseLeftButtonDown;
                 ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
             }
@@ -341,27 +340,18 @@ namespace EJournalUI
                 AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));
             }
         }
-    private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
-    {
-        foreach (var c in AttendancesStackPanel.Children)
+        private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
         {
-            if (c is AttendancesCard)
+            foreach (var c in AttendancesStackPanel.Children)
             {
-                AttendancesCard ac = (AttendancesCard)c;
-                LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
-                lessonsLogic.UpdateLessonAttendances(ac.Lesson);
+                if (c is AttendancesCard)
+                {
+                    AttendancesCard ac = (AttendancesCard)c;
+                    LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    lessonsLogic.UpdateLessonAttendances(ac.Lesson);
+                }
             }
         }
+      
     }
-    public void PrintAllStudentsFromDB()
-    {
-        AllStudentCardsWrapPanel.Children.Clear();
-        foreach (Student student in _studentServices.GetAllStudent())
-        {
-            StudentCard studentCard = new StudentCard(student);
-            //studentCard.MouseDown += GroupCard_MouseLeftButtonDown;
-            AllStudentCardsWrapPanel.Children.Add(studentCard);
-        }
-    }
-}
 }
