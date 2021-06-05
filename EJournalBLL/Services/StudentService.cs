@@ -10,41 +10,50 @@ namespace EJournalBLL
 {
     public class StudentService
     {
-        string connection;
-        StudentsRepository studentsRepository;
+        public List<Student> Students { get; set; }
+        string ConnectionString { get; set; }
+        public StudentsRepository StudentsRepository { get; set; }
 
-        public StudentService(string connection)
+        public StudentService(string connectionString)
         {
-            this.connection = connection;
-            studentsRepository = new StudentsRepository(connection);
+            ConnectionString = connectionString;
+            StudentsRepository = new StudentsRepository(connectionString);
         }
+
 
         public List<Student> GetAllStudent()
         {
-            List<StudentDTO> studentDTO = studentsRepository.GetAll();
+            List<StudentDTO> studentDTO = StudentsRepository.GetAll();
             List<Student> student = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
             return student;
         }
         public void AddStudent(Student studentInput)
         {
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            studentsRepository.Create(student);
+            StudentsRepository.Create(student);
         }
         public void Update(Student studentInput)
         {
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            studentsRepository.Update(student);
+            StudentsRepository.Update(student);
         }
 
         public void Delete(int Id)
         {
-            studentsRepository.DeleteSoft(Id);
+            StudentsRepository.DeleteSoft(Id);
         }
         public List<Student> GetStudentsFromProjectGroups(int IdProjectGroup)
         {
-            List<StudentDTO> StudentsDTO = studentsRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
+            List<StudentDTO> StudentsDTO = StudentsRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
             List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
             return students;
+        }
+        public List<Student> GetStudentsByGroup(int groupId)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.GetStudentsByGroup(groupId);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
     }
 }

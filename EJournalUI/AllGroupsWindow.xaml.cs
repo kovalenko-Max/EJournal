@@ -8,6 +8,7 @@ using System;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using EJournalDAL.Repository;
+using EJournalBLL;
 
 namespace EJournalUI
 {
@@ -17,7 +18,7 @@ namespace EJournalUI
     public partial class AllGroupsWindow : Window
     {
         private GroupsService _groupStorage;
-        private StudentsService _studentsLogic;
+        private StudentService _studentsLogic;
         private ProjectService _projectServices;
         private ProjectGroupSevice _projectGroupServices;
         public ProjectGroup ProjectGroup { get; set; }
@@ -29,14 +30,14 @@ namespace EJournalUI
         public ProjectGroupCard SelectedProjectGroupCard;
 
 
-        private StudentServices _studentServices;
+        
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupStorage = new GroupsService(ConnectionString);
-            _studentsLogic = new StudentsService(ConnectionString);
-            _studentServices = new StudentsService(ConnectionString);
+            _studentsLogic = new StudentService(ConnectionString);
+            _studentServices = new StudentService(ConnectionString);
             _projectServices = new ProjectService();
             _projectGroupServices = new ProjectGroupSevice();
             //PrintAllGroupsFromDB();
@@ -141,15 +142,7 @@ namespace EJournalUI
             }
         }
 
-        public void PrintAllStudentsFromDB()
-        {
-            AllStudentCardsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetAllStudent())
-            {
-                StudentCard studentCard = new StudentCard(student);
-                AllStudentCardsWrapPanel.Children.Add(studentCard);
-            }
-        }
+     
 
         private void Button_CreateProject_Click(object sender, RoutedEventArgs e)
         {
