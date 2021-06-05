@@ -39,8 +39,7 @@ namespace EJournalBLL
                 cfg.CreateMap<CommentDTO, Comments>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                     .ForMember(dto => dto.Comment, map => map.MapFrom(source => source.Comment))
-                    .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType))
-                    .ForMember(dto => dto.IdTeacher, map => map.MapFrom(source => source.IdTeacher))
+                    .ForMember(dto => dto.CommentType, map => map.MapFrom(source => source.CommentType))
                     .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
                 cfg.CreateMap<ProjectDTO, Project>()
@@ -60,7 +59,7 @@ namespace EJournalBLL
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                     .ForMember(dto => dto.Description, map => map.MapFrom(source => source.Description))
                     .ForMember(dto => dto.Deadline, map => map.MapFrom(source => source.Deadline))
-                    .ForMember(dto => dto.IdExerciseType, map => map.MapFrom(source => source.IdExerciseType))
+                    .ForMember(dto => dto.ExerciseType, map => map.MapFrom(source => source.ExerciseType))
                     .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup))
                     .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 

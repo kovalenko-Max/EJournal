@@ -61,7 +61,6 @@ namespace EJournalDAL.Repository
         public void UpdateLessonAttendances(DataTable dt)
         {
             string command = "exec UpdateLessonAttendances @LessonsIds";
-            List<LessonDTO> lessonDTO;
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 db.Execute(command, new { LessonsIds = dt.AsTableValuedParameter("[dbo].[LessonsIds]") });
