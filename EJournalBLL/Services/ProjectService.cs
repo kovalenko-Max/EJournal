@@ -3,7 +3,7 @@ using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
 
-namespace EJournalBLL.Services
+namespace EJournalBLL
 {
     public class ProjectService
     {
@@ -34,13 +34,16 @@ namespace EJournalBLL.Services
         }
         public int AddProject(Project projectInput)
         {
+
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
             projectInput.Id= ProjectRepository.Create(project);
             return projectInput.Id;
+
         }
 
         public void UpdateProject(Project projectInput)
         {
+
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
             ProjectRepository.Update(project);
 
@@ -51,5 +54,6 @@ namespace EJournalBLL.Services
             ProjectRepository.Delete(Id);
 
         }
+
     }
 }

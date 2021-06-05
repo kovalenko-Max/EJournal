@@ -20,13 +20,16 @@ namespace EJournalUI
         private StudentsService _studentsLogic;
         private ProjectService _projectServices;
         private ProjectGroupSevice _projectGroupServices;
-        private StudentsService _studentServices;
+        public ProjectGroup ProjectGroup { get; set; }
+        private StudentService _studentServices;
 
         public GroupCard SelectedGroupCard;
         public StudentCard StudentCard;
         public ProjectCard SelectedProjectCard;
         public ProjectGroupCard SelectedProjectGroupCard;
 
+
+        private StudentServices _studentServices;
         public AllGroupsWindow()
         {
             InitializeComponent();
@@ -340,6 +343,20 @@ namespace EJournalUI
                 AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));
             }
         }
+
+        public void PrintAllStudentsFromDB()
+        {
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
+            {
+                StudentCard studentCard = new StudentCard(student);
+                //studentCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+
+
         private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
         {
             foreach (var c in AttendancesStackPanel.Children)
@@ -352,6 +369,5 @@ namespace EJournalUI
                 }
             }
         }
-      
     }
 }

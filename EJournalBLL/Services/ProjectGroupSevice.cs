@@ -3,7 +3,7 @@ using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
 
-namespace EJournalBLL.Services
+namespace EJournalBLL
 {
     public class ProjectGroupSevice
     {
