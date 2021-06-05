@@ -3,9 +3,9 @@ using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
 
-namespace EJournalBLL
+namespace EJournalBLL.Services
 {
-    public class ProjectGroupSevices
+    public class ProjectGroupSevice
     {
         private ProjectGroupRepository _projectGroupRepository;
      

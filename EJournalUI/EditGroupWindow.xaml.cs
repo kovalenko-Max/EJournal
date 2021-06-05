@@ -1,4 +1,4 @@
-﻿using EJournalBLL.Logics;
+﻿using EJournalBLL.Services;
 using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
@@ -15,7 +15,7 @@ namespace EJournalUI
         {
             InitializeComponent();
             string connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-            CoursesLogic coursesStorage = new CoursesLogic(connectionString);
+            CoursesService coursesStorage = new CoursesService(connectionString);
             CourseComboBox.ItemsSource = coursesStorage.Courses;
         }
 

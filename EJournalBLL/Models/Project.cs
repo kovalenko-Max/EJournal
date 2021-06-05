@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EJournalBLL.Models
+﻿namespace EJournalBLL.Models
 {
     public class Project
     {
@@ -31,5 +25,9 @@ namespace EJournalBLL.Models
             return equal;
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

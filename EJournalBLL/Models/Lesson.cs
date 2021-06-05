@@ -22,8 +22,6 @@ namespace EJournalBLL.Models
             Id = lessonDTO.Id;
             Topic = lessonDTO.Topic;
             DateLesson = lessonDTO.DateLesson;
-
-
         }
     }
 }
