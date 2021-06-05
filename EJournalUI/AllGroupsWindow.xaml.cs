@@ -56,6 +56,7 @@ namespace EJournalUI
             foreach (Student student in _studentServices.GetAllStudent())
             {
                 StudentCard studentCard = new StudentCard(student);
+                studentCard.MouseUp += StudentCard_MouseLeftButtonDown;
                 AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
@@ -207,6 +208,19 @@ namespace EJournalUI
                 if (e.ClickCount == 1)
                 {
                     SelectGroupCard((GroupCard)sender);
+                }
+            }
+        }
+
+        private void StudentCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is StudentCard)
+            {
+                if (e.ClickCount == 1)
+                {
+                    StudentCard studentCard = (StudentCard)sender;
+                    StudentWindow studentWindow = new StudentWindow(studentCard);
+                    studentWindow.Show();
                 }
             }
         }

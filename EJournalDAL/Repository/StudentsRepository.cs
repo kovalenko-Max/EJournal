@@ -55,7 +55,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = " exec UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
+                string connectionQuery = " exec UpdateStudent @Id, @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 db.Execute(connectionQuery, student);
             }
         }
