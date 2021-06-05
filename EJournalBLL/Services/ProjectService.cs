@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace EJournalBLL
 {
-    public class ProjectServices
+    public class ProjectService
     {
         public ProjectRepository ProjectRepository { get; set; }
 
@@ -21,7 +21,7 @@ namespace EJournalBLL
             }
         }
 
-        public ProjectServices()
+        public ProjectService()
         {
             ProjectRepository = new ProjectRepository();
         }

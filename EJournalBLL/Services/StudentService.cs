@@ -8,12 +8,12 @@ using EJournalBLL.Models;
 
 namespace EJournalBLL
 {
-    public class StudentServices
+    public class StudentService
     {
         string connection;
         StudentsRepository studentsRepository;
 
-        public StudentServices(string connection)
+        public StudentService(string connection)
         {
             this.connection = connection;
             studentsRepository = new StudentsRepository(connection);

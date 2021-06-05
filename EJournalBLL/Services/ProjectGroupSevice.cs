@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace EJournalBLL
 {
-    public class ProjectGroupSevices
+    public class ProjectGroupSevice
     {
         private ProjectGroupRepository _projectGroupRepository;
      
-        public ProjectGroupSevices()
+        public ProjectGroupSevice()
         {
             _projectGroupRepository = new ProjectGroupRepository();
         }

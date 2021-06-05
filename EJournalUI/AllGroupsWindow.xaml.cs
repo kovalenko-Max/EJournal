@@ -21,9 +21,9 @@ namespace EJournalUI
         public string PlaceholderText { get; set; }
         private GroupsLogic _groupStorage;
         private StudentsLogic _studentsLogic;
-        private ProjectServices _projectServices;
-        private ProjectGroupSevices _projectGroupServices;
-        private StudentServices _studentServices;
+        private ProjectService _projectServices;
+        private ProjectGroupSevice _projectGroupServices;
+        private StudentService _studentServices;
 
         public GroupCard SelectedGroupCard;
         public StudentCard StudentCard;
@@ -36,9 +36,9 @@ namespace EJournalUI
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupStorage = new GroupsLogic(ConnectionString);
             _studentsLogic = new StudentsLogic(ConnectionString);
-            _studentServices = new StudentServices(ConnectionString);
-            _projectServices = new ProjectServices();
-            _projectGroupServices = new ProjectGroupSevices();
+            _studentServices = new StudentService(ConnectionString);
+            _projectServices = new ProjectService();
+            _projectGroupServices = new ProjectGroupSevice();
 
 
             PrintAllGroupsFromDB();
@@ -208,7 +208,7 @@ namespace EJournalUI
 
                 if (editProjectWindow.ShowDialog() == true)
                 {
-                    ProjectServices projectServices = new ProjectServices();
+                    ProjectService projectServices = new ProjectService();
                     projectServices.UpdateProject(SelectedProjectCard.Project);
                     SelectedProjectCard.UpdateFields();
                     SelectProjectCard(SelectedProjectCard);
