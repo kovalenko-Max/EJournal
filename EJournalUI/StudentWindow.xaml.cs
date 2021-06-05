@@ -79,5 +79,14 @@ namespace EJournalUI
             _studentServices.Update(Student);
             StudentCard.UpdateFields();
         }
+
+        private void Button_DeleteStudent_Click(object sender, RoutedEventArgs e)
+        {
+                if (StudentCard != null)
+                {
+                    _studentServices.Delete(StudentCard.Student.Id);
+                    StudentCard.Student.IsDelete = true;
+                }
+        }
     }
 }
