@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EJournalBLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,21 @@ namespace EJournalUI
     /// </summary>
     public partial class EditProjectGroupWindow : Window
     {
-        public EditProjectGroupWindow()
+
+        public EditProjectGroupWindow(ProjectGroup projectGroup)
         {
+            
             InitializeComponent();
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonMove_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

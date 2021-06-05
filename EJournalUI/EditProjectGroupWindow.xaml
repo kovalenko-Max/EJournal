@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="EditProjectGroupWindow" Height="450" Width="800">
+        Title="EditProjectGroupWindow" Height="750" Width="800">
     <Grid>
-        
+        <Grid ShowGridLines="True" Background="Gray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" MinHeight="200" />
+                <RowDefinition Height="50" MinHeight="75"/>
+                <RowDefinition Height="350" MinHeight="400"/>
+                <RowDefinition Height="50" MinHeight="50"/>
+            </Grid.RowDefinitions>
+            <Canvas Grid.Row="0">
+                <TextBox MaxLength="30" x:Name="TeamNameTextBox" Text="Team JWT" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30"/>
+                <TextBox MaxLength="30" x:Name="TeamCommentsTextBox" Text="JWT is the best team ever" TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Canvas.Left="240" Canvas.Top="100" Width="320" Height="88"/>
+                <TextBlock Text="Comments" FontSize="18" FontWeight="DemiBold" Canvas.Left="356" Canvas.Top="71" />
+            </Canvas>
+            <Grid Grid.Row="1" Background="IndianRed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <Canvas Grid.Column="0">
+                    <TextBlock Text="Team Students" FontSize="18" FontWeight="DemiBold" Canvas.Left="139" Canvas.Top="38" />
+                </Canvas>
+                <Canvas Grid.Column="1">
+                    <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="139" Canvas.Top="41"/>
+                </Canvas>
+            </Grid>
+            <Grid Grid.Row="2" ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="370"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="370"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" ShowGridLines="True" Background="CornflowerBlue">
+                    <ScrollViewer Grid.Row="2">
+                        <WrapPanel x:Name="TeamStudentsWrapPanel">
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
+                <Grid Grid.Column="1" Background="Gray">
+                    <Button x:Name="ButtonMove" Content="Move" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="50" Click="ButtonMove_Click"/>
+                </Grid>
+                <Grid Grid.Column="2" ShowGridLines="True" Background="LightGreen">
+                    <ScrollViewer Grid.Row="2">
+                        <WrapPanel x:Name="AllStudentsWrapPanel">
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Center" Height="30" Width="100" Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,1" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
+        </Grid>
     </Grid>
 </Window>
