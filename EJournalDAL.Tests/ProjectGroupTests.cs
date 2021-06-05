@@ -17,13 +17,13 @@ namespace EJournalDAL.Tests
             projectRepository = new ProjectRepository();
         }
 
-        [TestCaseSource(nameof(DataExpectedCollection))]
-        public void GetAllStudent_WhenAddSomeStudents_ShouldAddStudent(ProjectGroupDTO expected)
-        {
-            var actual = projectGroupRepository.GetStudentsFromOneProjectGroup(3);
+        //[TestCaseSource(nameof(DataExpectedCollection))]
+        //public void GetAllStudent_WhenAddSomeStudents_ShouldAddStudent(ProjectGroupDTO expected)
+        //{
+        //    var actual = projectGroupRepository.GetStudentsFromOneProjectGroup(3);
 
-            Assert.Pass();
-        }
+        //    Assert.Pass();
+        //}
         private static IEnumerable<object[]> DataExpectedCollection()
         {
             yield return new object[] { new ProjectGroupDTO()

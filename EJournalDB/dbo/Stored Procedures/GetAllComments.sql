@@ -2,6 +2,6 @@
 AS
 SELECT Id
 	,Comment
-	,IdCommentType
+	,CommentType
 FROM [dbo].[Comments]
 WHERE IsDelete = 0

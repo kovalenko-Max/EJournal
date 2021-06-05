@@ -1,8 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[GetListStudentsInOneProjectGroup] @IdProjectGroup INT
 AS
-SELECT pg.Id AS ProjectGroupID
-	,pg.Name
-	,s.Id
+SELECT s.Id
 	,s.Name
 	,s.Surname
 	,s.Phone

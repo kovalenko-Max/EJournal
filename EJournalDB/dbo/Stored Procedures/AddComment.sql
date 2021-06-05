@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[AddComment] @Comments NVARCHAR(255)
-	,@IdCommentType INT
+	,@CommentType NVARCHAR(255)
 AS
 INSERT INTO [dbo].[Comments] (
 	Comment
-	,IdCommentType
+	,CommentType
 	)
 VALUES (
 	@Comments
-	,@IdCommentType
+	,@CommentType
 	)

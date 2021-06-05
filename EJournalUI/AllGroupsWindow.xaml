@@ -111,7 +111,7 @@
                                 <TextBlock Text="Project name: " Grid.Column="0" Margin="2,0,115,55"/>
                                 <TextBlock x:Name="ProjectNameTextBox" Text="Name" Grid.Column="0" Margin="90,1,0,54"/>
                                 <TextBlock Text="Project description: " Grid.Column="0" Margin="2,25,612,30"/>
-                                <TextBlock x:Name="ProjectDescriptionTextBox"  Text="Description" Grid.Column="0" Margin="128,25,0,10"/>
+                                <TextBlock x:Name="ProjectDescriptionTextBox"  Text="Description" TextWrapping="Wrap" Grid.Column="0" Margin="128,25,0,10"/>
                                 <!--<TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="2,50,115,5"/>
                                 <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>-->
 
@@ -120,10 +120,42 @@
                             </Grid>
                             <TabControl Grid.Row="1">
                                 <TabItem Header = "Project groups">
-                                    <ScrollViewer Grid.Row="1">
-                                        <WrapPanel x:Name="ProjectTeamsWrapPanel">
-                                        </WrapPanel>
-                                    </ScrollViewer>
+                                    <Grid Grid.Row="1" Grid.Column="1" Background="#FFEAEAEA" ShowGridLines="True">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="75" MinHeight="75"/>
+                                            <RowDefinition Height="480*"/>
+                                        </Grid.RowDefinitions>
+                                        <Canvas>
+                                            <TextBox MaxLength="30" x:Name="TeamNameTextBox" Canvas.Left="10" Canvas.Top="7" Width="195"/>
+                                            <Button Content="Create team" Width="85" Height="33" Margin="2,2,2,2" Click="Button_CreateTeam_Click" Canvas.Left="10" Canvas.Top="32"/>
+                                            <!--<Button Content="Edit team" Width="85" Height="33" Margin="2,2,2,2" Click="Button_EditTeam_Click" Canvas.Left="118" Canvas.Top="32"/>-->
+                                            <Button Content="Delete team" Background="IndianRed" Width="75" Height="25" Margin="2,2,2,2" Click="Button_DeleteTeam_Click" RenderTransformOrigin="2,1.276" Canvas.Left="305" Canvas.Top="4"/>
+                                        </Canvas>
+
+                                        <!--<TextBlock Text="Team name: " Grid.Column="0" Margin="8,9,833,46"/>
+                                        <TextBlock x:Name="TeamNameTextBox" Text="Name" Grid.Column="0" Margin="96,10,563,45"/>
+                                        <TextBlock Text="Team comments: " Grid.Column="0" Margin="8,38,606,17"/>
+                                        <TextBlock x:Name="TeamCommentsTextBox"  Text="Description" Grid.Column="0" Margin="128,25,0,493"/>-->
+                                        <Grid Grid.Row="1" Background="AntiqueWhite">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="400"/>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="500"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ScrollViewer Grid.Row="1">
+                                                <WrapPanel x:Name="ProjectTeamsWrapPanel">
+                                                </WrapPanel>
+                                            </ScrollViewer>
+                                            <Grid Grid.Column="2" Background="LightSlateGray">
+                                                <ScrollViewer Grid.Row="1">
+                                                    <WrapPanel x:Name="ProjectTeamsStudentsWrapPanel">
+                                                    </WrapPanel>
+                                                </ScrollViewer>
+
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
                                 </TabItem>
                             </TabControl>
                         </Grid>

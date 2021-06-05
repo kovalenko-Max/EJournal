@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Dapper;
+using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
@@ -16,7 +17,7 @@ namespace EJournalDAL.Repository
         string connectionString;
         public CommentRepository()
         {
-            connectionString = @"Data Source=СЕРГЕЙ-ПК\SQLEXPRESS;Initial Catalog=AcademyDB;Integrated Security=True";
+            connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
         }
 
         public List <CommentDTO> GetAllComments()
@@ -45,7 +46,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec AddComment @Comments, @IdTeacher, @IdCommentType";
+                string connectionQuery = "exec AddComment @Comments, @CommentType";
                 int? commentId = db.Query<int>(connectionQuery, comment).FirstOrDefault();
                 comment.Id = commentId;
             }
@@ -56,7 +57,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec UpdateComment @Id, @Comments, @IdTeacher, @IdCommentType";
+                string connectionQuery = "exec UpdateComment @Id, @Comments, @CommentType";
                 db.Execute(connectionQuery, comment);
             }    
         }

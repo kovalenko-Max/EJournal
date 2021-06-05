@@ -8,10 +8,26 @@ namespace EJournalBLL.Models
     {
         public int Id;
         public string Name { get; set; }
-      
+        public int? IdProject { get; set; }
+
         public bool IsDelete { get; set; }
 
         public List<Student> Students { get; set; }
+
+        public ProjectGroup()
+        {
+
+        }
+        public ProjectGroup(string projectGroupName)
+        {
+            Name = projectGroupName;
+        }
+
+        public ProjectGroup(string projectGroupName, List<Student> students)
+        {
+            Name = projectGroupName;
+            Students = students;
+        }
 
         public override bool Equals(object obj)
         {
