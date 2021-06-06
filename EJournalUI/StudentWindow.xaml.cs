@@ -15,7 +15,7 @@ namespace EJournalUI
     /// </summary>
     public partial class StudentWindow : Window
     {
-        private StudentServices _studentServices;
+        private StudentService _studentServices;
         public StudentCard StudentCard;
         public delegate void StudentDeletedEventHandler(object sender, EventArgs e);
         public event StudentDeletedEventHandler StudentDeleted;
@@ -24,7 +24,7 @@ namespace EJournalUI
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-            _studentServices = new StudentServices(ConnectionString);
+            _studentServices = new StudentService(ConnectionString);
             StudentCard = studentCard;
             Student = studentCard.Student;
             TextBox_Name.Text = Student.Name;
@@ -91,7 +91,6 @@ namespace EJournalUI
                     _studentServices.Delete(StudentCard.Student.Id);
                     this.Close();
                 }
-                //StudentCard.Student.IsDelete = true;
             }
         }
     }

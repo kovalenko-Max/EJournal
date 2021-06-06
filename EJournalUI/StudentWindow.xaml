@@ -45,24 +45,9 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header = "Exercises">
-                <DataGrid Margin ="12, 15">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header ="Description" Width ="150"/>
-                        <DataGridTextColumn Header ="Deadline" Width ="150"/>
-                        <DataGridCheckBoxColumn Header ="Status" Width ="80"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
+            <TabItem Header="Exercises">
+                <DataGrid Height="250">
 
-            <TabItem Header = "Comments">
-                <DataGrid Margin ="12, 15">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header ="Hard" Width ="150"/>
-                        <DataGridTextColumn Header ="Soft" Width ="150"/>
-                        <DataGridTextColumn Header ="General" Width ="150"/>
-                        <DataGridTextColumn Header ="Team comments" Width ="150"/>
-                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
 

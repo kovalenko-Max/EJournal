@@ -9,3 +9,5 @@ VALUES (
 	@Name
 	,@IdProject
 	)
+
+SELECT CAST(SCOPE_IDENTITY() AS INT)

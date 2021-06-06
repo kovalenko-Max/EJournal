@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace EJournalBLL
 {
-    public class ProjectServices
+    public class ProjectService
     {
-        private ProjectRepository _projectRepository;
+        public ProjectRepository ProjectRepository { get; set; }
 
         public List<Project> Projects
         {
@@ -21,14 +21,14 @@ namespace EJournalBLL
             }
         }
 
-        public ProjectServices()
+        public ProjectService()
         {
-            _projectRepository = new ProjectRepository();
+            ProjectRepository = new ProjectRepository();
         }
 
         public List<Project> GetAllProjects()
         {
-            List<ProjectDTO> projectDTO = _projectRepository.GetProjects();
+            List<ProjectDTO> projectDTO = ProjectRepository.GetProjects();
             List<Project> project = ObjectMapper.Mapper.Map<List<Project>>(projectDTO);
             return project;
         }
@@ -36,7 +36,7 @@ namespace EJournalBLL
         {
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
-            projectInput.Id= _projectRepository.Create(project);
+            projectInput.Id= ProjectRepository.Create(project);
             return projectInput.Id;
 
         }
@@ -45,13 +45,13 @@ namespace EJournalBLL
         {
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
-            _projectRepository.Update(project);
+            ProjectRepository.Update(project);
 
         }
 
         public void DeleteProject(int Id)
         {
-            _projectRepository.Delete(Id);
+            ProjectRepository.Delete(Id);
 
         }
 

@@ -50,6 +50,8 @@ namespace EJournalUI
 
             textBlock = new TextBlock();
             textBlock.Text = "Description:";
+            textBlock.MaxWidth = 300;
+            textBlock.TextWrapping = TextWrapping.Wrap;
             textBlock.Margin = new Thickness(15, 40, 0, 8);
             textBlock.TextAlignment = TextAlignment.Left;
             Grid.SetColumn(textBlock, 0);

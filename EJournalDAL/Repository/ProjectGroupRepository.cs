@@ -11,45 +11,9 @@ namespace EJournalDAL.Repository
     public class ProjectGroupRepository
     {
         string connectionString;
-        public ProjectGroupRepository(string connectionString)
+        public ProjectGroupRepository()
         {
-            this.connectionString = connectionString;
-         
-        }
-
-        public ProjectGroupDTO GetStudentsFromOneProjectGroup(int idProjectGroup)
-        {
-            ProjectGroupDTO projectGroup = new ProjectGroupDTO();
-            List<StudentDTO> students = null;
-
-            using (IDbConnection db = new SqlConnection(connectionString))
-            {
-                string connectionQuery = $"exec GetListStudentsInOneProjectGroup @idProjectGroup";
-
-                db.Query<ProjectGroupDTO, StudentDTO, ProjectGroupDTO>(connectionQuery,
-
-                      (projectsGroupStudents, student) =>
-                      {
-                          if (students is null)
-                          {
-                              students = new List<StudentDTO>();
-                          }
-
-
-                          students.Add(student);
-
-
-                          projectsGroupStudents.Students = students;
-                          projectsGroupStudents.Id = idProjectGroup;
-                          projectGroup = projectsGroupStudents;
-                          return projectGroup;
-
-                      }
-                      , param: new { idProjectGroup }
-                      , splitOn: "Id"
-                      );
-                return projectGroup;
-            }
+            connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
 
         }
 
@@ -81,6 +45,16 @@ namespace EJournalDAL.Repository
             }
         }
 
+        public List<ProjectGroupDTO> GetAllProjects(int IdProject)
+        {
+            List<ProjectGroupDTO> projectGroups = new List<ProjectGroupDTO>();
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec GetAllProjectGroups  @IdProject";
+                projectGroups = db.Query<ProjectGroupDTO>(connectionQuery, new { IdProject }).ToList();
 
+            }
+            return projectGroups;
+        }
     }
 }
