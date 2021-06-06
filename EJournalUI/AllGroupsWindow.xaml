@@ -51,7 +51,7 @@
                             <TabControl Grid.Row="1">
                                 <TabItem Header = "Students of group">
                                     <ScrollViewer Grid.Row="1">
-                                        <WrapPanel x:Name="GroupStudentsWrapPanel"></WrapPanel>
+                                        <WrapPanel x:Name="GroupStudentsWrapPanel"/>
                                     </ScrollViewer>
                                 </TabItem>
                                 <TabItem x:Name="AttendancesTabItem" Header="Attendances">

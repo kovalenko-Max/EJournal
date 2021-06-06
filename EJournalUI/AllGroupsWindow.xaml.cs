@@ -29,14 +29,14 @@ namespace EJournalUI
         public ProjectGroupCard SelectedProjectGroupCard;
 
 
-        
+
         public AllGroupsWindow()
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupStorage = new GroupsService(ConnectionString);
             _studentServices = new StudentService(ConnectionString);
-            _projectServices = new ProjectService(); 
+            _projectServices = new ProjectService();
             PrintAllGroupsFromDB();
             PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
@@ -69,7 +69,7 @@ namespace EJournalUI
         {
             if (TeamNameTextBox.Text != string.Empty)
             {
-                ProjectGroup projectGroup= new ProjectGroup(TeamNameTextBox.Text);
+                ProjectGroup projectGroup = new ProjectGroup(TeamNameTextBox.Text);
                 projectGroup.IdProject = SelectedProjectCard.Project.Id;
                 projectGroup.Id = _projectGroupServices.AddProjectGroup(projectGroup);
                 ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
@@ -338,6 +338,7 @@ namespace EJournalUI
                     AttendancesCard ac = (AttendancesCard)c;
                     LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
                     ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
+                    ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
                     lessonsLogic.UpdateLessonAttendances(ac.Lesson);
                 }
             }
@@ -345,19 +346,21 @@ namespace EJournalUI
 
         private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
         {
-            Lesson lesson = new Lesson();
-            lesson.IdGroup = SelectedGroupCard.Group.Id;
-            
-
-            foreach(var student in SelectedGroupCard.Group.Students)
+            if (SelectedGroupCard != null)
             {
-                lesson.Attendances.Add(new Attendances(student));
-            }
+                Lesson lesson = new Lesson();
+                lesson.IdGroup = SelectedGroupCard.Group.Id;
 
-            AttendancesCard attendancesCard = new AttendancesCard(lesson);
-            AttendancesStackPanel.Children.Insert(0, attendancesCard);
-            LessonsService lessonsService = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
-            lessonsService.AddLesson(lesson);
+                foreach (var student in SelectedGroupCard.Group.Students)
+                {
+                    lesson.Attendances.Add(new Attendances(student));
+                }
+
+                AttendancesCard attendancesCard = new AttendancesCard(lesson);
+                AttendancesStackPanel.Children.Insert(0, attendancesCard);
+                LessonsService lessonsService = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                lessonsService.AddLesson(lesson);
+            }
         }
     }
 }

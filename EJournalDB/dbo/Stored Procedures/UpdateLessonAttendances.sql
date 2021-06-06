@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateLessonAttendances]
 	@StudentAttendance [dbo].[StudentAttendance] READONLY,
     @Id int,
-    @Topic nvarchar,
+    @Topic nvarchar(250),
     @DateLesson datetime
 AS
     update Lessons
