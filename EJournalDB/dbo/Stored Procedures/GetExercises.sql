@@ -5,5 +5,6 @@
       ,[Description]
       ,[Deadline]
       ,[IdGroup]
+      ,[ExerciseType]
   FROM [dbo].[Exercises]
   where Id = @Id and IsDelete = 0

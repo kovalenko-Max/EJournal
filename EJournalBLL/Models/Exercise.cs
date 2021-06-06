@@ -12,7 +12,7 @@ namespace EJournalBLL.Models
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
         public int? IdGroup { get; set; }
-        public int? IdExerciseType { get; set; }
+        public string ExerciseType { get; set; }
         public bool IsDelete { get; set; }
     }
 }
