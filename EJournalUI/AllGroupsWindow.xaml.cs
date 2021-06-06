@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Collections.Generic;
-
+using System;
 
 namespace EJournalUI
 {
@@ -21,7 +21,7 @@ namespace EJournalUI
         private ProjectServices _projectServices;
 
         public GroupCard SelectedGroupCard;
-        public StudentCard StudentCard;
+        public StudentCard SelectedStudentCard;
         public ProjectCard SelectedProjectCard;
 
 
@@ -219,7 +219,9 @@ namespace EJournalUI
                 if (e.ClickCount == 1)
                 {
                     StudentCard studentCard = (StudentCard)sender;
+                    SelectedStudentCard = studentCard;
                     StudentWindow studentWindow = new StudentWindow(studentCard);
+                    studentWindow.StudentDeleted += StudentWindow_DataChanged;
                     studentWindow.Show();
                 }
             }
@@ -274,14 +276,9 @@ namespace EJournalUI
             }
         }
 
-        private void DeleteStudentButton_Click(object sender, RoutedEventArgs e)
+        private void StudentWindow_DataChanged(object sender, EventArgs e)
         {
-                if (StudentCard != null)
-                {
-                    _studentServices.Delete(StudentCard.Student.Id);
-                    StudentCard.Student.IsDelete = true;
-                    AllStudentCardsWrapPanel.Children.Remove(StudentCard);
-                }
+            AllStudentCardsWrapPanel.Children.Remove(SelectedStudentCard);
         }
     }
 }

@@ -140,7 +140,6 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Name="AddStudentButton" Content="Add" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="36" Width="133" FontSize="15" Click="Button_AddStudent_Click"/>
-                    <Button Grid.Row="0" Name="DeleteStudentButton" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Width="134" FontSize="15" Margin="173,14,0,0" Click="DeleteStudentButton_Click"/>
                     <ScrollViewer Grid.Row="1">
                         <WrapPanel x:Name="AllStudentCardsWrapPanel">
 

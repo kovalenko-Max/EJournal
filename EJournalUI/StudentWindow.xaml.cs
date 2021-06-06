@@ -7,13 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace EJournalUI
 {
@@ -24,6 +17,8 @@ namespace EJournalUI
     {
         private StudentServices _studentServices;
         public StudentCard StudentCard;
+        public delegate void StudentDeletedEventHandler(object sender, EventArgs e);
+        public event StudentDeletedEventHandler StudentDeleted;
         public Student Student { get; set; }
         public StudentWindow(StudentCard studentCard)
         {
@@ -82,11 +77,22 @@ namespace EJournalUI
 
         private void Button_DeleteStudent_Click(object sender, RoutedEventArgs e)
         {
-                if (StudentCard != null)
+            if (StudentCard != null)
+            {
+                if (MessageBox.Show("Are you sure want to delete item?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    StudentDeletedEventHandler studentDeletedEventHandler = StudentDeleted;
+
+                    if (studentDeletedEventHandler != null)
+                    {
+                        studentDeletedEventHandler(this, new EventArgs());
+                    }
+
                     _studentServices.Delete(StudentCard.Student.Id);
-                    StudentCard.Student.IsDelete = true;
+                    this.Close();
                 }
+                //StudentCard.Student.IsDelete = true;
+            }
         }
     }
 }
