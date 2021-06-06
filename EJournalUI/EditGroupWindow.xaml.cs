@@ -33,5 +33,6 @@ namespace EJournalUI
 
             this.DialogResult = true;
         }
+
     }
 }

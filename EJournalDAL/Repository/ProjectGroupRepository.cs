@@ -45,7 +45,7 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public List<ProjectGroupDTO> GetAllProjects(int IdProject)
+        public List<ProjectGroupDTO> GetAllProjectsGroup(int IdProject)
         {
             List<ProjectGroupDTO> projectGroups = new List<ProjectGroupDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -55,6 +55,25 @@ namespace EJournalDAL.Repository
 
             }
             return projectGroups;
+
         }
+        public void AddStudentToProjectGroup(ProjectGroupStudentDTO projectGroupStudent)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec AddStudentToProjectGroup @IdStudent, @IdProjectGroup";
+                db.Execute(connectionQuery, projectGroupStudent );
+            }
+        }
+        public void DeleteStudentFromProjectGroup(ProjectGroupStudentDTO projectGroupStudent)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec DeleteStudentFromProjectGroup @IdStudent, @IdProjectGroup";
+                db.Execute(connectionQuery, projectGroupStudent);
+            }
+        }
+
+
     }
 }

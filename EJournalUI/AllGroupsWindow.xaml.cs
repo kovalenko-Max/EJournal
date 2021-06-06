@@ -45,11 +45,14 @@ namespace EJournalUI
             PrintAllProjectsFromDB();
         }
 
-        public void PrintStudentsFromProjectGroup(int IdProjectGroup)
+        public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
             ProjectTeamsStudentsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetStudentsFromProjectGroups(IdProjectGroup))
+            projectGroup.Students = new List<Student>();
+            foreach (Student student in _studentServices.GetStudentsFromProjectGroups(projectGroup.Id))
             {
+                projectGroup.Students.Add(student);
+                projectGroup.IdProject = SelectedProjectCard.Project.Id;
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += ProjectGroupCard_MouseLeftButtonDown;
                 ProjectTeamsStudentsWrapPanel.Children.Add(studentCard);
@@ -96,7 +99,7 @@ namespace EJournalUI
         public void SelectProjectGroupCard(ProjectGroupCard projectGroupCard)
         {
             HighlightSelectedProjectGroup(projectGroupCard);
-            PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup.Id);
+            PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup);
         }
 
         private void HighlightSelectedProjectGroup(ProjectGroupCard projectGroupCard)
@@ -359,6 +362,13 @@ namespace EJournalUI
                     lessonsLogic.UpdateLessonAttendances(ac.Lesson);
                 }
             }
+        }
+
+        private void Button_EditTeam_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectGroup projectGroup = SelectedProjectGroupCard.ProjectGroup;
+            EditProjectGroupWindow groupWindow = new EditProjectGroupWindow(projectGroup);
+            groupWindow.Show();
         }
     }
 }

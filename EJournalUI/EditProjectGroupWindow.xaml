@@ -15,8 +15,8 @@
                 <RowDefinition Height="50" MinHeight="50"/>
             </Grid.RowDefinitions>
             <Canvas Grid.Row="0">
-                <TextBox MaxLength="30" x:Name="TeamNameTextBox" Text="Team JWT" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30"/>
-                <TextBox MaxLength="30" x:Name="TeamCommentsTextBox" Text="JWT is the best team ever" TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Canvas.Left="240" Canvas.Top="100" Width="320" Height="88"/>
+                <TextBox MaxLength="30" Name="ProjectGroupTextBox" Text="JWT Team" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30"/>
+                <TextBox MaxLength="30" Name="TeamCommentsTextBox" Text="JWT is the best team ever" TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Canvas.Left="240" Canvas.Top="100" Width="320" Height="88"/>
                 <TextBlock Text="Comments" FontSize="18" FontWeight="DemiBold" Canvas.Left="356" Canvas.Top="71" />
             </Canvas>
             <Grid Grid.Row="1" Background="IndianRed">
