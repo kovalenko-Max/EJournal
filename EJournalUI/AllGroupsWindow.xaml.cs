@@ -273,5 +273,15 @@ namespace EJournalUI
                 }
             }
         }
+
+        private void DeleteStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+                if (StudentCard != null)
+                {
+                    _studentServices.Delete(StudentCard.Student.Id);
+                    StudentCard.Student.IsDelete = true;
+                    AllStudentCardsWrapPanel.Children.Remove(StudentCard);
+                }
+        }
     }
 }
