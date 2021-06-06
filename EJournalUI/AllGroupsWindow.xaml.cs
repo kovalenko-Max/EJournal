@@ -5,16 +5,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System;
-using System.Windows.Controls;
 using System.Collections.Generic;
-using EJournalDAL.Repository;
 using EJournalBLL;
 
 namespace EJournalUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class AllGroupsWindow : Window
     {
         private GroupsService _groupStorage;

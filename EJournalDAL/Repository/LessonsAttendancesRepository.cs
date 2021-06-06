@@ -2,21 +2,22 @@
 using EJournalDAL.Models;
 using EJournalDAL.Models.BaseModels;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace EJournalDAL.Repository
 {
-    public class LessonsRepository
+    public class LessonsAttendancesRepository : ILessonsAttendancesRepository
     {
-        public string ConnectionString;
+        private string _connectionString;
 
-        public LessonsRepository(string connectionString)
+        public LessonsAttendancesRepository()
         {
-            ConnectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
-        public int AddLesson(LessonDTO lessonDTO, DataTable dt)
+        public int AddLessonAttendances(LessonDTO lessonDTO, DataTable dt)
         {
             string command = "AddStudentsAttendance";
 
@@ -27,7 +28,7 @@ namespace EJournalDAL.Repository
             parameters.Add("@StudentAttendanceVariable", dt.AsTableValuedParameter("[dbo].[StudentAttendance]"));
             parameters.Add("@IdLesson", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
@@ -41,7 +42,7 @@ namespace EJournalDAL.Repository
 
             List<LessonDTO> lessonsDTO = new List<LessonDTO>();
 
-            using (IDbConnection dbConnection = new SqlConnection(ConnectionString))
+            using (IDbConnection dbConnection = new SqlConnection(_connectionString))
             {
                 dbConnection.Query<LessonDTO, StudentAttendanceDTO, LessonDTO>(qr,
 
@@ -77,7 +78,7 @@ namespace EJournalDAL.Repository
             return lessonsDTO;
         }
 
-        public void UpdateLessonAttendances(LessonDTO lessonDTO, DataTable dt)
+        public void UpdateLessonsAttendances(LessonDTO lessonDTO, DataTable dt)
         {
             string command = "UpdateLessonAttendances";
 
@@ -87,17 +88,17 @@ namespace EJournalDAL.Repository
             parameters.Add("@Topic", lessonDTO.Topic);
             parameters.Add("@DateLesson", lessonDTO.DateLesson);
 
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
         }
 
-        public void DeleteLesson(int id)
+        public void DeleteLessonAndAttendances(int id)
         {
             string command = "exec DeleteLessonAndAttendances @Id";
 
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { id });
             }

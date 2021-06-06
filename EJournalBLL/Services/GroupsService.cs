@@ -32,7 +32,7 @@ namespace EJournalBLL.Services
             GroupDTO groupDTO = new GroupDTO();
             groupDTO.Name = group.Name;
             groupDTO.IdCourse = group.Course.Id;
-            groupDTO = groupsRepository.AddGroupDTO(groupDTO);
+            groupDTO = groupsRepository.AddGroup(groupDTO);
             group.Id = groupDTO.Id;
         }
 
@@ -50,7 +50,7 @@ namespace EJournalBLL.Services
         private List<Group> GetAllGroupsFromDB()
         {
             GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
-            List<GroupDTO> groupDTOs = groupsRepository.GetAllGroupsDTO();
+            List<GroupDTO> groupDTOs = groupsRepository.GetAllGroups();
 
             return ObjectMapper.Mapper.Map<List<Group>>(groupDTOs);
         }

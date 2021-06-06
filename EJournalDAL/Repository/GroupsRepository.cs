@@ -17,7 +17,7 @@ namespace EJournalDAL.Repository
             ConnectionString = connectionString;
         }
 
-        public GroupDTO AddGroupDTO(GroupDTO groupDTO)
+        public GroupDTO AddGroup(GroupDTO groupDTO)
         {
             string command = "exec AddGroup @Name, @IdCourse";
             using (IDbConnection db = new SqlConnection(ConnectionString))
@@ -28,7 +28,7 @@ namespace EJournalDAL.Repository
             return groupDTO;
         }
 
-        public void DeleteGroupDTO(GroupDTO groupDTO)
+        public void DeleteGroup(GroupDTO groupDTO)
         {
             string command = "exec DeleteGroup @Id";
             using (IDbConnection db = new SqlConnection(ConnectionString))
@@ -37,7 +37,7 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public List<GroupDTO> GetAllGroupsDTO()
+        public List<GroupDTO> GetAllGroups()
         {
             string command = "exec GetAllGroups";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();

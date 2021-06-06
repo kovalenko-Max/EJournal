@@ -9,7 +9,6 @@ namespace EJournalBLL.Services
     public class LessonsService
     {
         private DataTable _studentAttendanceModel;
-        public string ConnectionString { get; set; }
         public List<Lesson> Lessons { get; set; }
 
         public LessonsService(string connectionString)
@@ -24,19 +23,19 @@ namespace EJournalBLL.Services
 
         public void AddLesson(Lesson lesson)
         {
-            LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
+            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
             _studentAttendanceModel.Clear();
             foreach (var a in lesson.Attendances)
             {
                 _studentAttendanceModel.Rows.Add(new object[] { null, a.Student.Id, a.isPresent ? 1 : 0 });
             }
 
-            lesson.Id = lessonsRepository.AddLesson(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
+            lesson.Id = lessonsRepository.AddLessonAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
         }
 
         public List<Lesson> GetLessonsAttendancesByGroup(Group group)
         {
-            LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
+            LessonsAttendancesRepository lessonsRepository = new LessonsRepository(ConnectionString);
             List<LessonDTO> lessonsDTO = lessonsRepository.GetLessonsAttendancesByGroup(group.Id);
 
             Lessons = ConvertLessonsDTOToLessons(lessonsDTO);
@@ -47,20 +46,20 @@ namespace EJournalBLL.Services
 
         public void UpdateLessonAttendances(Lesson lesson)
         {
-            LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
+            LessonsAttendancesRepository lessonsRepository = new LessonsRepository(ConnectionString);
             _studentAttendanceModel.Clear();
             foreach (var a in lesson.Attendances)
             {
                 _studentAttendanceModel.Rows.Add(new object[] { lesson.Id, a.Student.Id, a.isPresent });
             }
 
-            lessonsRepository.UpdateLessonAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
+            lessonsRepository.UpdateLessonsAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
         }
 
         public void DeleteLesson(Lesson lesson)
         {
-            LessonsRepository lessonsRepository = new LessonsRepository(ConnectionString);
-            lessonsRepository.DeleteLesson(lesson.Id);
+            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
+            lessonsRepository.DeleteLessonAndAttendances(lesson.Id);
         }
 
         private List<Lesson> ConvertLessonsDTOToLessons(List<LessonDTO> lessonsDTO)
