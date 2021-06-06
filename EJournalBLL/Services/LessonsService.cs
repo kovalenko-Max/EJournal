@@ -9,11 +9,11 @@ namespace EJournalBLL.Services
     public class LessonsService
     {
         private DataTable _studentAttendanceModel;
+
         public List<Lesson> Lessons { get; set; }
 
         public LessonsService(string connectionString)
         {
-            ConnectionString = connectionString;
             Lessons = new List<Lesson>();
             _studentAttendanceModel = new DataTable();
             _studentAttendanceModel.Columns.Add("LessonsIds");
@@ -35,7 +35,7 @@ namespace EJournalBLL.Services
 
         public List<Lesson> GetLessonsAttendancesByGroup(Group group)
         {
-            LessonsAttendancesRepository lessonsRepository = new LessonsRepository(ConnectionString);
+            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
             List<LessonDTO> lessonsDTO = lessonsRepository.GetLessonsAttendancesByGroup(group.Id);
 
             Lessons = ConvertLessonsDTOToLessons(lessonsDTO);
@@ -46,8 +46,9 @@ namespace EJournalBLL.Services
 
         public void UpdateLessonAttendances(Lesson lesson)
         {
-            LessonsAttendancesRepository lessonsRepository = new LessonsRepository(ConnectionString);
+            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
             _studentAttendanceModel.Clear();
+
             foreach (var a in lesson.Attendances)
             {
                 _studentAttendanceModel.Rows.Add(new object[] { lesson.Id, a.Student.Id, a.isPresent });

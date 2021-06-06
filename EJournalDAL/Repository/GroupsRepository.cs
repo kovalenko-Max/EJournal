@@ -4,23 +4,23 @@ using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
-
+using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
     public class GroupsRepository
     {
-        public string ConnectionString;
+        private string _connectionString;
 
-        public GroupsRepository(string connectionString)
+        public GroupsRepository()
         {
-            ConnectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
         public GroupDTO AddGroup(GroupDTO groupDTO)
         {
             string command = "exec AddGroup @Name, @IdCourse";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 groupDTO.Id = db.Query<int>(command, new { groupDTO.Name, groupDTO.IdCourse }).First();
             }
@@ -31,7 +31,7 @@ namespace EJournalDAL.Repository
         public void DeleteGroup(GroupDTO groupDTO)
         {
             string command = "exec DeleteGroup @Id";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { groupDTO.Id });
             }
@@ -41,7 +41,7 @@ namespace EJournalDAL.Repository
         {
             string command = "exec GetAllGroups";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 groupsDTO = db.Query<GroupDTO,CourseDTO, GroupDTO>(command,
                     (group, course) =>
@@ -54,12 +54,12 @@ namespace EJournalDAL.Repository
 
             return groupsDTO;
         }
-        public List<GroupDTO> GetAllGroupsDTOWithCourse()
+        public List<GroupDTO> GetAllGroupsWithCourses()
         {
-            string command = "exec GroupsWithCources";
+            string command = "exec GetAllGroupsWithCourses";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();
 
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Query<CourseDTO, GroupDTO, List<GroupDTO>>(command,
                        (course, group) =>
@@ -83,11 +83,11 @@ namespace EJournalDAL.Repository
         }
 
 
-        public GroupDTO GetGroupDTO(int id)
+        public GroupDTO GetGroup(int id)
         {
             string command = "exec GetGroup @Id";
             GroupDTO groupDTO = null;
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 groupDTO = db.Query<GroupDTO>(command, new { id }).FirstOrDefault();
             }
@@ -95,10 +95,10 @@ namespace EJournalDAL.Repository
             return groupDTO;
         }
 
-        public void UpdateGroupDTO(GroupDTO groupDTO)
+        public void UpdateGroup(GroupDTO groupDTO)
         {
             string command = "exec UpdateGroup @Id, @Name, @IdCourse";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { groupDTO.Id, groupDTO.Name, groupDTO.IdCourse });
             }

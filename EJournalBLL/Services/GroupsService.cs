@@ -28,7 +28,7 @@ namespace EJournalBLL.Services
 
         public void AddGroupToDB(Group group)
         {
-            GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
+            GroupsRepository groupsRepository = new GroupsRepository();
             GroupDTO groupDTO = new GroupDTO();
             groupDTO.Name = group.Name;
             groupDTO.IdCourse = group.Course.Id;
@@ -38,18 +38,18 @@ namespace EJournalBLL.Services
 
         public void UpdateGroupInDB(Group group)
         {
-            GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
+            GroupsRepository groupsRepository = new GroupsRepository();
             GroupDTO groupDTO = new GroupDTO();
             groupDTO.Id = group.Id;
             groupDTO.Name = group.Name;
             groupDTO.IdCourse = group.Course.Id;
             groupDTO.IsFinish = group.IsFinish ? 1 : 0;
-            groupsRepository.UpdateGroupDTO(groupDTO);
+            groupsRepository.UpdateGroup(groupDTO);
         }
 
         private List<Group> GetAllGroupsFromDB()
         {
-            GroupsRepository groupsRepository = new GroupsRepository(ConnectionString);
+            GroupsRepository groupsRepository = new GroupsRepository();
             List<GroupDTO> groupDTOs = groupsRepository.GetAllGroups();
 
             return ObjectMapper.Mapper.Map<List<Group>>(groupDTOs);
