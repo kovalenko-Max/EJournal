@@ -40,6 +40,20 @@ namespace EJournalDAL.Repository
 
         }
 
+        public List<StudentDTO> GetStudentsNotAreInProjectGroup(int idProjectGroup)
+        {
+
+            List<StudentDTO> students = new List<StudentDTO>();
+            string connectionQuery = $"exec GetListStudentsNotInTheConcreeteProjectGroup @idProjectGroup";
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                students = db.Query<StudentDTO>(connectionQuery, new { idProjectGroup }).ToList();
+            }
+            return students;
+
+        }
+
         public StudentDTO GetOne(int id)
         {
             StudentDTO student = new StudentDTO();

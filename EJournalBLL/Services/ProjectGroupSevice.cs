@@ -8,6 +8,7 @@ namespace EJournalBLL
     public class ProjectGroupSevice
     {
         public ProjectGroupRepository ProjectGroupRepository { get; set; }
+        //public List<Student> students { get; set; }
      
         public ProjectGroupSevice()
         {
@@ -21,7 +22,7 @@ namespace EJournalBLL
             projectGroupInput.Id = ProjectGroupRepository.Create(projectGroup);
             return projectGroupInput.Id;
         }
-        public void Update(ProjectGroupDTO projectGroupInput)
+        public void Update(ProjectGroup projectGroupInput)
         {
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
             ProjectGroupRepository.Update(projectGroup);

@@ -173,8 +173,17 @@
     <Build Include="dbo\Stored Procedures\UpdateGroup.sql" />
     <Build Include="dbo\User Defined Types\LessonsIds.sql" />
     <Build Include="dbo\Stored Procedures\AddStudentToProjectGroup.sql" />
-    <Build Include="dbo\Stored Procedures\AddCommentToEachStudentFromProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\CreateStudentComments.sql" />
     <Build Include="dbo\Stored Procedures\DeleteStudentFromProjectGroup.sql" />
+    <Build Include="dbo\Tables\CommentsType.sql" />
+    <Build Include="dbo\Stored Procedures\AddCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllCommentTypes.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\GetCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\GetListStudentsNotInTheConcreeteProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\Test.sql" />
+    <Build Include="dbo\User Defined Types\StudentsComment.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

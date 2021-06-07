@@ -55,5 +55,13 @@ namespace EJournalBLL
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
+
+        public List<Student> GetStudentsNotAreInProjectGroups(int IdProjectGroup)
+        {
+            List<StudentDTO> StudentsDTO = StudentsRepository.GetStudentsNotAreInProjectGroup
+                (IdProjectGroup);
+            List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
+            return students;
+        }
     }
 }

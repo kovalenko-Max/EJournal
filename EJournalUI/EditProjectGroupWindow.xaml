@@ -53,7 +53,7 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Center" Height="30" Width="100" Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,1" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Center" Width="100" Grid.Row="3" Margin="0,19,0,1" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
         </Grid>
     </Grid>
 </Window>

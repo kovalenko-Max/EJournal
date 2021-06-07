@@ -42,11 +42,11 @@ namespace EJournalUI
             PrintProjectGroupStudentsFromDB();
         }
 
-
+       
         public void PrintAllStudentsFromDB()
         {
             AllStudentsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetAllStudent())
+            foreach (Student student in _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id))
             {
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += StudentCardMouseLeftButtonDown;
@@ -99,6 +99,11 @@ namespace EJournalUI
             if (ProjectGroupTextBox.Text != string.Empty)
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
+                _projectGroupServices.Update(ProjectGroup);
+                AllGroupsWindow allGroupsWindow = new AllGroupsWindow();
+                allGroupsWindow.PrintAllProjectGroupsFromDB(ProjectGroup.IdProject);
+                allGroupsWindow.PrintStudentsFromProjectGroup(ProjectGroup);
+
             }
         }
 
@@ -118,9 +123,7 @@ namespace EJournalUI
                 AddStudent(projectGroupStudent);
                 ProjectGroup.Students.Add(studentInput);
             }
-            PrintAllStudentsFromDB();
-            PrintProjectGroupStudentsFromDB();
-
+         
         }
 
         private void AddStudent(ProjectGroupStudent projectGroupStudent)
@@ -133,24 +136,7 @@ namespace EJournalUI
             _projectGroupServices.DeleteStudentFromProjectGroup(projectGroupStudent);
         }
 
-        private void ButtonMove_Click(object sender, RoutedEventArgs e)
-        {
 
-            if (StudentCard != null)
-            {
-                if (AllStudentsWrapPanel.Children.Contains(StudentCard))
-                {
-                    TeamStudentsWrapPanel.Children.Add(StudentCard);
-                    AllStudentsWrapPanel.Children.Remove(StudentCard);
-                    ProjectGroup.Students.Add(StudentCard.Student);
-                }
-                else if (TeamStudentsWrapPanel.Children.Contains(StudentCard))
-                {
-                    AllStudentsWrapPanel.Children.Add(StudentCard);
-                    TeamStudentsWrapPanel.Children.Remove(StudentCard);
-                    ProjectGroup.Students.Remove(StudentCard.Student);
-                }
-            }
-        }
+
     }
 }

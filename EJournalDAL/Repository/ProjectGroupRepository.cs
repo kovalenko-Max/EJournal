@@ -22,10 +22,10 @@ namespace EJournalDAL.Repository
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 string connectionQuery = "exec AddProjectGroup @Name, @IdProject";
-                int? projectGroupId = db.Query<int>(connectionQuery, projectGroup).FirstOrDefault();
+                int projectGroupId = db.Query<int>(connectionQuery, projectGroup).FirstOrDefault();
                 projectGroup.Id = projectGroupId;
             }
-            return projectGroup.Id.Value;
+            return projectGroup.Id;
         }
 
         public void Delete(int id)
@@ -40,7 +40,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec UpdateProject @Id,  @IdProject";
+                string connectionQuery = "exec UpdateProjectGroup @Id, @Name, @IdProject";
                 db.Execute(connectionQuery, projectGroup);
             }
         }
