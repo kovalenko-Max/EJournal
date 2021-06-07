@@ -44,7 +44,7 @@
                     </ScrollViewer>
                 </Grid>
                 <Grid Grid.Column="1" Background="Gray">
-                    <Button x:Name="ButtonMove" Content="Move" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="50" Click="ButtonMove_Click"/>
+                    <Button x:Name="ButtonMove" Content="Move" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="50"/>
                 </Grid>
                 <Grid Grid.Column="2" ShowGridLines="True" Background="LightGreen">
                     <ScrollViewer Grid.Row="2">

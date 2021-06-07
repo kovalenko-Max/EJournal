@@ -11,6 +11,7 @@ namespace EJournalDAL.Models.BaseModels
         public string Comment { get; set; }
         public int IdCommentType { get; set; }
         public bool IsDelete { get; set; }
-        
+        public List<StudentDTO> Students { get; set; }
+
     }
 }

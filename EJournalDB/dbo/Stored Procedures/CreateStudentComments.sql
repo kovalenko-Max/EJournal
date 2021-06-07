@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[CreateStudentComments]
     @IdCommentType INT,
-	@StudentCommentVarible as [dbo].[StudentsComment] READONLY,
-    @Comment nvarchar(255)
+    @Comment nvarchar(255),
+	@StudentCommentVarible as [dbo].[StudentsComment] READONLY
 AS
 	DECLARE @IdComment INT
 	DECLARE @StudentsComment as [dbo].[StudentsComment]
@@ -18,3 +18,5 @@ AS
 	InSERT INTO [dbo].StudentsComments(IdStudent, IdComment)
  Select IdStudent, IdComment
  from @StudentsComment
+
+ return @IdComment
