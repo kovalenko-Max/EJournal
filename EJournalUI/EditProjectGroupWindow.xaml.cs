@@ -27,6 +27,7 @@ namespace EJournalUI
         private ProjectGroupSevice _projectGroupServices;
         public ProjectGroup ProjectGroup { get; set; }
         //pub Action PrintStudents ();
+        public List<Student> studentsList;
 
         public StudentCard StudentCard;
 
@@ -38,15 +39,16 @@ namespace EJournalUI
             _projectGroupServices = new ProjectGroupSevice();
             ProjectGroup = projectGroup;
             ProjectGroupTextBox.Text = projectGroup.Name;
-            PrintAllStudentsFromDB();
-            PrintProjectGroupStudentsFromDB();
+            studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
+            PrintAllStudents();
+            PrintProjectGroupStudents();
         }
 
        
-        public void PrintAllStudentsFromDB()
+        public void PrintAllStudents()
         {
             AllStudentsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id))
+            foreach (Student student in studentsList)
             {
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += StudentCardMouseLeftButtonDown;
@@ -54,10 +56,10 @@ namespace EJournalUI
             }
         }
 
-        public void PrintProjectGroupStudentsFromDB()
+        public void PrintProjectGroupStudents()
         {
             TeamStudentsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetStudentsFromProjectGroups(ProjectGroup.Id))
+            foreach (Student student in ProjectGroup.Students)
             {
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += StudentCardMouseLeftButtonDown;
@@ -68,7 +70,7 @@ namespace EJournalUI
         public void SelectStudentCard(StudentCard studentCard)
         {
             HighlightSelectedStudentCard(studentCard);
-            AddOrRemoveStudentFromProjectTeam(studentCard.Student);
+            AddOrRemoveStudentFromProjectGroup(studentCard.Student);
         }
 
         private void StudentCardMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -100,43 +102,23 @@ namespace EJournalUI
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
                 _projectGroupServices.Update(ProjectGroup);
-                AllGroupsWindow allGroupsWindow = new AllGroupsWindow();
-                allGroupsWindow.PrintAllProjectGroupsFromDB(ProjectGroup.IdProject);
-                allGroupsWindow.PrintStudentsFromProjectGroup(ProjectGroup);
 
             }
         }
 
-        private void AddOrRemoveStudentFromProjectTeam(Student studentInput)
+        private void AddOrRemoveStudentFromProjectGroup(Student studentInput)
         {
             TeamStudentsWrapPanel.Children.Clear();
-            ProjectGroupStudent projectGroupStudent = new ProjectGroupStudent
-            { IdStudent = studentInput.Id, IdProjectGroup = ProjectGroup.Id };
-
             if (ProjectGroup.Students.Contains(studentInput))
             {
-                DeleteStudent(projectGroupStudent);
+                studentsList.Add(studentInput);
                 ProjectGroup.Students.Remove(studentInput);
             }
             else
             {
-                AddStudent(projectGroupStudent);
+                studentsList.Remove(studentInput);
                 ProjectGroup.Students.Add(studentInput);
             }
-         
         }
-
-        private void AddStudent(ProjectGroupStudent projectGroupStudent)
-        {
-            _projectGroupServices.AddStudentToProjectGroup(projectGroupStudent);
-        }
-
-        private void DeleteStudent(ProjectGroupStudent projectGroupStudent)
-        {
-            _projectGroupServices.DeleteStudentFromProjectGroup(projectGroupStudent);
-        }
-
-
-
     }
 }

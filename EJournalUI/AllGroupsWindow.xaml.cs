@@ -41,8 +41,8 @@ namespace EJournalUI
             _projectServices = new ProjectService();
             _projectGroupServices = new ProjectGroupSevice();
             //PrintAllGroupsFromDB();
-            PrintAllStudentsFromDB();
-            PrintAllProjectsFromDB();
+            //PrintAllStudentsFromDB();
+            //PrintAllProjectsFromDB();
         }
 
         public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
@@ -85,8 +85,18 @@ namespace EJournalUI
 
 
         }
+        private void Button_EditProjectGroup_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedProjectGroupCard != null)
+            {
+                ProjectGroup projectGroup = SelectedProjectGroupCard.ProjectGroup;
+                EditProjectGroupWindow groupWindow = new EditProjectGroupWindow(projectGroup);
+                groupWindow.Show();
 
-        public void Button_DeleteTeam_Click(object sender, RoutedEventArgs e)
+            }
+        }
+
+        public void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedProjectGroupCard != null)
             {
@@ -100,6 +110,8 @@ namespace EJournalUI
         {
             HighlightSelectedProjectGroup(projectGroupCard);
             PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup);
+            Button_DeleteProjectGroup.IsEnabled = true;
+            Button_DeleteProjectGroup.IsEnabled = true;
         }
 
         private void HighlightSelectedProjectGroup(ProjectGroupCard projectGroupCard)
@@ -125,13 +137,6 @@ namespace EJournalUI
             }
         }
 
-        private void Button_EditProjectGroup_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-
         public void PrintAllProjectsFromDB()
         {
             ProjectsWrapPanel.Children.Clear();
@@ -144,7 +149,6 @@ namespace EJournalUI
         }
 
      
-
         private void Button_CreateProject_Click(object sender, RoutedEventArgs e)
         {
             EditProjectWindow addProjectWindow = new EditProjectWindow();
@@ -174,6 +178,8 @@ namespace EJournalUI
             ProjectNameTextBox.Text = projectCard.Project.Name;
             ProjectDescriptionTextBox.Text = projectCard.Project.Description;
             PrintAllProjectGroupsFromDB(projectCard.Project.Id);
+            EditProjectButton.IsEnabled = true;
+            DeleteProjectButton.IsEnabled = true;
         }
 
         private void HighlightSelectedProject(ProjectCard projectCard)
@@ -216,11 +222,6 @@ namespace EJournalUI
                     SelectProjectCard(SelectedProjectCard);
                 }
             }
-        }
-
-        private void GetTeamsByProject()
-        {
-
         }
 
         public void PrintAllGroupsFromDB()
@@ -349,8 +350,6 @@ namespace EJournalUI
             }
         }
 
-
-
         private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
         {
             foreach (var c in AttendancesStackPanel.Children)
@@ -362,13 +361,6 @@ namespace EJournalUI
                     lessonsLogic.UpdateLessonAttendances(ac.Lesson);
                 }
             }
-        }
-
-        private void Button_EditTeam_Click(object sender, RoutedEventArgs e)
-        {
-            ProjectGroup projectGroup = SelectedProjectGroupCard.ProjectGroup;
-            EditProjectGroupWindow groupWindow = new EditProjectGroupWindow(projectGroup);
-            groupWindow.Show();
         }
     }
 }
