@@ -28,12 +28,14 @@ namespace EJournalBLL.Models
             Git = git;
             City = city;
             AgreementNumber = agreementNumber;
+            Comments = new List<Comments>();
         }
 
         public Student(string name, string surname)
         {
             Name = name;
             Surname = surname;
+            Comments = new List<Comments>();
         }
 
         public Student(StudentDTO studentDTO)
@@ -45,22 +47,9 @@ namespace EJournalBLL.Models
             Git = studentDTO.Git;
             City = studentDTO.City;
             AgreementNumber = studentDTO.AgreementNumber;
+            Comments = new List<Comments>();
         }
-        public override bool Equals(object obj)
-        {
-            bool equal = false;
 
-            Student student = obj as Student;
-
-            if (student != null && Id == student.Id && Name == student.Name && Surname == student.Surname
-                && Email == student.Email && Phone == student.Phone && Git == student.Git
-                && City == student.City && Ranking == student.Ranking && AgreementNumber == student.AgreementNumber
-                && IsDelete == student.IsDelete )
-            {
-                equal = Comments.SequenceEqual(student.Comments);
-            }
-            return equal;
-        }
         public override string ToString()
         {
             return $"{Name} {Surname}";
@@ -68,6 +57,23 @@ namespace EJournalBLL.Models
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return true;
+            //return obj is Student student &&
+            //       Id == student.Id &&
+            //       Name == student.Name &&
+            //       Surname == student.Surname &&
+            //       Email == student.Email &&
+            //       Phone == student.Phone &&
+            //       Git == student.Git &&
+            //       City == student.City &&
+            //       Ranking == student.Ranking &&
+            //       AgreementNumber == student.AgreementNumber &&
+            //       IsDelete == student.IsDelete &&
+            //       EqualityComparer<List<Comments>>.Default.Equals(Comments, student.Comments);
         }
     }
 }

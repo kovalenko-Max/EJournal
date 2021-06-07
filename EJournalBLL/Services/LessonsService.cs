@@ -10,11 +10,14 @@ namespace EJournalBLL.Services
     {
         private DataTable _studentAttendanceModel;
 
+        public ILessonsAttendancesRepository LessonsAttendancesRepository { get; set; }
         public List<Lesson> Lessons { get; set; }
 
-        public LessonsService(string connectionString)
+        public LessonsService(ILessonsAttendancesRepository lessonsAttendancesRepository)
         {
+            LessonsAttendancesRepository = lessonsAttendancesRepository;
             Lessons = new List<Lesson>();
+
             _studentAttendanceModel = new DataTable();
             _studentAttendanceModel.Columns.Add("LessonsIds");
             _studentAttendanceModel.Columns.Add("StudentId");
@@ -23,20 +26,18 @@ namespace EJournalBLL.Services
 
         public void AddLesson(Lesson lesson)
         {
-            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
             _studentAttendanceModel.Clear();
             foreach (var a in lesson.Attendances)
             {
                 _studentAttendanceModel.Rows.Add(new object[] { null, a.Student.Id, a.isPresent ? 1 : 0 });
             }
 
-            lesson.Id = lessonsRepository.AddLessonAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
+            lesson.Id = LessonsAttendancesRepository.AddLessonAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
         }
 
         public List<Lesson> GetLessonsAttendancesByGroup(Group group)
         {
-            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
-            List<LessonDTO> lessonsDTO = lessonsRepository.GetLessonsAttendancesByGroup(group.Id);
+            List<LessonDTO> lessonsDTO = LessonsAttendancesRepository.GetLessonsAttendancesByGroup(group.Id);
 
             Lessons = ConvertLessonsDTOToLessons(lessonsDTO);
             group.Lessons = Lessons;
@@ -46,7 +47,6 @@ namespace EJournalBLL.Services
 
         public void UpdateLessonAttendances(Lesson lesson)
         {
-            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
             _studentAttendanceModel.Clear();
 
             foreach (var a in lesson.Attendances)
@@ -54,13 +54,12 @@ namespace EJournalBLL.Services
                 _studentAttendanceModel.Rows.Add(new object[] { lesson.Id, a.Student.Id, a.isPresent });
             }
 
-            lessonsRepository.UpdateLessonsAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
+            LessonsAttendancesRepository.UpdateLessonsAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
         }
 
         public void DeleteLesson(Lesson lesson)
         {
-            LessonsAttendancesRepository lessonsRepository = new LessonsAttendancesRepository();
-            lessonsRepository.DeleteLessonAndAttendances(lesson.Id);
+            LessonsAttendancesRepository.DeleteLessonAndAttendances(lesson.Id);
         }
 
         private List<Lesson> ConvertLessonsDTOToLessons(List<LessonDTO> lessonsDTO)
@@ -71,6 +70,8 @@ namespace EJournalBLL.Services
             {
                 lessons.Add(new Lesson(lessonDTO)
                 {
+                    Id = lessonDTO.Id,
+                    IdGroup = lessonDTO.IdGroup,
                     Attendances = Attendances.GetAttendancesFromStudentAttendanceDTO(lessonDTO.StudentAttendanceDTO)
                 });
             }

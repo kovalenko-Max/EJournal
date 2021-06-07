@@ -1,6 +1,7 @@
 ﻿using EJournalDAL.Models.BaseModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EJournalBLL.Models
 {
@@ -25,6 +26,23 @@ namespace EJournalBLL.Models
             Id = lessonDTO.Id;
             Topic = lessonDTO.Topic;
             DateLesson = lessonDTO.DateLesson;
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool isEquals = obj is Lesson lesson &&
+                   Id == lesson.Id &&
+                   Topic == lesson.Topic &&
+                   DateLesson == lesson.DateLesson &&
+                   IdGroup == lesson.IdGroup &&
+                   Attendances.SequenceEqual(lesson.Attendances);
+
+            return isEquals;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Topic, DateLesson, IdGroup, Attendances);
         }
     }
 }

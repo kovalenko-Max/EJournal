@@ -1,4 +1,5 @@
 ﻿using EJournalDAL.Models;
+using System;
 using System.Collections.Generic;
 
 namespace EJournalBLL.Models
@@ -30,6 +31,18 @@ namespace EJournalBLL.Models
             }
 
             return attendances;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Attendances attendances &&
+                   EqualityComparer<Student>.Default.Equals(Student, attendances.Student) &&
+                   isPresent == attendances.isPresent;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Student, isPresent);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using EJournalBLL.Models;
 using EJournalBLL.Services;
+using EJournalDAL.Repository;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
@@ -83,7 +84,7 @@ namespace EJournalUI
         {
             if (MessageBox.Show("Are you sure want to delete item?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
                 lessonsLogic.DeleteLesson(Lesson);
                 ((StackPanel)(this.Parent)).Children.Remove(this);
             }

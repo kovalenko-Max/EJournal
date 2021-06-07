@@ -39,8 +39,7 @@ namespace EJournalBLL
                 cfg.CreateMap<CommentDTO, Comments>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                     .ForMember(dto => dto.Comment, map => map.MapFrom(source => source.Comment))
-                    .ForMember(dto => dto.CommentType, map => map.MapFrom(source => source.CommentType))
-                    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
+                    .ForMember(dto => dto.CommentType, map => map.MapFrom(source => source.CommentType));
 
                 cfg.CreateMap<ProjectDTO, Project>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))

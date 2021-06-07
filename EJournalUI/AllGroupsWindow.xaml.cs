@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System;
 using System.Collections.Generic;
 using EJournalBLL;
+using EJournalDAL.Repository;
 
 namespace EJournalUI
 {
@@ -212,7 +213,7 @@ namespace EJournalUI
             HighlightSelected(groupCard);
             GroupNameTextBox.Text = groupCard.Group.Name;
             GroupCourseTextBox.Text = groupCard.Group.Course.Name;
-            StudentsCountTextBox.Text = groupCard.Group.StudentsCount.ToString(); ;
+            StudentsCountTextBox.Text = groupCard.Group.StudentsCount.ToString();
             GetStudentsByGroup();
             GetLessonsAttendancesByGroup();
         }
@@ -302,7 +303,7 @@ namespace EJournalUI
         private void GetLessonsAttendancesByGroup()
         {
             AttendancesStackPanel.Children.Clear();
-            LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+            LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
             List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
 
             lessons.Sort((x, y) =>
@@ -331,7 +332,7 @@ namespace EJournalUI
                 if (c is AttendancesCard)
                 {
                     AttendancesCard ac = (AttendancesCard)c;
-                    LessonsService lessonsLogic = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                    LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
                     ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
                     ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
                     lessonsLogic.UpdateLessonAttendances(ac.Lesson);
@@ -353,7 +354,7 @@ namespace EJournalUI
 
                 AttendancesCard attendancesCard = new AttendancesCard(lesson);
                 AttendancesStackPanel.Children.Insert(0, attendancesCard);
-                LessonsService lessonsService = new LessonsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
+                LessonsService lessonsService = new LessonsService(new LessonsAttendancesRepository());
                 lessonsService.AddLesson(lesson);
             }
         }
