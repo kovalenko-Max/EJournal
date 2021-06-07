@@ -17,8 +17,7 @@ namespace EJournalUI
     {
         private StudentService _studentServices;
         public StudentCard StudentCard;
-        public delegate void StudentDeletedEventHandler(object sender, EventArgs e);
-        public event StudentDeletedEventHandler StudentDeleted;
+        public event EventHandler StudentDeleted;
         public Student Student { get; set; }
         public StudentWindow(StudentCard studentCard)
         {
@@ -81,14 +80,10 @@ namespace EJournalUI
             {
                 if (MessageBox.Show("Are you sure want to delete item?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    StudentDeletedEventHandler studentDeletedEventHandler = StudentDeleted;
-
-                    if (studentDeletedEventHandler != null)
-                    {
-                        studentDeletedEventHandler(this, new EventArgs());
-                    }
-
                     _studentServices.Delete(StudentCard.Student.Id);
+
+                    StudentDeleted?.Invoke(this, new EventArgs());
+
                     this.Close();
                 }
             }

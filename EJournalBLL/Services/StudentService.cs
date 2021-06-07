@@ -24,8 +24,7 @@ namespace EJournalBLL
         public List<Student> GetAllStudent()
         {
             List<StudentDTO> studentDTO = StudentsRepository.GetAll();
-            List<Student> student = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
-            return student;
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
         }
         public void AddStudent(Student studentInput)
         {

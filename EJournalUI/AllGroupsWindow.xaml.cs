@@ -146,7 +146,6 @@ namespace EJournalUI
             foreach (Student student in _studentServices.GetAllStudent())
             {
                 StudentCard studentCard = new StudentCard(student);
-                studentCard.MouseUp += StudentCard_MouseLeftButtonDown;
                 AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
@@ -308,21 +307,6 @@ namespace EJournalUI
             }
         }
 
-        private void StudentCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is StudentCard)
-            {
-                if (e.ClickCount == 1)
-                {
-                    StudentCard studentCard = (StudentCard)sender;
-                    SelectedStudentCard = studentCard;
-                    StudentWindow studentWindow = new StudentWindow(studentCard);
-                    studentWindow.StudentDeleted += StudentWindow_DataChanged;
-                    studentWindow.Show();
-                }
-            }
-        }
-
         private void GetStudentsByGroup()
         {
             GroupStudentsWrapPanel.Children.Clear();
@@ -370,11 +354,6 @@ namespace EJournalUI
                     lessonsLogic.UpdateLessonAttendances(ac.Lesson);
                 }
             }
-        }
-
-        private void StudentWindow_DataChanged(object sender, EventArgs e)
-        {
-            AllStudentCardsWrapPanel.Children.Remove(SelectedStudentCard);
         }
     }
 }
