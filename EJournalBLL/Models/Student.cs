@@ -19,7 +19,7 @@ namespace EJournalBLL.Models
         public bool IsDelete { get; set; }
         public List<Comments> Comments { get; set; }
 
-        public Student(string name, string surname, string email, string phone,string git, string city, string agreementNumber)
+        public Student(string name, string surname, string email, string phone, string git, string city, string agreementNumber)
         {
             Name = name;
             Surname = surname;
@@ -61,19 +61,28 @@ namespace EJournalBLL.Models
 
         public override bool Equals(object obj)
         {
-            return true;
-            //return obj is Student student &&
-            //       Id == student.Id &&
-            //       Name == student.Name &&
-            //       Surname == student.Surname &&
-            //       Email == student.Email &&
-            //       Phone == student.Phone &&
-            //       Git == student.Git &&
-            //       City == student.City &&
-            //       Ranking == student.Ranking &&
-            //       AgreementNumber == student.AgreementNumber &&
-            //       IsDelete == student.IsDelete &&
-            //       EqualityComparer<List<Comments>>.Default.Equals(Comments, student.Comments);
+            bool isEquals = false;
+            if (obj is Student)
+            {
+                Student student = (Student)obj;
+                isEquals = Id == student.Id &&
+                   Name == student.Name &&
+                   Surname == student.Surname &&
+                   Email == student.Email &&
+                   Phone == student.Phone &&
+                   Git == student.Git &&
+                   City == student.City &&
+                   Ranking == student.Ranking &&
+                   AgreementNumber == student.AgreementNumber &&
+                   IsDelete == student.IsDelete;
+
+                if ((Comments.Count == student.Comments.Count) && Comments.Count != 0)
+                {
+                    EqualityComparer<List<Comments>>.Default.Equals(Comments, student.Comments);
+                }
+            }
+
+            return isEquals;
         }
     }
 }

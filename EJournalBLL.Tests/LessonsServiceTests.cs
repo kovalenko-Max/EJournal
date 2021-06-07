@@ -82,7 +82,7 @@ namespace EJournalBLL.Tests
             lessonDTO.Id = iDLesson;
             lessonDTO.IdGroup = iDGroup;
             lessonDTO.IsDelete = false;
-            lessonDTO.Topic = "Test topic 1";
+            lessonDTO.Topic = $"Test topic {iDLesson}";
             lessonDTO.StudentAttendanceDTO = new List<StudentAttendanceDTO>();
 
             while (StartStudentId <= studentsCount)
@@ -123,7 +123,7 @@ namespace EJournalBLL.Tests
 
         private Student GetStudent(int idStudent)
         {
-            return new Student($"Name {idStudent}", $"Surname {idStudent}");
+            return new Student($"Name {idStudent}", $"Surname {idStudent}") { Id = idStudent};
         }
 
         private Course GetCourseMock(int iDcourse)
