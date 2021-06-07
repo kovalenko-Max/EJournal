@@ -306,9 +306,6 @@ namespace EJournalUI
             LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
             List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
 
-            lessons.Sort((x, y) =>
-            DateTime.Compare(y.DateLesson, x.DateLesson));
-
             foreach (var lesson in lessons)
             {
                 AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));

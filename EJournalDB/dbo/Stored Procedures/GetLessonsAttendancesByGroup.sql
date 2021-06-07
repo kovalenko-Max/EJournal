@@ -14,4 +14,4 @@ L.[Id]
   left join [EJournalDB].[dbo].Attendances A on A.IdLesson = L.Id
   left join [EJournalDB].[dbo].Students S on A.IdStudent = S.Id
   where G.Id = @GroupId
-  order by L.Id
+  order by L.DateLesson desc
