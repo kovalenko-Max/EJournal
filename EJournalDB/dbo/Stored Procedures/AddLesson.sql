@@ -9,6 +9,6 @@ INSERT INTO [dbo].[Lessons] (
 	)
 VALUES (
 	@Topic
-	,@DateLesson
+	,Cast(@DateLesson as Datetime)
 	,@IdGroup
 	)

@@ -5,5 +5,4 @@ SELECT [Id]
 	,[DateLesson]
 	,[IdGroup]
 FROM [dbo].[Lessons]
-WHERE IsDelete = 0
-	AND Id = @Id
+WHERE Id = @Id

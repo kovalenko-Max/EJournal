@@ -9,8 +9,11 @@ SELECT G.Id
 FROM [dbo].[Groups] G
 left join [dbo].Courses C on C.Id = G.IdCourse
 LEFT JOIN [dbo].[GroupStudents] GS ON G.Id = GS.IdGroup
-left JOIN [dbo].Students S ON S.Id = GS.IdStudents
-where G.IsDelete = 0
+left JOIN 
+( select S.Id from [dbo].Students S
+where S.IsDelete = 0
+) S on S.Id = GS.IdStudents
+where G.IsDelete = 0 
 GROUP BY G.id
 	,G.Name
 	,C.Id

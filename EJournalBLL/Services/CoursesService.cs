@@ -28,7 +28,7 @@ namespace EJournalBLL.Services
         {
             CoursesRepository coursesRepository = new CoursesRepository(ConnectionString);
             
-            return ObjectMapper.Mapper.Map<List<Course>>(coursesRepository.GetAllCoursesDTO());
+            return ObjectMapper.Mapper.Map<List<Course>>(coursesRepository.GetAllCourses());
         }
     }
 }
