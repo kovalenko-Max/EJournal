@@ -11,6 +11,13 @@ namespace EJournalBLL.Models
         public int Id { get; set; }
         public string Comment { get; set; }
         public string CommentType { get; set; }
-        public bool IsDelete { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Comments comments &&
+                   Id == comments.Id &&
+                   Comment == comments.Comment &&
+                   CommentType == comments.CommentType;
+        }
     }
 }

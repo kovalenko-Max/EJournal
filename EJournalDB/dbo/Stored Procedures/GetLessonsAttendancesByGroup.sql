@@ -9,9 +9,9 @@ L.[Id]
 ,S.Name
 ,S.Surname
 ,A.IsPresence
-  FROM[dbo].[Lessons] L 
-  join [dbo].[Groups] G on G.Id = L.IdGroup
-  join [dbo].Attendances A on A.IdLesson = L.Id
-  join [dbo].Students S on A.IdStudent = S.Id
+  FROM [EJournalDB].[dbo].[Lessons] L 
+  join [EJournalDB].[dbo].[Groups] G on G.Id = L.IdGroup
+  left join [EJournalDB].[dbo].Attendances A on A.IdLesson = L.Id
+  left join [EJournalDB].[dbo].Students S on A.IdStudent = S.Id
   where G.Id = @GroupId
   order by L.Id
