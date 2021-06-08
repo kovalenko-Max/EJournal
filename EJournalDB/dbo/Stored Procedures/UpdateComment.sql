@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateComment] @Id INT
 	,@Comments NVARCHAR(255)
-	,@IDCommentType INT
+	,@IdCommentType INT
 AS
 UPDATE [dbo].[Comments]
 SET Comment = @Comments

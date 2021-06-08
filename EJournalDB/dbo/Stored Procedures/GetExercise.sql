@@ -4,7 +4,6 @@ SELECT [Id]
 	,[Description]
 	,[Deadline]
 	,[IdGroup]
-	,[ExerciseType]
 FROM [dbo].[Exercises]
 WHERE Id = @Id
 	AND IsDelete = 0

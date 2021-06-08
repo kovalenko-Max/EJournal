@@ -66,6 +66,7 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="dbo\User Defined Types\" />
+    <Folder Include="dbo\Stored Procedures\Courses" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Students.sql" />
@@ -102,12 +103,9 @@
     <Build Include="dbo\Stored Procedures\GetStudentByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetLessonsByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetLessonsAttendancesByGroup.sql" />
-    <Build Include="dbo\Stored Procedures\AddCourse.sql" />
     <Build Include="dbo\Stored Procedures\AddGroup.sql" />
     <Build Include="dbo\Stored Procedures\AddHomeWork.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
-    <Build Include="dbo\Stored Procedures\CreateAttendence.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteCourse.sql" />
     <Build Include="dbo\Stored Procedures\GetAllComments.sql" />
     <Build Include="dbo\Stored Procedures\DeleteGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetAllProjectGroups.sql" />
@@ -117,14 +115,11 @@
     <Build Include="dbo\Stored Procedures\GetListStudentsInOneProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\GroupsWithCources.sql" />
     <Build Include="dbo\Stored Procedures\GetAllGroupsWithCourses.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllCourses.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetAllGroups.sql" />
     <Build Include="dbo\Stored Procedures\GetAllStudents.sql" />
-    <Build Include="dbo\Stored Procedures\GetCourse.sql" />
     <Build Include="dbo\Stored Procedures\GetGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetStudent.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateCourse.sql" />
     <Build Include="dbo\Stored Procedures\UpdateGroups.sql" />
     <Build Include="dbo\Stored Procedures\UpdateHomeWork.sql" />
     <Build Include="dbo\Stored Procedures\AddExercises.sql" />
@@ -171,6 +166,13 @@
     <Build Include="dbo\User Defined Types\StudentAttendance.sql" />
     <Build Include="dbo\Stored Procedures\AddStudentsAttendance.sql" />
     <Build Include="dbo\Stored Procedures\AddStudentToProjectGroup.sql" />
+    <Build Include="dbo\Tables\CommentType.sql" />
+    <Build Include="dbo\Stored Procedures\Courses\AddCourse.sql" />
+    <Build Include="dbo\Stored Procedures\Courses\DeleteCourse.sql" />
+    <Build Include="dbo\Stored Procedures\Courses\GetAllCourses.sql" />
+    <Build Include="dbo\Stored Procedures\Courses\GetCourse.sql" />
+    <Build Include="dbo\Stored Procedures\Courses\UpdateCourse.sql" />
+    <Build Include="dbo\Stored Procedures\Courses\CountGroupsByCourse.sql" />
     <Build Include="dbo\Stored Procedures\CreateStudentComments.sql" />
     <Build Include="dbo\Stored Procedures\DeleteStudentFromProjectGroup.sql" />
     <Build Include="dbo\Tables\CommentsType.sql" />

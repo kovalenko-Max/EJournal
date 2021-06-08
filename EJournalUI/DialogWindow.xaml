@@ -1,0 +1,20 @@
+﻿<Window x:Class="EJournalUI.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EJournalUI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Dialog Window" Height="156" Width="250">
+    <StackPanel>
+        <TextBlock x:Name="TitleTextBlock"/>
+        <TextBox x:Name="NameTextBox"/>
+        <TextBlock x:Name="ComboBoxNameTextBlock" Text="Course:"/>
+        <ComboBox x:Name="CourseComboBox" IsEditable="True"/>
+        <DockPanel >
+            <Button DockPanel.Dock="Right" x:Name="AcceptButton" Content="Аccept" Width="90" Height="20" HorizontalAlignment="Right" Margin="2,2,2,2"/>
+            <Button DockPanel.Dock="Right" x:Name="DeleteButton" Content="Delete" Width="60" Height="20" HorizontalAlignment="Right" Background="White" Margin="2,2,2,2" IsEnabled="False" Visibility="Hidden"/>
+        </DockPanel>
+    </StackPanel>
+</Window>

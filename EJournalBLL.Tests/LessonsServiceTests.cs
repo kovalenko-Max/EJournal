@@ -49,20 +49,20 @@ namespace EJournalBLL.Tests
             int startLessonId = 1;
             int LessonsCount = 4;
 
-            Group group = new Group($"Test group {iDGroup}", GetCourseMock(idCourse));
+            Group group = new Group($"Test group {iDGroup}", BLLMock.GetCourseMock(idCourse));
             group.Id = iDGroup;
 
             List<LessonDTO> lessonsDTO = new List<LessonDTO>();
 
             for (int i = startLessonId; i <= LessonsCount; ++i)
             {
-                lessonsDTO.Add(GetLessonDTOMock(i, iDGroup, startStudentsId, studentsCount));
+                lessonsDTO.Add(BLLMock.GetLessonDTOMock(i, iDGroup, startStudentsId, studentsCount));
             }
 
             List<Lesson> lessons = new List<Lesson>();
             for (int i = startLessonId; i <= LessonsCount; ++i)
             {
-                lessons.Add(GetLesson(i, iDGroup, startStudentsId, studentsCount));
+                lessons.Add(BLLMock.GetLesson(i, iDGroup, startStudentsId, studentsCount));
             }
 
             yield return new object[]
@@ -71,66 +71,53 @@ namespace EJournalBLL.Tests
                 lessonsDTO,
                 lessons
             };
-        }
 
-        private LessonDTO GetLessonDTOMock(int iDLesson, int iDGroup, int StartStudentId, int studentsCount)
-        {
-            const int isPresence = 1;
-            const int isNotPresence = 0;
-            LessonDTO lessonDTO = new LessonDTO();
-            lessonDTO.DateLesson = new DateTime(2021, 05, 21);
-            lessonDTO.Id = iDLesson;
-            lessonDTO.IdGroup = iDGroup;
-            lessonDTO.IsDelete = false;
-            lessonDTO.Topic = $"Test topic {iDLesson}";
-            lessonDTO.StudentAttendanceDTO = new List<StudentAttendanceDTO>();
+            iDGroup = 9;
+            startStudentsId = 25;
+            studentsCount = 1;
+            idCourse = 4;
 
-            while (StartStudentId <= studentsCount)
+            startLessonId = 1;
+            LessonsCount = 4;
+
+            group = new Group($"Test group {iDGroup}", BLLMock.GetCourseMock(idCourse));
+            group.Id = iDGroup;
+
+            lessonsDTO = new List<LessonDTO>();
+
+            for (int i = startLessonId; i <= LessonsCount; ++i)
             {
-                StudentAttendanceDTO studentAttendanceDTO = new StudentAttendanceDTO();
-
-                studentAttendanceDTO.IdLesson = iDLesson;
-                studentAttendanceDTO.IdStudent = StartStudentId;
-                studentAttendanceDTO.IsPresence = 1;
-                studentAttendanceDTO.Name = $"Name {StartStudentId}";
-                studentAttendanceDTO.Surname = $"Surname {StartStudentId}";
-                lessonDTO.StudentAttendanceDTO.Add(studentAttendanceDTO);
-                ++StartStudentId;
+                lessonsDTO.Add(BLLMock.GetLessonDTOMock(i, iDGroup, startStudentsId, studentsCount));
             }
 
-            return lessonDTO;
-        }
-
-        private Lesson GetLesson(int iDLesson, int iDGroup, int StartStudentId, int studentsCount)
-        {
-            Lesson lesson = new Lesson();
-            lesson.DateLesson = new DateTime(2021, 05, 21);
-            lesson.Id = iDLesson;
-            lesson.IdGroup = iDGroup;
-            lesson.Topic = $"Test topic {iDLesson}";
-            lesson.Attendances = new List<Attendances>();
-
-            while (StartStudentId <= studentsCount)
+            lessons = new List<Lesson>();
+            for (int i = startLessonId; i <= LessonsCount; ++i)
             {
-                Attendances attendance = new Attendances(GetStudent(StartStudentId));
-                attendance.isPresent = true;
-                lesson.Attendances.Add(attendance);
-                ++StartStudentId;
+                lessons.Add(BLLMock.GetLesson(i, iDGroup, startStudentsId, studentsCount));
             }
 
-            return lesson;
-        }
-
-        private Student GetStudent(int idStudent)
-        {
-            return new Student($"Name {idStudent}", $"Surname {idStudent}") { Id = idStudent};
-        }
-
-        private Course GetCourseMock(int iDcourse)
-        {
-            return new Course($"Course {iDcourse}")
+            yield return new object[]
             {
-                Id = iDcourse
+                group,
+                lessonsDTO,
+                lessons
+            };
+
+            iDGroup = 99;
+            idCourse = 2;
+
+            group = new Group($"Test group {iDGroup}", BLLMock.GetCourseMock(idCourse));
+            group.Id = iDGroup;
+
+            lessonsDTO = new List<LessonDTO>();
+
+            lessons = new List<Lesson>();
+
+            yield return new object[]
+            {
+                group,
+                lessonsDTO,
+                lessons
             };
         }
     }

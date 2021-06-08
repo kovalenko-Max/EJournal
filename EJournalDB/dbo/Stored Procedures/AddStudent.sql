@@ -27,3 +27,4 @@ VALUES (
 	,@Ranking
 	,@AgreementNumber
 	)
+	SELECT CAST(SCOPE_IDENTITY() AS INT)

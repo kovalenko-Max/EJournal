@@ -10,12 +10,12 @@ namespace EJournalBLL.Services
     {
         private DataTable _studentAttendanceModel;
 
-        public ILessonsAttendancesRepository LessonsAttendancesRepository { get; set; }
+        private ILessonsAttendancesRepository _lessonsAttendancesRepository;
         public List<Lesson> Lessons { get; set; }
 
         public LessonsService(ILessonsAttendancesRepository lessonsAttendancesRepository)
         {
-            LessonsAttendancesRepository = lessonsAttendancesRepository;
+            _lessonsAttendancesRepository = lessonsAttendancesRepository;
             Lessons = new List<Lesson>();
 
             _studentAttendanceModel = new DataTable();
@@ -32,12 +32,12 @@ namespace EJournalBLL.Services
                 _studentAttendanceModel.Rows.Add(new object[] { null, a.Student.Id, a.isPresent ? 1 : 0 });
             }
 
-            lesson.Id = LessonsAttendancesRepository.AddLessonAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
+            lesson.Id = _lessonsAttendancesRepository.AddLessonAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
         }
 
         public List<Lesson> GetLessonsAttendancesByGroup(Group group)
         {
-            List<LessonDTO> lessonsDTO = LessonsAttendancesRepository.GetLessonsAttendancesByGroup(group.Id);
+            List<LessonDTO> lessonsDTO = _lessonsAttendancesRepository.GetLessonsAttendancesByGroup(group.Id);
 
             Lessons = ConvertLessonsDTOToLessons(lessonsDTO);
             group.Lessons = Lessons;
@@ -54,12 +54,12 @@ namespace EJournalBLL.Services
                 _studentAttendanceModel.Rows.Add(new object[] { lesson.Id, a.Student.Id, a.isPresent });
             }
 
-            LessonsAttendancesRepository.UpdateLessonsAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
+            _lessonsAttendancesRepository.UpdateLessonsAttendances(ObjectMapper.Mapper.Map<LessonDTO>(lesson), _studentAttendanceModel);
         }
 
         public void DeleteLesson(Lesson lesson)
         {
-            LessonsAttendancesRepository.DeleteLessonAndAttendances(lesson.Id);
+            _lessonsAttendancesRepository.DeleteLessonAndAttendances(lesson.Id);
         }
 
         private List<Lesson> ConvertLessonsDTOToLessons(List<LessonDTO> lessonsDTO)

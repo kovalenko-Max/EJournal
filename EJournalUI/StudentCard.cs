@@ -54,6 +54,23 @@ namespace EJournalUI
 
             MouseEnter += StudentCard_MouseEnter;
             MouseLeave += StudentCard_MouseLeave;
+            MouseLeftButtonDown += StudentCard_MouseLeftDoubleClick;
+        }
+
+        private void StudentCard_MouseLeftDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                StudentCard studentCard = (StudentCard)sender;
+                StudentWindow studentWindow = new StudentWindow(studentCard);
+                studentWindow.StudentDeleted += StudentWindow_StudentDeleted;
+                studentWindow.Show();
+            }
+        }
+
+        private void StudentWindow_StudentDeleted(object sender, System.EventArgs e)
+        {
+            ((WrapPanel)(this.Parent)).Children.Remove(this);
         }
 
         public void UpdateFields()
