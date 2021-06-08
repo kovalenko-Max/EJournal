@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="EditProjectGroupWindow" Height="750" Width="800">
+        Title="EditProjectGroupWindow" Height="770" Width="800">
     <Grid>
-        <Grid ShowGridLines="True" Background="Gray">
+        <Grid ShowGridLines="True" Background="AliceBlue">
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" MinHeight="200" />
-                <RowDefinition Height="50" MinHeight="75"/>
+                <RowDefinition Height="220" MinHeight="200" />
+                <RowDefinition Height="30" MinHeight="75"/>
                 <RowDefinition Height="350" MinHeight="400"/>
                 <RowDefinition Height="50" MinHeight="50"/>
             </Grid.RowDefinitions>
             <Canvas Grid.Row="0">
                 <TextBox MaxLength="30" Name="ProjectGroupTextBox" Text="JWT Team" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30"/>
-                <TextBox MaxLength="30" Name="TeamCommentsTextBox" Text="JWT is the best team ever" TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Canvas.Left="240" Canvas.Top="100" Width="320" Height="88"/>
+                <TextBox MaxLength="30" Name="TeamCommentsTextBox" Text="" TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Canvas.Left="240" Canvas.Top="100" Width="320" Height="88"/>
                 <TextBlock Text="Comments" FontSize="18" FontWeight="DemiBold" Canvas.Left="356" Canvas.Top="71" />
             </Canvas>
-            <Grid Grid.Row="1" Background="IndianRed">
+            <Grid Grid.Row="1" Background="LightSlateGray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="400"/>
                     <ColumnDefinition Width="400"/>
@@ -37,23 +37,23 @@
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="370"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" ShowGridLines="True" Background="CornflowerBlue">
+                <Grid Grid.Column="0" ShowGridLines="True" Background="LightGray">
                     <ScrollViewer Grid.Row="2">
                         <WrapPanel x:Name="TeamStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid Grid.Column="1" Background="Gray">
+                <Grid Grid.Column="1" Background="AliceBlue">
                     <!--<Button x:Name="ButtonMove" Content="Move" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="50" Click="ButtonMove_Click"/>-->
                 </Grid>
-                <Grid Grid.Column="2" ShowGridLines="True" Background="LightGreen">
+                <Grid Grid.Column="2" ShowGridLines="True" Background="LightGray">
                     <ScrollViewer Grid.Row="2">
                         <WrapPanel x:Name="AllStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Center" Width="100" Grid.Row="3" Margin="0,19,0,1" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonSave" Background="LightGreen" Content="Save" HorizontalAlignment="Center" Width="100" Grid.Row="3" Margin="0,19,0,1" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
         </Grid>
     </Grid>
 </Window>

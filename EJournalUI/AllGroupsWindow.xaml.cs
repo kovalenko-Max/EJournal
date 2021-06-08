@@ -24,8 +24,6 @@ namespace EJournalUI
         public ProjectCard SelectedProjectCard;
         public ProjectGroupCard SelectedProjectGroupCard;
 
-
-
         public AllGroupsWindow()
         {
             InitializeComponent();
@@ -85,18 +83,22 @@ namespace EJournalUI
                 Hide();
                 groupWindow.ShowDialog();
                 PrintAllProjectGroupsFromDB(projectGroup.Id);
+                SelectProjectCard(SelectedProjectCard);
                 Show();
-
             }
         }
 
         public void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedProjectGroupCard != null)
+            if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
-                SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
-                ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
+
+                if (SelectedProjectGroupCard != null)
+                {
+                    _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
+                    SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
+                    ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
+                }
             }
         }
 
@@ -158,11 +160,14 @@ namespace EJournalUI
 
         private void Button_DeleteProject_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedProjectCard != null)
+            if (MessageBox.Show("Delete this project?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
-                SelectedProjectCard.Project.IsDelete = true;
-                ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
+                if (SelectedProjectCard != null)
+                {
+                    _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
+                    SelectedProjectCard.Project.IsDelete = true;
+                    ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
+                }
             }
         }
 

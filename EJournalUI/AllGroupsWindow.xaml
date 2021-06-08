@@ -112,8 +112,6 @@
                                 <TextBlock x:Name="ProjectNameTextBox" Text="Name" Grid.Column="0" Margin="90,1,0,54"/>
                                 <TextBlock Text="Project description: " Grid.Column="0" Margin="2,25,612,30"/>
                                 <TextBlock x:Name="ProjectDescriptionTextBox"  Text="Description" TextWrapping="Wrap" Grid.Column="0" Margin="128,25,0,10"/>
-                                <!--<TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="2,50,115,5"/>
-                                <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>-->
 
                                 <Button x:Name="EditProjectButton" Content="Edit project" Height="25" Width="70" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,115,0" VerticalAlignment="Top" Click="Button_EditProject_Click" IsEnabled="False"/>
                                 <Button x:Name="DeleteProjectButton" Content="Delete project" Background="IndianRed" Height="25" Width="85" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,17,0" VerticalAlignment="Top" Click="Button_DeleteProject_Click"/>
@@ -132,15 +130,12 @@
                                             <Button x:Name="Button_DeleteProjectGroup" Content="Delete team" Background="IndianRed" Width="75" Height="25" Margin="2,2,2,2" Click="Button_DeleteProjectGroup_Click" RenderTransformOrigin="2,1.276" Canvas.Left="305" Canvas.Top="4" IsEnabled="False"/>
                                         </Canvas>
 
-                                        <!--<TextBlock Text="Team name: " Grid.Column="0" Margin="8,9,833,46"/>
-                                        <TextBlock x:Name="TeamNameTextBox" Text="Name" Grid.Column="0" Margin="96,10,563,45"/>
-                                        <TextBlock Text="Team comments: " Grid.Column="0" Margin="8,38,606,17"/>
-                                        <TextBlock x:Name="TeamCommentsTextBox"  Text="Description" Grid.Column="0" Margin="128,25,0,493"/>-->
-                                        <Grid Grid.Row="1" Background="AntiqueWhite">
+
+                                        <Grid Grid.Row="1" Background="LightGray">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="400"/>
                                                 <ColumnDefinition Width="30"/>
-                                                <ColumnDefinition Width="500"/>
+                                                <ColumnDefinition Width="600"/>
                                             </Grid.ColumnDefinitions>
                                             <ScrollViewer Grid.Row="1">
                                                 <WrapPanel x:Name="ProjectTeamsWrapPanel">
