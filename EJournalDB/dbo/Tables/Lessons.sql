@@ -3,7 +3,6 @@
     [IdGroup]    INT            NOT NULL,
     [DateLesson] DATETIME       NOT NULL,
     [Topic]      NVARCHAR (250) NULL,
-    [IsDelete]   BIT            CONSTRAINT [DF__Lessons__IsDele__239E4DCF] DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_LESSONS] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

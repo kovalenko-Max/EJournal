@@ -5,4 +5,3 @@ SELECT [Id]
 	,[DateLesson]
 	,[IdGroup]
 FROM [dbo].[Lessons]
-WHERE IsDelete = 0

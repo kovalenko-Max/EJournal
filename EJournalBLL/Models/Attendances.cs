@@ -1,4 +1,5 @@
 ﻿using EJournalDAL.Models;
+using System;
 using System.Collections.Generic;
 
 namespace EJournalBLL.Models
@@ -6,13 +7,17 @@ namespace EJournalBLL.Models
     public class Attendances
     {
         public Student Student { get; set; }
-        public string StudentName { get; set; }
         public bool isPresent { get; set; }
+
+        public Attendances(Student student)
+        {
+            Student = student;
+            isPresent = true;
+        }
 
         public Attendances(StudentAttendanceDTO studentAttendanceDTO)
         {
             Student = new Student(studentAttendanceDTO.Name, studentAttendanceDTO.Surname);
-            StudentName = Student.ToString();
             Student.Id = studentAttendanceDTO.IdStudent;
             isPresent = studentAttendanceDTO.IsPresence == 1;
         }
@@ -26,6 +31,18 @@ namespace EJournalBLL.Models
             }
 
             return attendances;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Attendances attendances &&
+                   EqualityComparer<Student>.Default.Equals(Student, attendances.Student) &&
+                   isPresent == attendances.isPresent;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Student, isPresent);
         }
     }
 }

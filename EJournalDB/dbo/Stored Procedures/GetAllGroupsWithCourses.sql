@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GroupsWithCources]
+﻿CREATE PROCEDURE [dbo].[GetAllGroupsWithCourses]
 AS
 SELECT c.Id
 	,c.Name

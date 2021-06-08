@@ -17,7 +17,7 @@ namespace EJournalDAL.Repository
             ConnectionString = connectionString;
         }
 
-        public CourseDTO AddCourseDTO(CourseDTO courseDTO)
+        public CourseDTO AddCourse(CourseDTO courseDTO)
         {
             string command = "exec AddCourse @Name";
             using (IDbConnection db = new SqlConnection(ConnectionString))
@@ -28,7 +28,7 @@ namespace EJournalDAL.Repository
             return courseDTO;
         }
 
-        public void DeleteCourseDTO(CourseDTO courseDTO)
+        public void DeleteCourse(CourseDTO courseDTO)
         {
             string command = "exec DeleteCourse @Id";
             using (IDbConnection db = new SqlConnection(ConnectionString))
@@ -37,7 +37,7 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public List<CourseDTO> GetAllCoursesDTO()
+        public List<CourseDTO> GetAllCourses()
         {
             string command = "exec GetAllCourses";
             List<CourseDTO> courseDTO = new List<CourseDTO>();
@@ -49,7 +49,7 @@ namespace EJournalDAL.Repository
             return courseDTO;
         }
 
-        public CourseDTO GetCourseDTO(int id)
+        public CourseDTO GetCourse(int id)
         {
             string command = "exec GetCourse @Id";
             CourseDTO courseDTO = null;
@@ -61,7 +61,7 @@ namespace EJournalDAL.Repository
             return courseDTO;
         }
 
-        public void UpdateCourseDTO(CourseDTO courseDTO)
+        public void UpdateCourse(CourseDTO courseDTO)
         {
             string command = "exec UpdateGroup @Id, @Name";
             using (IDbConnection db = new SqlConnection(ConnectionString))
