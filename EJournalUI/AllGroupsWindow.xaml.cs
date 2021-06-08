@@ -20,7 +20,7 @@ namespace EJournalUI
 
         public ProjectGroup ProjectGroup { get; set; }
         public GroupCard SelectedGroupCard;
-        public StudentCard StudentCard;
+        public StudentCard SelectedStudentCard;
         public ProjectCard SelectedProjectCard;
         public ProjectGroupCard SelectedProjectGroupCard;
 
@@ -33,6 +33,7 @@ namespace EJournalUI
             _groupStorage = new GroupsService(ConnectionString);
             _studentServices = new StudentService(ConnectionString);
             _projectServices = new ProjectService();
+            _projectGroupServices = new ProjectGroupSevice();
             PrintAllGroupsFromDB();
             PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
@@ -121,6 +122,16 @@ namespace EJournalUI
                 ProjectCard projectCard = new ProjectCard(project);
                 projectCard.MouseDown += ProjectCard_MouseLeftButtonDown;
                 ProjectsWrapPanel.Children.Add(projectCard);
+            }
+        }
+
+        public void PrintAllStudentsFromDB()
+        {
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
+            {
+                StudentCard studentCard = new StudentCard(student);
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
 
@@ -309,16 +320,6 @@ namespace EJournalUI
             foreach (var lesson in lessons)
             {
                 AttendancesStackPanel.Children.Add(new AttendancesCard(lesson));
-            }
-        }
-
-        public void PrintAllStudentsFromDB()
-        {
-            AllStudentCardsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetAllStudent())
-            {
-                StudentCard studentCard = new StudentCard(student);
-                AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
 
