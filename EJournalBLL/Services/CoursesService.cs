@@ -7,7 +7,7 @@ namespace EJournalBLL.Services
 {
     public class CoursesService
     {
-        ICoursesRepository _coursesRepository;
+        private ICoursesRepository _coursesRepository;
         public List<Course> Courses
         {
             get
@@ -20,16 +20,14 @@ namespace EJournalBLL.Services
             }
         }
 
-        public CoursesService()
+        public CoursesService(ICoursesRepository coursesRepository)
         {
-            _coursesRepository = new CoursesRepository();
+            _coursesRepository = coursesRepository;
         }
 
         public List<Course> GetAllCourses()
         {
-            CoursesRepository coursesRepository = new CoursesRepository();
-            
-            return ObjectMapper.Mapper.Map<List<Course>>(coursesRepository.GetAllCourses());
+            return ObjectMapper.Mapper.Map<List<Course>>(_coursesRepository.GetAllCourses());
         }
 
         public void AddCourse(Course course)
@@ -47,7 +45,7 @@ namespace EJournalBLL.Services
             _coursesRepository.DeleteCourse(course.Id);
         }
 
-        public bool check(Course course)
+        public bool IsGroupsContainsThisCourse(Course course)
         {
             return (_coursesRepository.CountGroupsByCourse(course.Id) > 0);
         }

@@ -2,6 +2,7 @@
 using EJournalBLL.Models;
 using System.Configuration;
 using System.Windows;
+using EJournalDAL.Repository;
 
 namespace EJournalUI
 {
@@ -16,7 +17,7 @@ namespace EJournalUI
         {
             InitializeComponent();
 
-            _coursesService = new CoursesService();
+            _coursesService = new CoursesService(new CoursesRepository());
             CourseComboBox.ItemsSource = _coursesService.Courses;
             ConfigWindow(dialogWindowType);
         }
@@ -65,7 +66,7 @@ namespace EJournalUI
             if (CourseComboBox.SelectedItem != null)
             {
                 Course course = (Course)CourseComboBox.SelectedItem;
-                if (!_coursesService.check(course))
+                if (!_coursesService.IsGroupsContainsThisCourse(course))
                 {
                     _coursesService.DeleteCourse(course);
                     this.DialogResult = true;

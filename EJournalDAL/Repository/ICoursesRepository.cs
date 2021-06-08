@@ -13,7 +13,6 @@ namespace EJournalDAL.Repository
         public CourseDTO AddCourse(CourseDTO courseDTO);
         public void UpdateCourse(CourseDTO courseDTO);
         public void DeleteCourse(int Id);
-
         public int CountGroupsByCourse(int Id);
     }
 }
