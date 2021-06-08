@@ -15,6 +15,9 @@ AS
 
 	Set @IdComment= SCOPE_IDENTITY()
 
+	Update @StudentsComment 
+	Set IdComment=@IdComment
+
 	InSERT INTO [dbo].StudentsComments(IdStudent, IdComment)
  Select IdStudent, IdComment
  from @StudentsComment

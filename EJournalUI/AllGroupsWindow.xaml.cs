@@ -41,8 +41,8 @@ namespace EJournalUI
             _projectServices = new ProjectService();
             _projectGroupServices = new ProjectGroupSevice();
             //PrintAllGroupsFromDB();
-            //PrintAllStudentsFromDB();
-            //PrintAllProjectsFromDB();
+            PrintAllStudentsFromDB();
+            PrintAllProjectsFromDB();
         }
 
         public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
@@ -91,7 +91,10 @@ namespace EJournalUI
             {
                 ProjectGroup projectGroup = SelectedProjectGroupCard.ProjectGroup;
                 EditProjectGroupWindow groupWindow = new EditProjectGroupWindow(projectGroup);
-                groupWindow.Show();
+                Hide();
+                groupWindow.ShowDialog();
+                PrintAllProjectGroupsFromDB(projectGroup.Id);
+                Show();
 
             }
         }

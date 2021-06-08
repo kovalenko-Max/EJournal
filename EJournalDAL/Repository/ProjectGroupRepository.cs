@@ -36,13 +36,21 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery, new { id });
             }
         }
-        public void Update(ProjectGroupDTO projectGroup)
+        public void Update(ProjectGroupDTO projectGroup, DataTable dt)
         {
+
+            string command = "UpdateProjectGroup";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", projectGroup.Id);
+            parameters.Add("@Name", projectGroup.Name);
+            parameters.Add("@Students", dt.AsTableValuedParameter("[dbo].[StudentsIds]"));
+
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec UpdateProjectGroup @Id, @Name, @IdProject";
-                db.Execute(connectionQuery, projectGroup);
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
+
         }
 
         public List<ProjectGroupDTO> GetAllProjectsGroup(int IdProject)

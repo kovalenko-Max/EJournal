@@ -12,5 +12,6 @@ namespace EJournalBLL.Models
         public string Comment { get; set; }
         public int IdCommentType { get; set; }
         public bool IsDelete { get; set; }
+        public List<Student> Students { get; set; }
     }
 }

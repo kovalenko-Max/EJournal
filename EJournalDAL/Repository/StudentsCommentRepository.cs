@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EJournalDAL.Repository
 {
-    class StudentsCommentRepository
+    public class StudentsCommentRepository
     {
         private string _connectionString;
 
@@ -21,21 +21,21 @@ namespace EJournalDAL.Repository
             _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
-        public int AddLessonAttendances(CommentDTO commentDTO, DataTable dt)
+        public void AddCommentsToStudents(CommentDTO commentDTO, DataTable dt)
         {
             string command = "CreateStudentComments";
 
             var parameters = new DynamicParameters();
             parameters.Add("@IdCommentType", commentDTO.IdCommentType);
             parameters.Add("@Comment", commentDTO.Comment);
-            parameters.Add("@@StudentCommentVarible", dt.AsTableValuedParameter("[dbo].[StudentsComment]"));
+            parameters.Add("@StudentCommentVarible", dt.AsTableValuedParameter("[dbo].[StudentsComment]"));
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
 
-            return parameters.Get<int>("@IdComment");
+            
         }
     }
 }

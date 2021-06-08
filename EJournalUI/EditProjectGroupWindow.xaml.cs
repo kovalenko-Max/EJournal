@@ -1,5 +1,6 @@
 ﻿using EJournalBLL;
 using EJournalBLL.Models;
+using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,8 +26,9 @@ namespace EJournalUI
         private StudentService _studentServices;
 
         private ProjectGroupSevice _projectGroupServices;
+        private CommentService _commentService;
         public ProjectGroup ProjectGroup { get; set; }
-        //pub Action PrintStudents ();
+        //public Action PrintStudents ();
         public List<Student> studentsList;
 
         public StudentCard StudentCard;
@@ -37,6 +39,7 @@ namespace EJournalUI
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService(ConnectionString);
             _projectGroupServices = new ProjectGroupSevice();
+            _commentService = new CommentService();
             ProjectGroup = projectGroup;
             ProjectGroupTextBox.Text = projectGroup.Name;
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
@@ -44,7 +47,7 @@ namespace EJournalUI
             PrintProjectGroupStudents();
         }
 
-       
+
         public void PrintAllStudents()
         {
             AllStudentsWrapPanel.Children.Clear();
@@ -102,7 +105,8 @@ namespace EJournalUI
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
                 _projectGroupServices.Update(ProjectGroup);
-
+                Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, IsDelete = false, Students = ProjectGroup.Students };
+                _commentService.AddCommentsToStudent(comments);
             }
         }
 
@@ -118,7 +122,10 @@ namespace EJournalUI
             {
                 studentsList.Remove(studentInput);
                 ProjectGroup.Students.Add(studentInput);
+
             }
+            PrintAllStudents();
+            PrintProjectGroupStudents();
         }
     }
 }

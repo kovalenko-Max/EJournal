@@ -2,17 +2,21 @@
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
+using System.Data;
 
 namespace EJournalBLL
 {
     public class ProjectGroupSevice
     {
         public ProjectGroupRepository ProjectGroupRepository { get; set; }
-        //public List<Student> students { get; set; }
-     
+        private DataTable _updateProjectGroup;
+
         public ProjectGroupSevice()
         {
             ProjectGroupRepository = new ProjectGroupRepository();
+            _updateProjectGroup = new DataTable();
+            _updateProjectGroup.Columns.Add("IdProjectGroup");
+            _updateProjectGroup.Columns.Add("IdStudent");
         }
 
        
@@ -24,8 +28,14 @@ namespace EJournalBLL
         }
         public void Update(ProjectGroup projectGroupInput)
         {
+            _updateProjectGroup.Clear();
+            foreach (var a in projectGroupInput.Students)
+            {
+                _updateProjectGroup.Rows.Add(new object[] { projectGroupInput.Id, a.Id });
+            }
+
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
-            ProjectGroupRepository.Update(projectGroup);
+            ProjectGroupRepository.Update(projectGroup, _updateProjectGroup);
         }
 
         public void Delete(int Id)

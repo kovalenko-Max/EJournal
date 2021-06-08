@@ -40,7 +40,8 @@ namespace EJournalBLL
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                     .ForMember(dto => dto.Comment, map => map.MapFrom(source => source.Comment))
                     .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType))
-                    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
+                    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete))
+                    .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students));
 
                 cfg.CreateMap<CommentTypeDTO, CommentType>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
@@ -121,6 +122,13 @@ namespace EJournalBLL
                 cfg.CreateMap<CommentType, CommentTypeDTO>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                     .ForMember(dto => dto.Type, map => map.MapFrom(source => source.Type));
+
+                cfg.CreateMap<Comments, CommentDTO>()
+                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                    .ForMember(dto => dto.Comment, map => map.MapFrom(source => source.Comment))
+                    .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType))
+                    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete))
+                    .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students));
 
             });
             return config.CreateMapper();
