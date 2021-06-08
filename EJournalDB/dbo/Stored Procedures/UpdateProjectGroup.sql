@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateProjectGroup] @Id INT
+﻿CREATE PROCEDURE [EJournal].[UpdateProjectGroup] @Id INT
 	,@Name NVARCHAR(100)
 	,@IdProject INT
 AS

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[AddProject] @Name NVARCHAR(50)
+﻿CREATE PROCEDURE [EJournal].[AddProject] @Name NVARCHAR(50)
 	,@Description NVARCHAR(255)
 AS
 INSERT INTO [EJournal].[Projectes] (

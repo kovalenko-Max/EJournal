@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE AddStudentToProjectGroup @IdStudent INT
+﻿CREATE PROCEDURE [EJournal].AddStudentToProjectGroup @IdStudent INT
 	,@IdProjectGroup INT
 AS
 INSERT INTO [EJournal].StudetsProjectGroup (

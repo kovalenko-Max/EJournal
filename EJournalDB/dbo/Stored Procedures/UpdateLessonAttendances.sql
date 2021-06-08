@@ -1,5 +1,5 @@
-﻿CREATE PROCEDURE [dbo].[UpdateLessonAttendances]
-	@StudentAttendance [dbo].[StudentAttendance] READONLY,
+﻿CREATE PROCEDURE [EJournal].[UpdateLessonAttendances]
+	@StudentAttendance [EJournal].[StudentAttendance] READONLY,
     @Id int,
     @Topic nvarchar(250),
     @DateLesson datetime

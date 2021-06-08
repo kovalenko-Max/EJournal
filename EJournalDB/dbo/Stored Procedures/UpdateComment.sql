@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateComment] @Id INT
+﻿CREATE PROCEDURE [EJournal].[UpdateComment] @Id INT
 	,@Comments NVARCHAR(255)
 	,@IdCommentType INT
 AS

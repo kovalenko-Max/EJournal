@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[DeleteGroup] @Id INT
+﻿CREATE PROCEDURE [EJournal].[DeleteGroup] @Id INT
 AS
 UPDATE [EJournal].[Groups]
 SET IsDelete = 1

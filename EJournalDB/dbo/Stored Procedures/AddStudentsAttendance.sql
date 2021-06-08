@@ -1,12 +1,12 @@
-﻿CREATE PROCEDURE [dbo].[AddStudentsAttendance]
+﻿CREATE PROCEDURE [EJournal].[AddStudentsAttendance]
 	@Topic nvarchar(250),
 	@DateLesson datetime, 
 	@IdGroup int,
-	@StudentAttendanceVariable as [dbo].[StudentAttendance] READONLY
+	@StudentAttendanceVariable as [EJournal].[StudentAttendance] READONLY
 
 AS
 	declare @IdLesson int
-	declare @StudentAttendance as [dbo].[StudentAttendance]
+	declare @StudentAttendance as [EJournal].[StudentAttendance]
 
 	insert into @StudentAttendance
 	select *

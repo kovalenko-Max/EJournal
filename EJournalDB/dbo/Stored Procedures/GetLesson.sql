@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[GetLesson] @Id INT
+CREATE PROCEDURE [EJournal].[GetLesson] @Id INT
 AS
 SELECT [Id]
 	,[Topic]

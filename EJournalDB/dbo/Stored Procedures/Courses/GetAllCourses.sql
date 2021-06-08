@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetAllCourses]
+﻿CREATE PROCEDURE [EJournal].[GetAllCourses]
 AS
 SELECT [Id]
 	,[Name]

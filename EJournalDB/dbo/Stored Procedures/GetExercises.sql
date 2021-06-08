@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetExercises
+﻿CREATE PROCEDURE [EJournal].GetExercises
 @Id int
    AS
    SELECT  [Id]

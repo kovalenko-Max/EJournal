@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetAllGroupsWithCourses]
+﻿CREATE PROCEDURE [EJournal].[GetAllGroupsWithCourses]
 AS
 SELECT c.Id
 	,c.Name

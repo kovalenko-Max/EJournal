@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetAllProjectGroups] @IdProject INT
+﻿CREATE PROCEDURE [EJournal].[GetAllProjectGroups] @IdProject INT
 AS
 SELECT pg.[Id]
 	,pg.[Name]

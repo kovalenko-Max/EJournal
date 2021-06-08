@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetProject] @Id INT
+﻿CREATE PROCEDURE [EJournal].[GetProject] @Id INT
 AS
 SELECT [Name]
 	,[Description]

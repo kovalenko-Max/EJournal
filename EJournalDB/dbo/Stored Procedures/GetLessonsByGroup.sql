@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetLessonsByGroup]
+﻿CREATE PROCEDURE [EJournal].[GetLessonsByGroup]
 	@groupId int
 AS
 	SELECT 

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetComment] @Id INT
+﻿CREATE PROCEDURE [EJournal].[GetComment] @Id INT
 AS
 SELECT Id
 	,Comment

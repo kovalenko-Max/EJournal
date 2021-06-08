@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateCourse] @Id INT
+﻿CREATE PROCEDURE [EJournal].[UpdateCourse] @Id INT
 	,@Name NVARCHAR(100)
 AS
 UPDATE [EJournal].[Courses]

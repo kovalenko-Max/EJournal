@@ -100,11 +100,9 @@
     <Build Include="dbo\Stored Procedures\GetGroupAndStudentsInIt.sql" />
     <Build Include="dbo\Stored Procedures\GetLessonsByGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetLessonsAttendancesByGroup.sql" />
-    <Build Include="dbo\Stored Procedures\AddHomeWork.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetAllComments.sql" />
     <Build Include="dbo\Stored Procedures\GetAllProjectGroups.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteHomeWork.sql" />
     <Build Include="dbo\Stored Procedures\GetExercise.sql" />
     <Build Include="dbo\Stored Procedures\DeleteStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetListStudentsInOneProjectGroup.sql" />

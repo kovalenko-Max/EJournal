@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE UpdateExercise @Id INT
+﻿CREATE PROCEDURE [EJournal].UpdateExercise @Id INT
 	,@Description NVARCHAR(255)
 	,@Deadline DATETIME
 	,@IdGroup INT

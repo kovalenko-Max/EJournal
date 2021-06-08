@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetLessons]
+﻿CREATE PROCEDURE [EJournal].[GetLessons]
 AS
 SELECT [Id]
 	,[Topic]

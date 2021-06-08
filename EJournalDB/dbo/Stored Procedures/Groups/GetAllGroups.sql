@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetAllGroups]
+﻿CREATE PROCEDURE [EJournal].[GetAllGroups]
 AS
 SELECT G.Id
 	,G.Name

@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[UpdateLesson] @Id INT
+CREATE PROCEDURE [EJournal].[UpdateLesson] @Id INT
 	,@Topic NVARCHAR(250)
 	,@DateLesson DATETIME
 	,@IdGroup INT

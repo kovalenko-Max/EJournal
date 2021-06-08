@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetGroupsAndNumberOfStudentsInThemAndGroupStatus]
+﻿CREATE PROCEDURE [EJournal].[GetGroupsAndNumberOfStudentsInThemAndGroupStatus]
 AS
 SELECT GS.IdGroup
 	,G.Name

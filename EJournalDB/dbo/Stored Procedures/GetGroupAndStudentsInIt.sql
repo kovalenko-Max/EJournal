@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[GetGroupAndStudentsInIt] @IdGroup INT
+CREATE PROCEDURE [EJournal].[GetGroupAndStudentsInIt] @IdGroup INT
 AS
 SELECT [EJournal].[Groups].[Id]
 	,[EJournal].[Students].[Id]

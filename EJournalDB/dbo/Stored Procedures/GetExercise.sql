@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetExercise] @Id INT
+﻿CREATE PROCEDURE [EJournal].[GetExercise] @Id INT
 AS
 SELECT [Id]
 	,[Description]
