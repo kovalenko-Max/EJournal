@@ -28,7 +28,7 @@ namespace EJournalUI
         private ProjectGroupSevice _projectGroupServices;
         private CommentService _commentService;
         public ProjectGroup ProjectGroup { get; set; }
-        //public Action PrintStudents ();
+        public Action PrintStudents;
         public List<Student> studentsList;
 
         public StudentCard StudentCard;
@@ -43,8 +43,9 @@ namespace EJournalUI
             ProjectGroup = projectGroup;
             ProjectGroupTextBox.Text = projectGroup.Name;
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
-            PrintAllStudents();
-            PrintProjectGroupStudents();
+            PrintStudents += PrintAllStudents;
+            PrintStudents += PrintProjectGroupStudents;
+            PrintStudents.Invoke();
         }
 
 
@@ -124,8 +125,7 @@ namespace EJournalUI
                 ProjectGroup.Students.Add(studentInput);
 
             }
-            PrintAllStudents();
-            PrintProjectGroupStudents();
+            PrintStudents.Invoke();
         }
     }
 }
