@@ -105,7 +105,7 @@ namespace EJournalUI
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            EditProjectGroupWindow window = new EditProjectGroupWindow();
+
             if (ProjectGroupTextBox.Text != string.Empty)
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
@@ -116,7 +116,7 @@ namespace EJournalUI
                     _commentService.AddCommentsToStudent(comments);
                 }
 
-                window.Close();
+                ProjectGroupWindow.Close();
             }
         }
 

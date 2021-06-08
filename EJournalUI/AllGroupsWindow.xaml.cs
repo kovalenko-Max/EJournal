@@ -31,7 +31,8 @@ namespace EJournalUI
             _groupStorage = new GroupsService(ConnectionString);
             _studentServices = new StudentService(ConnectionString);
             _projectServices = new ProjectService();
-            PrintAllGroupsFromDB();
+            _projectGroupServices = new ProjectGroupSevice();
+            //PrintAllGroupsFromDB();
             PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
         }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="EditProjectGroupWindow" Height="770" Width="800">
+        Title="EditProjectGroupWindow" Height="770" Width="800"
+        Name="ProjectGroupWindow">
     <Grid>
         <Grid ShowGridLines="True" Background="AliceBlue">
             <Grid.RowDefinitions>

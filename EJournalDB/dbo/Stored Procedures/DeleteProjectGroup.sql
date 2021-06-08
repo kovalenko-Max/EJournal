@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteProjectGroup] @Id INT
 AS
-UPDATE [dbo].[ProjectGroups]
-SET IsDelete = 1
+DELETE [dbo].[ProjectGroups]
 WHERE Id = @Id
