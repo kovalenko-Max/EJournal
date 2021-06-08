@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using EJournalDAL.Repository;
 using EJournalBLL.Models;
+using EJournalDAL.Models.BaseModels;
 
 namespace EJournalBLL.Services
 {
     public class CoursesService
     {
-        public string ConnectionString { get; set; }
+        private ICoursesRepository _coursesRepository;
         public List<Course> Courses
         {
             get
@@ -19,16 +20,34 @@ namespace EJournalBLL.Services
             }
         }
 
-        public CoursesService(string connectionString)
+        public CoursesService(ICoursesRepository coursesRepository)
         {
-            ConnectionString = connectionString;
+            _coursesRepository = coursesRepository;
         }
 
-        private List<Course> GetAllCourses()
+        public List<Course> GetAllCourses()
         {
-            CoursesRepository coursesRepository = new CoursesRepository(ConnectionString);
-            
-            return ObjectMapper.Mapper.Map<List<Course>>(coursesRepository.GetAllCourses());
+            return ObjectMapper.Mapper.Map<List<Course>>(_coursesRepository.GetAllCourses());
+        }
+
+        public void AddCourse(Course course)
+        {
+            course.Id = (_coursesRepository.AddCourse(ObjectMapper.Mapper.Map<CourseDTO>(course))).Id;
+        }
+
+        public void UpdateCourse(Course course)
+        {
+            _coursesRepository.UpdateCourse(ObjectMapper.Mapper.Map<CourseDTO>(course));
+        }
+
+        public void DeleteCourse(Course course)
+        {
+            _coursesRepository.DeleteCourse(course.Id);
+        }
+
+        public bool IsGroupsContainsThisCourse(Course course)
+        {
+            return (_coursesRepository.CountGroupsByCourse(course.Id) > 0);
         }
     }
 }
