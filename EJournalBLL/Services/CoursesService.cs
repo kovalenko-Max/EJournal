@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using EJournalDAL.Repository;
 using EJournalBLL.Models;
+using EJournalDAL.Models.BaseModels;
 
 namespace EJournalBLL.Services
 {
     public class CoursesService
     {
-        public string ConnectionString { get; set; }
         public List<Course> Courses
         {
             get
@@ -19,16 +19,27 @@ namespace EJournalBLL.Services
             }
         }
 
-        public CoursesService(string connectionString)
+        public CoursesService()
         {
-            ConnectionString = connectionString;
         }
 
-        private List<Course> GetAllCourses()
+        public List<Course> GetAllCourses()
         {
-            CoursesRepository coursesRepository = new CoursesRepository(ConnectionString);
+            CoursesRepository coursesRepository = new CoursesRepository();
             
             return ObjectMapper.Mapper.Map<List<Course>>(coursesRepository.GetAllCourses());
+        }
+
+        public void AddCourse(Course course)
+        {
+            CoursesRepository coursesRepository = new CoursesRepository();
+            course.Id = (coursesRepository.AddCourse(ObjectMapper.Mapper.Map<CourseDTO>(course))).Id;
+        }
+
+        public void UpdateCourse(Course course)
+        {
+            CoursesRepository coursesRepository = new CoursesRepository();
+            coursesRepository.UpdateCourse(ObjectMapper.Mapper.Map<CourseDTO>(course));
         }
     }
 }

@@ -232,7 +232,7 @@ namespace EJournalUI
 
         private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            EditGroupWindow addGroupWindow = new EditGroupWindow();
+            EditGroupWindow addGroupWindow = new EditGroupWindow(DialogWindowType.AddGroup);
 
             if (addGroupWindow.ShowDialog() == true)
             {
@@ -245,13 +245,28 @@ namespace EJournalUI
             }
         }
 
+        private void Button_CreateCourse_Click(object sender, RoutedEventArgs e)
+        {
+            EditGroupWindow createCourse = new EditGroupWindow(DialogWindowType.AddCourse);
+            createCourse.ShowDialog();
+        }
+        private void Button_EditCourses_Click(object sender, RoutedEventArgs e)
+        {
+            EditGroupWindow editCourseWindow = new EditGroupWindow(DialogWindowType.EditCourse);
+
+            if (editCourseWindow.ShowDialog() == true)
+            {
+                PrintAllGroupsFromDB();
+            }
+        }
+
         private void Button_EditGroup_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedGroupCard != null)
             {
-                EditGroupWindow editGroupWindow = new EditGroupWindow();
+                EditGroupWindow editGroupWindow = new EditGroupWindow(DialogWindowType.EditGroup);
                 editGroupWindow.Group = SelectedGroupCard.Group;
-                editGroupWindow.GroupNameTextBox.Text = editGroupWindow.Group.Name;
+                editGroupWindow.NameTextBox.Text = editGroupWindow.Group.Name;
                 int index = editGroupWindow.CourseComboBox.Items.IndexOf(SelectedGroupCard.Group.Course);
                 editGroupWindow.CourseComboBox.SelectedItem = editGroupWindow.CourseComboBox.Items[index];
 

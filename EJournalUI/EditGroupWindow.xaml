@@ -8,10 +8,10 @@
         WindowStartupLocation="CenterScreen"
         Title="Group Editor" Height="156" Width="250">
     <StackPanel>
-        <TextBlock Text="Group name:"/>
-        <TextBox x:Name="GroupNameTextBox"/>
-        <TextBlock Text="Course:"/>
+        <TextBlock x:Name="TitleTextBlock"/>
+        <TextBox x:Name="NameTextBox"/>
+        <TextBlock x:Name="ComboBoxNameTextBlock" Text="Course:"/>
         <ComboBox x:Name="CourseComboBox" IsEditable="True"/>
-        <Button x:Name="AcceptButton" Content="Аccept" Width="86" Margin="0,10,0,0" HorizontalAlignment="Center" Click="Button_Accept_Click"/>
+        <Button x:Name="AcceptButton" Content="Аccept" Width="86" Margin="0,10,0,0" HorizontalAlignment="Center"/>
     </StackPanel>
 </Window>

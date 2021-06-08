@@ -10,19 +10,19 @@ namespace EJournalDAL.Repository
 {
     public class CoursesRepository
     {
-        public string ConnectionString;
+        private string _connectionString;
 
-        public CoursesRepository(string connectionString)
+        public CoursesRepository()
         {
-            ConnectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
         public CourseDTO AddCourse(CourseDTO courseDTO)
         {
             string command = "exec AddCourse @Name";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                courseDTO = db.Query<CourseDTO>(command, new { courseDTO.Name }).FirstOrDefault();
+                courseDTO.Id = db.Query<int>(command, new { courseDTO.Name }).FirstOrDefault();
             }
 
             return courseDTO;
@@ -31,7 +31,7 @@ namespace EJournalDAL.Repository
         public void DeleteCourse(CourseDTO courseDTO)
         {
             string command = "exec DeleteCourse @Id";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { courseDTO.Id });
             }
@@ -41,7 +41,7 @@ namespace EJournalDAL.Repository
         {
             string command = "exec GetAllCourses";
             List<CourseDTO> courseDTO = new List<CourseDTO>();
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 courseDTO = db.Query<CourseDTO>(command).ToList();
             }
@@ -53,7 +53,7 @@ namespace EJournalDAL.Repository
         {
             string command = "exec GetCourse @Id";
             CourseDTO courseDTO = null;
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 courseDTO = db.Query<CourseDTO>(command, new { id }).FirstOrDefault();
             }
@@ -63,8 +63,8 @@ namespace EJournalDAL.Repository
 
         public void UpdateCourse(CourseDTO courseDTO)
         {
-            string command = "exec UpdateGroup @Id, @Name";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            string command = "exec UpdateCourse @Id, @Name";
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { courseDTO.Id, courseDTO.Name });
             }
