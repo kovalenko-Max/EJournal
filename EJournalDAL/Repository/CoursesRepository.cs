@@ -19,7 +19,7 @@ namespace EJournalDAL.Repository
 
         public CourseDTO AddCourse(CourseDTO courseDTO)
         {
-            string command = "exec AddCourse @Name";
+            string command = "exec [EJournal].[AddCourse] @Name";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 courseDTO.Id = db.Query<int>(command, new { courseDTO.Name }).FirstOrDefault();
@@ -30,7 +30,7 @@ namespace EJournalDAL.Repository
 
         public void DeleteCourse(int Id)
         {
-            string command = "exec DeleteCourse @Id";
+            string command = "exec [EJournal].[DeleteCourse] @Id";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { Id });
@@ -39,7 +39,7 @@ namespace EJournalDAL.Repository
 
         public List<CourseDTO> GetAllCourses()
         {
-            string command = "exec GetAllCourses";
+            string command = "exec [EJournal].[GetAllCourses]";
             List<CourseDTO> courseDTO = new List<CourseDTO>();
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -51,7 +51,7 @@ namespace EJournalDAL.Repository
 
         public CourseDTO GetCourse(int id)
         {
-            string command = "exec GetCourse @Id";
+            string command = "exec [EJournal].[GetCourse] @Id";
             CourseDTO courseDTO = null;
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -63,7 +63,7 @@ namespace EJournalDAL.Repository
 
         public void UpdateCourse(CourseDTO courseDTO)
         {
-            string command = "exec UpdateCourse @Id, @Name";
+            string command = "exec [EJournal].[UpdateCourse] @Id, @Name";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { courseDTO.Id, courseDTO.Name });
@@ -73,7 +73,7 @@ namespace EJournalDAL.Repository
         public int CountGroupsByCourse(int Id)
         {
             int count = 0;
-            string command = "exec CountGroupsByCourse @Id";
+            string command = "exec [EJournal].[CountGroupsByCourse] @Id";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
