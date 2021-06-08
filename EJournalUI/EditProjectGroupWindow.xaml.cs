@@ -47,7 +47,10 @@ namespace EJournalUI
             PrintStudents += PrintProjectGroupStudents;
             PrintStudents.Invoke();
         }
+        public EditProjectGroupWindow() 
+        {
 
+        }
 
         public void PrintAllStudents()
         {
@@ -102,12 +105,18 @@ namespace EJournalUI
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            EditProjectGroupWindow window = new EditProjectGroupWindow();
             if (ProjectGroupTextBox.Text != string.Empty)
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
                 _projectGroupServices.Update(ProjectGroup);
-                Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, IsDelete = false, Students = ProjectGroup.Students };
-                _commentService.AddCommentsToStudent(comments);
+                if (TeamCommentsTextBox.Text != string.Empty)
+                {
+                    Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, IsDelete = false, Students = ProjectGroup.Students };
+                    _commentService.AddCommentsToStudent(comments);
+                }
+
+                window.Close();
             }
         }
 
