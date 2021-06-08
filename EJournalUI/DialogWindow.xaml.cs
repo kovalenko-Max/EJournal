@@ -8,15 +8,16 @@ namespace EJournalUI
     /// <summary>
     /// Interaction logic for AddGroupWindow.xaml
     /// </summary>
-    public partial class EditGroupWindow : Window
+    public partial class DialogWindow : Window
     {
         public Group Group;
-        public EditGroupWindow(DialogWindowType dialogWindowType)
+        private CoursesService _coursesService;
+        public DialogWindow(DialogWindowType dialogWindowType)
         {
             InitializeComponent();
 
-            CoursesService coursesService = new CoursesService();
-            CourseComboBox.ItemsSource = coursesService.Courses;
+            _coursesService = new CoursesService();
+            CourseComboBox.ItemsSource = _coursesService.Courses;
             ConfigWindow(dialogWindowType);
         }
 
@@ -45,8 +46,7 @@ namespace EJournalUI
             {
                 Course course = (Course)CourseComboBox.SelectedItem;
                 course.Name = NameTextBox.Text;
-                CoursesService coursesService = new CoursesService();
-                coursesService.UpdateCourse(course);
+                _coursesService.UpdateCourse(course);
                 this.DialogResult = true;
             }
         }
@@ -55,9 +55,25 @@ namespace EJournalUI
         {
             if (NameTextBox.Text != string.Empty)
             {
-                CoursesService coursesService = new CoursesService();
-                coursesService.AddCourse(new EJournalBLL.Models.Course(NameTextBox.Text));
+                _coursesService.AddCourse(new EJournalBLL.Models.Course(NameTextBox.Text));
                 this.DialogResult = true;
+            }
+        }
+
+        private void Button_DeleteCourse_Click(object sender, RoutedEventArgs e)
+        {
+            if (CourseComboBox.SelectedItem != null)
+            {
+                Course course = (Course)CourseComboBox.SelectedItem;
+                if (!_coursesService.check(course))
+                {
+                    _coursesService.DeleteCourse(course);
+                    this.DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Some groups are included in this course. Delete groups firstly or change course in this groups");
+                }
             }
         }
 
@@ -89,7 +105,10 @@ namespace EJournalUI
                 case DialogWindowType.EditCourse:
                     Title = "Edit Course";
                     TitleTextBlock.Text = "New course name";
+                    DeleteButton.Visibility = Visibility.Visible;
+                    DeleteButton.IsEnabled = true;
                     AcceptButton.Click += Button_EditCourse_Accept_Click;
+                    DeleteButton.Click += Button_DeleteCourse_Click;
                     break;
             }
         }

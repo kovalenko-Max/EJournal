@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
-    public class CoursesRepository
+    public class CoursesRepository : ICoursesRepository
     {
         private string _connectionString;
 
@@ -28,12 +28,12 @@ namespace EJournalDAL.Repository
             return courseDTO;
         }
 
-        public void DeleteCourse(CourseDTO courseDTO)
+        public void DeleteCourse(int Id)
         {
             string command = "exec DeleteCourse @Id";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                db.Execute(command, new { courseDTO.Id });
+                db.Execute(command, new { Id });
             }
         }
 
@@ -68,6 +68,19 @@ namespace EJournalDAL.Repository
             {
                 db.Execute(command, new { courseDTO.Id, courseDTO.Name });
             }
+        }
+
+        public int CountGroupsByCourse(int Id)
+        {
+            int count = 0;
+            string command = "exec CountGroupsByCourse @Id";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                count = db.Query<int>(command, new { Id }).FirstOrDefault();
+            }
+
+            return count;
         }
     }
 }

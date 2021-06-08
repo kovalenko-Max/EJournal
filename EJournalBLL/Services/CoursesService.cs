@@ -7,6 +7,7 @@ namespace EJournalBLL.Services
 {
     public class CoursesService
     {
+        ICoursesRepository _coursesRepository;
         public List<Course> Courses
         {
             get
@@ -21,6 +22,7 @@ namespace EJournalBLL.Services
 
         public CoursesService()
         {
+            _coursesRepository = new CoursesRepository();
         }
 
         public List<Course> GetAllCourses()
@@ -32,14 +34,22 @@ namespace EJournalBLL.Services
 
         public void AddCourse(Course course)
         {
-            CoursesRepository coursesRepository = new CoursesRepository();
-            course.Id = (coursesRepository.AddCourse(ObjectMapper.Mapper.Map<CourseDTO>(course))).Id;
+            course.Id = (_coursesRepository.AddCourse(ObjectMapper.Mapper.Map<CourseDTO>(course))).Id;
         }
 
         public void UpdateCourse(Course course)
         {
-            CoursesRepository coursesRepository = new CoursesRepository();
-            coursesRepository.UpdateCourse(ObjectMapper.Mapper.Map<CourseDTO>(course));
+            _coursesRepository.UpdateCourse(ObjectMapper.Mapper.Map<CourseDTO>(course));
+        }
+
+        public void DeleteCourse(Course course)
+        {
+            _coursesRepository.DeleteCourse(course.Id);
+        }
+
+        public bool check(Course course)
+        {
+            return (_coursesRepository.CountGroupsByCourse(course.Id) > 0);
         }
     }
 }
