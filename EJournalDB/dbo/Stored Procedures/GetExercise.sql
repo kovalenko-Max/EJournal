@@ -4,6 +4,6 @@ SELECT [Id]
 	,[Description]
 	,[Deadline]
 	,[IdGroup]
-FROM [dbo].[Exercises]
+FROM [EJournal].[Exercises]
 WHERE Id = @Id
 	AND IsDelete = 0

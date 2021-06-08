@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Exercises] (
+﻿CREATE TABLE [EJournal].[Exercises] (
 	[Id] INT IDENTITY(1, 1) NOT NULL
 	,[IdGroup] INT NOT NULL
 	,[Description] NVARCHAR(255) NOT NULL

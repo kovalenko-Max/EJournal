@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[DeleteLessonAndAttendances] @Id INT
 AS
-delete Attendances
+delete [EJournal].Attendances
 where IdLesson = @Id
-delete Lessons
+delete [EJournal].Lessons
 WHERE Id = @Id

@@ -3,7 +3,7 @@ CREATE PROCEDURE [dbo].[UpdateLesson] @Id INT
 	,@DateLesson DATETIME
 	,@IdGroup INT
 AS
-UPDATE [dbo].[Lessons]
+UPDATE [EJournal].[Lessons]
 SET Topic = @Topic
 	,DateLesson = @DateLesson
 	,IdGroup = @IdGroup

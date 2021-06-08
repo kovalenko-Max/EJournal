@@ -12,14 +12,14 @@ AS
 	select *
 	from @StudentAttendanceVariable
 
-	insert into Lessons (Topic, DateLesson, IdGroup)
+	insert into [EJournal].Lessons (Topic, DateLesson, IdGroup)
 	values(@Topic, @DateLesson, @IdGroup)
 	SET @IdLesson = SCOPE_IDENTITY()
 	
 	update @StudentAttendance
 	set LessonsIds = @IdLesson
 
-	insert into [dbo].[Attendances](IdLesson, IdStudent, IsPresence)
+	insert into [EJournal].[Attendances](IdLesson, IdStudent, IsPresence)
 	select LessonsIds, StudentId, isPresense
 	from @StudentAttendance
 

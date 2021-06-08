@@ -5,5 +5,5 @@
       ,[Description]
       ,[Deadline]
       ,[IdGroup]
-  FROM [dbo].[Exercises]
+  FROM [EJournal].[Exercises]
   where Id = @Id and IsDelete = 0

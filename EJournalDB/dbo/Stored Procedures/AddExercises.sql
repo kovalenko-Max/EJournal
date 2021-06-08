@@ -2,7 +2,7 @@
 	,@Deadline DATETIME
 	,@IdGroup INT
 AS
-INSERT INTO [dbo].[Exercises] (
+INSERT INTO [EJournal].[Exercises] (
 	Description
 	,Deadline
 	,IdGroup

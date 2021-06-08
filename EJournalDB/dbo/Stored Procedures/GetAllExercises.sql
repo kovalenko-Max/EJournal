@@ -4,5 +4,5 @@ SELECT [Id]
 	,[Description]
 	,[Deadline]
 	,[IdGroup]
-FROM [dbo].[Exercises]
+FROM [EJournal].[Exercises]
 WHERE IsDelete = 0

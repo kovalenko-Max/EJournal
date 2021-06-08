@@ -5,5 +5,5 @@ SELECT c.Id
 	,g.Id
 	,g.Name
 	,g.IsFinish
-FROM [dbo].[Courses] c
-INNER JOIN [dbo].[Groups] g ON g.IdCourse = c.Id
+FROM [EJournal].[Courses] c
+INNER JOIN [EJournal].[Groups] g ON g.IdCourse = c.Id

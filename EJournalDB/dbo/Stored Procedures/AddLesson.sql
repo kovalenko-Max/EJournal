@@ -2,7 +2,7 @@ CREATE PROCEDURE [dbo].[AddLesson] @Topic NVARCHAR(250)
 	,@DateLesson DATETIME
 	,@IdGroup INT
 AS
-INSERT INTO [dbo].[Lessons] (
+INSERT INTO [EJournal].[Lessons] (
 	Topic
 	,DateLesson
 	,IdGroup

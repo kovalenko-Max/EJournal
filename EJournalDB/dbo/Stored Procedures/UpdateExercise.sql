@@ -3,7 +3,7 @@
 	,@Deadline DATETIME
 	,@IdGroup INT
 AS
-UPDATE Exercises
+UPDATE [EJournal].Exercises
 SET Description = @Description
 	,Deadline = @Deadline
 	,IdGroup = @IdGroup

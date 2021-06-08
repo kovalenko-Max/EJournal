@@ -3,5 +3,5 @@ AS
 SELECT Id
 	,Name
 	,Description
-FROM [dbo].[Projectes]
+FROM [EJournal].[Projectes]
 WHERE IsDelete = 0

@@ -6,11 +6,11 @@ SELECT G.Id
 	,C.Id
 	,C.Name
 	,G.IsFinish
-FROM [dbo].[Groups] G
-left join [dbo].Courses C on C.Id = G.IdCourse
-LEFT JOIN [dbo].[GroupStudents] GS ON G.Id = GS.IdGroup
+FROM [EJournal].[Groups] G
+left join [EJournal].Courses C on C.Id = G.IdCourse
+LEFT JOIN [EJournal].[GroupStudents] GS ON G.Id = GS.IdGroup
 left JOIN 
-( select S.Id from [dbo].Students S
+( select S.Id from [EJournal].Students S
 where S.IsDelete = 0
 ) S on S.Id = GS.IdStudents
 where G.IsDelete = 0 

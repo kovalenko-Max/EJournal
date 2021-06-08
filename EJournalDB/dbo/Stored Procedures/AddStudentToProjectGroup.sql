@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE AddStudentToProjectGroup @IdStudent INT
 	,@IdProjectGroup INT
 AS
-INSERT INTO [dbo].StudetsProjectGroup (
+INSERT INTO [EJournal].StudetsProjectGroup (
 	IdStudent
 	,IdProjectGroup
 	)

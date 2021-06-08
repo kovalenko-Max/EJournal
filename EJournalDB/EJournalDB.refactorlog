@@ -49,4 +49,100 @@
     <Property Name="ParentElementType" Value="SqlSchema" />
     <Property Name="NewName" Value="[Projectes]" />
   </Operation>
+  <Operation Name="Move Schema" Key="d12f3314-a6e4-4bb2-b4c8-b9d24e978a44" ChangeDateTime="06/08/2021 20:00:04">
+    <Property Name="ElementName" Value="[dbo].[Attendances]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="22a2eff6-3c1c-43bf-a4ef-478170643093" ChangeDateTime="06/08/2021 20:00:19">
+    <Property Name="ElementName" Value="[dbo].[Comments]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="0c1e13ce-2f71-44ff-9a56-fa529799cec1" ChangeDateTime="06/08/2021 20:00:31">
+    <Property Name="ElementName" Value="[dbo].[CommentTypes]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="4d18e2a9-66cd-4f34-b3a0-4afb890d917b" ChangeDateTime="06/08/2021 20:00:53">
+    <Property Name="ElementName" Value="[dbo].[Courses]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="cb0539ca-5113-4ef0-a7d7-165953408f25" ChangeDateTime="06/08/2021 20:01:03">
+    <Property Name="ElementName" Value="[dbo].[Exercises]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="911940ea-3372-4251-b813-3afb0e247958" ChangeDateTime="06/08/2021 20:01:14">
+    <Property Name="ElementName" Value="[dbo].[Groups]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="9102c62f-df54-4013-8675-95426358be13" ChangeDateTime="06/08/2021 20:01:23">
+    <Property Name="ElementName" Value="[dbo].[GroupStudents]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="65325c3c-8318-4db5-b28f-3608a19ba5aa" ChangeDateTime="06/08/2021 20:01:35">
+    <Property Name="ElementName" Value="[dbo].[Lessons]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="3f18f33f-5cb6-494b-ab79-e0c72a0fd0c0" ChangeDateTime="06/08/2021 20:01:46">
+    <Property Name="ElementName" Value="[dbo].[Projectes]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="92947128-73ca-4eab-a1c5-4864bef6be3e" ChangeDateTime="06/08/2021 20:01:56">
+    <Property Name="ElementName" Value="[dbo].[ProjectGroups]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="f8233e83-6691-45db-a15e-267dc882eda3" ChangeDateTime="06/08/2021 20:02:02">
+    <Property Name="ElementName" Value="[dbo].[Students]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="2149a70d-5424-437e-b07b-0a68f41ce784" ChangeDateTime="06/08/2021 20:02:09">
+    <Property Name="ElementName" Value="[dbo].[StudentsComments]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="3fbbcb5a-e21e-42fc-8efb-ebae4b3b71ed" ChangeDateTime="06/08/2021 20:02:15">
+    <Property Name="ElementName" Value="[dbo].[StudentsExercises]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="4b062bd7-d292-4df2-8127-a02f2a0b1d8e" ChangeDateTime="06/08/2021 20:02:23">
+    <Property Name="ElementName" Value="[dbo].[StudetsProjectGroup]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="e51d908f-eb35-4b7f-bbf2-dff852b0b714" ChangeDateTime="06/08/2021 20:02:44">
+    <Property Name="ElementName" Value="[dbo].[AddCourse]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="a2cb90ba-7243-4c52-8288-00b3b3e4f02c" ChangeDateTime="06/08/2021 20:03:00">
+    <Property Name="ElementName" Value="[dbo].[CountGroupsByCourse]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
 </Operations>

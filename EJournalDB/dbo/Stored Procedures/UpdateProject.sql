@@ -3,7 +3,7 @@
 	,@Description NVARCHAR(255)
 	--,@ChekUpdate BIT OUTPUT
 AS
-UPDATE [dbo].[Projectes]
+UPDATE [EJournal].[Projectes]
 SET Name = @Name
 	,Description = @Description
 WHERE Id = @Id

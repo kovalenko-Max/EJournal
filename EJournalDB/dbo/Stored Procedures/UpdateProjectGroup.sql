@@ -2,7 +2,7 @@
 	,@Name NVARCHAR(100)
 	,@IdProject INT
 AS
-UPDATE [dbo].[ProjectGroups]
+UPDATE [EJournal].[ProjectGroups]
 SET Name = @Name
 	,IdProject = @IdProject
 WHERE Id = @Id

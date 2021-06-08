@@ -4,6 +4,6 @@ SELECT [Id]
 	,[Name]
 	,[IdCourse]
 	,[IsFinish]
-FROM [dbo].[Groups]
+FROM [EJournal].[Groups]
 WHERE Id = @Id
 	AND IsDelete = 0

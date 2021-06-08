@@ -2,6 +2,6 @@
 AS
 SELECT [Id]
 	,[Name]
-FROM [dbo].[Courses]
+FROM [EJournal].[Courses]
 WHERE Id = @Id
 	AND isDelete = 0

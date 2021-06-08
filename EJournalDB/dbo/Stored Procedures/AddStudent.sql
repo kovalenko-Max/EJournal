@@ -7,7 +7,7 @@
 	,@Ranking INT
 	,@AgreementNumber NVARCHAR(50)
 AS
-INSERT INTO [dbo].[Students] (
+INSERT INTO [EJournal].[Students] (
 	Name
 	,Surname
 	,Email

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[AddCourse] @Name NVARCHAR(100)
+﻿CREATE PROCEDURE [EJournal].[AddCourse] @Name NVARCHAR(100)
 AS
-INSERT INTO [dbo].[Courses] (Name)
+INSERT INTO [EJournal].[Courses] (Name)
 VALUES (@Name)

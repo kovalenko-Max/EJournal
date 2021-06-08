@@ -9,7 +9,7 @@ SELECT [Id]
 	,[City]
 	,[Ranking]
 	,[AgreementNumber]
-FROM [dbo].[Students] AS S
-LEFT JOIN [dbo].[GroupStudents] GS ON S.Id = GS.IdStudents
+FROM [EJournal].[Students] AS S
+LEFT JOIN [EJournal].[GroupStudents] GS ON S.Id = GS.IdStudents
 WHERE GS.IdGroup = @Id
 	AND s.IsDelete = 0

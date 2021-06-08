@@ -4,5 +4,5 @@ SELECT [Id]
 	,[Topic]
 	,[DateLesson]
 	,[IdGroup]
-FROM [dbo].[Lessons]
+FROM [EJournal].[Lessons]
 WHERE Id = @Id

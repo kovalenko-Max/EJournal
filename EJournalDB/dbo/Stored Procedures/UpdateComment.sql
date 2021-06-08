@@ -2,7 +2,7 @@
 	,@Comments NVARCHAR(255)
 	,@IdCommentType INT
 AS
-UPDATE [dbo].[Comments]
+UPDATE [EJournal].[Comments]
 SET Comment = @Comments
 	,IdCommentType = @IdCommentType
 WHERE Id = @Id

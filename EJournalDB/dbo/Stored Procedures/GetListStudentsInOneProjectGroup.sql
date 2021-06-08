@@ -10,7 +10,7 @@ SELECT s.Id
 	,s.Ranking
 	,s.AgreementNumber
 	,s.IsDelete
-FROM [dbo].[StudetsProjectGroup] AS spg
-INNER JOIN [dbo].[ProjectGroups] pg ON pg.Id = spg.IdProjectGroup
-INNER JOIN [dbo].[Students] AS s ON spg.IdStudent = s.Id
+FROM [EJournal].[StudetsProjectGroup] AS spg
+INNER JOIN [EJournal].[ProjectGroups] pg ON pg.Id = spg.IdProjectGroup
+INNER JOIN [EJournal].[Students] AS s ON spg.IdStudent = s.Id
 WHERE spg.IdProjectGroup = @IdProjectGroup
