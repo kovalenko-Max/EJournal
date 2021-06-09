@@ -83,7 +83,7 @@ namespace EJournalDAL.Repository
             string command = "[EJournal].[UpdateLessonAttendances]";
 
             var parameters = new DynamicParameters();
-            parameters.Add("@StudentAttendance", dt.AsTableValuedParameter("[dbo].[StudentAttendance]"));
+            parameters.Add("@StudentAttendance", dt.AsTableValuedParameter("[EJournal].[StudentAttendance]"));
             parameters.Add("@Id", lessonDTO.Id);
             parameters.Add("@Topic", lessonDTO.Topic);
             parameters.Add("@DateLesson", lessonDTO.DateLesson);
