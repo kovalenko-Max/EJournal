@@ -22,10 +22,10 @@ namespace EJournalDAL.Repository
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 string connectionQuery = "exec AddProjectGroup @Name, @IdProject";
-                int? projectGroupId = db.Query<int>(connectionQuery, projectGroup).FirstOrDefault();
+                int projectGroupId = db.Query<int>(connectionQuery, projectGroup).FirstOrDefault();
                 projectGroup.Id = projectGroupId;
             }
-            return projectGroup.Id.Value;
+            return projectGroup.Id;
         }
 
         public void Delete(int id)
@@ -36,16 +36,24 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery, new { id });
             }
         }
-        public void Update(ProjectGroupDTO projectGroup)
+        public void Update(ProjectGroupDTO projectGroup, DataTable dt)
         {
+
+            string command = "UpdateProjectGroup";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", projectGroup.Id);
+            parameters.Add("@Name", projectGroup.Name);
+            parameters.Add("@Students", dt.AsTableValuedParameter("[dbo].[StudentsIds]"));
+
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec UpdateProject @Id,  @IdProject";
-                db.Execute(connectionQuery, projectGroup);
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
+
         }
 
-        public List<ProjectGroupDTO> GetAllProjects(int IdProject)
+        public List<ProjectGroupDTO> GetAllProjectsGroup(int IdProject)
         {
             List<ProjectGroupDTO> projectGroups = new List<ProjectGroupDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -55,6 +63,25 @@ namespace EJournalDAL.Repository
 
             }
             return projectGroups;
+
         }
+        public void AddStudentToProjectGroup(ProjectGroupStudentDTO projectGroupStudent)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec AddStudentToProjectGroup @IdStudent, @IdProjectGroup";
+                db.Execute(connectionQuery, projectGroupStudent );
+            }
+        }
+        public void DeleteStudentFromProjectGroup(ProjectGroupStudentDTO projectGroupStudent)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                string connectionQuery = "exec DeleteStudentFromProjectGroup @IdStudent, @IdProjectGroup";
+                db.Execute(connectionQuery, projectGroupStudent);
+            }
+        }
+
+
     }
 }

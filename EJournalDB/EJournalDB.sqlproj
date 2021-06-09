@@ -165,13 +165,24 @@
     <Build Include="dbo\User Defined Types\StudentAttendance.sql" />
     <Build Include="dbo\Stored Procedures\AddStudentsAttendance.sql" />
     <Build Include="dbo\Stored Procedures\AddStudentToProjectGroup.sql" />
-    <Build Include="dbo\Tables\CommentType.sql" />
     <Build Include="dbo\Stored Procedures\Courses\AddCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\DeleteCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\GetAllCourses.sql" />
     <Build Include="dbo\Stored Procedures\Courses\GetCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\UpdateCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\CountGroupsByCourse.sql" />
+    <Build Include="dbo\Stored Procedures\CreateStudentComments.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteStudentFromProjectGroup.sql" />
+    <Build Include="dbo\Tables\CommentsType.sql" />
+    <Build Include="dbo\Stored Procedures\AddCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllCommentTypes.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\GetCommentType.sql" />
+    <Build Include="dbo\Stored Procedures\GetListStudentsNotInTheConcreeteProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\Test.sql" />
+    <Build Include="dbo\User Defined Types\StudentsComment.sql" />
+    <Build Include="dbo\User Defined Types\StudentsIds.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />
