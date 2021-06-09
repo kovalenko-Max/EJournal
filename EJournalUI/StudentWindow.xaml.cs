@@ -37,13 +37,13 @@ namespace EJournalUI
 
         private void Button_EditStudent_Click(object sender, RoutedEventArgs e)
         {
-            TextBox_Name.IsEnabled = true;
-            TextBox_Surname.IsEnabled = true;
-            TextBox_Email.IsEnabled = true;
-            TextBox_Phone.IsEnabled = true;
-            TextBox_Git.IsEnabled = true;
-            TextBox_City.IsEnabled = true;
-            TextBox_Agreement.IsEnabled = true;
+            TextBox_Name.IsReadOnly = false;
+            TextBox_Surname.IsReadOnly = false;
+            TextBox_Email.IsReadOnly = false;
+            TextBox_Phone.IsReadOnly = false;
+            TextBox_Git.IsReadOnly = false;
+            TextBox_City.IsReadOnly = false;
+            TextBox_Agreement.IsReadOnly = false;
             Button_SaveChanges.Visibility = Visibility.Visible;
             Button_SaveChanges.IsEnabled = true;
             Button_DeleteStudent.IsEnabled = false;
@@ -63,13 +63,13 @@ namespace EJournalUI
             Student.Git = TextBox_Git.Text;
             Student.City = TextBox_City.Text;
             Student.AgreementNumber = TextBox_Agreement.Text;
-            TextBox_Name.IsEnabled = false;
-            TextBox_Surname.IsEnabled = false;
-            TextBox_Email.IsEnabled = false;
-            TextBox_Phone.IsEnabled = false;
-            TextBox_Git.IsEnabled = false;
-            TextBox_City.IsEnabled = false;
-            TextBox_Agreement.IsEnabled = false;
+            TextBox_Name.IsReadOnly = true;
+            TextBox_Surname.IsReadOnly = true;
+            TextBox_Email.IsReadOnly = true;
+            TextBox_Phone.IsReadOnly = true;
+            TextBox_Git.IsReadOnly = true;
+            TextBox_City.IsReadOnly = true;
+            TextBox_Agreement.IsReadOnly = true;
             _studentServices.Update(Student);
             StudentCard.UpdateFields();
         }

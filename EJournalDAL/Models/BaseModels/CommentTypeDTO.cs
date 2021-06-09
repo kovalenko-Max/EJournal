@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EJournalDAL.Models.BaseModels
 {
-    public class ProjectGroupStudentDTO
+   public class CommentTypeDTO
     {
-        public int? IdStudent { get; set; }
-        public int? IdProjectGroup { get; set; }
+        public int? Id { get; set; }
+        public string Type { get; set; }
     }
 }

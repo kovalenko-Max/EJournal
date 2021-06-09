@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJournalDAL.Models.BaseModels
+namespace EJournalBLL.Models
 {
-    public class ProjectGroupStudentDTO
+    public class ProjectGroupStudent
     {
         public int? IdStudent { get; set; }
         public int? IdProjectGroup { get; set; }

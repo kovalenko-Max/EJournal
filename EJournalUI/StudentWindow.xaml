@@ -21,14 +21,14 @@
                         <ColumnDefinition Width="275*"></ColumnDefinition>
                         <ColumnDefinition Width="563*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Name="TextBox_Name"  Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox Name="TextBox_Surname" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox Name="TextBox_Email" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox Name="TextBox_Phone" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox Name="TextBox_Git" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox Name="TextBox_Group" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,340,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEnabled="False"/>
+                    <TextBox Name="TextBox_Name"  Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Surname" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Email" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Phone" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Git" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Group" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,340,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBlock Name="TextBlock_Rating" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="50" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                     <Label Name="Label_Name" Grid.Row="0" Grid.Column="0" Content="Name" FontSize="20" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="136"/>
                     <Label Name="Label_Surname" Grid.Row="0" Grid.Column="0" Content="Surname" FontSize="20" Margin="10,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>

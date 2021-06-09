@@ -160,11 +160,14 @@ namespace EJournalUI
         }
         #endregion
 
-        public void PrintStudentsFromProjectGroup(int IdProjectGroup)
+        public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
             ProjectTeamsStudentsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetStudentsFromProjectGroups(IdProjectGroup))
+            projectGroup.Students = new List<Student>();
+            foreach (Student student in _studentServices.GetStudentsFromProjectGroups(projectGroup.Id))
             {
+                projectGroup.Students.Add(student);
+                projectGroup.IdProject = SelectedProjectCard.Project.Id;
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += ProjectGroupCard_MouseLeftButtonDown;
                 ProjectTeamsStudentsWrapPanel.Children.Add(studentCard);
@@ -195,21 +198,40 @@ namespace EJournalUI
                 ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
             }
         }
-
-        public void Button_DeleteTeam_Click(object sender, RoutedEventArgs e)
+        private void Button_EditProjectGroup_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedProjectGroupCard != null)
             {
-                _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
-                SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
-                ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
+                ProjectGroup projectGroup = SelectedProjectGroupCard.ProjectGroup;
+                EditProjectGroupWindow groupWindow = new EditProjectGroupWindow(projectGroup);
+                Hide();
+                groupWindow.ShowDialog();
+                PrintAllProjectGroupsFromDB(projectGroup.Id);
+                SelectProjectCard(SelectedProjectCard);
+                Show();
+            }
+        }
+
+        public void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+
+                if (SelectedProjectGroupCard != null)
+                {
+                    _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
+                    SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
+                    ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
+                }
             }
         }
 
         public void SelectProjectGroupCard(ProjectGroupCard projectGroupCard)
         {
             HighlightSelectedProjectGroup(projectGroupCard);
-            PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup.Id);
+            PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup);
+            Button_DeleteProjectGroup.IsEnabled = true;
+            Button_DeleteProjectGroup.IsEnabled = true;
         }
 
         private void HighlightSelectedProjectGroup(ProjectGroupCard projectGroupCard)
@@ -271,11 +293,14 @@ namespace EJournalUI
 
         private void Button_DeleteProject_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedProjectCard != null)
+            if (MessageBox.Show("Delete this project?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
-                SelectedProjectCard.Project.IsDelete = true;
-                ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
+                if (SelectedProjectCard != null)
+                {
+                    _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
+                    SelectedProjectCard.Project.IsDelete = true;
+                    ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
+                }
             }
         }
 
@@ -285,6 +310,8 @@ namespace EJournalUI
             ProjectDescriptionTextBox.Text = projectCard.Project.Description;
             HighlightSelectedProject(projectCard);
             PrintAllProjectGroupsFromDB(projectCard.Project.Id);
+            EditProjectButton.IsEnabled = true;
+            DeleteProjectButton.IsEnabled = true;
         }
 
         private void HighlightSelectedProject(ProjectCard projectCard)
