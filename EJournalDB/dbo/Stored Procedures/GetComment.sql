@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[GetComment] @Id INT
+﻿CREATE PROCEDURE [EJournal].[GetComment] @Id INT
 AS
 SELECT Id
 	,Comment
 	,IdCommentType
-FROM [dbo].[Comments]
+FROM [EJournal].[Comments]
 WHERE IsDelete = 0
 	AND Id = @Id

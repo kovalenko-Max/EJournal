@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[AddComment] @Comments NVARCHAR(255)
+﻿CREATE PROCEDURE [EJournal].[AddComment] @Comments NVARCHAR(255)
 	,@IdCommentType INT
 AS
-INSERT INTO [dbo].[Comments] (
+INSERT INTO [EJournal].[Comments] (
 	Comment
 	,IdCommentType
 	)

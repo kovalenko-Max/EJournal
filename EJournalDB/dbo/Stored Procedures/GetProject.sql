@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[GetProject] @Id INT
+﻿CREATE PROCEDURE [EJournal].[GetProject] @Id INT
 AS
 SELECT [Name]
 	,[Description]
-FROM [dbo].[Projectes]
+FROM [EJournal].[Projectes]
 WHERE IsDelete = 0
 	AND Id = @Id

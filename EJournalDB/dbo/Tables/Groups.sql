@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Groups] (
+﻿CREATE TABLE [EJournal].[Groups] (
     [Id]       INT            IDENTITY (1, 1) NOT NULL,
     [Name]     NVARCHAR (100) NOT NULL,
     [IdCourse] INT            NOT NULL,

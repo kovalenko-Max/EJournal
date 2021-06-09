@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE [dbo].[DeleteProject] @Id INT
+﻿CREATE PROCEDURE [EJournal].[DeleteProject] @Id INT
 AS
-DELETE [dbo].[Projectes]
+UPDATE [EJournal].[Projectes]
+SET IsDelete = 1
 WHERE Id = @Id

@@ -1,14 +1,14 @@
-﻿CREATE PROCEDURE [dbo].[UpdateLessonAttendances]
-	@StudentAttendance [dbo].[StudentAttendance] READONLY,
+﻿CREATE PROCEDURE [EJournal].[UpdateLessonAttendances]
+	@StudentAttendance [EJournal].[StudentAttendance] READONLY,
     @Id int,
     @Topic nvarchar(250),
     @DateLesson datetime
 AS
-    update Lessons
+    update [EJournal].Lessons
     set DateLesson = @DateLesson, Topic = @Topic
     where Lessons.Id = @Id
 
-	MERGE dbo.Attendances AS A
+	MERGE [EJournal].Attendances AS A
     USING @StudentAttendance AS SA
       ON SA.LessonsIds = A.IdLesson and SA.StudentId = A.IdStudent
      WHEN MATCHED THEN

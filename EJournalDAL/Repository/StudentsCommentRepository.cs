@@ -23,12 +23,12 @@ namespace EJournalDAL.Repository
 
         public void AddCommentsToStudents(CommentDTO commentDTO, DataTable dt)
         {
-            string command = "CreateStudentComments";
+            string command = "[EJournal].[CreateStudentComments]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@IdCommentType", commentDTO.IdCommentType);
             parameters.Add("@Comment", commentDTO.Comment);
-            parameters.Add("@StudentCommentVarible", dt.AsTableValuedParameter("[dbo].[StudentsComment]"));
+            parameters.Add("@StudentCommentVarible", dt.AsTableValuedParameter("[EJournal].[StudentsComment]"));
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

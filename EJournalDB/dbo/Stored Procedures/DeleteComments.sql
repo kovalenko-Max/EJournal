@@ -1,5 +1,5 @@
-﻿CREATE PROCEDURE [dbo].[DeleteComments] @Id INT
+﻿CREATE PROCEDURE [EJournal].[DeleteComments] @Id INT
 AS
-UPDATE [dbo].[Comments]
+UPDATE [EJournal].[Comments]
 SET IsDelete = 1
 WHERE Id = @Id

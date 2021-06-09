@@ -177,6 +177,7 @@ namespace EJournalUI
         public void PrintAllProjectGroupsFromDB(int IdProject)
         {
             ProjectTeamsWrapPanel.Children.Clear();
+            ProjectTeamsStudentsWrapPanel.Children.Clear();
 
             foreach (ProjectGroup projectGroup in _projectGroupServices.GetProjectGroups(IdProject))
             {
@@ -198,6 +199,7 @@ namespace EJournalUI
                 ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
             }
         }
+
         private void Button_EditProjectGroup_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedProjectGroupCard != null)
