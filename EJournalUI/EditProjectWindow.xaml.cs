@@ -30,14 +30,14 @@ namespace EJournalUI
         {
             if (Project is null)
             {
-                if (ProjectNameTextBox.Text != string.Empty && DescriptionTextBox.Text != string.Empty)
+                if (ProjectNameTextBox.Text != string.Empty)
                 {
                     Project = new Project(ProjectNameTextBox.Text, DescriptionTextBox.Text);
                 }
             }
             else
             {
-                if (ProjectNameTextBox.Text != string.Empty && DescriptionTextBox.Text != string.Empty)
+                if (ProjectNameTextBox.Text != string.Empty)
                 {
                     Project.Name = ProjectNameTextBox.Text;
                     Project.Description = DescriptionTextBox.Text;

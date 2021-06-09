@@ -69,6 +69,7 @@
     <Folder Include="dbo\Stored Procedures\Courses" />
     <Folder Include="dbo\Stored Procedures\Groups" />
     <Folder Include="dbo\Stored Procedures\LessonsAttendances" />
+    <Folder Include="dbo\Stored Procedures\Projects" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Students.sql" />
@@ -85,23 +86,13 @@
     <Build Include="dbo\Tables\Projectes.sql" />
     <Build Include="dbo\Tables\ProjectGroups.sql" />
     <Build Include="dbo\Stored Procedures\AddComment.sql" />
-    <Build Include="dbo\Stored Procedures\AddProject.sql" />
-    <Build Include="dbo\Stored Procedures\AddProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\DeleteComments.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteProject.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetComment.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupsAndNumberOfStudentsInThemAndGroupStatus.sql" />
-    <Build Include="dbo\Stored Procedures\GetProject.sql" />
-    <Build Include="dbo\Stored Procedures\GetProjectGroup.sql" />
-    <Build Include="dbo\Stored Procedures\GetProjects.sql" />
     <Build Include="dbo\Stored Procedures\UpdateComment.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateProject.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupAndStudentsInIt.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetAllComments.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllProjectGroups.sql" />
     <Build Include="dbo\Stored Procedures\GetExercise.sql" />
     <Build Include="dbo\Stored Procedures\DeleteStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetListStudentsInOneProjectGroup.sql" />
@@ -164,6 +155,20 @@
     <Build Include="dbo\Stored Procedures\LessonsAttendances\UpdateLesson.sql" />
     <Build Include="dbo\Stored Procedures\LessonsAttendances\GetLessonsAttendancesByGroup.sql" />
     <Build Include="dbo\Stored Procedures\LessonsAttendances\GetLessonsByGroup.sql" />
+    <Build Include="dbo\User Defined Types\StudentsIds.sql" />
+    <Build Include="dbo\User Defined Types\StudentsComment.sql" />
+    <Build Include="dbo\Stored Procedures\AddProject.sql" />
+    <Build Include="dbo\Stored Procedures\AddProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteProject.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllProjectGroups.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProject.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetProject.sql" />
+    <Build Include="dbo\Stored Procedures\GetProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetProjects.sql" />
+    <Build Include="dbo\Stored Procedures\Projects\GetListStudentsNotInTheConcreeteProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\CreateStudentComments.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

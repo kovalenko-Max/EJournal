@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [EJournal].[UpdateProjectGroup] @Id INT
 	,@Name NVARCHAR(100)
-	,@Students as [dbo].[StudentsIds] READONLY
+	,@Students as [EJournal].[StudentsIds] READONLY
 AS
 UPDATE [EJournal].[ProjectGroups]
 SET Name = @Name

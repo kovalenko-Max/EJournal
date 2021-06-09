@@ -44,7 +44,7 @@ namespace EJournalDAL.Repository
         {
 
             List<StudentDTO> students = new List<StudentDTO>();
-            string connectionQuery = $"exec GetListStudentsNotInTheConcreeteProjectGroup @idProjectGroup";
+            string connectionQuery = $"exec [EJournal].[GetListStudentsNotInTheConcreeteProjectGroup] @idProjectGroup";
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
