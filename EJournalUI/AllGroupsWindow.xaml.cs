@@ -29,7 +29,7 @@ namespace EJournalUI
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupService = new GroupsService(ConnectionString);
-            _studentServices = new StudentService(ConnectionString);
+            _studentServices = new StudentService();
             _projectServices = new ProjectService();
             _projectGroupServices = new ProjectGroupSevice();
             PrintAllGroupsFromDB();
@@ -90,19 +90,10 @@ namespace EJournalUI
         {
             if (SelectedGroupCard != null)
             {
-                DialogWindow editGroupWindow = new DialogWindow(DialogWindowType.EditGroup);
-                editGroupWindow.Group = SelectedGroupCard.Group;
-                editGroupWindow.NameTextBox.Text = editGroupWindow.Group.Name;
-                int index = editGroupWindow.CourseComboBox.Items.IndexOf(SelectedGroupCard.Group.Course);
-                editGroupWindow.CourseComboBox.SelectedItem = editGroupWindow.CourseComboBox.Items[index];
-
-                if (editGroupWindow.ShowDialog() == true)
-                {
-                    GroupsService groupStorage = new GroupsService(ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString);
-                    groupStorage.UpdateGroupInDB(SelectedGroupCard.Group);
-                    SelectedGroupCard.UpdateFields();
-                    SelectGroupCard(SelectedGroupCard);
-                }
+                EditGroupWindow editGroupWindow = new EditGroupWindow(SelectedGroupCard.Group);
+                Hide();
+                editGroupWindow.ShowDialog();
+                Show();
             }
         }
 
