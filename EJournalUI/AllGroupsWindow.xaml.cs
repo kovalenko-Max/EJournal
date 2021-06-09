@@ -160,7 +160,6 @@ namespace EJournalUI
         }
         #endregion
 
-        public void PrintStudentsFromProjectGroup(int IdProjectGroup)
         public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
             ProjectTeamsStudentsWrapPanel.Children.Clear();
