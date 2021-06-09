@@ -360,5 +360,10 @@ namespace EJournalUI
                 }
             }
         }
+
+        private void ExercisesAddButton1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -54,7 +54,7 @@
                                         <WrapPanel x:Name="GroupStudentsWrapPanel"></WrapPanel>
                                     </ScrollViewer>
                                 </TabItem>
-                                <TabItem x:Name="AttendancesTabItem" Header="Attendances">
+                                <TabItem x:Name="AttendancesTabItem" Header="Attendances" Margin="-1,0,-3,0">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="30"/>
@@ -67,6 +67,22 @@
                                         </StackPanel>
                                         <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                             <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem x:Name="HomeworkTabItem" Header="Homeworks" Margin="2,0,-2,0" Height="20" VerticalAlignment="Top">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                            <Button x:Name="ExercisesSaveButton1" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>
+                                            <Button x:Name="ExercisesAddButton1" Content="Add" Width="60" Margin="2" Click="ExercisesAddButton1_Click"/>
+                                        </StackPanel>
+                                        <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                            <StackPanel x:Name="AttendancesStackPanel1" Orientation="Horizontal"/>
                                         </ScrollViewer>
                                     </Grid>
                                 </TabItem>
