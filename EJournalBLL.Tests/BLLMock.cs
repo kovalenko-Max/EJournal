@@ -78,5 +78,24 @@ namespace EJournalBLL.Tests
                 Id = iDCourse
             };
         }
+        public static Project GetProjectMock(int IdProject)
+        {
+            
+            return new Project($"Name{IdProject}", $"Description{IdProject}")
+            {
+                Id = IdProject
+               
+            };
+        }
+
+        public static ProjectDTO GetProjectDTOMock(int IdProject)
+        {
+            return new ProjectDTO()
+            {
+                Name = $"Name{IdProject}",
+                Id = IdProject,
+                Description= $"Description{IdProject}"
+            };
+        }
     }
 }

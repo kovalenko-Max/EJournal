@@ -300,7 +300,6 @@ namespace EJournalUI
                 if (SelectedProjectCard != null)
                 {
                     _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
-                    SelectedProjectCard.Project.IsDelete = true;
                     ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
                 }
             }
