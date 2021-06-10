@@ -18,7 +18,7 @@ namespace EJournalBLL.Models
 
         public Exercise (Group group)
         {
-            GroupStudents = group.Students;
+            GroupStudents = new List<Student>();
         }
     }
 }

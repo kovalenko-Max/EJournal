@@ -15,12 +15,6 @@ namespace EJournalUI
         public DatePicker ExercisesDateDatePicker { get; set; }
         public TextBox ExercisesTopicTextBox { get; set; }
         public Exercise Exercise { get; set; }
-        //enum Rate: int
-        //{
-        //    NotPassed = 0,
-        //    NotInDeadline = 1,
-        //    Passed = 2
-        //}
 
         List<int> rate = new List<int>() { 0, 80, 100 };
         public HomeworkCard(Exercise exercise)
