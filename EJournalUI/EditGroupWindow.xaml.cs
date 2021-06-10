@@ -1,19 +1,9 @@
 ﻿using EJournalBLL;
 using EJournalBLL.Models;
+using EJournalBLL.Services;
 using EJournalDAL.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace EJournalUI
 {
@@ -23,26 +13,48 @@ namespace EJournalUI
     public partial class EditGroupWindow : Window
     {
         public List<Student> Students { get; set; }
-        public Group Group { get; set; }
+        
+        public GroupCard GroupCard { get; set; }
 
         private StudentService _studentService;
 
-        public EditGroupWindow(Group group)
+        public EditGroupWindow(GroupCard groupCard)
         {
             InitializeComponent();
             _studentService = new StudentService();
-            Group = group;
-            GroupNameTextBox.Text = Group.Name;
+            CoursesService coursesService = new CoursesService(new CoursesRepository());
+            GroupCard = groupCard;
+            GroupNameTextBox.Text = GroupCard.Group.Name;
 
-            Students = _studentService.GetStudentsNotAreInGroup(Group.Id);
+            Students = _studentService.GetStudentsNotAreInGroup(GroupCard.Group.Id);
             PrintAllStudents();
             PrintGroupStudent();
+            CourseComboBox.ItemsSource = coursesService.Courses;
+            CourseComboBox.SelectedItem = GroupCard.Group.Course;
         }
 
         private void Button_Save_Click(object sender, RoutedEventArgs e)
         {
-            _studentService.UpdateGroupStudents(Group.Id ,Group.Students);
-            this.Close();
+            if (GroupNameTextBox.Text != string.Empty)
+            {
+                GroupCard.Group.Name = GroupNameTextBox.Text;
+
+                if (CourseComboBox.SelectedItem is Course)
+                {
+                    GroupCard.Group.Course = (Course)CourseComboBox.SelectedItem;
+                    GroupsService groupsService = new GroupsService();
+                    groupsService.UpdateGroupStudents(GroupCard.Group, GroupCard.Group.Students);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Select an existing course");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Group name must contain at least one character");
+            }
         }
 
         private void StudentCard_AddStudentToGroup_Click(object sender, RoutedEventArgs e)
@@ -52,7 +64,7 @@ namespace EJournalUI
                 StudentCard studentCard = (StudentCard)sender;
                 Student student = studentCard.Student;
 
-                Group.Students.Add(student);
+                GroupCard.Group.Students.Add(student);
                 AllStudentsWrapPanel.Children.Remove(studentCard);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
 
@@ -68,7 +80,7 @@ namespace EJournalUI
                 StudentCard studentCard = (StudentCard)sender;
                 Student student = studentCard.Student;
 
-                Group.Students.Remove(student);
+                GroupCard.Group.Students.Remove(student);
                 GroupStudentsWrapPanel.Children.Remove(studentCard);
                 AllStudentsWrapPanel.Children.Add(studentCard);
 
@@ -93,12 +105,26 @@ namespace EJournalUI
         {
             GroupStudentsWrapPanel.Children.Clear();
 
-            foreach (var s in Group.Students)
+            foreach (var s in GroupCard.Group.Students)
             {
                 StudentCard studentCard = new StudentCard(s);
                 studentCard.MouseDown += StudentCard_DeleteStudentFromGroup_Click;
 
                 GroupStudentsWrapPanel.Children.Add(studentCard);
+            }
+        }
+
+        private void Button_DeleteGroup_Click(object sender, RoutedEventArgs e)
+        {
+            GroupsService groupsService = new GroupsService();
+            if (GroupCard != null)
+            {
+                if (MessageBox.Show("Are you sure want to delete item?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    groupsService.DeleteGroup(GroupCard.Group);
+                    GroupCard.DeleteGroupCard();
+                    this.Close();
+                }
             }
         }
     }

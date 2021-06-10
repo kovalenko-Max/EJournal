@@ -1,5 +1,6 @@
 ﻿using EJournalBLL;
 using EJournalBLL.Models;
+using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

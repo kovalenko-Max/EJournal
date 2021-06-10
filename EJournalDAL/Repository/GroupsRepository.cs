@@ -28,12 +28,16 @@ namespace EJournalDAL.Repository
             return groupDTO;
         }
 
-        public void DeleteGroup(GroupDTO groupDTO)
+        public void DeleteGroup(int idGroup)
         {
-            string command = "exec [EJournal].[DeleteGroup] @Id";
+            var parameters = new DynamicParameters();
+            parameters.Add("@IdGroup", idGroup);
+
+            string command = "[EJournal].[DeleteGroup]";
+
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                db.Execute(command, new { groupDTO.Id });
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -101,6 +105,31 @@ namespace EJournalDAL.Repository
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { groupDTO.Id, groupDTO.Name, groupDTO.IdCourse });
+            }
+        }
+
+        public void UpdateGroupStudents(GroupDTO groupDTO, List<StudentDTO> studentDTOs)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IdGroup");
+            dt.Columns.Add("IdStudents");
+
+            foreach (var s in studentDTOs)
+            {
+                dt.Rows.Add(new object[] { groupDTO.Id, s.Id});
+            }
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@IdGroup", groupDTO.Id);
+            parameters.Add("@NameGroup", groupDTO.Name);
+            parameters.Add("@IdCourse", groupDTO.IdCourse);
+            parameters.Add("@IdsStudent", dt.AsTableValuedParameter("[EJournal].[GroupIdsStudentsIds]"));
+
+            string command = "[EJournal].[UpdateGroupStudents]";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }

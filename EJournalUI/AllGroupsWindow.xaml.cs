@@ -28,7 +28,7 @@ namespace EJournalUI
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-            _groupService = new GroupsService(ConnectionString);
+            _groupService = new GroupsService();
             _studentServices = new StudentService();
             _projectServices = new ProjectService();
             _projectGroupServices = new ProjectGroupSevice();
@@ -45,6 +45,7 @@ namespace EJournalUI
             {
                 GroupCard groupCard = new GroupCard(group);
                 groupCard.MouseDown += GroupCard_MouseLeftButtonDown;
+                groupCard.WasDeleted += DeleteGroupCard;
                 GroupsWrapPanel.Children.Add(groupCard);
             }
         }
@@ -52,9 +53,7 @@ namespace EJournalUI
         public void SelectGroupCard(GroupCard groupCard)
         {
             HighlightSelectedGroupCard(groupCard);
-            GroupNameTextBox.Text = groupCard.Group.Name;
-            GroupCourseTextBox.Text = groupCard.Group.Course.Name;
-            StudentsCountTextBox.Text = groupCard.Group.StudentsCount.ToString();
+            UpdateGroupInfoGridFieldts(null, null);
             GetStudentsByGroup();
             GetLessonsAttendancesByGroup();
         }
@@ -64,11 +63,28 @@ namespace EJournalUI
             if (SelectedGroupCard != null)
             {
                 SelectedGroupCard.Background = Brushes.White;
+                SelectedGroupCard.Group.GrouChanged -= UpdateGroupInfoGridFieldts;
             }
 
             SelectedGroupCard = groupCard;
             BrushConverter brushConverter = new BrushConverter();
             SelectedGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
+            SelectedGroupCard.Group.GrouChanged += UpdateGroupInfoGridFieldts;
+        }
+
+        private void UpdateGroupInfoGridFieldts(object sender, EventArgs e)
+        {
+            GroupNameTextBox.Text = SelectedGroupCard.Group.Name;
+            GroupCourseTextBox.Text = SelectedGroupCard.Group.Course.Name;
+            StudentsCountTextBox.Text = SelectedGroupCard.Group.Students.Count.ToString();
+
+            GroupStudentsWrapPanel.Children.Clear();
+
+            foreach (Student student in SelectedGroupCard.Group.Students)
+            {
+                StudentCard studentCard = new StudentCard(student);
+                GroupStudentsWrapPanel.Children.Add(studentCard);
+            }
         }
 
         private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
@@ -82,6 +98,7 @@ namespace EJournalUI
                 GroupsWrapPanel.Children.Add(groupCard);
                 _groupService.AddGroupToDB(addGroupWindow.Group);
                 groupCard.MouseUp += GroupCard_MouseLeftButtonDown;
+                groupCard.WasDeleted += DeleteGroupCard;
                 SelectGroupCard(groupCard);
             }
         }
@@ -90,7 +107,7 @@ namespace EJournalUI
         {
             if (SelectedGroupCard != null)
             {
-                EditGroupWindow editGroupWindow = new EditGroupWindow(SelectedGroupCard.Group);
+                EditGroupWindow editGroupWindow = new EditGroupWindow(SelectedGroupCard);
                 Hide();
                 editGroupWindow.ShowDialog();
                 Show();
@@ -113,11 +130,17 @@ namespace EJournalUI
             GroupStudentsWrapPanel.Children.Clear();
             _studentServices.GetStudentsByGroup(SelectedGroupCard.Group.Id);
             SelectedGroupCard.Group.Students = _studentServices.Students;
+
             foreach (Student student in _studentServices.Students)
             {
                 StudentCard studentCard = new StudentCard(student);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
             }
+        }
+
+        private void DeleteGroupCard(object sender, EventArgs e)
+        {
+            GroupsWrapPanel.Children.Remove((GroupCard)sender);
         }
 
         private void GetLessonsAttendancesByGroup()

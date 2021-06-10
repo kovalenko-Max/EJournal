@@ -32,7 +32,7 @@
                             <RowDefinition Height="75" MinHeight="75"/>
                             <RowDefinition Height="480*"/>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0" Background="#FFEAEAEA">
+                        <Grid x:Name="GroupInfoGrid" Grid.Row="0" Background="#FFEAEAEA">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
@@ -41,9 +41,9 @@
                                 <ColumnDefinition Width="300*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Group name: " Grid.Column="0" Height="20" Margin="2,0,115,55"/>
-                            <TextBlock x:Name="GroupNameTextBox" Text="SomeName" Grid.Column="0" Height="20" Margin="90,1,0,54"/>
+                            <TextBlock x:Name="GroupNameTextBox" Grid.Column="0" Height="20" Margin="90,1,0,54"/>
                             <TextBlock Text="Group course: " Grid.Column="0" Height="20" Margin="2,25,115,30"/>
-                            <TextBlock x:Name="GroupCourseTextBox"  Text="Some course" Grid.Column="0" Height="20" Margin="90,25,0,31"/>
+                            <TextBlock x:Name="GroupCourseTextBox" Grid.Column="0" Height="20" Margin="90,25,0,31"/>
                             <TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="2,50,115,5"/>
                             <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>
 
@@ -51,7 +51,7 @@
                         </Grid>
                         <TabControl Grid.Row="1">
                             <TabItem Header = "Students of group">
-                                <ScrollViewer Grid.Row="1">
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                     <WrapPanel x:Name="GroupStudentsWrapPanel"/>
                                 </ScrollViewer>
                             </TabItem>

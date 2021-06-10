@@ -6,7 +6,7 @@ using EJournalDAL.Models.BaseModels;
 using System.Threading.Tasks;
 using EJournalBLL.Models;
 
-namespace EJournalBLL
+namespace EJournalBLL.Services
 {
     public class StudentService
     {
@@ -65,14 +65,9 @@ namespace EJournalBLL
         public List<Student> GetStudentsNotAreInGroup(int idGroup)
         {
             List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(
-                _studentsRepository.GetStudentsNotAreInProjectGroup(idGroup));
+                _studentsRepository.GetStudentsNotAreInGroup(idGroup));
 
             return students;
-        }
-
-        public void UpdateGroupStudents(int idGroup, List<Student> students)
-        {
-            _studentsRepository.UpdateGroupStudents(idGroup, ObjectMapper.Mapper.Map<List<StudentDTO>>(students));
         }
     }
 }

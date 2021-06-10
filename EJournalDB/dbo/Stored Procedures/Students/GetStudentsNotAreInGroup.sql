@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [EJournal].[GetStudentsNotAreInGroup]
 	@IdGroup int
 AS
-	SELECT 
+	SELECT
 S.[Id]
 ,S.[Name]
 ,S.[Surname]
@@ -13,5 +13,7 @@ S.[Id]
 ,S.[AgreementNumber]
 
 from [EJournal].[Students] S
-left JOIN [EJournal].[GroupStudents] GS on GS.IdStudents <> S.Id
-where S.IsDelete = 0 and GS.IdGroup = @IdGroup
+where S.IsDelete = 0 and Id not in  
+(select IdStudents from [EJournal].GroupStudents
+where IdGroup = @IdGroup)
+order by S.Name

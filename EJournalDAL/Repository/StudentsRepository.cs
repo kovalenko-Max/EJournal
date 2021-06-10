@@ -142,27 +142,5 @@ namespace EJournalDAL.Repository
 
             return students;
         }
-        public void UpdateGroupStudents(int idGroup, List<StudentDTO> studentDTOs)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("IdGroup");
-            dt.Columns.Add("IdStudents");
-
-            foreach (var s in studentDTOs)
-            {
-                dt.Rows.Add(new object[] { idGroup, s.Id});
-            }
-
-            var parameters = new DynamicParameters();
-            parameters.Add("@IdGroup", idGroup);
-            parameters.Add("@IdsStudent", dt.AsTableValuedParameter("[EJournal].[GroupIdsStudentsIds]"));
-
-            string command = "[EJournal].[UpdateGroupStudents]";
-
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
-            }
-        }
     }
 }
