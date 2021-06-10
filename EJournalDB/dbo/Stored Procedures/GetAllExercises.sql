@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[GetAllExercises]
+﻿CREATE PROCEDURE [EJournal].[GetAllExercises]
 AS
 SELECT [Id]
 	,[Description]
 	,[Deadline]
 	,[IdGroup]
-FROM [dbo].[Exercises]
+FROM [EJournal].[Exercises]
 WHERE IsDelete = 0

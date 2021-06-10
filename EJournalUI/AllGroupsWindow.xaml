@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
-        Title="GroupsWindow" Height="768" MinHeight="290" Width="1470" MinWidth="605">
+        Title="GroupsWindow" Height="768" MinHeight="290" Width="1470" MinWidth="910">
     <Grid>
         <TabControl>
             <TabItem Header = "Groups" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
@@ -18,7 +18,67 @@
                         <RowDefinition Height="75" MinHeight="75"/>
                         <RowDefinition Height="480*"/>
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="405"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" Content="Create group" x:Name="CreateGroup" DockPanel.Dock="Left" Width="120" Height="35" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                        <Button Content="Create course" x:Name="CreateCourseButton" DockPanel.Dock="Left" Width="120" Margin="2,2,2,2" Click="Button_CreateCourse_Click" Height="35" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+                        <Button Content="Edit courses" x:Name="EditCoursesButton" DockPanel.Dock="Left" Width="120" Margin="2,2,2,2" Height="35" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="Button_EditCourses_Click"/>
+                    </StackPanel>
 
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
+                        <WrapPanel  x:Name="GroupsWrapPanel"></WrapPanel>
+                    </ScrollViewer>
+                    <Grid Grid.Row="1" Grid.Column="1" Margin="1,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="75" MinHeight="75"/>
+                            <RowDefinition Height="480*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Background="#FFEAEAEA">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="300*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Group name: " Grid.Column="0" Height="20" Margin="2,0,115,55"/>
+                            <TextBlock x:Name="GroupNameTextBox" Text="SomeName" Grid.Column="0" Height="20" Margin="90,1,0,54"/>
+                            <TextBlock Text="Group course: " Grid.Column="0" Height="20" Margin="2,25,115,30"/>
+                            <TextBlock x:Name="GroupCourseTextBox"  Text="Some course" Grid.Column="0" Height="20" Margin="90,25,0,31"/>
+                            <TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="2,50,115,5"/>
+                            <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>
+
+                            <Button x:Name="EditGroupButton" Content="EditGroup" Height="20" Width="60" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" Click="Button_EditGroup_Click"/>
+                        </Grid>
+                        <TabControl Grid.Row="1">
+                            <TabItem Header = "Students of group">
+                                <ScrollViewer Grid.Row="1">
+                                    <WrapPanel x:Name="GroupStudentsWrapPanel"/>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem x:Name="AttendancesTabItem" Header="Attendances">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                        <Button x:Name="AttendancesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_AttendancesSave_Click"/>
+                                        <Button x:Name="AttendancesAddButton" Content="Add" Width="60" Margin="2" Click="Button_AttendancesAdd_Click"/>
+                                    </StackPanel>
+                                    <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
                     <DockPanel Grid.Row="0" Grid.ColumnSpan="2">
                         <Button Content="Create group" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
                     </DockPanel>
@@ -27,55 +87,7 @@
                             <ColumnDefinition Width="421"/>
                             <ColumnDefinition Width="145*"/>
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0">
-                            <WrapPanel  x:Name="GroupsWrapPanel"></WrapPanel>
-                        </ScrollViewer>
-                        <Grid Grid.Column="1" Margin="1,0,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="75" MinHeight="75"/>
-                                <RowDefinition Height="480*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" Background="#FFEAEAEA">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="300*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="Group name: " Grid.Column="0" Height="20" Margin="2,0,115,55"/>
-                                <TextBlock x:Name="GroupNameTextBox" Text="SomeName" Grid.Column="0" Height="20" Margin="90,1,0,54"/>
-                                <TextBlock Text="Group course: " Grid.Column="0" Height="20" Margin="2,25,115,30"/>
-                                <TextBlock x:Name="GroupCourseTextBox"  Text="Some course" Grid.Column="0" Height="20" Margin="90,25,0,31"/>
-                                <TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="2,50,115,5"/>
-                                <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>
 
-                                <Button x:Name="EditGroupButton" Content="EditGroup" Height="20" Width="60" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" Click="Button_EditGroup_Click"/>
-                            </Grid>
-                            <TabControl Grid.Row="1">
-                                <TabItem Header = "Students of group">
-                                    <ScrollViewer Grid.Row="1">
-                                        <WrapPanel x:Name="GroupStudentsWrapPanel"></WrapPanel>
-                                    </ScrollViewer>
-                                </TabItem>
-                                <TabItem x:Name="AttendancesTabItem" Header="Attendances">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="30"/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-
-                                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                            <Button x:Name="AttendancesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_AttendancesSave_Click"/>
-                                            <Button x:Name="AttendancesAddButton" Content="Add" Width="60" Margin="2"/>
-                                        </StackPanel>
-                                        <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                                            <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
-                                        </ScrollViewer>
-                                    </Grid>
-                                </TabItem>
-                            </TabControl>
-                        </Grid>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -89,7 +101,7 @@
                     <DockPanel Grid.Row="0">
                         <Button Content="Create project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateProject_Click"/>
                     </DockPanel>
-                    <Grid Grid.Row="1" Background="LightSlateGray">
+                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="421"/>
                             <ColumnDefinition Width="145*"/>
@@ -116,10 +128,8 @@
                                 <TextBlock x:Name="ProjectNameTextBox" Text="Name" Grid.Column="0" Margin="90,1,0,54"/>
                                 <TextBlock Text="Project description: " Grid.Column="0" Margin="2,25,612,30"/>
                                 <TextBlock x:Name="ProjectDescriptionTextBox"  Text="Description" TextWrapping="Wrap" Grid.Column="0" Margin="128,25,0,10"/>
-                                <!--<TextBlock Text="Students count: " Grid.Column="0" Height="20" Margin="2,50,115,5"/>
-                                <TextBlock x:Name="StudentsCountTextBox"  Text="0" Grid.Column="0" Height="20" Margin="90,50,0,5"/>-->
 
-                                <Button x:Name="EditProjectButton" Content="Edit project" Height="25" Width="70" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,115,0" VerticalAlignment="Top" Click="Button_EditProject_Click"/>
+                                <Button x:Name="EditProjectButton" Content="Edit project" Height="25" Width="70" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,115,0" VerticalAlignment="Top" Click="Button_EditProject_Click" IsEnabled="False"/>
                                 <Button x:Name="DeleteProjectButton" Content="Delete project" Background="IndianRed" Height="25" Width="85" DockPanel.Dock="Right" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,17,0" VerticalAlignment="Top" Click="Button_DeleteProject_Click"/>
                             </Grid>
                             <TabControl Grid.Row="1">
@@ -132,26 +142,24 @@
                                         <Canvas>
                                             <TextBox MaxLength="30" x:Name="TeamNameTextBox" Canvas.Left="10" Canvas.Top="7" Width="195"/>
                                             <Button Content="Create team" Width="85" Height="33" Margin="2,2,2,2" Click="Button_CreateTeam_Click" Canvas.Left="10" Canvas.Top="32"/>
-                                            <!--<Button Content="Edit team" Width="85" Height="33" Margin="2,2,2,2" Click="Button_EditTeam_Click" Canvas.Left="118" Canvas.Top="32"/>-->
-                                            <Button Content="Delete team" Background="IndianRed" Width="75" Height="25" Margin="2,2,2,2" Click="Button_DeleteTeam_Click" RenderTransformOrigin="2,1.276" Canvas.Left="305" Canvas.Top="4"/>
+                                            <Button x:Name="Button_EditProjectGroup" Content="Edit team" Width="85" Height="33" Margin="2,2,2,2" Click="Button_EditProjectGroup_Click" Canvas.Left="118" Canvas.Top="32" RenderTransformOrigin="0.52,0.581" />
+                                            <Button x:Name="Button_DeleteProjectGroup" Content="Delete team" Background="IndianRed" Width="75" Height="25" Margin="2,2,2,2" Click="Button_DeleteProjectGroup_Click" RenderTransformOrigin="2,1.276" Canvas.Left="305" Canvas.Top="4" IsEnabled="False"/>
                                         </Canvas>
 
-                                        <!--<TextBlock Text="Team name: " Grid.Column="0" Margin="8,9,833,46"/>
-                                        <TextBlock x:Name="TeamNameTextBox" Text="Name" Grid.Column="0" Margin="96,10,563,45"/>
-                                        <TextBlock Text="Team comments: " Grid.Column="0" Margin="8,38,606,17"/>
-                                        <TextBlock x:Name="TeamCommentsTextBox"  Text="Description" Grid.Column="0" Margin="128,25,0,493"/>-->
-                                        <Grid Grid.Row="1" Background="AntiqueWhite">
+
+                                        <Grid Grid.Row="1">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="400"/>
                                                 <ColumnDefinition Width="30"/>
-                                                <ColumnDefinition Width="500"/>
+                                                <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
-                                            <ScrollViewer Grid.Row="1">
+                                            <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
                                                 <WrapPanel x:Name="ProjectTeamsWrapPanel">
                                                 </WrapPanel>
                                             </ScrollViewer>
-                                            <Grid Grid.Column="2" Background="LightSlateGray">
-                                                <ScrollViewer Grid.Row="1">
+                                            <Border Grid.Column="1" Background="LightGray"/>
+                                            <Grid Grid.Column="2">
+                                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                                     <WrapPanel x:Name="ProjectTeamsStudentsWrapPanel">
                                                     </WrapPanel>
                                                 </ScrollViewer>
@@ -169,7 +177,8 @@
             <TabItem Header = "Students">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="724.08"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0*"/>
@@ -178,12 +187,19 @@
                         <ColumnDefinition Width="9*"/>
                         <ColumnDefinition Width="1386*"/>
                     </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Name="AddStudentButton" Content="Add" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="36" Width="133" FontSize="15" Click="Button_AddStudent_Click"/>
+                    <ScrollViewer Grid.Row="1">
+                        <WrapPanel x:Name="AllStudentCardsWrapPanel">
                     <Button Name="AddStudentButton" Content="Add" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="36" Width="133" FontSize="15" Click="Button_AddStudent_Click" Grid.ColumnSpan="5"/>
                     <Button Name="DeleteStudentButton" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Width="134" FontSize="15" Margin="95,14,0,0" Grid.Column="4"/>
                     <Grid Margin="10,70,10,10" Grid.ColumnSpan="5">
                         <ScrollViewer>
                             <WrapPanel x:Name="AllStudentCardsWrapPanel">
 
+                        </WrapPanel>
+                    </ScrollViewer>
+                    <ComboBox Grid.Row="0" VerticalAlignment="Top" Height="36" Margin="0,14,16,0" HorizontalAlignment="Right" Width="247"/>
+                    <TextBox Grid.Row="0" x:Name="txtSearch" HorizontalAlignment="Right" Text="Search" FontSize="15" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="36" Margin="0,14,275,0"/>
                             </WrapPanel>
                         </ScrollViewer>
                     </Grid>

@@ -17,15 +17,9 @@
 
         public override bool Equals(object obj)
         {
-            bool isEquals = false;
-
-            if(obj is Course)
-            {
-                Course course = (Course)obj;
-                isEquals = Id == course.Id && Name == course.Name;
-            }
-
-            return isEquals;
+            return obj is Course course &&
+                   Id == course.Id &&
+                   Name == course.Name;
         }
 
         public override int GetHashCode()

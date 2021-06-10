@@ -24,8 +24,7 @@ namespace EJournalBLL
         public List<Student> GetAllStudent()
         {
             List<StudentDTO> studentDTO = StudentsRepository.GetAll();
-            List<Student> student = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
-            return student;
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
         }
         public void AddStudent(Student studentInput)
         {
@@ -125,6 +124,14 @@ namespace EJournalBLL
             List<StudentDTO> studentsDTO = studentsRepository.SearchStudentAgreementNumbers(AgreementNumbers);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> GetStudentsNotAreInProjectGroups(int IdProjectGroup)
+        {
+            List<StudentDTO> StudentsDTO = StudentsRepository.GetStudentsNotAreInProjectGroup
+                (IdProjectGroup);
+            List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
+            return students;
         }
     }
 }

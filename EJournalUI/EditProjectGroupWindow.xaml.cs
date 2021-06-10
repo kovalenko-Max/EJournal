@@ -1,5 +1,6 @@
 ﻿using EJournalBLL;
 using EJournalBLL.Models;
+using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,24 +26,36 @@ namespace EJournalUI
         private StudentService _studentServices;
 
         private ProjectGroupSevice _projectGroupServices;
+        private CommentService _commentService;
         public ProjectGroup ProjectGroup { get; set; }
+        public Action PrintStudents;
+        public List<Student> studentsList;
 
         public StudentCard StudentCard;
 
         public EditProjectGroupWindow(ProjectGroup projectGroup)
         {
+            InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService(ConnectionString);
             _projectGroupServices = new ProjectGroupSevice();
+            _commentService = new CommentService();
             ProjectGroup = projectGroup;
-            TeamNameTextBox.Text = projectGroup.Name;
-            InitializeComponent();
+            ProjectGroupTextBox.Text = projectGroup.Name;
+            studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
+            PrintStudents += PrintAllStudents;
+            PrintStudents += PrintProjectGroupStudents;
+            PrintStudents.Invoke();
+        }
+        public EditProjectGroupWindow() 
+        {
+
         }
 
-        public void PrintAllStudentsFromDB()
+        public void PrintAllStudents()
         {
             AllStudentsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetAllStudent())
+            foreach (Student student in studentsList)
             {
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += StudentCardMouseLeftButtonDown;
@@ -50,10 +63,10 @@ namespace EJournalUI
             }
         }
 
-        public void PrintProjectGroupStudentsFromDB()
+        public void PrintProjectGroupStudents()
         {
             TeamStudentsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetStudentsFromProjectGroups(ProjectGroup.Id))
+            foreach (Student student in ProjectGroup.Students)
             {
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += StudentCardMouseLeftButtonDown;
@@ -64,6 +77,7 @@ namespace EJournalUI
         public void SelectStudentCard(StudentCard studentCard)
         {
             HighlightSelectedStudentCard(studentCard);
+            AddOrRemoveStudentFromProjectGroup(studentCard.Student);
         }
 
         private void StudentCardMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -91,29 +105,36 @@ namespace EJournalUI
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamNameTextBox.Text != string.Empty)
+
+            if (ProjectGroupTextBox.Text != string.Empty)
             {
-                ProjectGroup.Name = TeamNameTextBox.Text;
+                ProjectGroup.Name = ProjectGroupTextBox.Text;
+                _projectGroupServices.Update(ProjectGroup);
+                if (TeamCommentsTextBox.Text != string.Empty)
+                {
+                    Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, IsDelete = false, Students = ProjectGroup.Students };
+                    _commentService.AddCommentsToStudent(comments);
+                }
+
+                ProjectGroupWindow.Close();
             }
         }
 
-        private void ButtonMove_Click(object sender, RoutedEventArgs e)
+        private void AddOrRemoveStudentFromProjectGroup(Student studentInput)
         {
-            if (StudentCard != null)
+            TeamStudentsWrapPanel.Children.Clear();
+            if (ProjectGroup.Students.Contains(studentInput))
             {
-                if (AllStudentsWrapPanel.Children.Contains(StudentCard))
-                {
-                    TeamStudentsWrapPanel.Children.Add(StudentCard);
-                    AllStudentsWrapPanel.Children.Remove(StudentCard);
-                    ProjectGroup.Students.Add(StudentCard.Student);
-                }
-                else if (TeamStudentsWrapPanel.Children.Contains(StudentCard))
-                {
-                    AllStudentsWrapPanel.Children.Add(StudentCard);
-                    TeamStudentsWrapPanel.Children.Remove(StudentCard);
-                    ProjectGroup.Students.Remove(StudentCard.Student);
-                }
+                studentsList.Add(studentInput);
+                ProjectGroup.Students.Remove(studentInput);
             }
+            else
+            {
+                studentsList.Remove(studentInput);
+                ProjectGroup.Students.Add(studentInput);
+
+            }
+            PrintStudents.Invoke();
         }
     }
 }

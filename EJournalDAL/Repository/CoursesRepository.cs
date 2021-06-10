@@ -8,40 +8,40 @@ using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
-    public class CoursesRepository
+    public class CoursesRepository : ICoursesRepository
     {
-        public string ConnectionString;
+        private string _connectionString;
 
-        public CoursesRepository(string connectionString)
+        public CoursesRepository()
         {
-            ConnectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
-        public CourseDTO AddCourseDTO(CourseDTO courseDTO)
+        public CourseDTO AddCourse(CourseDTO courseDTO)
         {
-            string command = "exec AddCourse @Name";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            string command = "exec [EJournal].[AddCourse] @Name";
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                courseDTO = db.Query<CourseDTO>(command, new { courseDTO.Name }).FirstOrDefault();
+                courseDTO.Id = db.Query<int>(command, new { courseDTO.Name }).FirstOrDefault();
             }
 
             return courseDTO;
         }
 
-        public void DeleteCourseDTO(CourseDTO courseDTO)
+        public void DeleteCourse(int Id)
         {
-            string command = "exec DeleteCourse @Id";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            string command = "exec [EJournal].[DeleteCourse] @Id";
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                db.Execute(command, new { courseDTO.Id });
+                db.Execute(command, new { Id });
             }
         }
 
-        public List<CourseDTO> GetAllCoursesDTO()
+        public List<CourseDTO> GetAllCourses()
         {
-            string command = "exec GetAllCourses";
+            string command = "exec [EJournal].[GetAllCourses]";
             List<CourseDTO> courseDTO = new List<CourseDTO>();
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 courseDTO = db.Query<CourseDTO>(command).ToList();
             }
@@ -49,11 +49,11 @@ namespace EJournalDAL.Repository
             return courseDTO;
         }
 
-        public CourseDTO GetCourseDTO(int id)
+        public CourseDTO GetCourse(int id)
         {
-            string command = "exec GetCourse @Id";
+            string command = "exec [EJournal].[GetCourse] @Id";
             CourseDTO courseDTO = null;
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 courseDTO = db.Query<CourseDTO>(command, new { id }).FirstOrDefault();
             }
@@ -61,13 +61,26 @@ namespace EJournalDAL.Repository
             return courseDTO;
         }
 
-        public void UpdateCourseDTO(CourseDTO courseDTO)
+        public void UpdateCourse(CourseDTO courseDTO)
         {
-            string command = "exec UpdateGroup @Id, @Name";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            string command = "exec [EJournal].[UpdateCourse] @Id, @Name";
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { courseDTO.Id, courseDTO.Name });
             }
+        }
+
+        public int CountGroupsByCourse(int Id)
+        {
+            int count = 0;
+            string command = "exec [EJournal].[CountGroupsByCourse] @Id";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                count = db.Query<int>(command, new { Id }).FirstOrDefault();
+            }
+
+            return count;
         }
     }
 }

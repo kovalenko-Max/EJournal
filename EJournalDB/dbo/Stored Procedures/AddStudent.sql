@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[AddStudent] @Name NVARCHAR(100)
+﻿CREATE PROCEDURE [EJournal].[AddStudent] @Name NVARCHAR(100)
 	,@Surname NVARCHAR(100)
 	,@Email NVARCHAR(100)
 	,@Phone NVARCHAR(16)
@@ -7,7 +7,7 @@
 	,@Ranking INT
 	,@AgreementNumber NVARCHAR(50)
 AS
-INSERT INTO [dbo].[Students] (
+INSERT INTO [EJournal].[Students] (
 	Name
 	,Surname
 	,Email
@@ -27,3 +27,4 @@ VALUES (
 	,@Ranking
 	,@AgreementNumber
 	)
+	SELECT CAST(SCOPE_IDENTITY() AS INT)

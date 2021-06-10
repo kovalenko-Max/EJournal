@@ -21,7 +21,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec GetAllStudents";
+                string connectionQuery = "exec [EJournal].[GetAllStudents]";
                 students = db.Query<StudentDTO>(connectionQuery).ToList<StudentDTO>();
             }
             return students;
@@ -126,7 +126,7 @@ namespace EJournalDAL.Repository
         {
 
             List<StudentDTO> students = new List<StudentDTO>();
-            string connectionQuery = $"exec SearchStudentsPhone @idProjectGroup";
+            string connectionQuery = $"exec [EJournal].[GetListStudentsInOneProjectGroup] @idProjectGroup";
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
@@ -148,13 +148,27 @@ namespace EJournalDAL.Repository
             return students;
         }
 
+        public List<StudentDTO> GetStudentsNotAreInProjectGroup(int idProjectGroup)
+        {
+
+            List<StudentDTO> students = new List<StudentDTO>();
+            string connectionQuery = $"exec [EJournal].[GetListStudentsNotInTheConcreeteProjectGroup] @idProjectGroup";
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                students = db.Query<StudentDTO>(connectionQuery, new { idProjectGroup }).ToList();
+            }
+            return students;
+
+        }
+
         public StudentDTO GetOne(int id)
         {
             StudentDTO student = new StudentDTO();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec GetStudent @Id";
+                string connectionQuery = "exec [EJournal].[GetStudent] @Id";
                 student = db.Query<StudentDTO>(connectionQuery, new { id }).FirstOrDefault();
             }
 
@@ -165,7 +179,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec AddStudent @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
+                string connectionQuery = "exec [EJournal].[AddStudent] @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
                 student.Id = userId;
             }
@@ -176,7 +190,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = " exec UpdateStudent @Id @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
+                string connectionQuery = " exec [EJournal].[UpdateStudent] @Id, @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 db.Execute(connectionQuery, student);
             }
         }
@@ -185,7 +199,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec DeleteStudent @id";
+                string connectionQuery = "exec [EJournal].[DeleteStudent] @id";
                 db.Execute(connectionQuery, new { id });
             }
         }
@@ -213,12 +227,13 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec GetStudentByGroup @id";
+                string connectionQuery = "exec [EJournal].[GetStudentByGroup] @id";
                 students = db.Query<StudentDTO>(connectionQuery, new { id }).ToList();
             }
 
             return students;
         }
+        
 
     }
 }

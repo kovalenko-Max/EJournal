@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[AddProjectGroup] @Name NVARCHAR(100)
+﻿CREATE PROCEDURE [EJournal].[AddProjectGroup] @Name NVARCHAR(100)
 	,@IdProject INT
 AS
-INSERT INTO [dbo].[ProjectGroups] (
+INSERT INTO [EJournal].[ProjectGroups] (
 	Name
 	,IdProject
 	)
