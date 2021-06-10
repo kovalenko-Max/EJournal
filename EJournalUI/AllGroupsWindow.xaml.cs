@@ -89,18 +89,19 @@ namespace EJournalUI
 
         private void Button_CreateGroup_Click(object sender, RoutedEventArgs e)
         {
-            DialogWindow addGroupWindow = new DialogWindow(DialogWindowType.AddGroup);
+            EditGroupWindow editGroupWindow = new EditGroupWindow();
+            Hide();
+            editGroupWindow.ShowDialog();
 
-            if (addGroupWindow.ShowDialog() == true)
+            if (editGroupWindow.DialogResult == true)
             {
-                _groupService.Groups.Add(addGroupWindow.Group);
-                GroupCard groupCard = new GroupCard(addGroupWindow.Group);
-                GroupsWrapPanel.Children.Add(groupCard);
-                _groupService.AddGroupToDB(addGroupWindow.Group);
-                groupCard.MouseUp += GroupCard_MouseLeftButtonDown;
-                groupCard.WasDeleted += DeleteGroupCard;
-                SelectGroupCard(groupCard);
+                GroupsWrapPanel.Children.Add(editGroupWindow.GroupCard);
+                editGroupWindow.GroupCard.MouseUp += GroupCard_MouseLeftButtonDown;
+                editGroupWindow.GroupCard.WasDeleted += DeleteGroupCard;
+                SelectGroupCard(editGroupWindow.GroupCard);
             }
+
+            Show();
         }
 
         private void Button_EditGroup_Click(object sender, RoutedEventArgs e)

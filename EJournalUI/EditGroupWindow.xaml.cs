@@ -13,27 +13,72 @@ namespace EJournalUI
     public partial class EditGroupWindow : Window
     {
         public List<Student> Students { get; set; }
-        
+
         public GroupCard GroupCard { get; set; }
 
         private StudentService _studentService;
+        private GroupsService _groupsService;
 
         public EditGroupWindow(GroupCard groupCard)
         {
             InitializeComponent();
-            _studentService = new StudentService();
-            CoursesService coursesService = new CoursesService(new CoursesRepository());
+            
             GroupCard = groupCard;
             GroupNameTextBox.Text = GroupCard.Group.Name;
 
+            _studentService = new StudentService();
             Students = _studentService.GetStudentsNotAreInGroup(GroupCard.Group.Id);
-            PrintAllStudents();
-            PrintGroupStudent();
+
+            CoursesService coursesService = new CoursesService(new CoursesRepository());
             CourseComboBox.ItemsSource = coursesService.Courses;
             CourseComboBox.SelectedItem = GroupCard.Group.Course;
+
+            PrintAllStudents();
+            PrintGroupStudent();
+
+            AcceptButton.Click += Button_Edit_Accept_Click;
         }
 
-        private void Button_Save_Click(object sender, RoutedEventArgs e)
+        public EditGroupWindow()
+        {
+            InitializeComponent();
+            DeleteGroupButton.Visibility = Visibility.Hidden;
+            _groupsService = new GroupsService();
+
+            CoursesService coursesService = new CoursesService(new CoursesRepository());
+            CourseComboBox.ItemsSource = coursesService.Courses;
+            CourseComboBox.SelectedItem = coursesService.Courses[0];
+
+            Group group = new Group(string.Empty, coursesService.Courses[0]);
+            GroupCard = new GroupCard(group);
+
+            _studentService = new StudentService();
+            Students = _studentService.GetAllStudent();
+            PrintAllStudents();
+
+            AcceptButton.Click += Button_Create_Accept_Click;
+        }
+
+        private void Button_Create_Accept_Click(object sender, RoutedEventArgs e)
+        {
+            if (GroupNameTextBox.Text != string.Empty && CourseComboBox.SelectedItem is Course)
+            {
+                GroupCard.Group.Name = GroupNameTextBox.Text;
+                GroupCard.Group.Course = (Course)CourseComboBox.SelectedItem;
+
+                _groupsService.AddGroupToDB(GroupCard.Group);
+                _groupsService.UpdateGroupStudents(GroupCard.Group, GroupCard.Group.Students);
+                DialogResult = true;
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Group name must contain at least one character. \nSelect an existing course");
+            }
+        }
+
+        private void Button_Edit_Accept_Click(object sender, RoutedEventArgs e)
         {
             if (GroupNameTextBox.Text != string.Empty)
             {

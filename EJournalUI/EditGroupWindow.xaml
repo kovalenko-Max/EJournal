@@ -53,7 +53,7 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" FontWeight="Normal" FontSize="16" Click="Button_Save_Click" Margin="0,0,6,0"/>
+            <Button x:Name="AcceptButton" Content="Accept" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" FontWeight="Normal" FontSize="16" Margin="0,0,6,0"/>
             <Button x:Name="DeleteGroupButton" Content="Delete" Background="White" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" Margin="0,0,115,0" Click="Button_DeleteGroup_Click"/>
         </Grid>
     </Grid>
