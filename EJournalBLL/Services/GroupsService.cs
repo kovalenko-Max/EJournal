@@ -27,6 +27,17 @@ namespace EJournalBLL.Services
             _groupsRepository = new GroupsRepository();
         }
 
+        public void AddGroupAndStudentsToDB(Group group, List<Student> students)
+        {
+            GroupDTO groupDTO = ObjectMapper.Mapper.Map<GroupDTO>(group);
+            groupDTO.IdCourse = group.Course.Id;
+
+            groupDTO = _groupsRepository.AddGroupWithStudents(groupDTO,
+                ObjectMapper.Mapper.Map<List<StudentDTO>>(students));
+            
+            group.Id = groupDTO.Id;
+        }
+
         public void AddGroupToDB(Group group)
         {
             GroupDTO groupDTO = new GroupDTO();

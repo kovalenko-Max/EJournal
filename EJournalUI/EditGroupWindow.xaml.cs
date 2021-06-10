@@ -66,8 +66,8 @@ namespace EJournalUI
                 GroupCard.Group.Name = GroupNameTextBox.Text;
                 GroupCard.Group.Course = (Course)CourseComboBox.SelectedItem;
 
-                _groupsService.AddGroupToDB(GroupCard.Group);
-                _groupsService.UpdateGroupStudents(GroupCard.Group, GroupCard.Group.Students);
+                _groupsService.AddGroupAndStudentsToDB(GroupCard.Group, GroupCard.Group.Students);
+                //_groupsService.UpdateGroupStudents(GroupCard.Group, GroupCard.Group.Students);
                 DialogResult = true;
 
                 this.Close();
