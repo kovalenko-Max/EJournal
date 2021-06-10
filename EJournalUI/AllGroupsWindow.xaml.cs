@@ -418,6 +418,8 @@ namespace EJournalUI
 
                 HomeworkCard homeworkcard = new HomeworkCard(exercise);
                 HomeworkStackPanel.Children.Insert(0, homeworkcard);
+                //ExercisesService exercisesService = new ExercisesService();
+                //exercisesService.AddExercise(exercise);
             }
         }
     }
