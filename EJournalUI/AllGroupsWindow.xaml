@@ -71,6 +71,22 @@
                                     </ScrollViewer>
                                 </Grid>
                             </TabItem>
+                            <TabItem x:Name="HomeworkTabItem" Header="Homework" Height="18" Margin="-2,-2,-2,0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                        <!--<Button x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>-->
+                                        <Button x:Name="ExercisesAddButton" Content="Add" Width="60" Margin="2" Click="Button_ExercisesAdd_Click"/>
+                                    </StackPanel>
+                                    <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="HomeworkStackPanel" Orientation="Horizontal"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </TabItem>
                         </TabControl>
                     </Grid>
 

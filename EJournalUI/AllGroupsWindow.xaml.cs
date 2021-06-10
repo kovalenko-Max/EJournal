@@ -403,5 +403,22 @@ namespace EJournalUI
                 lessonsService.AddLesson(lesson);
             }
         }
+
+        private void Button_ExercisesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedGroupCard != null)
+            {
+                Exercise exercise = new Exercise(SelectedGroupCard.Group);
+                exercise.IdGroup = SelectedGroupCard.Group.Id;
+
+                foreach (var student in SelectedGroupCard.Group.Students)
+                {
+                    exercise.GroupStudents.Add(student);
+                }
+
+                HomeworkCard homeworkcard = new HomeworkCard(exercise);
+                HomeworkStackPanel.Children.Insert(0, homeworkcard);
+            }
+        }
     }
 }
