@@ -360,5 +360,115 @@ namespace EJournalUI
                 }
             }
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string search = txtSearch.Text;
+            string caseSwitch = ComboBox.Text;
+            switch (caseSwitch)
+            {
+                case "Email":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsByEmail(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }   
+                case "Name":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsByName(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case "Surname":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsBySurname(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case "Phone":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsByPhone(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case "City":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsByCity(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case "AllStudents":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsAllStudents())
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case "AgreementNumber":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsAgreementNumbers(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case "Group":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsGroup(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case "Courses":
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsCourses(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+
+            }  
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

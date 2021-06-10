@@ -9,8 +9,7 @@
     <ProjectGuid>{6e3fe2c2-8086-44df-bcf3-dcb1975c495c}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>EJournalDB</RootNamespace>
     <AssemblyName>EJournalDB</AssemblyName>
     <ModelCollation>1049,CI</ModelCollation>
@@ -51,7 +50,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -70,7 +68,6 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Students.sql" />
     <Build Include="dbo\Tables\Attendances.sql" />
-    <Build Include="dbo\Tables\CommentTypes.sql" />
     <Build Include="dbo\Tables\Courses.sql" />
     <Build Include="dbo\Tables\Exercises.sql" />
     <Build Include="dbo\Tables\Groups.sql" />
@@ -78,7 +75,6 @@
     <Build Include="dbo\Tables\GroupTeachers.sql" />
     <Build Include="dbo\Tables\Lessons.sql" />
     <Build Include="dbo\Tables\StudentsExercises.sql" />
-    <Build Include="dbo\Tables\Teachers.sql" />
     <Build Include="dbo\Tables\StudentsComments.sql" />
     <Build Include="dbo\Tables\StudetsProjectGroup.sql" />
     <Build Include="dbo\Tables\Comments.sql" />
@@ -110,7 +106,6 @@
     <Build Include="dbo\Stored Procedures\AddGroup.sql" />
     <Build Include="dbo\Stored Procedures\AddHomeWork.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
-    <Build Include="dbo\Stored Procedures\AddTeacher.sql" />
     <Build Include="dbo\Stored Procedures\CreateAttendence.sql" />
     <Build Include="dbo\Stored Procedures\DeleteCourse.sql" />
     <Build Include="dbo\Stored Procedures\GetAllComments.sql" />
@@ -120,21 +115,17 @@
     <Build Include="dbo\Stored Procedures\GetExercise.sql" />
     <Build Include="dbo\Stored Procedures\DeleteStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetListStudentsInOneProjectGroup.sql" />
-    <Build Include="dbo\Stored Procedures\DeleteTeacher.sql" />
     <Build Include="dbo\Stored Procedures\GroupsWithCources.sql" />
     <Build Include="dbo\Stored Procedures\GetAllCourses.sql" />
     <Build Include="dbo\Stored Procedures\UpdateStudent.sql" />
     <Build Include="dbo\Stored Procedures\GetAllGroups.sql" />
     <Build Include="dbo\Stored Procedures\GetAllStudents.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllTeachers.sql" />
     <Build Include="dbo\Stored Procedures\GetCourse.sql" />
     <Build Include="dbo\Stored Procedures\GetGroup.sql" />
     <Build Include="dbo\Stored Procedures\GetStudent.sql" />
-    <Build Include="dbo\Stored Procedures\GetTeacher.sql" />
     <Build Include="dbo\Stored Procedures\UpdateCourse.sql" />
     <Build Include="dbo\Stored Procedures\UpdateGroups.sql" />
     <Build Include="dbo\Stored Procedures\UpdateHomeWork.sql" />
-    <Build Include="dbo\Stored Procedures\UpdateTeacher.sql" />
     <Build Include="dbo\Stored Procedures\AddExercises.sql" />
     <Build Include="dbo\Stored Procedures\DeleteExercises.sql" />
     <Build Include="dbo\Stored Procedures\GetAllExercises.sql" />
@@ -180,6 +171,16 @@
     <Build Include="dbo\Stored Procedures\UpdateGroup.sql" />
     <Build Include="dbo\User Defined Types\LessonsIds.sql" />
     <Build Include="dbo\Stored Procedures\AddStudentToProjectGroup.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStudentsPhone.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStudentsEmail.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStudentCity.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStydentsNameSername.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStydentsSername.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStudentCours.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStudentAgreementNumber.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStudentAll.sql" />
+    <Build Include="dbo\Stored Procedures\SearcStudentsGroup.sql" />
+    <Build Include="dbo\Stored Procedures\SearchStudentProjectGroup.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

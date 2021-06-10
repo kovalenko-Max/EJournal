@@ -55,5 +55,76 @@ namespace EJournalBLL
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
+
+        public List<Student> SearchStudentsByPhone(string phone)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentPhone(phone);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> SearchStudentsByEmail(string email)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentEmail(email);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> SearchStudentsByName(string name)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentName(name);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> SearchStudentsBySurname(string surname)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentSurname(surname);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> SearchStudentsByCity(string city)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentCity(city);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> SearchStudentsGroup(string group)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentGroup(group);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> SearchStudentsCourses(string course)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentCourses(course);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+        public List<Student> SearchStudentsAllStudents()
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentAllStudents();
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
+
+        public List<Student> SearchStudentsAgreementNumbers(string AgreementNumbers)
+        {
+            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentAgreementNumbers(AgreementNumbers);
+
+            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
+        }
     }
 }
