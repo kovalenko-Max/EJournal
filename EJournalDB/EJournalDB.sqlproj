@@ -70,6 +70,7 @@
     <Folder Include="dbo\Stored Procedures\Groups" />
     <Folder Include="dbo\Stored Procedures\LessonsAttendances" />
     <Folder Include="dbo\Stored Procedures\Projects" />
+    <Folder Include="dbo\Stored Procedures\Students" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Students.sql" />
@@ -140,7 +141,7 @@
     <Build Include="dbo\Stored Procedures\Courses\UpdateCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\CountGroupsByCourse.sql" />
     <Build Include="dbo\Stored Procedures\Groups\AddGroup.sql" />
-    <Build Include="dbo\Stored Procedures\Groups\DeleteGroup.sql" />
+    <Build Include="dbo\Stored Procedures\Groups\DeleteGroupAndGroupStudent.sql" />
     <Build Include="dbo\Stored Procedures\Groups\GetAllGroups.sql" />
     <Build Include="dbo\Stored Procedures\Groups\GetAllGroupsWithCourses.sql" />
     <Build Include="dbo\Stored Procedures\Groups\GetGroup.sql" />
@@ -169,6 +170,11 @@
     <Build Include="dbo\Stored Procedures\GetProjects.sql" />
     <Build Include="dbo\Stored Procedures\Projects\GetListStudentsNotInTheConcreeteProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\CreateStudentComments.sql" />
+    <Build Include="dbo\Stored Procedures\Students\GetStudentsNotAreInGroup.sql" />
+    <Build Include="dbo\Stored Procedures\Students\UpdateGroupStudents.sql" />
+    <Build Include="dbo\User Defined Types\GroupIdsStudentsIds.sql" />
+    <Build Include="dbo\Stored Procedures\Groups\DeleteGroup.sql" />
+    <Build Include="dbo\Stored Procedures\Groups\AddGroupWithStudents.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

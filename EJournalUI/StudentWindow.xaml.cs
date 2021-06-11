@@ -1,5 +1,6 @@
 ﻿using EJournalBLL;
 using EJournalBLL.Models;
+using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,7 +24,7 @@ namespace EJournalUI
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-            _studentServices = new StudentService(ConnectionString);
+            _studentServices = new StudentService();
             StudentCard = studentCard;
             Student = studentCard.Student;
             TextBox_Name.Text = Student.Name;
