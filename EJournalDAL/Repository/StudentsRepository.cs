@@ -1,18 +1,20 @@
 ﻿using Dapper;
 using EJournalDAL.Models.BaseModels;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
 namespace EJournalDAL.Repository
 {
-    public class StudentsRepository
+    public class StudentsRepository : IStudentsRepository
     {
         public string ConnectionString { get; set; }
-        public StudentsRepository(string connectionString)
+        public StudentsRepository()
         {
-            ConnectionString = connectionString;
+            ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString; ;
         }
 
         public List<StudentDTO> GetAll()
@@ -113,6 +115,7 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery);
             }
         }
+
         public List<StudentDTO> GetStudentsByGroup(int id)
         {
             List<StudentDTO> students = new List<StudentDTO>();
@@ -125,7 +128,19 @@ namespace EJournalDAL.Repository
 
             return students;
         }
-        
 
+        public List<StudentDTO> GetStudentsNotAreInGroup(int idGroup)
+        {
+            List<StudentDTO> students = new List<StudentDTO>();
+
+            string connectionQuery = $"exec [EJournal].[GetStudentsNotAreInGroup] @idGroup";
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                students = db.Query<StudentDTO>(connectionQuery, new { idGroup }).ToList();
+            }
+
+            return students;
+        }
     }
 }

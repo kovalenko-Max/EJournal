@@ -481,4 +481,10 @@
     <Property Name="NewSchema" Value="EJournal" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Move Schema" Key="d78e75b1-2029-46f3-aa81-cd237f32a9c8" ChangeDateTime="06/09/2021 21:30:54">
+    <Property Name="ElementName" Value="[dbo].[GetStudentsNotAreInGroup]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
 </Operations>

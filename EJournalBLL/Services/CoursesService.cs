@@ -8,6 +8,7 @@ namespace EJournalBLL.Services
     public class CoursesService
     {
         private ICoursesRepository _coursesRepository;
+        
         public List<Course> Courses
         {
             get
