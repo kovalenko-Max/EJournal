@@ -18,7 +18,7 @@ namespace EJournalDAL.Repository
             connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
         }
 
-        public int AddEStudentExercise(ExerciseDTO exerciseDTO, DataTable dt)
+        public int AddExerciseToStudent(ExerciseDTO exerciseDTO, DataTable dt)
         {
             string command = "[EJournal].[AddExerciseToStudent]";
 
@@ -56,7 +56,7 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public List<ExerciseDTO> GetStudentExercise (int IdGroup)
+        public List<ExerciseDTO> GetExercisesByGroup (int IdGroup)
         {
             string command = "exec [EJournal].[GetExercisesByGroup] @IdGroup";
             List<ExerciseDTO> exercisesDTO = new List<ExerciseDTO>();
@@ -99,7 +99,7 @@ namespace EJournalDAL.Repository
             return exercisesDTO;
         }
 
-        public void DeleteExercise(int id)
+        public void DeleteStudentExercise(int id)
         {
             string command = "exec [EJournal].[DeleteStudentExercise] @Id";
 

@@ -32,7 +32,7 @@ namespace EJournalBLL.Services
                 exerciseModel.Rows.Add(new object[] { student.Student.Id, null, student.Point });
             }
 
-            exercise.Id = ExercisesRepository.AddEStudentExercise(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
+            exercise.Id = ExercisesRepository.AddExerciseToStudent(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
         }
 
         public void UpdateExercise(Exercise exercise)
@@ -48,16 +48,16 @@ namespace EJournalBLL.Services
 
         public List<Exercise> GetExercisesByGroup(Group group)
         {
-            List<ExerciseDTO> exerciseDTO = ExercisesRepository.GetStudentExercise(group.Id);
+            List<ExerciseDTO> exerciseDTO = ExercisesRepository.GetExercisesByGroup(group.Id);
 
             List<Exercise> exercises = ConvertLessonsDTOToLessons(exerciseDTO);
 
             return exercises;
         }
 
-        public void DeleteProject(int Id)
+        public void DeleteStudentExercise(int id)
         {
-
+            ExercisesRepository.DeleteStudentExercise(id);
         }
 
         private List<Exercise> ConvertLessonsDTOToLessons(List<ExerciseDTO> exercisesDTO)

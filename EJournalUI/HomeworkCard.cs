@@ -79,17 +79,17 @@ namespace EJournalUI
             Grid.SetRow(dataGrid, 1);
             grid.Children.Add(dataGrid);
 
-            //button.Click += Button_DeleteExercise_Click;
+            button.Click += Button_DeleteExercise_Click;
         }
 
-        //private void Button_DeleteHomework_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (MessageBox.Show("Are you sure want to delete item?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-        //    {
-        //        LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
-        //        lessonsLogic.DeleteExercise(Exercise);
-        //        ((StackPanel)(this.Parent)).Children.Remove(this);
-        //    }
-        //}
+        private void Button_DeleteExercise_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure want to delete item?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                ExercisesService exercisesService = new ExercisesService();
+                exercisesService.DeleteStudentExercise(Exercise.Id);
+                ((StackPanel)(this.Parent)).Children.Remove(this);
+            }
+        }
     }
 }
