@@ -16,32 +16,25 @@ namespace EJournalBLL.Services
             ExercisesRepository = new ExercisesRepository();
         }
 
-        public List<Exercise> GetAllExercises()
-        {
-            List<ExerciseDTO> exerciseDTO = ExercisesRepository.GetExercises();
-            List<Exercise> exercises = ObjectMapper.Mapper.Map<List<Exercise>>(exerciseDTO);
-            return exercises;
-        }
+        //public List<Exercise> GetAllExercises()
+        //{
+            
+        //}
         public int AddExercise(Exercise exerciseInput)
         {
-
-            ExerciseDTO exercise = ObjectMapper.Mapper.Map<ExerciseDTO>(exerciseInput);
-            exerciseInput.Id = ExercisesRepository.Create(exercise);
-            return exerciseInput.Id;
-
+            return 0;
+            
         }
 
         public void UpdateExercise(Exercise exerciseInput)
         {
 
-            ExerciseDTO exercise = ObjectMapper.Mapper.Map<ExerciseDTO>(exerciseInput);
-            ExercisesRepository.Update(exercise);
+            
 
         }
 
         public void DeleteProject(int Id)
         {
-            ExercisesRepository.Delete(Id);
 
         }
     }

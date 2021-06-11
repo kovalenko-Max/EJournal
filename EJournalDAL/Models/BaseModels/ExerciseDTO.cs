@@ -12,7 +12,7 @@ namespace EJournalDAL.Models.BaseModels
         public int? IdGroup { get; set; }
         public string ExerciseType { get; set; }
         public int Point { get; set; }
-        public List<StudentDTO> GroupStudents { get; set; }
+        public List<StudentExerciseDTO> GroupStudents { get; set; }
 
 
     }
