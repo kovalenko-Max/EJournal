@@ -1,8 +1,11 @@
-﻿using EJournalBLL.Models;
+﻿using EJournalBLL;
+using EJournalBLL.Models;
 using EJournalBLL.Services;
 using EJournalDAL.Repository;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,14 +13,16 @@ using System.Windows.Media;
 
 namespace EJournalUI
 {
-    public class HomeworkCard : Border
+    public class ExercisesCard : Border
     {
         public DatePicker ExercisesDateDatePicker { get; set; }
         public TextBox ExercisesTopicTextBox { get; set; }
+
+        public ComboBox ExcerciseTypeComboBox { get; set; }
         public Exercise Exercise { get; set; }
 
         List<int> rate = new List<int>() { 0, 80, 100 };
-        public HomeworkCard(Exercise exercise)
+        public ExercisesCard(Exercise exercise)
         {
             Exercise = exercise;
             Width = 200;
@@ -26,7 +31,7 @@ namespace EJournalUI
             Margin = new Thickness(2);
 
             Grid grid = new Grid();
-            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100, GridUnitType.Pixel) });
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(150, GridUnitType.Pixel) });
             grid.RowDefinitions.Add(new RowDefinition());
             Child = grid;
 
@@ -43,9 +48,19 @@ namespace EJournalUI
             ExercisesTopicTextBox.MaxLength = 86;
             ExercisesTopicTextBox.Text = Exercise.Description;
             ExercisesTopicTextBox.TextAlignment = TextAlignment.Center;
-            ExercisesTopicTextBox.Margin = new Thickness(2, 28, 0, 2);
+            ExercisesTopicTextBox.Margin = new Thickness(2, 28, 0, 25);
             Grid.SetRow(ExercisesTopicTextBox, 0);
             grid.Children.Add(ExercisesTopicTextBox);
+
+            ExcerciseTypeComboBox = new ComboBox();
+            ExcerciseTypeComboBox.Height = 20;
+            ExcerciseTypeComboBox.Width = 100;
+            ExcerciseTypeComboBox.VerticalAlignment = VerticalAlignment.Bottom;
+            ExcerciseTypeComboBox.Margin = new Thickness(2);
+            ExcerciseTypeComboBox.ItemsSource = Enum.GetValues(typeof(ExcerciseType)).Cast<ExcerciseType>();
+            ExcerciseTypeComboBox.SelectedItem = Exercise.ExerciseType;
+            Grid.SetRow(ExcerciseTypeComboBox, 0);
+            grid.Children.Add(ExcerciseTypeComboBox);
 
             Button button = new Button();
             button.Name = "DeleteExercise";

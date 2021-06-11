@@ -176,7 +176,64 @@ namespace EJournalUI
         }
         #endregion
 
+        #region Exercises
 
+        private void Button_ExercisesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedGroupCard != null)
+            {
+                Exercise exercise = new Exercise(SelectedGroupCard.Group);
+                exercise.IdGroup = SelectedGroupCard.Group.Id;
+
+                foreach (var student in SelectedGroupCard.Group.Students)
+                {
+                    exercise.StudentMarks.Add(new StudentMark(student));
+                }
+
+                ExercisesCard homeworkcard = new ExercisesCard(exercise);
+                HomeworkStackPanel.Children.Insert(0, homeworkcard);
+
+                ExercisesService exercisesService = new ExercisesService();
+                exercisesService.AddExercise(exercise);
+            }
+        }
+
+        private void Button_ExercisesSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var child in HomeworkStackPanel.Children)
+            {
+                if (child is ExercisesCard)
+                {
+                    ExercisesCard homeWork = (ExercisesCard)child;
+                    ExercisesService exerciseService = new ExercisesService();
+
+                    if (homeWork.ExercisesDateDatePicker.SelectedDate != null)
+                    {
+                        homeWork.Exercise.Deadline = (DateTime)homeWork.ExercisesDateDatePicker.SelectedDate;
+                    }
+
+                    homeWork.Exercise.Description = homeWork.ExercisesTopicTextBox.Text.ToString();
+
+                    homeWork.Exercise.ExerciseType = (ExcerciseType)homeWork.ExcerciseTypeComboBox.SelectedItem;
+
+                    exerciseService.UpdateExercise(homeWork.Exercise);
+                }
+            }
+        }
+
+        private void GetExercisesByGroup()
+        {
+            HomeworkStackPanel.Children.Clear();
+            ExercisesService exercisesService = new ExercisesService();
+
+            List<Exercise> exercises = exercisesService.GetExercisesByGroup(SelectedGroupCard.Group);
+            foreach (var exercise in exercises)
+            {
+                HomeworkStackPanel.Children.Add(new ExercisesCard(exercise));
+            }
+        }
+
+        #endregion
 
         public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
@@ -421,61 +478,6 @@ namespace EJournalUI
                 lessonsService.AddLesson(lesson);
             }
         }
-
-        #region Exercises
-
-        private void Button_ExercisesAdd_Click(object sender, RoutedEventArgs e)
-        {
-            if (SelectedGroupCard != null)
-            {
-                Exercise exercise = new Exercise(SelectedGroupCard.Group);
-                exercise.IdGroup = SelectedGroupCard.Group.Id;
-
-                foreach (var student in SelectedGroupCard.Group.Students)
-                {
-                    exercise.StudentMarks.Add(new StudentMark(student));
-                }
-
-                HomeworkCard homeworkcard = new HomeworkCard(exercise);
-                HomeworkStackPanel.Children.Insert(0, homeworkcard);
-
-                ExercisesService exercisesService = new ExercisesService();
-                exercisesService.AddExercise(exercise);
-            }
-        }
-
-        private void Button_ExercisesSave_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var child in HomeworkStackPanel.Children)
-            {
-                if (child is HomeworkCard)
-                {
-                    HomeworkCard homeWork = (HomeworkCard)child;
-                    ExercisesService exerciseService = new ExercisesService();
-
-                    if (homeWork.ExercisesDateDatePicker.SelectedDate != null)
-                    {
-                        homeWork.Exercise.Deadline = (DateTime)homeWork.ExercisesDateDatePicker.SelectedDate;
-                    }
-                    homeWork.Exercise.Description = homeWork.ExercisesTopicTextBox.Text.ToString();
-
-                    exerciseService.UpdateExercise(homeWork.Exercise);
-                }
-            }
-        }
-
-        private void GetExercisesByGroup()
-        {
-            HomeworkStackPanel.Children.Clear();
-            ExercisesService exercisesService = new ExercisesService();
-
-            List<Exercise> exercises = exercisesService.GetExercisesByGroup(SelectedGroupCard.Group);
-            foreach (var exercise in exercises)
-            {
-                HomeworkStackPanel.Children.Add(new HomeworkCard(exercise));
-            }
-        }
-
-        #endregion
+        
     }
 }

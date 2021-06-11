@@ -13,15 +13,14 @@ namespace EJournalBLL.Models
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
         public int? IdGroup { get; set; }
-        public string ExerciseType { get; set; }
+        public ExcerciseType ExerciseType { get; set; }
         public List<StudentMark> StudentMarks { get; set; }
 
         public Exercise (Group group)
         {
             Description = string.Empty;
-            //fix
             IdGroup = group.Id;
-            ExerciseType = "Soft";
+            ExerciseType = (ExcerciseType)0;
             StudentMarks = new List<StudentMark>();
         }
         public Exercise(ExerciseDTO exerciseDTO)
@@ -30,7 +29,8 @@ namespace EJournalBLL.Models
             Description = exerciseDTO.Description;
             Deadline = exerciseDTO.Deadline;
             IdGroup = exerciseDTO.IdGroup;
-            ExerciseType = exerciseDTO.ExerciseType;
+
+            ExerciseType = (ExcerciseType)Enum.Parse(typeof(ExcerciseType), exerciseDTO.ExerciseType);
         }
 
         public override bool Equals(object obj)
