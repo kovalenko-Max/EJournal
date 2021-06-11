@@ -418,24 +418,26 @@ namespace EJournalUI
 
                 HomeworkCard homeworkcard = new HomeworkCard(exercise);
                 HomeworkStackPanel.Children.Insert(0, homeworkcard);
-                //ExercisesService exercisesService = new ExercisesService();
-                //exercisesService.AddExercise(exercise);
+
+                ExercisesService exercisesService = new ExercisesService();
+                exercisesService.AddExercise(exercise);
             }
         }
 
-        //private void Button_ExercisesSave_Click(object sender, RoutedEventArgs e)
-        //{
-        //    foreach (var c in HomeworkStackPanel.Children)
-        //    {
-        //        if (c is HomeworkCard)
-        //        {
-        //            HomeworkCard ac = (HomeworkCard)c;
-        //            ExercisesService exerciseService = new ExercisesService(new ExercisesRepository());
-        //            ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
-        //            ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
-        //            lessonsLogic.UpdateLessonAttendances(ac.Lesson);
-        //        }
-        //    }
-        //}
+        private void Button_ExercisesSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var child in HomeworkStackPanel.Children)
+            {
+                if (child is HomeworkCard)
+                {
+                    HomeworkCard homeWork = (HomeworkCard)child;
+                    ExercisesService exerciseService = new ExercisesService();
+
+                    homeWork.Exercise.Deadline = (DateTime)homeWork.ExercisesDateDatePicker.SelectedDate;
+                    homeWork.Exercise.Description = homeWork.ExercisesTopicTextBox.Text.ToString();
+                    
+                }
+            }
+        }
     }
 }

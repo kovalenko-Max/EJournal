@@ -27,7 +27,7 @@ namespace EJournalDAL.Repository
             parameters.Add("@Description", exerciseDTO.Description);
             parameters.Add("@ExerciseType", exerciseDTO.ExerciseType);
             parameters.Add("@Deadline", exerciseDTO.Deadline);
-            parameters.Add("@StudentExerciseVariable", dt.AsTableValuedParameter("[EJournal].[AddExerciseToStudent]"));
+            parameters.Add("@StudentExerciseVariable", dt.AsTableValuedParameter("[EJournal].[StudentExercise]"));
             parameters.Add("@IdExercise", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -62,12 +62,12 @@ namespace EJournalDAL.Repository
                         {
                             currentExercise = exercise;
                             exerciseDTO.Add(exercise);
-                            currentExercise.GroupStudents = new List<StudentExerciseDTO>();
+                            //currentExercise.GroupStudents = new List<StudentExerciseDTO>();
                         }
 
                         if (student != null)
                         {
-                            currentExercise.GroupStudents.Add(student);
+                            //currentExercise.GroupStudents.Add(student);
                         }
 
                         return currentExercise;

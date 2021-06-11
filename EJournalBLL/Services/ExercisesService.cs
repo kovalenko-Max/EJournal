@@ -19,30 +19,31 @@ namespace EJournalBLL.Services
             Exercises = new List<Exercise>();
 
             exerciseModel = new DataTable();
-            exerciseModel.Columns.Add("ExerciseID");
-            exerciseModel.Columns.Add("StudentId");
+            exerciseModel.Columns.Add("IdStudent");
+            exerciseModel.Columns.Add("IdExercise");
             exerciseModel.Columns.Add("Points");
         }
 
         public void AddExercise(Exercise exercise)
         {
             exerciseModel.Clear();
-            foreach (var student in exercise.GroupStudents)
+            foreach (var student in exercise.StudentMarks)
             {
-                exerciseModel.Rows.Add(new object[] { null, student.Id, exercise.Point });
+                exerciseModel.Rows.Add(new object[] { student.Student.Id, null, student.Point});
             }
 
             exercise.Id = ExercisesRepository.AddEStudentExercise(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
-
         }
 
-        
-
-        public void UpdateExercise(Exercise exerciseInput)
+        public void UpdateExercise(Exercise exercise)
         {
+            exerciseModel.Clear();
+            foreach (var student in exercise.StudentMarks)
+            {
+                exerciseModel.Rows.Add(new object[] { student.Student.Id, null, student.Point });
+            }
 
-            
-
+            exercise.Id = ExercisesRepository.AddEStudentExercise(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
         }
 
         public void DeleteProject(int Id)

@@ -14,13 +14,14 @@ namespace EJournalBLL.Models
         public DateTime? Deadline { get; set; }
         public int? IdGroup { get; set; }
         public string ExerciseType { get; set; }
-        public List<Student> GroupStudents { get; set; }
-        public int Point { get; set; }
         public List<StudentMark> StudentMarks { get; set; }
 
         public Exercise (Group group)
         {
-            GroupStudents = new List<Student>();
+            Description = string.Empty;
+
+            IdGroup = group.Id;
+            ExerciseType = "Soft";
             StudentMarks = new List<StudentMark>();
         }
         public Exercise(ExerciseDTO exercise)
@@ -28,7 +29,17 @@ namespace EJournalBLL.Models
             Id = exercise.Id;
             Description = exercise.Description;
             Deadline = exercise.Deadline;
-            Point = exercise.Point;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Exercise exercise &&
+                   Id == exercise.Id &&
+                   Description == exercise.Description &&
+                   Deadline == exercise.Deadline &&
+                   IdGroup == exercise.IdGroup &&
+                   ExerciseType == exercise.ExerciseType &&
+                   EqualityComparer<List<StudentMark>>.Default.Equals(StudentMarks, exercise.StudentMarks);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[AddExerciseToStudent]
+﻿CREATE PROCEDURE [EJournal].[AddExerciseToStudent]
 	@IdGroup int,
 	@Description nvarchar(250),
 	@ExerciseType nvarchar(250),
@@ -12,15 +12,14 @@ AS
 	select *
 	from @StudentExerciseVariable
 
-	insert into [EJournal].Exercises(Description, Deadline, IdGroup, ExerciseType)
-	values(@Description, @Deadline, @IdGroup, @ExerciseType)
+	insert into [EJournal].[Exercises] (IdGroup, Description, Deadline)
+	values(@IdGroup, @Description, @Deadline)
 	set @IdExercise = SCOPE_IDENTITY()
-
+	
 	update @StudentExercise
-	set ExerciseId = @IdExercise
+	set IdExercise = @IdExercise
 
-	insert into [EJournal].[StudentsExercises](IdExercise, IdStudents, Points, IsChecked)
-	select ExerciseId, IdStudent, Points, IsChecked
-	from @StudentExercise
+	insert into [EJournal].[StudentsExercises]
+	select * from @StudentExerciseVariable
 
-RETURN @IdExercise
+	RETURN @IdExercise
