@@ -11,7 +11,7 @@ namespace EJournalBLL.Services
         private DataTable exerciseModel;
         public ExercisesRepository ExercisesRepository { get; set; }
         public List<Exercise> Exercises { get; set; }
-        
+
 
         public ExercisesService()
         {
@@ -29,7 +29,7 @@ namespace EJournalBLL.Services
             exerciseModel.Clear();
             foreach (var student in exercise.StudentMarks)
             {
-                exerciseModel.Rows.Add(new object[] { student.Student.Id, null, student.Point});
+                exerciseModel.Rows.Add(new object[] { student.Student.Id, null, student.Point });
             }
 
             exercise.Id = ExercisesRepository.AddEStudentExercise(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
@@ -40,10 +40,19 @@ namespace EJournalBLL.Services
             exerciseModel.Clear();
             foreach (var student in exercise.StudentMarks)
             {
-                exerciseModel.Rows.Add(new object[] { student.Student.Id, null, student.Point });
+                exerciseModel.Rows.Add(new object[] { student.Student.Id, exercise.Id, student.Point });
             }
 
-            exercise.Id = ExercisesRepository.AddEStudentExercise(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
+            ExercisesRepository.UpdateStudentExercise(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
+        }
+
+        public List<Exercise> GetExercisesByGroup(Group group)
+        {
+            List<ExerciseDTO> exerciseDTO = ExercisesRepository.GetStudentExercise(group.Id);
+
+            List<Exercise> exercises = ConvertLessonsDTOToLessons(exerciseDTO);
+
+            return exercises;
         }
 
         public void DeleteProject(int Id)
@@ -51,21 +60,19 @@ namespace EJournalBLL.Services
 
         }
 
-        private List<Exercise> ConvertExerciseDTOToExercise(List<ExerciseDTO> exercisesDTO)
+        private List<Exercise> ConvertLessonsDTOToLessons(List<ExerciseDTO> exercisesDTO)
         {
-            List<Exercise> exercises = new List<Exercise>();
+            List<Exercise> exercise = new List<Exercise>();
 
             foreach (ExerciseDTO exerciseDTO in exercisesDTO)
             {
-                exercises.Add(new Exercise(exerciseDTO)
-                    {
-                        Id = exerciseDTO.Id,
-                        IdGroup = exerciseDTO.IdGroup,
-                        
-                    }); 
+                exercise.Add(new Exercise(exerciseDTO)
+                {
+                    StudentMarks = StudentMark.GetStudentMarksFromStudentExerciseDTO(exerciseDTO.StudentsExercisesDTO)
+                });
             }
-            
-            return exercises;
+
+            return exercise;
         }
     }
 }

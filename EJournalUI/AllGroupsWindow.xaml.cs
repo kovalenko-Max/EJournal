@@ -56,6 +56,7 @@ namespace EJournalUI
             UpdateGroupInfoGridFieldts(null, null);
             GetStudentsByGroup();
             GetLessonsAttendancesByGroup();
+            GetExercisesByGroup();
         }
 
         private void HighlightSelectedGroupCard(GroupCard groupCard)
@@ -174,6 +175,8 @@ namespace EJournalUI
             }
         }
         #endregion
+
+
 
         public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
@@ -419,6 +422,8 @@ namespace EJournalUI
             }
         }
 
+        #region Exercises
+
         private void Button_ExercisesAdd_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedGroupCard != null)
@@ -448,11 +453,29 @@ namespace EJournalUI
                     HomeworkCard homeWork = (HomeworkCard)child;
                     ExercisesService exerciseService = new ExercisesService();
 
-                    homeWork.Exercise.Deadline = (DateTime)homeWork.ExercisesDateDatePicker.SelectedDate;
+                    if (homeWork.ExercisesDateDatePicker.SelectedDate != null)
+                    {
+                        homeWork.Exercise.Deadline = (DateTime)homeWork.ExercisesDateDatePicker.SelectedDate;
+                    }
                     homeWork.Exercise.Description = homeWork.ExercisesTopicTextBox.Text.ToString();
-                    
+
+                    exerciseService.UpdateExercise(homeWork.Exercise);
                 }
             }
         }
+
+        private void GetExercisesByGroup()
+        {
+            HomeworkStackPanel.Children.Clear();
+            ExercisesService exercisesService = new ExercisesService();
+
+            List<Exercise> exercises = exercisesService.GetExercisesByGroup(SelectedGroupCard.Group);
+            foreach (var exercise in exercises)
+            {
+                HomeworkStackPanel.Children.Add(new HomeworkCard(exercise));
+            }
+        }
+
+        #endregion
     }
 }

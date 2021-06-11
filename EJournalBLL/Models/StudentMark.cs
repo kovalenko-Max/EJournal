@@ -25,20 +25,21 @@ namespace EJournalBLL.Models
 
         public StudentMark(StudentExerciseDTO studentExerciseDTO)
         {
-            Student = new Student(studentExerciseDTO.name, studentExerciseDTO.surname);
-            Student.Id = studentExerciseDTO.idStudent;
-            Point = studentExerciseDTO.point;
+            Student = new Student(studentExerciseDTO.Name, studentExerciseDTO.Surname);
+            Student.Id = studentExerciseDTO.IdStudent;
+            Point = studentExerciseDTO.Point;
         }
 
         public static List<StudentMark> GetStudentMarksFromStudentExerciseDTO(List<StudentExerciseDTO> studentExerciseDTO)
         {
-            List<StudentMark> marks = new List<StudentMark>();
+            List<StudentMark> studentMarks = new List<StudentMark>();
+
             foreach (var mark in studentExerciseDTO)
             {
-                marks.Add(new StudentMark(mark));
+                studentMarks.Add(new StudentMark(mark));
             }
 
-            return marks;
+            return studentMarks;
         }
 
         public override bool Equals(object obj)

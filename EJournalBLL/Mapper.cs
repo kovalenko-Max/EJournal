@@ -66,15 +66,24 @@ namespace EJournalBLL
                     .ForMember(dto => dto.Deadline, map => map.MapFrom(source => source.Deadline))
                     .ForMember(dto => dto.ExerciseType, map => map.MapFrom(source => source.ExerciseType))
                     .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
-                //.ForMember(dto => dto.StudentMarks, map => map.MapFrom(source => source.StudentMarks));
+                    //.ForMember(dto => dto.StudentMarks, map => map.MapFrom(source => source.StudentsExercisesDTO));
 
                 cfg.CreateMap<Exercise, ExerciseDTO>()
                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                    .ForMember(dto => dto.Description, map => map.MapFrom(source => source.Description))
                    .ForMember(dto => dto.Deadline, map => map.MapFrom(source => source.Deadline))
-                   .ForMember(dto => dto.ExerciseType, map => map.MapFrom(source => source.ExerciseType))
-                   .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
-                //.ForMember(dto => dto.GroupStudents, map => map.MapFrom(source => source.GroupStudents));
+                   .ForMember(dto => dto.ExerciseType, map => map.MapFrom(source => source.ExerciseType));
+                   //.ForMember(dto => dto.StudentsExercisesDTO, map => map.MapFrom(source => source.StudentMarks));
+
+                //cfg.CreateMap<StudentExerciseDTO, StudentMark>()
+                //    .ForMember(dto => dto.Student.Name, map => map.MapFrom(source => source.Name))
+                //    .ForMember(dto => dto.Student.Surname, map => map.MapFrom(source => source.Surname))
+                //    .ForMember(dto => dto.Point, map => map.MapFrom(source => source.Point));
+
+                //cfg.CreateMap<StudentMark, StudentExerciseDTO>()
+                //    .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Student.Name))
+                //    .ForMember(dto => dto.Surname, map => map.MapFrom(source => source.Student.Surname))
+                //    .ForMember(dto => dto.Point, map => map.MapFrom(source => source.Point));
 
                 cfg.CreateMap<ProjectGroupStudent, ProjectGroupStudentDTO>()
                     .ForMember(dto => dto.IdStudent, map => map.MapFrom(source => source.IdStudent))
@@ -147,11 +156,11 @@ namespace EJournalBLL
                    .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
 
                 cfg.CreateMap<ProjectGroup, ProjectGroupDTO>()
-                        .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                        .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
-                        .ForMember(dto => dto.IdProject, map => map.MapFrom(source => source.IdProject))
-                        .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
-                        .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
+                   .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                   .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                   .ForMember(dto => dto.IdProject, map => map.MapFrom(source => source.IdProject))
+                   .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
+                   .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
                 cfg.CreateMap<CommentType, CommentTypeDTO>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
@@ -163,10 +172,8 @@ namespace EJournalBLL
                     .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType))
                     .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete))
                     .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students));
-
-
-
             });
+
             return config.CreateMapper();
         }
     }

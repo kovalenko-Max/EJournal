@@ -19,16 +19,18 @@ namespace EJournalBLL.Models
         public Exercise (Group group)
         {
             Description = string.Empty;
-
+            //fix
             IdGroup = group.Id;
             ExerciseType = "Soft";
             StudentMarks = new List<StudentMark>();
         }
-        public Exercise(ExerciseDTO exercise)
+        public Exercise(ExerciseDTO exerciseDTO)
         {
-            Id = exercise.Id;
-            Description = exercise.Description;
-            Deadline = exercise.Deadline;
+            Id = (int)exerciseDTO.Id;
+            Description = exerciseDTO.Description;
+            Deadline = exerciseDTO.Deadline;
+            IdGroup = exerciseDTO.IdGroup;
+            ExerciseType = exerciseDTO.ExerciseType;
         }
 
         public override bool Equals(object obj)

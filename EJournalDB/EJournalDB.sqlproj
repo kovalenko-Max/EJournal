@@ -178,7 +178,7 @@
     <Build Include="dbo\Stored Procedures\Groups\AddGroupWithStudents.sql" />
     <Build Include="dbo\User Defined Types\StudentExercise.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\AddExerciseToStudent.sql" />
-    <Build Include="dbo\Stored Procedures\ExercisesStudents\GetStudentExercise.sql" />
+    <Build Include="dbo\Stored Procedures\ExercisesStudents\GetExercisesByGroup.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\UpdateStudentExercise.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\DeleteStudentExercise.sql" />
   </ItemGroup>

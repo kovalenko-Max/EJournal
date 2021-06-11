@@ -20,6 +20,6 @@ AS
 	set IdExercise = @IdExercise
 
 	insert into [EJournal].[StudentsExercises]
-	select * from @StudentExerciseVariable
+	select * from @StudentExercise
 
 	RETURN @IdExercise
