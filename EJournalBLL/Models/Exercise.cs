@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EJournalDAL.Models.BaseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,13 @@ namespace EJournalBLL.Models
         public Exercise (Group group)
         {
             GroupStudents = new List<Student>();
+        }
+        public Exercise(ExerciseDTO exercise)
+        {
+            Id = exercise.Id;
+            Description = exercise.Description;
+            Deadline = exercise.Deadline;
+            Point = exercise.Point;
         }
     }
 }
