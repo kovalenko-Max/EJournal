@@ -172,6 +172,7 @@
     <Build Include="dbo\Stored Procedures\Courses\GetCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\UpdateCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\CountGroupsByCourse.sql" />
+    <Build Include="dbo\Stored Procedures\GetCommentsByStudent.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

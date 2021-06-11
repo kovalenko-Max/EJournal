@@ -14,16 +14,16 @@ namespace EJournalDAL.Repository
 {
     public class CommentRepository
     {
-        string connectionString;
-        public CommentRepository()
+        string _connectionString;
+        public CommentRepository(string connectionString)
         {
-            connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
+            _connectionString = connectionString;
         }
 
         public List <CommentDTO> GetAllComments()
         {
             List<CommentDTO> comments = new List<CommentDTO>();
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string connectionQuery = "exec GetAllComments";
                 comments = db.Query<CommentDTO>(connectionQuery).ToList();
@@ -34,7 +34,7 @@ namespace EJournalDAL.Repository
         public CommentDTO GetComment(int id)
         {
             CommentDTO comment = null;
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string connectionQuery = "exec GetComment @Id";
                 comment = db.Query<CommentDTO>(connectionQuery, new { id }).FirstOrDefault();
@@ -44,10 +44,10 @@ namespace EJournalDAL.Repository
 
         public CommentDTO CreateComment(CommentDTO comment)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string connectionQuery = "exec AddComment @Comments, @CommentType";
-                int? commentId = db.Query<int>(connectionQuery, comment).FirstOrDefault();
+                int commentId = db.Query<int>(connectionQuery, comment).FirstOrDefault();
                 comment.Id = commentId;
             }
             return comment;
@@ -55,7 +55,7 @@ namespace EJournalDAL.Repository
 
         public void UpdateComment(CommentDTO comment)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string connectionQuery = "exec UpdateComment @Id, @Comments, @CommentType";
                 db.Execute(connectionQuery, comment);
@@ -64,11 +64,34 @@ namespace EJournalDAL.Repository
 
         public void DeleteComment(int id)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string connectionQuery = " exec DeleteComments @Id";
                 db.Execute(connectionQuery, new { id });
             }
+        }
+
+        public List<CommentDTO> GetCommentsByStudent(int IdStudent)
+        {
+            List<CommentDTO> comments = new List<CommentDTO>();
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string connectionQuery = "exec GetCommentsByStudent @IdStudent";
+                List<CommentDTO> commentDTOs = new List<CommentDTO>();
+
+                comments = db.Query<CommentDTO, CommentTypeDTO, CommentDTO>(connectionQuery,
+                    (comment, commentType) =>
+                    {
+                        comment.CommentType = commentType.Type;
+
+                        return comment;
+                    }, 
+                    new { IdStudent },
+                    splitOn: "Id").ToList();
+            }
+
+            return comments;
         }
     }
 }

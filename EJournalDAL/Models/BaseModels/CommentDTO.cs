@@ -7,7 +7,7 @@ namespace EJournalDAL.Models.BaseModels
 {
     public class CommentDTO
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Comment { get; set; }
         public string CommentType { get; set; }
         public bool IsDelete { get; set; }

@@ -1,5 +1,6 @@
 ﻿using EJournalBLL;
 using EJournalBLL.Models;
+using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,16 +17,21 @@ namespace EJournalUI
     public partial class StudentWindow : Window
     {
         private StudentService _studentServices;
+        private CommentsService _commentsService;
         public StudentCard StudentCard;
         public event EventHandler StudentDeleted;
+        public List<Comment> Comments { get; set; }
         public Student Student { get; set; }
         public StudentWindow(StudentCard studentCard)
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService(ConnectionString);
+            _commentsService = new CommentsService(ConnectionString);
             StudentCard = studentCard;
             Student = studentCard.Student;
+            Comments = _commentsService.GetCommentsByStudent(Student.Id);
+            DataGrid_Comments.ItemsSource = Comments;
             TextBox_Name.Text = Student.Name;
             TextBox_Surname.Text = Student.Surname;
             TextBox_Email.Text = Student.Email;
