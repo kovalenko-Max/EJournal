@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using EJournalBLL;
 using EJournalDAL.Repository;
+using System.Windows.Controls;
 
 namespace EJournalUI
 {

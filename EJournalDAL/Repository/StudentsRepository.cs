@@ -110,7 +110,17 @@ namespace EJournalDAL.Repository
             }
             return students;
         }
-
+        public List<StudentDTO> SearchStudentAgreementNumbers(string AgreementNumbers)
+        {
+            List<StudentDTO> students = new List<StudentDTO>();
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                string connectionQuery = "exec SearchStudentAgreementNumber @AgreementNumbers";
+                students = db.Query<StudentDTO>(connectionQuery, new { AgreementNumbers }).ToList();
+            }
+            return students;
+        }
         public List<StudentDTO> SearchStudentAllStudents()
         {
             List<StudentDTO> students = new List<StudentDTO>();
