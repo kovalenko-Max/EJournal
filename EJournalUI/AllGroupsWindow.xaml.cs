@@ -222,7 +222,6 @@ namespace EJournalUI
                 if (SelectedProjectGroupCard != null)
                 {
                     _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
-                    SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
                     ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
                 }
             }

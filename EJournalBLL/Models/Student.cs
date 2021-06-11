@@ -19,6 +19,10 @@ namespace EJournalBLL.Models
         public bool IsDelete { get; set; }
         public List<Comments> Comments { get; set; }
 
+        public Student()
+        {
+
+        }
         public Student(string name, string surname, string email, string phone, string git, string city, string agreementNumber)
         {
             Name = name;
@@ -76,10 +80,9 @@ namespace EJournalBLL.Models
                    AgreementNumber == student.AgreementNumber &&
                    IsDelete == student.IsDelete;
 
-                if ((Comments.Count == student.Comments.Count) && Comments.Count != 0)
-                {
-                    EqualityComparer<List<Comments>>.Default.Equals(Comments, student.Comments);
-                }
+                
+                    isEquals = Comments.SequenceEqual(student.Comments);
+              
             }
 
             return isEquals;

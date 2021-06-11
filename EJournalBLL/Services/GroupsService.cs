@@ -43,7 +43,7 @@ namespace EJournalBLL.Services
             groupDTO.Id = group.Id;
             groupDTO.Name = group.Name;
             groupDTO.IdCourse = group.Course.Id;
-            groupDTO.IsFinish = group.IsFinish ? 1 : 0;
+            groupDTO.IsFinish = group.IsFinish ? true : false;
             groupsRepository.UpdateGroup(groupDTO);
         }
 

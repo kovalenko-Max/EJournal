@@ -112,7 +112,7 @@ namespace EJournalUI
                 _projectGroupServices.Update(ProjectGroup);
                 if (TeamCommentsTextBox.Text != string.Empty)
                 {
-                    Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, IsDelete = false, Students = ProjectGroup.Students };
+                    Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, Students = ProjectGroup.Students };
                     _commentService.AddCommentsToStudent(comments);
                 }
 

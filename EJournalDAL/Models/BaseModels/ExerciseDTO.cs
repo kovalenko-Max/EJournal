@@ -11,6 +11,23 @@ namespace EJournalDAL.Models.BaseModels
         public DateTime? Deadline { get; set; }
         public int? IdGroup { get; set; }
         public string ExerciseType { get; set; }
-        public bool IsDelete { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+            ExerciseDTO exercise = obj as ExerciseDTO;
+
+            if (!(exercise is null) && Description == exercise.Description && Deadline == exercise.Deadline
+                && IdGroup == exercise.IdGroup && ExerciseType == exercise.ExerciseType)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

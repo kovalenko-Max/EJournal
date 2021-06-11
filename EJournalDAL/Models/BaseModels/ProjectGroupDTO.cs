@@ -9,7 +9,6 @@ namespace EJournalDAL.Models.BaseModels
         public int Id { get; set; }
         public string Name { get; set; }
         public int IdProject { get; set; }
-        public bool IsDelete { get; set; }
 
         public List<StudentDTO> Students { get; set; }
 

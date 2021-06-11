@@ -10,7 +10,6 @@ namespace EJournalBLL.Models
         public string Name { get; set; }
         public int IdProject { get; set; }
 
-        public bool IsDelete { get; set; }
 
         public List<Student> Students { get; set; }
 
@@ -35,7 +34,7 @@ namespace EJournalBLL.Models
 
             ProjectGroup project = obj as ProjectGroup;
 
-            if (project != null && Id == project.Id && Name == project.Name && IsDelete == project.IsDelete )
+            if (project != null && Id == project.Id && Name == project.Name)
             {
                 equal = Students.SequenceEqual(project.Students);
             }
@@ -44,7 +43,7 @@ namespace EJournalBLL.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, IsDelete, Students);
+            return HashCode.Combine(Id, Name, Students);
         }
     }
 }

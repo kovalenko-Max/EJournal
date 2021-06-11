@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
-    public class ProjectGroupRepository
+    public class ProjectGroupRepository: IProjectGroupRepository
     {
         string connectionString;
         public ProjectGroupRepository()

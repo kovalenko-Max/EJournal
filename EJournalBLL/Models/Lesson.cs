@@ -12,7 +12,7 @@ namespace EJournalBLL.Models
         public DateTime DateLesson { get; set; }
         public int IdGroup { get; set; }
 
-        public List<Attendances> Attendances;
+        public List<Attendances> Attendances { get; set; }
 
         public Lesson()
         {

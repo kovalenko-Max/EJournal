@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EJournalBLL.Models
 {
@@ -13,6 +9,27 @@ namespace EJournalBLL.Models
         public DateTime? Deadline { get; set; }
         public int? IdGroup { get; set; }
         public string ExerciseType { get; set; }
-        public bool IsDelete { get; set; }
+
+        public Exercise()
+        {
+                
+        }
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+            Exercise exercise = obj as Exercise;
+
+            if(!(exercise is null) && Description==exercise.Description && Deadline==exercise.Deadline
+                && IdGroup==exercise.IdGroup && ExerciseType==exercise.ExerciseType)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

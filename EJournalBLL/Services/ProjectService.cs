@@ -37,6 +37,7 @@ namespace EJournalBLL
             List<Project> project = ObjectMapper.Mapper.Map<List<Project>>(projectDTO);
             return project;
         }
+
         public int AddProject(Project projectInput)
         {
 
