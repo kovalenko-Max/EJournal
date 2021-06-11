@@ -79,7 +79,7 @@
                                     </Grid.RowDefinitions>
 
                                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                        <!--<Button x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>-->
+                                        <Button x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>
                                         <Button x:Name="ExercisesAddButton" Content="Add" Width="60" Margin="2" Click="Button_ExercisesAdd_Click"/>
                                     </StackPanel>
                                     <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">

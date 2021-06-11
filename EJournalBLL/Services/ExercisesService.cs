@@ -36,11 +36,7 @@ namespace EJournalBLL.Services
 
         }
 
-        public List<Exercise> GetExercises(Group group)
-        {
-            
-            
-        }
+        
 
         public void UpdateExercise(Exercise exerciseInput)
         {

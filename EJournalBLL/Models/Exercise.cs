@@ -16,10 +16,12 @@ namespace EJournalBLL.Models
         public string ExerciseType { get; set; }
         public List<Student> GroupStudents { get; set; }
         public int Point { get; set; }
+        public List<StudentMark> StudentMarks { get; set; }
 
         public Exercise (Group group)
         {
             GroupStudents = new List<Student>();
+            StudentMarks = new List<StudentMark>();
         }
         public Exercise(ExerciseDTO exercise)
         {

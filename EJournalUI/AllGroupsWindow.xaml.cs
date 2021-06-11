@@ -413,7 +413,7 @@ namespace EJournalUI
 
                 foreach (var student in SelectedGroupCard.Group.Students)
                 {
-                    exercise.GroupStudents.Add(student);
+                    exercise.StudentMarks.Add(new StudentMark(student));
                 }
 
                 HomeworkCard homeworkcard = new HomeworkCard(exercise);
@@ -422,5 +422,20 @@ namespace EJournalUI
                 //exercisesService.AddExercise(exercise);
             }
         }
+
+        //private void Button_ExercisesSave_Click(object sender, RoutedEventArgs e)
+        //{
+        //    foreach (var c in HomeworkStackPanel.Children)
+        //    {
+        //        if (c is HomeworkCard)
+        //        {
+        //            HomeworkCard ac = (HomeworkCard)c;
+        //            ExercisesService exerciseService = new ExercisesService(new ExercisesRepository());
+        //            ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
+        //            ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
+        //            lessonsLogic.UpdateLessonAttendances(ac.Lesson);
+        //        }
+        //    }
+        //}
     }
 }

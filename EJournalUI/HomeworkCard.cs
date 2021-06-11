@@ -64,7 +64,7 @@ namespace EJournalUI
 
             DataGrid dataGrid = new DataGrid();
             dataGrid.AutoGenerateColumns = false;
-            dataGrid.ItemsSource = Exercise.GroupStudents;
+            dataGrid.ItemsSource = Exercise.StudentMarks;
 
             dataGrid.Columns.Add(new DataGridTextColumn()
             {
@@ -74,7 +74,7 @@ namespace EJournalUI
                 IsReadOnly = true
             });
 
-            dataGrid.Columns.Add(new DataGridComboBoxColumn() { Header = "Mark", ItemsSource = rate });
+            dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Mark", Binding = new Binding("Point") });
 
             Grid.SetRow(dataGrid, 1);
             grid.Children.Add(dataGrid);
