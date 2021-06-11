@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[GetAllComments]
+﻿CREATE PROCEDURE [EJournal].[GetAllComments]
 AS
 SELECT Id
 	,Comment
-	,CommentType
-FROM [dbo].[Comments]
+	,IdCommentType
+FROM [EJournal].[Comments]
 WHERE IsDelete = 0

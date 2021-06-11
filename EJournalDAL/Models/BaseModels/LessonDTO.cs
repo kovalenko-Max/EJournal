@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace EJournalDAL.Models.BaseModels
 {
@@ -12,8 +11,5 @@ namespace EJournalDAL.Models.BaseModels
         public List <StudentAttendanceDTO> StudentAttendanceDTO { get; set; }
         public int IdGroup { get; set; }
         public bool IsDelete { get; set; }
-
-        public StudentDTO student;
-        public List<StudentDTO> students;
     }
 }

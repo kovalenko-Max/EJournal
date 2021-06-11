@@ -1,48 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
-
+using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
     public class GroupsRepository
     {
-        public string ConnectionString;
+        private string _connectionString;
 
-        public GroupsRepository(string connectionString)
+        public GroupsRepository()
         {
-            ConnectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
-        public GroupDTO AddGroupDTO(GroupDTO groupDTO)
+        public GroupDTO AddGroup(GroupDTO groupDTO)
         {
-            string command = "exec AddGroup @Name, @IdCourse";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            string command = "exec [EJournal].[AddGroup] @Name, @IdCourse";
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                groupDTO.Id = db.Query<int>(command, new { groupDTO.Name, groupDTO.IdCourse }).FirstOrDefault();
+                groupDTO.Id = db.Query<int>(command, new { groupDTO.Name, groupDTO.IdCourse }).First();
             }
 
             return groupDTO;
         }
 
-        public void DeleteGroupDTO(GroupDTO groupDTO)
+        public void DeleteGroup(GroupDTO groupDTO)
         {
-            string command = "exec DeleteGroup @Id";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            string command = "exec [EJournal].[DeleteGroup] @Id";
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { groupDTO.Id });
             }
         }
 
-        public List<GroupDTO> GetAllGroupsDTO()
+        public List<GroupDTO> GetAllGroups()
         {
-            string command = "exec GetAllGroups";
+            string command = "exec [EJournal].[GetAllGroups]";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 groupsDTO = db.Query<GroupDTO,CourseDTO, GroupDTO>(command,
                     (group, course) =>
@@ -55,12 +54,12 @@ namespace EJournalDAL.Repository
 
             return groupsDTO;
         }
-        public List<GroupDTO> GetAllGroupsDTOWithCourse()
+        public List<GroupDTO> GetAllGroupsWithCourses()
         {
-            string command = "exec GroupsWithCources";
+            string command = "exec [EJournal].[GetAllGroupsWithCourses]";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();
 
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Query<CourseDTO, GroupDTO, List<GroupDTO>>(command,
                        (course, group) =>
@@ -84,11 +83,11 @@ namespace EJournalDAL.Repository
         }
 
 
-        public GroupDTO GetGroupDTO(int id)
+        public GroupDTO GetGroup(int id)
         {
-            string command = "exec GetGroup @Id";
+            string command = "exec [EJournal].[GetGroup] @Id";
             GroupDTO groupDTO = null;
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 groupDTO = db.Query<GroupDTO>(command, new { id }).FirstOrDefault();
             }
@@ -96,10 +95,10 @@ namespace EJournalDAL.Repository
             return groupDTO;
         }
 
-        public void UpdateGroupDTO(GroupDTO groupDTO)
+        public void UpdateGroup(GroupDTO groupDTO)
         {
-            string command = "exec UpdateGroup @Id, @Name, @IdCourse";
-            using (IDbConnection db = new SqlConnection(ConnectionString))
+            string command = "exec [EJournal].[UpdateGroup] @Id, @Name, @IdCourse";
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { groupDTO.Id, groupDTO.Name, groupDTO.IdCourse });
             }

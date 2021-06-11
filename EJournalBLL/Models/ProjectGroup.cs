@@ -8,7 +8,7 @@ namespace EJournalBLL.Models
     {
         public int Id;
         public string Name { get; set; }
-        public int? IdProject { get; set; }
+        public int IdProject { get; set; }
 
         public bool IsDelete { get; set; }
 

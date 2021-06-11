@@ -19,7 +19,7 @@ namespace EJournalBLL.Models
         public bool IsDelete { get; set; }
         public List<Comments> Comments { get; set; }
 
-        public Student(string name, string surname, string email, string phone,string git, string city, string agreementNumber)
+        public Student(string name, string surname, string email, string phone, string git, string city, string agreementNumber)
         {
             Name = name;
             Surname = surname;
@@ -28,12 +28,14 @@ namespace EJournalBLL.Models
             Git = git;
             City = city;
             AgreementNumber = agreementNumber;
+            Comments = new List<Comments>();
         }
 
         public Student(string name, string surname)
         {
             Name = name;
             Surname = surname;
+            Comments = new List<Comments>();
         }
 
         public Student(StudentDTO studentDTO)
@@ -45,29 +47,42 @@ namespace EJournalBLL.Models
             Git = studentDTO.Git;
             City = studentDTO.City;
             AgreementNumber = studentDTO.AgreementNumber;
+            Comments = new List<Comments>();
         }
-        public override bool Equals(object obj)
-        {
-            bool equal = false;
 
-            Student student = obj as Student;
-
-            if (student != null && Id == student.Id && Name == student.Name && Surname == student.Surname
-                && Email == student.Email && Phone == student.Phone && Git == student.Git
-                && City == student.City && Ranking == student.Ranking && AgreementNumber == student.AgreementNumber
-                && IsDelete == student.IsDelete )
-            {
-                equal = Comments.SequenceEqual(student.Comments);
-            }
-            return equal;
-        }
         public override string ToString()
         {
-            return $"{Name} {Surname} {Email} {City} {AgreementNumber}";
+            return $"{Name} {Surname}";
         }
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool isEquals = false;
+            if (obj is Student)
+            {
+                Student student = (Student)obj;
+                isEquals = Id == student.Id &&
+                   Name == student.Name &&
+                   Surname == student.Surname &&
+                   Email == student.Email &&
+                   Phone == student.Phone &&
+                   Git == student.Git &&
+                   City == student.City &&
+                   Ranking == student.Ranking &&
+                   AgreementNumber == student.AgreementNumber &&
+                   IsDelete == student.IsDelete;
+
+                if ((Comments.Count == student.Comments.Count) && Comments.Count != 0)
+                {
+                    EqualityComparer<List<Comments>>.Default.Equals(Comments, student.Comments);
+                }
+            }
+
+            return isEquals;
         }
     }
 }

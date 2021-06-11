@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[StudentsExercises] (
+﻿CREATE TABLE [EJournal].[StudentsExercises] (
     [Points]     INT NULL,
     [IdExercise] INT NOT NULL,
     [IdStudents] INT NOT NULL,

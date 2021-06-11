@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[AddExercises] @Description NVARCHAR(255)
+﻿CREATE PROCEDURE [EJournal].[AddExercises] @Description NVARCHAR(255)
 	,@Deadline DATETIME
 	,@IdGroup INT
 AS
-INSERT INTO [dbo].[Exercises] (
+INSERT INTO [EJournal].[Exercises] (
 	Description
 	,Deadline
 	,IdGroup
