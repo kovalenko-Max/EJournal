@@ -94,5 +94,11 @@ namespace EJournalUI
                 }
             }
         }
+
+        private void DataGrid_Comments_CellEditEnding(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
+        {
+            _commentsService.UpdateComment((Comment)DataGrid_Comments.SelectedItem);
+            DataGrid_Comments.Items.Refresh();
+        }
     }
 }

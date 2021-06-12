@@ -27,5 +27,11 @@ namespace EJournalBLL.Services
 
             return Comments = ObjectMapper.Mapper.Map<List<Comment>>(commentsDTO);
         }
+
+        public void UpdateComment(Comment comment)
+        {
+            CommentDTO commentDTO = ObjectMapper.Mapper.Map<CommentDTO>(comment);
+            CommentRepository.UpdateComment(commentDTO);
+        }
     }
 }
