@@ -55,7 +55,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string connectionQuery = "exec UpdateComment @Id, @Comment, @CommentType";
+                string connectionQuery = "exec [EJournal].[UpdateComment] @Id, @Comment, @CommentType";
                 db.Execute(connectionQuery, comment);
             }    
         }

@@ -3,6 +3,8 @@ using EJournalBLL.Models;
 using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -20,7 +22,7 @@ namespace EJournalUI
         private CommentsService _commentsService;
         public StudentCard StudentCard;
         public event EventHandler StudentDeleted;
-        public List<Comment> Comments { get; set; }
+        public BindingList<Comment> Comments { get; set; }
         public Student Student { get; set; }
         public StudentWindow(StudentCard studentCard)
         {
@@ -31,13 +33,9 @@ namespace EJournalUI
             StudentCard = studentCard;
             Student = studentCard.Student;
 
-            Comments = _commentsService.GetCommentsByStudent(Student.Id);
-
+            Comments = new BindingList<Comment>(_commentsService.GetCommentsByStudent(Student.Id));
+            Comments.ListChanged += Comments_ListChanged;
             DataGrid_Comments.ItemsSource = Comments;
-
-            //CommentTypeComboBox.ItemsSource = Enum.GetValues(typeof(CommentType)).Cast<CommentType>();
-
-
 
             TextBox_Name.Text = Student.Name;
             TextBox_Surname.Text = Student.Surname;
@@ -48,6 +46,14 @@ namespace EJournalUI
             TextBox_Agreement.Text = Student.AgreementNumber;
         }
 
+        private void Comments_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            foreach (var c in (BindingList<Comment>)sender)
+            {
+                _commentsService.UpdateComment(c);
+            }
+        }
+       
         private void Button_EditStudent_Click(object sender, RoutedEventArgs e)
         {
             TextBox_Name.IsReadOnly = false;
@@ -102,10 +108,9 @@ namespace EJournalUI
             }
         }
 
-        private void DataGrid_Comments_CellEditEnding(object sender, System.Windows.Controls.DataGridCellEditEndingEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
-            _commentsService.UpdateComment((Comment)DataGrid_Comments.SelectedItem);
-            DataGrid_Comments.Items.Refresh();
+            
         }
     }
 }
