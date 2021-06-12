@@ -5,12 +5,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-
 namespace EJournalUI
 {
     public class GroupCard : Border
     {
-
         private TextBlock _groupNameTextBox;
         private TextBlock _courseNameTextBox;
         private TextBlock _studentCountTextBox;
@@ -82,7 +80,6 @@ namespace EJournalUI
             MouseLeave += GroupCard_MouseLeave;
             Group.GrouChanged += UpdateFields;
         }
-
         public void DeleteGroupCard()
         {
             WasDeleted?.Invoke(this, new EventArgs());

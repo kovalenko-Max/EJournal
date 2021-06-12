@@ -17,7 +17,6 @@ namespace EJournalUI
     {
         public DatePicker ExercisesDateDatePicker { get; set; }
         public TextBox ExercisesTopicTextBox { get; set; }
-
         public ComboBox ExcerciseTypeComboBox { get; set; }
         public Exercise Exercise { get; set; }
 
