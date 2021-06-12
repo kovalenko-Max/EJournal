@@ -54,7 +54,7 @@ namespace EJournalBLL.Services
             groupDTO.Name = group.Name;
             groupDTO.IdCourse = group.Course.Id;
             groupDTO.IsFinish = group.IsFinish ? true : false;
-            groupsRepository.UpdateGroup(groupDTO);
+            _groupsRepository.UpdateGroup(groupDTO);
         }
 
         private List<Group> GetAllGroupsFromDB()

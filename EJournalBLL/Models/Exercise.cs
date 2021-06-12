@@ -1,5 +1,6 @@
 ﻿using EJournalDAL.Models.BaseModels;
 using System;
+using System.Collections.Generic;
 
 namespace EJournalBLL.Models
 {
@@ -12,6 +13,10 @@ namespace EJournalBLL.Models
         public ExcerciseType ExerciseType { get; set; }
         public List<StudentMark> StudentMarks { get; set; }
 
+        public Exercise()
+        {
+
+        }
         public Exercise (Group group)
         {
             Description = string.Empty;
@@ -38,6 +43,10 @@ namespace EJournalBLL.Models
                    IdGroup == exercise.IdGroup &&
                    ExerciseType == exercise.ExerciseType &&
                    EqualityComparer<List<StudentMark>>.Default.Equals(StudentMarks, exercise.StudentMarks);
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
