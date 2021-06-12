@@ -22,20 +22,18 @@ namespace EJournalUI
         private CommentsService _commentsService;
         public StudentCard StudentCard;
         public event EventHandler StudentDeleted;
-        public BindingList<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
         public Student Student { get; set; }
         public StudentWindow(StudentCard studentCard)
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService();
-            _commentsService = new CommentsService(ConnectionString);
+            _commentsService = new CommentsService();
             StudentCard = studentCard;
             Student = studentCard.Student;
 
-            Comments = new BindingList<Comment>(_commentsService.GetCommentsByStudent(Student.Id));
-            Comments.ListChanged += Comments_ListChanged;
-            DataGrid_Comments.ItemsSource = Comments;
+            Comments = _commentsService.GetCommentsByStudent(Student.Id);
 
             TextBox_Name.Text = Student.Name;
             TextBox_Surname.Text = Student.Surname;
@@ -44,16 +42,18 @@ namespace EJournalUI
             TextBox_Git.Text = Student.Git;
             TextBox_City.Text = Student.City;
             TextBox_Agreement.Text = Student.AgreementNumber;
+
+            PrintComments();
         }
 
-        private void Comments_ListChanged(object sender, ListChangedEventArgs e)
+        private void PrintComments()
         {
-            foreach (var c in (BindingList<Comment>)sender)
+            foreach(var comment in Comments)
             {
-                _commentsService.UpdateComment(c);
+                CommentStackPannel.Children.Add(new CommentCard(comment));
             }
         }
-       
+
         private void Button_EditStudent_Click(object sender, RoutedEventArgs e)
         {
             TextBox_Name.IsReadOnly = false;
@@ -108,9 +108,12 @@ namespace EJournalUI
             }
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private void Button_AddComment_Click(object sender, RoutedEventArgs e)
         {
-            
+            Comment comment = new Comment();
+            CommentCard commentCard = new CommentCard(comment);
+            CommentStackPannel.Children.Add(commentCard);
+            new CommentsService().AddComment(comment, Student);
         }
     }
 }

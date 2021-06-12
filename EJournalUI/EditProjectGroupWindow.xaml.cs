@@ -31,7 +31,7 @@ namespace EJournalUI
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService();
             _projectGroupServices = new ProjectGroupSevice();
-            _commentService = new CommentsService(ConnectionString);
+            _commentService = new CommentsService();
             ProjectGroup = projectGroup;
             ProjectGroupTextBox.Text = projectGroup.Name;
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
@@ -39,7 +39,7 @@ namespace EJournalUI
             PrintStudents += PrintProjectGroupStudents;
             PrintStudents.Invoke();
         }
-        public EditProjectGroupWindow() 
+        public EditProjectGroupWindow()
         {
 
         }
@@ -105,11 +105,10 @@ namespace EJournalUI
 
                 if (TeamCommentsTextBox.Text != string.Empty)
                 {
-                    Comment comments = new Comment 
-                    { Comments = TeamCommentsTextBox.Text, 
-                        CommentTypeValue = CommentType.Group,
-                        IsDelete = false
-                    
+                    Comment comments = new Comment
+                    {
+                        Comments = TeamCommentsTextBox.Text,
+                        CommentTypeValue = CommentType.Group
                     };
 
                     _commentService.AddCommentsToStudent(comments, ProjectGroup.Students);

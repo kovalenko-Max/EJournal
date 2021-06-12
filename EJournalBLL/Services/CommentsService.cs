@@ -16,9 +16,8 @@ namespace EJournalBLL.Services
 
         public CommentRepository CommentRepository { get; set; }
 
-        public CommentsService(string connectionString)
+        public CommentsService()
         {
-            ConnectionString = connectionString;
             CommentRepository = new CommentRepository();
             _studentsComment = new DataTable();
             _studentsComment.Columns.Add("IdStudent");
@@ -30,6 +29,11 @@ namespace EJournalBLL.Services
             List<CommentDTO> commentsDTO = CommentRepository.GetCommentsByStudent(id);
 
             return Comments = ObjectMapper.Mapper.Map<List<Comment>>(commentsDTO);
+        }
+
+        public void AddComment(Comment comment, Student student)
+        {
+            comment.Id = CommentRepository.AddComment(ObjectMapper.Mapper.Map<CommentDTO>(comment), student.Id);
         }
 
         public void UpdateComment(Comment comment)
@@ -50,6 +54,11 @@ namespace EJournalBLL.Services
             CommentDTO commentDTO = ObjectMapper.Mapper.Map<CommentDTO>(comments);
 
             CommentRepository.AddCommentsToStudents(commentDTO, _studentsComment);
+        }
+
+        public void DeleteComment(Comment comment)
+        {
+            CommentRepository.DeleteComment(comment.Id);
         }
     }
 }

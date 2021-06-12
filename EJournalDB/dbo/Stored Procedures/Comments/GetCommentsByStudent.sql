@@ -7,4 +7,4 @@ SELECT
 ,[EJournal].[Comments].[CommentType]
 FROM [EJournal].[StudentsComments]
 INNER JOIN [EJournal].[Comments] ON [EJournal].[Comments].[Id] = [EJournal].[StudentsComments].[IdComment]
-WHERE [EJournal].[StudentsComments].[IdStudent] = @IdStudent AND [EJournal].[Comments].[IsDelete] = 0
+WHERE [EJournal].[StudentsComments].[IdStudent] = @IdStudent

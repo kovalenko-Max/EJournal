@@ -8,61 +8,29 @@ using EJournalBLL;
 
 namespace EJournalBLL.Models
 {
-    public class Comment: INotifyPropertyChanged
+    public class Comment
     {
-        private string _comments;
-        private CommentType _commentType;
-
         public int Id { get; set; }
-        public string Comments 
-        { 
-            get 
-            {
-                return _comments;
-            }
-            set 
-            {
-                _comments = value;
-                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(string.Empty));
-            } 
-        }
-        public CommentType CommentTypeValue
+        public string Comments { get; set; }
+        public CommentType CommentTypeValue { get; set; }
+
+        public Comment()
         {
-            get
-            {
-                return _commentType;
-            }
-            set
-            {
-                _commentType = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(string.Empty));
-            }
+            Comments = string.Empty;
+            CommentTypeValue = ((CommentType)0);
         }
-
-        public bool IsDelete { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public override bool Equals(object obj)
         {
             return obj is Comment comments &&
                    Id == comments.Id &&
                    Comments == comments.Comments &&
-                   CommentTypeValue == comments.CommentTypeValue &&
-                   IsDelete == comments.IsDelete;
+                   CommentTypeValue == comments.CommentTypeValue;
         }
-
-
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Comments, CommentTypeValue, IsDelete);
-        }
-
-        public Comment()
-        {
-            Comments = string.Empty;
-            CommentTypeValue = ((CommentType)0);
+            return HashCode.Combine(Id, Comments, CommentTypeValue);
         }
     }
 }

@@ -4,5 +4,4 @@ SELECT Id
 	,Comment
 	,CommentType
 FROM [EJournal].[Comments]
-WHERE IsDelete = 0
-	AND Id = @Id
+WHERE Id = @Id
