@@ -487,4 +487,46 @@
     <Property Name="NewSchema" Value="EJournal" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Move Schema" Key="807f19f4-d716-4671-821b-80ac9faaa589" ChangeDateTime="06/12/2021 15:34:48">
+    <Property Name="ElementName" Value="[dbo].[SearchStudentAgreementNumber]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="bf1efd99-2760-450b-8394-354e7422a14d" ChangeDateTime="06/12/2021 15:35:24">
+    <Property Name="ElementName" Value="[dbo].[SearchStudentAll]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="463d532d-8a3f-4e7f-933c-39a7f3e08c32" ChangeDateTime="06/12/2021 15:36:18">
+    <Property Name="ElementName" Value="[dbo].[SearchStudentCity]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="23f28e1e-9a25-42f0-856f-d11e6023f32f" ChangeDateTime="06/12/2021 15:36:53">
+    <Property Name="ElementName" Value="[dbo].[SearchStudentCours]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="95371095-7ce9-4c01-adec-0a5914daaba3" ChangeDateTime="06/12/2021 15:37:51">
+    <Property Name="ElementName" Value="[dbo].[SearchStudentsPhone]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="3a046aa4-31d9-4b50-9f15-65689196b639" ChangeDateTime="06/12/2021 15:38:21">
+    <Property Name="ElementName" Value="[dbo].[SearchStydentsNameSername]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="f7d6fce3-af2d-44a0-9f56-0cc295c9ae80" ChangeDateTime="06/12/2021 15:39:08">
+    <Property Name="ElementName" Value="[dbo].[SearchStydentsSername]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
 </Operations>

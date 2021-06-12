@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SearchStudentCours]
+﻿CREATE PROCEDURE [EJournal].[SearchStudentCours]
 	@Name NVARCHAR(50)
 AS
 SELECT
@@ -11,9 +11,9 @@ SELECT
 	,s.[City]
 	,s.[Ranking]
 	,s.[AgreementNumber]
-FROM [dbo].[Students] s
-LEFT JOIN [dbo].[GroupStudents] GS on GS.IdGroup = S.Id
-LEFT JOIN [dbo].[Groups] G on G.Id = GS.IdGroup
-LEFT JOIN [dbo].[Courses] C on C.Id = G.IdCourse
+FROM [EJournal].[Students] s
+LEFT JOIN [EJournal].[GroupStudents] GS on GS.IdGroup = S.Id
+LEFT JOIN [EJournal].[Groups] G on G.Id = GS.IdGroup
+LEFT JOIN [EJournal].[Courses] C on C.Id = G.IdCourse
 WHERE S.IsDelete = 0
 	AND C.Name = @Name

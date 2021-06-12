@@ -178,7 +178,6 @@
     <Build Include="dbo\Stored Procedures\SearchStudentAgreementNumber.sql" />
     <Build Include="dbo\Stored Procedures\SearchStudentAll.sql" />
     <Build Include="dbo\Stored Procedures\SearcStudentsGroup.sql" />
-    <Build Include="dbo\Stored Procedures\SearchStudentProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\Students\GetStudentsNotAreInGroup.sql" />
     <Build Include="dbo\Stored Procedures\Students\UpdateGroupStudents.sql" />
     <Build Include="dbo\User Defined Types\GroupIdsStudentsIds.sql" />

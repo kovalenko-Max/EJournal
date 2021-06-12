@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SearchStudentAll]
+﻿CREATE PROCEDURE [EJournal].[SearchStudentAll]
 AS
 	SELECT [Id]
 	,[Name]
@@ -9,5 +9,5 @@ AS
 	,[City]
 	,[Ranking]
 	,[AgreementNumber]
-FROM [dbo].[Students]
+FROM [EJournal].[Students]
 WHERE IsDelete = 0

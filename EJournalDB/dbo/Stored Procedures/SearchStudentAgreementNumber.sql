@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SearchStudentAgreementNumber]
+﻿CREATE PROCEDURE [EJournal].[SearchStudentAgreementNumber]
 @AgreementNumber NVARCHAR(50)
 AS
 	SELECT [Id]
@@ -10,6 +10,6 @@ AS
 	,[City]
 	,[Ranking]
 	,[AgreementNumber]
-FROM [dbo].[Students]
+FROM [EJournal].[Students]
 WHERE IsDelete = 0
 	AND AgreementNumber = @AgreementNumber
