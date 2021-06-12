@@ -107,7 +107,7 @@ namespace EJournalUI
                 {
                     Comment comments = new Comment 
                     { Comments = TeamCommentsTextBox.Text, 
-                        CommentType = (CommentType.Group).ToString(), 
+                        CommentTypeValue = CommentType.Group,
                         IsDelete = false
                     
                     };

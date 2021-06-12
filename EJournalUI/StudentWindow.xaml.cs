@@ -32,7 +32,12 @@ namespace EJournalUI
             Student = studentCard.Student;
 
             Comments = _commentsService.GetCommentsByStudent(Student.Id);
+
             DataGrid_Comments.ItemsSource = Comments;
+
+            //CommentTypeComboBox.ItemsSource = Enum.GetValues(typeof(CommentType)).Cast<CommentType>();
+
+
 
             TextBox_Name.Text = Student.Name;
             TextBox_Surname.Text = Student.Surname;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EJournalBLL;
 
 namespace EJournalBLL.Models
 {
@@ -10,7 +11,7 @@ namespace EJournalBLL.Models
     {
         public int Id { get; set; }
         public string Comments { get; set; }
-        public string CommentType { get; set; }
+        public CommentType CommentTypeValue { get; set; }
         public bool IsDelete { get; set; }
 
         public override bool Equals(object obj)
@@ -18,8 +19,14 @@ namespace EJournalBLL.Models
             return obj is Comment comments &&
                    Id == comments.Id &&
                    Comments == comments.Comments &&
-                   CommentType == comments.CommentType &&
+                   CommentTypeValue == comments.CommentTypeValue &&
                    IsDelete == comments.IsDelete;
+        }
+
+        public Comment()
+        {
+            Comments = string.Empty;
+            CommentTypeValue = ((CommentType)0);
         }
     }
 }
