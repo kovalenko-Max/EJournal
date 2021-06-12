@@ -19,7 +19,7 @@ namespace EJournalBLL.Services
         public CommentsService(string connectionString)
         {
             ConnectionString = connectionString;
-            CommentRepository = new CommentRepository(connectionString);
+            CommentRepository = new CommentRepository();
             _studentsComment = new DataTable();
             _studentsComment.Columns.Add("IdStudent");
             _studentsComment.Columns.Add("IdComment");

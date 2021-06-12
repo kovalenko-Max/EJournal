@@ -5,15 +5,17 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
     public class CommentRepository
     {
-        string _connectionString;
-        public CommentRepository(string connectionString)
+        private string _connectionString;
+
+        public CommentRepository()
         {
-            _connectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
         public List <CommentDTO> GetAllComments()

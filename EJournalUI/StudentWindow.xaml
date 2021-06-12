@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="Student Window" Height="600" Width="1000">
-
     <Grid>
         <TabControl>
             <TabItem Header = "Student info">
@@ -52,7 +51,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Path=CommentType}" />
+                                        <ComboBox />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
