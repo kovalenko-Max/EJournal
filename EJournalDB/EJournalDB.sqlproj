@@ -108,7 +108,6 @@
     <Build Include="dbo\Stored Procedures\AddLesson.sql" />
     <Build Include="dbo\Stored Procedures\AddComment.sql" />
     <Build Include="dbo\Stored Procedures\GetAllComments.sql" />
-    <Build Include="dbo\Stored Procedures\AddProject.sql" />
     <Build Include="dbo\Stored Procedures\AddProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
     <Build Include="dbo\Stored Procedures\DeleteComments.sql" />
@@ -169,6 +168,7 @@
     <Build Include="dbo\Stored Procedures\GetProjects.sql" />
     <Build Include="dbo\Stored Procedures\Projects\GetListStudentsNotInTheConcreeteProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\CreateStudentComments.sql" />
+    <Build Include="dbo\Stored Procedures\AddProject.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />
