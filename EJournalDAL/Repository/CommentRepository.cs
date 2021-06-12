@@ -86,7 +86,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string connectionQuery = "exec GetCommentsByStudent @IdStudent";
+                string connectionQuery = "exec [EJournal].[GetCommentsByStudent] @IdStudent";
                 List<CommentDTO> commentDTOs = new List<CommentDTO>();
 
                 comments = db.Query<CommentDTO, CommentTypeDTO, CommentDTO>(connectionQuery,
