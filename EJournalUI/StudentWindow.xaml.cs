@@ -26,7 +26,7 @@ namespace EJournalUI
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
-            _studentServices = new StudentService(ConnectionString);
+            _studentServices = new StudentService();
             _commentsService = new CommentsService(ConnectionString);
             StudentCard = studentCard;
             Student = studentCard.Student;

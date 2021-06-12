@@ -17,13 +17,14 @@ namespace EJournalBLL.Services
             _studentsComment.Columns.Add("IdStudent");
             _studentsComment.Columns.Add("IdComment");
         }
-        public void AddCommentsToStudent(Comments comments)
+        public void AddCommentsToStudent(Comment comments)
         {
             _studentsComment.Clear();
             foreach (var a in comments.Students)
             {
                 _studentsComment.Rows.Add(new object[] { a.Id, null });
             }
+
             CommentDTO commentDTO = ObjectMapper.Mapper.Map<CommentDTO>(comments);
             CommentRepository.AddCommentsToStudents(commentDTO, _studentsComment);
           ;

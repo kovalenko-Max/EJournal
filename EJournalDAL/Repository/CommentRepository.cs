@@ -72,9 +72,10 @@ namespace EJournalDAL.Repository
         }
         public void AddCommentToProjectRepository(string comment, int idStudent)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            string connectionQuery = " exec AddCommentToEachStudentFromProjectGroup @Comment, @IdStudent";
+            
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string connectionQuery = " exec AddCommentToEachStudentFromProjectGroup @Comment, @IdStudent";
                 db.Execute(connectionQuery, new { comment, idStudent });
             }
         }

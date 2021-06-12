@@ -12,6 +12,7 @@ namespace EJournalBLL.Models
         public string Comments { get; set; }
         public string CommentType { get; set; }
         public bool IsDelete { get; set; }
+        public List<Student> Students { get; set; }
 
         public override bool Equals(object obj)
         {
