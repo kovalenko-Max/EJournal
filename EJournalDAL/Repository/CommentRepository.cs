@@ -4,11 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 using Dapper;
-using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
@@ -82,25 +78,31 @@ namespace EJournalDAL.Repository
 
         public List<CommentDTO> GetCommentsByStudent(int IdStudent)
         {
-            List<CommentDTO> comments = new List<CommentDTO>();
+            List<CommentDTO> commentsDTO = new List<CommentDTO>();
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string connectionQuery = "exec [EJournal].[GetCommentsByStudent] @IdStudent";
-                List<CommentDTO> commentDTOs = new List<CommentDTO>();
 
-                comments = db.Query<CommentDTO, CommentTypeDTO, CommentDTO>(connectionQuery,
-                    (comment, commentType) =>
-                    {
-                        comment.CommentType = commentType.Type;
-
-                        return comment;
-                    }, 
-                    new { IdStudent },
-                    splitOn: "Id").ToList();
+                commentsDTO = db.Query<CommentDTO>(connectionQuery, new { IdStudent }).ToList();
             }
 
-            return comments;
+            return commentsDTO;
+        }
+
+        public void AddCommentsToStudents(CommentDTO commentDTO, DataTable dt)
+        {
+            string command = "[EJournal].[CreateStudentComments]";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@CommentType", commentDTO.CommentType);
+            parameters.Add("@Comment", commentDTO.Comment);
+            parameters.Add("@StudentCommentVarible", dt.AsTableValuedParameter("[EJournal].[StudentsComment]"));
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
+            }
         }
     }
 }

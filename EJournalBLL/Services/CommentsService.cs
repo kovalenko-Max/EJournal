@@ -1,24 +1,28 @@
 ﻿using EJournalBLL.Models;
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace EJournalBLL.Services
 {
     public class CommentsService
     {
         public List<Comment> Comments { get; set; }
+
         string ConnectionString { get; set; }
+
+        private DataTable _studentsComment;
+
         public CommentRepository CommentRepository { get; set; }
 
         public CommentsService(string connectionString)
         {
             ConnectionString = connectionString;
             CommentRepository = new CommentRepository(connectionString);
+            _studentsComment = new DataTable();
+            _studentsComment.Columns.Add("IdStudent");
+            _studentsComment.Columns.Add("IdComment");
         }
 
         public List<Comment> GetCommentsByStudent(int id)
@@ -32,6 +36,20 @@ namespace EJournalBLL.Services
         {
             CommentDTO commentDTO = ObjectMapper.Mapper.Map<CommentDTO>(comment);
             CommentRepository.UpdateComment(commentDTO);
+        }
+
+        public void AddCommentsToStudent(Comment comments, List<Student> students)
+        {
+            _studentsComment.Clear();
+
+            foreach (var a in students)
+            {
+                _studentsComment.Rows.Add(new object[] { a.Id, null });
+            }
+
+            CommentDTO commentDTO = ObjectMapper.Mapper.Map<CommentDTO>(comments);
+
+            CommentRepository.AddCommentsToStudents(commentDTO, _studentsComment);
         }
     }
 }

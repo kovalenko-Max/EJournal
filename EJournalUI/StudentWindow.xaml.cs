@@ -30,8 +30,10 @@ namespace EJournalUI
             _commentsService = new CommentsService(ConnectionString);
             StudentCard = studentCard;
             Student = studentCard.Student;
+
             Comments = _commentsService.GetCommentsByStudent(Student.Id);
             DataGrid_Comments.ItemsSource = Comments;
+
             TextBox_Name.Text = Student.Name;
             TextBox_Surname.Text = Student.Surname;
             TextBox_Email.Text = Student.Email;

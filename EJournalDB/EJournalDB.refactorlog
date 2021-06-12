@@ -493,4 +493,11 @@
     <Property Name="NewSchema" Value="EJournal" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="c918fe73-45aa-41e4-8831-4d7db2f1d497" ChangeDateTime="06/12/2021 14:10:14">
+    <Property Name="ElementName" Value="[EJournal].[Comments].[IdCommentType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[EJournal].[Comments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CommentType" />
+  </Operation>
 </Operations>

@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [EJournal].[AddComment] @Comments NVARCHAR(255)
-	,@IdCommentType INT
+	,@IdCommentType nvarchar(100)
 AS
 INSERT INTO [EJournal].[Comments] (
-	Comment
-	,IdCommentType
+	[EJournal].[Comments].[Comment]
+	,[EJournal].[Comments].[CommentType]
 	)
 VALUES (
-	@Comments
+	 @Comments
 	,@IdCommentType
 	)

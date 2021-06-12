@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJournalBLL.Models
+namespace EJournalBLL
 {
-    public class CommentType
+    public enum CommentType
     {
-        public int? Id { get; set; }
-        public string Type { get; set; }
+        Soft = 0,
+        Hard = 1,
+        Group = 2
     }
 }
