@@ -6,50 +6,49 @@ using EJournalDAL.Models.BaseModels;
 using System.Threading.Tasks;
 using EJournalBLL.Models;
 
-namespace EJournalBLL
+namespace EJournalBLL.Services
 {
     public class StudentService
     {
         public List<Student> Students { get; set; }
-        string ConnectionString { get; set; }
-        public StudentsRepository StudentsRepository { get; set; }
 
-        public StudentService(string connectionString)
+        private StudentsRepository _studentsRepository { get; set; }
+
+        public StudentService()
         {
-            ConnectionString = connectionString;
-            StudentsRepository = new StudentsRepository(connectionString);
+            _studentsRepository = new StudentsRepository();
         }
-
 
         public List<Student> GetAllStudent()
         {
-            List<StudentDTO> studentDTO = StudentsRepository.GetAll();
+            List<StudentDTO> studentDTO = _studentsRepository.GetAll();
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
         }
         public void AddStudent(Student studentInput)
         {
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            StudentsRepository.Create(student);
+            _studentsRepository.Create(student);
         }
         public void Update(Student studentInput)
         {
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            StudentsRepository.Update(student);
+            _studentsRepository.Update(student);
         }
 
         public void Delete(int Id)
         {
-            StudentsRepository.DeleteSoft(Id);
+            _studentsRepository.DeleteSoft(Id);
         }
+
         public List<Student> GetStudentsFromProjectGroups(int IdProjectGroup)
         {
-            List<StudentDTO> StudentsDTO = StudentsRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
+            List<StudentDTO> StudentsDTO = _studentsRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
             List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
             return students;
         }
         public List<Student> GetStudentsByGroup(int groupId)
         {
-            StudentsRepository studentsRepository = new StudentsRepository(ConnectionString);
+            StudentsRepository studentsRepository = new StudentsRepository();
             List<StudentDTO> studentsDTO = studentsRepository.GetStudentsByGroup(groupId);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
@@ -57,9 +56,17 @@ namespace EJournalBLL
 
         public List<Student> GetStudentsNotAreInProjectGroups(int IdProjectGroup)
         {
-            List<StudentDTO> StudentsDTO = StudentsRepository.GetStudentsNotAreInProjectGroup
+            List<StudentDTO> StudentsDTO = _studentsRepository.GetStudentsNotAreInProjectGroup
                 (IdProjectGroup);
             List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
+            return students;
+        }
+
+        public List<Student> GetStudentsNotAreInGroup(int idGroup)
+        {
+            List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(
+                _studentsRepository.GetStudentsNotAreInGroup(idGroup));
+
             return students;
         }
 

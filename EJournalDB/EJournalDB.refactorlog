@@ -463,4 +463,28 @@
     <Property Name="NewSchema" Value="EJournal" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Move Schema" Key="c5332ce7-208c-4194-b7eb-d58b5754613d" ChangeDateTime="06/11/2021 16:42:42">
+    <Property Name="ElementName" Value="[dbo].[AddExerciseToStudent]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="7547b7ec-41bf-41f7-9ed8-8ea776e11a80" ChangeDateTime="06/11/2021 17:01:11">
+    <Property Name="ElementName" Value="[EJournal].[AddExerciseToStudent]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="485ca62c-8589-4d38-acc4-5017c154acd2" ChangeDateTime="06/11/2021 17:09:00">
+    <Property Name="ElementName" Value="[dbo].[AddExerciseToStudent]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="d78e75b1-2029-46f3-aa81-cd237f32a9c8" ChangeDateTime="06/09/2021 21:30:54">
+    <Property Name="ElementName" Value="[dbo].[GetStudentsNotAreInGroup]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
 </Operations>

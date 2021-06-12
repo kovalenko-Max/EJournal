@@ -1,18 +1,20 @@
 ﻿using Dapper;
 using EJournalDAL.Models.BaseModels;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
 namespace EJournalDAL.Repository
 {
-    public class StudentsRepository
+    public class StudentsRepository : IStudentsRepository
     {
         public string ConnectionString { get; set; }
-        public StudentsRepository(string connectionString)
+        public StudentsRepository()
         {
-            ConnectionString = connectionString;
+            ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString; ;
         }
 
         public List<StudentDTO> GetAll()
@@ -41,8 +43,8 @@ namespace EJournalDAL.Repository
 
         public List<StudentDTO> SearchStudentEmail(string email)
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
+            List<StudentDTO> students = new List<StudentDTO>();
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec SearchStudentsEmail @Email";
@@ -53,8 +55,8 @@ namespace EJournalDAL.Repository
 
         public List<StudentDTO> SearchStudentName(string name)
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
+            List<StudentDTO> students = new List<StudentDTO>();
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec SearchStydentsNameSername @Name";
@@ -65,8 +67,8 @@ namespace EJournalDAL.Repository
 
         public List<StudentDTO> SearchStudentSurname(string surname)
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
+            List<StudentDTO> students = new List<StudentDTO>();
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec SearchStydentsSername @Surname";
@@ -77,8 +79,8 @@ namespace EJournalDAL.Repository
 
         public List<StudentDTO> SearchStudentCity(string city)
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
+            List<StudentDTO> students = new List<StudentDTO>();
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec SearchStudentCity @City";
@@ -89,27 +91,27 @@ namespace EJournalDAL.Repository
 
         public List<StudentDTO> SearchStudentGroup(string group)
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
+            List<StudentDTO> students = new List<StudentDTO>();
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec SearcStudentsGroup @Group";
                 students = db.Query<StudentDTO>(connectionQuery, new { group }).ToList();
             }
             return students;
-        }
-
+        }
+
         public List<StudentDTO> SearchStudentCourses(string courses)
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
+            List<StudentDTO> students = new List<StudentDTO>();
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec SearchStudentCours @Courses";
                 students = db.Query<StudentDTO>(connectionQuery, new { courses }).ToList();
             }
             return students;
-        }
+        }
         public List<StudentDTO> SearchStudentAgreementNumbers(string AgreementNumbers)
         {
             List<StudentDTO> students = new List<StudentDTO>();
@@ -120,11 +122,11 @@ namespace EJournalDAL.Repository
                 students = db.Query<StudentDTO>(connectionQuery, new { AgreementNumbers }).ToList();
             }
             return students;
-        }
+        }
         public List<StudentDTO> SearchStudentAllStudents()
         {
-            List<StudentDTO> students = new List<StudentDTO>();
-
+            List<StudentDTO> students = new List<StudentDTO>();
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
                 string connectionQuery = "exec SearchStudentAll";
@@ -219,6 +221,7 @@ namespace EJournalDAL.Repository
                 db.Execute(connectionQuery);
             }
         }
+
         public List<StudentDTO> GetStudentsByGroup(int id)
         {
             List<StudentDTO> students = new List<StudentDTO>();
@@ -231,7 +234,19 @@ namespace EJournalDAL.Repository
 
             return students;
         }
-        
 
+        public List<StudentDTO> GetStudentsNotAreInGroup(int idGroup)
+        {
+            List<StudentDTO> students = new List<StudentDTO>();
+
+            string connectionQuery = $"exec [EJournal].[GetStudentsNotAreInGroup] @idGroup";
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                students = db.Query<StudentDTO>(connectionQuery, new { idGroup }).ToList();
+            }
+
+            return students;
+        }
     }
 }

@@ -49,6 +49,7 @@ namespace EJournalDAL.Repository
                     (lesson, student) =>
                     {
                         LessonDTO currentLesson = null;
+
                         foreach (var lessonDTO in lessonsDTO)
                         {
                             if (lessonDTO.Id == lesson.Id)
@@ -57,6 +58,7 @@ namespace EJournalDAL.Repository
                                 break;
                             }
                         }
+
                         if (currentLesson is null)
                         {
                             currentLesson = lesson;

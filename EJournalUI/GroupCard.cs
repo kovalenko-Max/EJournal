@@ -1,19 +1,21 @@
 ﻿using EJournalBLL.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-
 namespace EJournalUI
 {
     public class GroupCard : Border
     {
-        public Group Group { get; set; }
-
         private TextBlock _groupNameTextBox;
         private TextBlock _courseNameTextBox;
         private TextBlock _studentCountTextBox;
+
+        public Group Group { get; set; }
+
+        public event EventHandler WasDeleted;
 
         public GroupCard(Group group)
         {
@@ -76,13 +78,22 @@ namespace EJournalUI
 
             MouseEnter += GroupCard_MouseEnter;
             MouseLeave += GroupCard_MouseLeave;
+            Group.GrouChanged += UpdateFields;
+        }
+        public void DeleteGroupCard()
+        {
+            WasDeleted?.Invoke(this, new EventArgs());
         }
 
-        public void UpdateFields()
+        public void UpdateFields(object sender, EventArgs e)
         {
-            _groupNameTextBox.Text = Group.Name;
-            _courseNameTextBox.Text = Group.Course.Name;
-            _studentCountTextBox.Text = Group.Students.Count.ToString();
+            if (sender is Group)
+            {
+                Group group = (Group)sender;
+                _groupNameTextBox.Text = group.Name;
+                _courseNameTextBox.Text = group.Course.Name;
+                _studentCountTextBox.Text = group.Students.Count.ToString();
+            }
         }
 
         private void GroupCard_MouseEnter(object sender, MouseEventArgs e)

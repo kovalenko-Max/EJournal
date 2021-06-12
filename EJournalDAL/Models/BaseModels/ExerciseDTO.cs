@@ -11,6 +11,12 @@ namespace EJournalDAL.Models.BaseModels
         public DateTime? Deadline { get; set; }
         public int? IdGroup { get; set; }
         public string ExerciseType { get; set; }
-        public bool IsDelete { get; set; }
+        public List<StudentExerciseDTO> StudentsExercisesDTO { get; set; }
+
+        public ExerciseDTO()
+        {
+            Description = string.Empty;
+            StudentsExercisesDTO = new List<StudentExerciseDTO>();
+        }
     }
 }
