@@ -125,11 +125,31 @@ namespace EJournalBLL
                     .ForMember(dto => dto.StudentsCount, map => map.MapFrom(source => source.StudentsCount))
                     .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
 
-            cfg.CreateMap<Lesson, LessonDTO>()
-               .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-               .ForMember(dto => dto.Topic, map => map.MapFrom(source => source.Topic))
-               .ForMember(dto => dto.DateLesson, map => map.MapFrom(source => source.DateLesson))
-               .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
+                cfg.CreateMap<Lesson, LessonDTO>()
+                   .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                   .ForMember(dto => dto.Topic, map => map.MapFrom(source => source.Topic))
+                   .ForMember(dto => dto.DateLesson, map => map.MapFrom(source => source.DateLesson))
+                   .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
+                
+                cfg.CreateMap<LessonDTO, Lesson>()
+                   .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                   .ForMember(dto => dto.Topic, map => map.MapFrom(source => source.Topic))
+                   .ForMember(dto => dto.DateLesson, map => map.MapFrom(source => source.DateLesson))
+                   .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
+
+                cfg.CreateMap<GroupDTO, Group>()
+                   .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                   .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                   .ForMember(dto => dto.IsFinish, map => map.MapFrom(source => source.IsFinish))
+                   .ForMember(dto => dto.StudentsCount, map => map.MapFrom(source => source.StudentsCount))
+                   .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
+
+                cfg.CreateMap<ProjectGroup, ProjectGroupDTO>()
+                        .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                        .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                        .ForMember(dto => dto.IdProject, map => map.MapFrom(source => source.IdProject))
+                        .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students))
+                        .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
                 cfg.CreateMap<CommentType, CommentTypeDTO>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
@@ -140,17 +160,7 @@ namespace EJournalBLL
                     .ForMember(dto => dto.Comment, map => map.MapFrom(source => source.Comment))
                     .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType))
                     .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students));
-
-                cfg.CreateMap<Exercise, ExerciseDTO>()
-                   .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                   .ForMember(dto => dto.Description, map => map.MapFrom(source => source.Description))
-                   .ForMember(dto => dto.Deadline, map => map.MapFrom(source => source.Deadline))
-                   .ForMember(dto => dto.ExerciseType, map => map.MapFrom(source => source.ExerciseType))
-                   .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
-
-                cfg.CreateMap<Attendances, AttendanceDTO>()
-                    .ForMember(dto => dto.IsPresence, map => map.MapFrom(sourse => sourse.isPresent))
-                     .ForMember(dto => dto.StudentDTO, map => map.MapFrom(sourse => sourse.Student));
+            });
 
             });
             return config.CreateMapper();

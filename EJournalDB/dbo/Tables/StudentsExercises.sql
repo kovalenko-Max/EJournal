@@ -1,7 +1,6 @@
 ﻿CREATE TABLE [EJournal].[StudentsExercises] (
-    [Points]     INT NULL,
-    [IdExercise] INT NOT NULL,
-    [IdStudents] INT NOT NULL,
-    [IsChecked]  BIT NOT NULL
+    [IdStudent] INT not NULL,
+    [IdExercise] INT not NULL,
+    [Point] int  NULL,
 );
 

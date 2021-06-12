@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using EJournalBLL.Models;
 using System.Windows.Media;
-
-
 
 namespace EJournalUI
 {
@@ -31,15 +24,7 @@ namespace EJournalUI
 
             Grid grid = new Grid();
             grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(350, GridUnitType.Star) });
-            //grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(180, GridUnitType.Star) });
             Child = grid;
-
-            //TextBlock textBlock = new TextBlock();
-            //textBlock.Text = "Project group name:";
-            //textBlock.Margin = new Thickness(15, 10, 0, 35);
-            //textBlock.TextAlignment = TextAlignment.;
-            //Grid.SetColumn(textBlock, 0);
-            //grid.Children.Add(textBlock);
 
             _projectGroupNameTextBox = new TextBlock();
             _projectGroupNameTextBox.Name = "ProjectGroupNameTextBlock";
@@ -60,7 +45,6 @@ namespace EJournalUI
         public void UpdateFields()
         {
             _projectGroupNameTextBox.Text = ProjectGroup.Name;
-            //_projectDescriptionTextBox.Text = Project.Description;
         }
 
         private void ProjectGroupCard_MouseEnter(object sender, MouseEventArgs e)
