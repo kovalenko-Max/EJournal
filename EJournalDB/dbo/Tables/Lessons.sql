@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Lessons] (
+﻿CREATE TABLE [EJournal].[Lessons] (
     [Id]         INT            IDENTITY (1, 1) NOT NULL,
     [IdGroup]    INT            NOT NULL,
     [DateLesson] DATETIME       NOT NULL,

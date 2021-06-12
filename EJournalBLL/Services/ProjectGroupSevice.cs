@@ -2,41 +2,63 @@
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
+using System.Data;
 
 namespace EJournalBLL
 {
     public class ProjectGroupSevice
     {
-        private ProjectGroupRepository _projectGroupRepository;
-     
+        public ProjectGroupRepository ProjectGroupRepository { get; set; }
+        private DataTable _updateProjectGroup;
+
         public ProjectGroupSevice()
         {
-            _projectGroupRepository = new ProjectGroupRepository();
+            ProjectGroupRepository = new ProjectGroupRepository();
+            _updateProjectGroup = new DataTable();
+            _updateProjectGroup.Columns.Add("IdProjectGroup");
+            _updateProjectGroup.Columns.Add("IdStudent");
         }
 
        
         public int AddProjectGroup (ProjectGroup projectGroupInput)
         {
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
-            projectGroupInput.Id = _projectGroupRepository.Create(projectGroup);
+            projectGroupInput.Id = ProjectGroupRepository.Create(projectGroup);
             return projectGroupInput.Id;
         }
-        public void Update(ProjectGroupDTO projectGroupInput)
+        public void Update(ProjectGroup projectGroupInput)
         {
+            _updateProjectGroup.Clear();
+            foreach (var a in projectGroupInput.Students)
+            {
+                _updateProjectGroup.Rows.Add(new object[] { projectGroupInput.Id, a.Id });
+            }
+
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
-            _projectGroupRepository.Update(projectGroup);
+            ProjectGroupRepository.Update(projectGroup, _updateProjectGroup);
         }
 
         public void Delete(int Id)
         {
-            _projectGroupRepository.Delete(Id);
+            ProjectGroupRepository.Delete(Id);
         }
 
         public List<ProjectGroup> GetProjectGroups(int IdProject)
         {
-            List<ProjectGroupDTO> projectGroupsDTO = _projectGroupRepository.GetAllProjects(IdProject);
+            List<ProjectGroupDTO> projectGroupsDTO = ProjectGroupRepository.GetAllProjectsGroup(IdProject);
             List<ProjectGroup> projectGroups = ObjectMapper.Mapper.Map<List<ProjectGroup>>(projectGroupsDTO);
             return projectGroups;
+        }
+        public void AddStudentToProjectGroup( ProjectGroupStudent projectGroupStudent)
+        {
+            ProjectGroupStudentDTO projectGroupStudentDTO = ObjectMapper.Mapper.Map<ProjectGroupStudentDTO>(projectGroupStudent);
+            ProjectGroupRepository.AddStudentToProjectGroup(projectGroupStudentDTO);
+        }
+
+        public void DeleteStudentFromProjectGroup(ProjectGroupStudent projectGroupStudent)
+        {
+            ProjectGroupStudentDTO projectGroupStudentDTO = ObjectMapper.Mapper.Map<ProjectGroupStudentDTO>(projectGroupStudent);
+            ProjectGroupRepository.DeleteStudentFromProjectGroup(projectGroupStudentDTO);
         }
     }
 }

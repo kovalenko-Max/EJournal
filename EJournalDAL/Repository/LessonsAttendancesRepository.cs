@@ -19,13 +19,13 @@ namespace EJournalDAL.Repository
 
         public int AddLessonAttendances(LessonDTO lessonDTO, DataTable dt)
         {
-            string command = "AddStudentsAttendance";
+            string command = "[EJournal].[AddStudentsAttendance]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Topic", lessonDTO.Topic);
             parameters.Add("@DateLesson", lessonDTO.DateLesson);
             parameters.Add("@IdGroup", lessonDTO.IdGroup);
-            parameters.Add("@StudentAttendanceVariable", dt.AsTableValuedParameter("[dbo].[StudentAttendance]"));
+            parameters.Add("@StudentAttendanceVariable", dt.AsTableValuedParameter("[EJournal].[StudentAttendance]"));
             parameters.Add("@IdLesson", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (IDbConnection db = new SqlConnection(_connectionString))
@@ -38,7 +38,7 @@ namespace EJournalDAL.Repository
 
         public List<LessonDTO> GetLessonsAttendancesByGroup(int groupId)
         {
-            string qr = "exec GetLessonsAttendancesByGroup @GroupId";
+            string qr = "exec [EJournal].[GetLessonsAttendancesByGroup] @GroupId";
 
             List<LessonDTO> lessonsDTO = new List<LessonDTO>();
 
@@ -49,6 +49,7 @@ namespace EJournalDAL.Repository
                     (lesson, student) =>
                     {
                         LessonDTO currentLesson = null;
+
                         foreach (var lessonDTO in lessonsDTO)
                         {
                             if (lessonDTO.Id == lesson.Id)
@@ -57,6 +58,7 @@ namespace EJournalDAL.Repository
                                 break;
                             }
                         }
+
                         if (currentLesson is null)
                         {
                             currentLesson = lesson;
@@ -80,10 +82,10 @@ namespace EJournalDAL.Repository
 
         public void UpdateLessonsAttendances(LessonDTO lessonDTO, DataTable dt)
         {
-            string command = "UpdateLessonAttendances";
+            string command = "[EJournal].[UpdateLessonAttendances]";
 
             var parameters = new DynamicParameters();
-            parameters.Add("@StudentAttendance", dt.AsTableValuedParameter("[dbo].[StudentAttendance]"));
+            parameters.Add("@StudentAttendance", dt.AsTableValuedParameter("[EJournal].[StudentAttendance]"));
             parameters.Add("@Id", lessonDTO.Id);
             parameters.Add("@Topic", lessonDTO.Topic);
             parameters.Add("@DateLesson", lessonDTO.DateLesson);
@@ -96,7 +98,7 @@ namespace EJournalDAL.Repository
 
         public void DeleteLessonAndAttendances(int id)
         {
-            string command = "exec DeleteLessonAndAttendances @Id";
+            string command = "exec [EJournal].[DeleteLessonAndAttendances] @Id";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

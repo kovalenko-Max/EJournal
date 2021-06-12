@@ -8,7 +8,7 @@ namespace EJournalDAL.Models.BaseModels
 {
     public class ProjectGroupStudentDTO
     {
-        int? IdStudent;
-        int? IdProjectGroup;
+        public int? IdStudent { get; set; }
+        public int? IdProjectGroup { get; set; }
     }
 }

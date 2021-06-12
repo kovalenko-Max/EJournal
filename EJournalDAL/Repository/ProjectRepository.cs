@@ -22,7 +22,7 @@ namespace EJournalDAL.Repository
             List<ProjectDTO> projects = new List<ProjectDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = $"exec {MethodBase.GetCurrentMethod().Name}";
+                string connectionQuery = $"exec [EJournal].[{MethodBase.GetCurrentMethod().Name}]";
                 projects = db.Query<ProjectDTO>(connectionQuery).ToList();
 
             }
@@ -34,7 +34,7 @@ namespace EJournalDAL.Repository
             ProjectDTO project = null;
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec GetProject @Id";
+                string connectionQuery = "exec [EJournal].[GetProject] @Id";
                 project = db.Query<ProjectDTO>(connectionQuery, new { id }).FirstOrDefault();
 
             }
@@ -46,7 +46,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec AddProject @Name, @Description";
+                string connectionQuery = "exec [EJournal].[AddProject] @Name, @Description";
                 int? projectId = db.Query<int>(connectionQuery, project).FirstOrDefault();
                 project.Id = projectId;
             }
@@ -57,7 +57,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec UpdateProject @Id, @Name, @Description";
+                string connectionQuery = "exec [EJournal].[UpdateProject] @Id, @Name, @Description";
                 db.Execute(connectionQuery, project);
                 
             }
@@ -68,7 +68,7 @@ namespace EJournalDAL.Repository
            
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec DeleteProject @Id";
+                string connectionQuery = "exec [EJournal].[DeleteProject] @Id";
                 db.Execute(connectionQuery, new { Id });
             }
         }

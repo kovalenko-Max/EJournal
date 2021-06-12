@@ -83,8 +83,8 @@ namespace EJournalUI
             switch (dialogWindowType)
             {
                 case DialogWindowType.AddGroup:
-                    Title = "Create new Gourse";
-                    TitleTextBlock.Text = "New course name";
+                    Title = "Create new Group";
+                    TitleTextBlock.Text = "New group name";
                     AcceptButton.Click += Butto_CreateGroup_Accept_Click;
                     break;
 

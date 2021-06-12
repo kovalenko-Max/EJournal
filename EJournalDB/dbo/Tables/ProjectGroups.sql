@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[ProjectGroups] (
+﻿CREATE TABLE [EJournal].[ProjectGroups] (
 	[Id] INT IDENTITY(1, 1) NOT NULL
 	,[Name] NVARCHAR(100) NOT NULL
 	,[IdProject] INT NOT NULL

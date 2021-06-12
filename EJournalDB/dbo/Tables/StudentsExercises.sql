@@ -1,7 +1,6 @@
-﻿CREATE TABLE [dbo].[StudentsExercises] (
-    [Points]     INT NULL,
-    [IdExercise] INT NOT NULL,
-    [IdStudents] INT NOT NULL,
-    [IsChecked]  BIT NOT NULL
+﻿CREATE TABLE [EJournal].[StudentsExercises] (
+    [IdStudent] INT not NULL,
+    [IdExercise] INT not NULL,
+    [Point] int  NULL,
 );
 

@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[GetCourse] @Id INT
+﻿CREATE PROCEDURE [EJournal].[GetCourse] @Id INT
 AS
 SELECT [Id]
 	,[Name]
-FROM [dbo].[Courses]
+FROM [EJournal].[Courses]
 WHERE Id = @Id
 	AND isDelete = 0

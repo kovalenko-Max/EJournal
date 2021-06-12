@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Comments] (
+﻿CREATE TABLE [EJournal].[Comments] (
 	[Id] INT IDENTITY(1, 1) NOT NULL
 	,[Comment] NVARCHAR(255) NOT NULL
 	,[IdCommentType] INT NOT NULL

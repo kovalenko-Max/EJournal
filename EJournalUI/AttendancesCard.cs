@@ -1,7 +1,6 @@
 ﻿using EJournalBLL.Models;
 using EJournalBLL.Services;
 using EJournalDAL.Repository;
-using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;

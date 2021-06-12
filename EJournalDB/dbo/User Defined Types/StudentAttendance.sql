@@ -1,4 +1,4 @@
-﻿CREATE TYPE [dbo].[StudentAttendance] AS TABLE 
+﻿CREATE TYPE [EJournal].[StudentAttendance] AS TABLE 
 (
     [LessonsIds] INT NULL,
     [StudentId] INT NULL,

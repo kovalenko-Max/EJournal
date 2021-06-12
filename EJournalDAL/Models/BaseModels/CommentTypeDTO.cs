@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EJournalDAL.Models.BaseModels
 {
-    class CommentTypeDTO
+   public class CommentTypeDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Type { get; set; }
     }
 }

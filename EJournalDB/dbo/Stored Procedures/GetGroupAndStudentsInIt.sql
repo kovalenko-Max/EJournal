@@ -1,14 +1,14 @@
-CREATE PROCEDURE [dbo].[GetGroupAndStudentsInIt] @IdGroup INT
+CREATE PROCEDURE [EJournal].[GetGroupAndStudentsInIt] @IdGroup INT
 AS
-SELECT [dbo].[Groups].[Id]
-	,[dbo].[Students].[Id]
-	,[dbo].[Students].[Name]
-	,[dbo].[Students].[Surname]
-	,[dbo].[Students].[Email]
-	,[dbo].[Students].[Phone]
-	,[dbo].[Students].[Git]
-	,[dbo].[Students].[AgreementNumber]
-FROM [dbo].[GroupStudents]
-INNER JOIN [dbo].[Groups] ON [dbo].[Groups].[Id] = [dbo].[GroupStudents].[IdGroup]
-INNER JOIN [dbo].[Students] ON [dbo].[Students].[Id] = [dbo].[GroupStudents].[IdStudents]
-WHERE [dbo].[Groups].[Id] = @IdGroup
+SELECT [EJournal].[Groups].[Id]
+	,[EJournal].[Students].[Id]
+	,[EJournal].[Students].[Name]
+	,[EJournal].[Students].[Surname]
+	,[EJournal].[Students].[Email]
+	,[EJournal].[Students].[Phone]
+	,[EJournal].[Students].[Git]
+	,[EJournal].[Students].[AgreementNumber]
+FROM [EJournal].[GroupStudents]
+INNER JOIN [EJournal].[Groups] ON [EJournal].[Groups].[Id] = [EJournal].[GroupStudents].[IdGroup]
+INNER JOIN [EJournal].[Students] ON [EJournal].[Students].[Id] = [EJournal].[GroupStudents].[IdStudents]
+WHERE [EJournal].[Groups].[Id] = @IdGroup

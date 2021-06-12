@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE UpdateHomeWork
+﻿CREATE PROCEDURE [EJournal].UpdateHomeWork
 @Id int,
 @SRS nvarchar (255),
 @Deadline datetime,

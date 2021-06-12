@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[UpdateComment] @Id INT
-	,@Comment NVARCHAR(255)
+﻿CREATE PROCEDURE [EJournal].[UpdateComment] @Id INT
+	,@Comments NVARCHAR(255)
 	,@IdCommentType INT
 AS
-UPDATE [dbo].[Comments]
-SET Comment = @Comment
+UPDATE [EJournal].[Comments]
+SET Comment = @Comments
 	,IdCommentType = @IdCommentType
 WHERE Id = @Id
