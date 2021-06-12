@@ -21,18 +21,19 @@ namespace EJournalBLL.Tests
             lessonDTO.Topic = $"Test topic {iDLesson}";
             lessonDTO.StudentAttendanceDTO = new List<StudentAttendanceDTO>();
 
-            while (StartStudentId <= studentsCount)
-            {
-                StudentAttendanceDTO studentAttendanceDTO = new StudentAttendanceDTO();
+                while (StartStudentId <= studentsCount)
+                {
+                    StudentAttendanceDTO studentAttendanceDTO = new StudentAttendanceDTO();
 
-                studentAttendanceDTO.IdLesson = iDLesson;
-                studentAttendanceDTO.IdStudent = StartStudentId;
-                studentAttendanceDTO.IsPresence = 1;
-                studentAttendanceDTO.Name = $"Name {StartStudentId}";
-                studentAttendanceDTO.Surname = $"Surname {StartStudentId}";
-                lessonDTO.StudentAttendanceDTO.Add(studentAttendanceDTO);
-                ++StartStudentId;
-            }
+                    studentAttendanceDTO.IdLesson = iDLesson;
+                    studentAttendanceDTO.IdStudent = StartStudentId;
+                    studentAttendanceDTO.IsPresence = 1;
+                    studentAttendanceDTO.Name = $"Name {StartStudentId}";
+                    studentAttendanceDTO.Surname = $"Surname {StartStudentId}";
+                    lessonDTO.StudentAttendanceDTO.Add(studentAttendanceDTO);
+                    ++StartStudentId;
+                }
+            
 
             return lessonDTO;
         }
@@ -46,14 +47,16 @@ namespace EJournalBLL.Tests
             lesson.Topic = $"Test topic {iDLesson}";
             lesson.Attendances = new List<Attendances>();
 
-            while (StartStudentId <= studentsCount)
+            if (studentsCount > 0)
             {
-                Attendances attendance = new Attendances(GetStudent(StartStudentId));
-                attendance.isPresent = true;
-                lesson.Attendances.Add(attendance);
-                ++StartStudentId;
+                while (StartStudentId <= studentsCount)
+                {
+                    Attendances attendance = new Attendances(GetStudent(StartStudentId));
+                    attendance.isPresent = true;
+                    lesson.Attendances.Add(attendance);
+                    ++StartStudentId;
+                }
             }
-
             return lesson;
         }
 
@@ -80,11 +83,11 @@ namespace EJournalBLL.Tests
         }
         public static Project GetProjectMock(int IdProject)
         {
-            
+
             return new Project($"Name{IdProject}", $"Description{IdProject}")
             {
                 Id = IdProject
-               
+
             };
         }
 
@@ -94,7 +97,7 @@ namespace EJournalBLL.Tests
             {
                 Name = $"Name{IdProject}",
                 Id = IdProject,
-                Description= $"Description{IdProject}",
+                Description = $"Description{IdProject}",
             };
         }
 
@@ -131,7 +134,7 @@ namespace EJournalBLL.Tests
             {
                 Id = IdStudent,
                 IsDelete = false,
-                Ranking= IdStudent,
+                Ranking = IdStudent,
                 Comments = new List<Comments>()
             };
         }
@@ -161,7 +164,7 @@ namespace EJournalBLL.Tests
             return new CommentTypeDTO()
             {
                 Id = IdCommentTYpe,
-              Type = $"CommentType{IdCommentTYpe}"
+                Type = $"CommentType{IdCommentTYpe}"
             };
         }
 
@@ -189,7 +192,7 @@ namespace EJournalBLL.Tests
             return new ProjectGroup($"Name{IdProjectGroupe}")
             {
                 Id = IdProjectGroupe,
-                IdProject= IdProjectGroupe,
+                IdProject = IdProjectGroupe,
                 Students = new List<Student>()
             };
         }
@@ -224,10 +227,10 @@ namespace EJournalBLL.Tests
                 Id = IdGroup,
                 Course = new CourseDTO(),
                 IsDelete = false,
-                IsFinish=false,
-                Name= $"Name{IdGroup}",
-                StudentsCount= IdGroup,
-                
+                IsFinish = false,
+                Name = $"Name{IdGroup}",
+                StudentsCount = IdGroup,
+
 
             };
         }
@@ -248,8 +251,8 @@ namespace EJournalBLL.Tests
         {
             return new ProjectGroupStudentDTO()
             {
-                IdProjectGroup=Id,
-                IdStudent=Id+1
+                IdProjectGroup = Id,
+                IdStudent = Id + 1
             };
         }
 
@@ -267,7 +270,7 @@ namespace EJournalBLL.Tests
             return new AttendanceDTO()
             {
                 StudentDTO = new StudentDTO() { Name = "Name", Surname = "Surname", Email = "email", City = "city", Id = 1, AgreementNumber = "AN", Git = "git", IsDelete = false, Phone = "098031547", Ranking = 10, comments = new List<CommentDTO>() },
-                IsPresence= true
+                IsPresence = true
             };
         }
 
@@ -275,7 +278,7 @@ namespace EJournalBLL.Tests
         {
             return new Attendances()
             {
-                Student = new Student() { Name="Name", Surname="Surname", Email="email", City="city", Id=1, AgreementNumber = "AN", Git = "git", IsDelete = false, Phone ="098031547", Ranking=10, Comments=new List<Comments>()},
+                Student = new Student() { Name = "Name", Surname = "Surname", Email = "email", City = "city", Id = 1, AgreementNumber = "AN", Git = "git", IsDelete = false, Phone = "098031547", Ranking = 10, Comments = new List<Comments>() },
                 isPresent = true
             };
         }

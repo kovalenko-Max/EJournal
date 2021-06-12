@@ -389,8 +389,8 @@ namespace EJournalBLL.Tests
             public IEnumerator GetEnumerator()
             {
 
-                LessonDTO lessonDTO = BLLMock.GetLessonDTOMock(1,2,3,4);
-                Lesson lesson= BLLMock.GetLesson(1, 2, 3, 4);
+                LessonDTO lessonDTO = BLLMock.GetLessonDTOMock(1,2,0,0);
+                Lesson lesson= BLLMock.GetLesson(1, 2, 0, 0);
 
                 yield return new object[]
                 {
@@ -398,8 +398,8 @@ namespace EJournalBLL.Tests
                     lesson
                 };
 
-                lessonDTO = BLLMock.GetLessonDTOMock(3, 4, 3, 4);
-                lesson = BLLMock.GetLesson(3, 4, 3, 4);
+                lessonDTO = BLLMock.GetLessonDTOMock(3, 4, 0, 0);
+                lesson = BLLMock.GetLesson(3, 4, 0, 0);
 
 
                 yield return new object[]
@@ -408,8 +408,8 @@ namespace EJournalBLL.Tests
                     lesson
                 };
 
-                lessonDTO = BLLMock.GetLessonDTOMock(5, 5, 5, 5);
-                lesson = BLLMock.GetLesson(5,5,5,5);
+                lessonDTO = BLLMock.GetLessonDTOMock(5, 5, 0, 0);
+                lesson = BLLMock.GetLesson(5,5,0,0);
 
                 yield return new object[]
                 {

@@ -11,5 +11,16 @@ namespace EJournalDAL.Models.BaseModels
         public List <StudentAttendanceDTO> StudentAttendanceDTO { get; set; }
         public int IdGroup { get; set; }
         public bool IsDelete { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            bool isEquals = obj is LessonDTO lesson &&
+                   Id == lesson.Id &&
+                   Topic == lesson.Topic &&
+                   DateLesson == lesson.DateLesson &&
+                   IdGroup == lesson.IdGroup; ;
+
+            return isEquals;
+        }
     }
 }

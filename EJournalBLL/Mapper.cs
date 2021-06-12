@@ -68,8 +68,7 @@ namespace EJournalBLL
                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                    .ForMember(dto => dto.Topic, map => map.MapFrom(source => source.Topic))
                    .ForMember(dto => dto.DateLesson, map => map.MapFrom(source => source.DateLesson))
-                   .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup))
-                   .ForMember(dto => dto.Attendances, map => map.MapFrom(source => source.StudentAttendanceDTO));
+                   .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
 
                 cfg.CreateMap<CourseDTO, Course>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(sourse => sourse.Id))
@@ -126,12 +125,11 @@ namespace EJournalBLL
                     .ForMember(dto => dto.StudentsCount, map => map.MapFrom(source => source.StudentsCount))
                     .ForMember(dto => dto.Course, map => map.MapFrom(source => source.Course));
 
-                cfg.CreateMap<Lesson, LessonDTO>()
-                   .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                   .ForMember(dto => dto.Topic, map => map.MapFrom(source => source.Topic))
-                   .ForMember(dto => dto.DateLesson, map => map.MapFrom(source => source.DateLesson))
-                   .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup))
-                   .ForMember(dto => dto.StudentAttendanceDTO, map => map.MapFrom(source => source.Attendances));
+            cfg.CreateMap<Lesson, LessonDTO>()
+               .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+               .ForMember(dto => dto.Topic, map => map.MapFrom(source => source.Topic))
+               .ForMember(dto => dto.DateLesson, map => map.MapFrom(source => source.DateLesson))
+               .ForMember(dto => dto.IdGroup, map => map.MapFrom(source => source.IdGroup));
 
                 cfg.CreateMap<CommentType, CommentTypeDTO>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
