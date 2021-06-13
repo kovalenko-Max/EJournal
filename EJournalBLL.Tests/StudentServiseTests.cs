@@ -94,7 +94,7 @@ namespace EJournalBLL.Tests
 
                 for (int i = startIdStudent; i <= countStudents; ++i)
                 {
-                    student.Add(BLLMock.GetStudent(i));
+                    student.Add(BLLMock.GetStudentMock(i));
                 }
                 yield return new object[]
                 {
@@ -116,7 +116,7 @@ namespace EJournalBLL.Tests
 
                 for (int i = startIdStudent; i <= countStudents; ++i)
                 {
-                    student.Add(BLLMock.GetStudent(i));
+                    student.Add(BLLMock.GetStudentMock(i));
                 }
                 yield return new object[]
                 {
@@ -138,7 +138,7 @@ namespace EJournalBLL.Tests
 
                 for (int i = startIdStudent; i <= countStudents; ++i)
                 {
-                    student.Add(BLLMock.GetStudent(i));
+                    student.Add(BLLMock.GetStudentMock(i));
                 }
                 yield return new object[]
                 {
@@ -169,7 +169,7 @@ namespace EJournalBLL.Tests
 
                 for (int i = startIdStudent; i <= countStudents; ++i)
                 {
-                    student.Add(BLLMock.GetStudent(i));
+                    student.Add(BLLMock.GetStudentMock(i));
                 }
                 yield return new object[]
                 {
@@ -192,7 +192,7 @@ namespace EJournalBLL.Tests
 
                 for (int i = startIdStudent; i <= countStudents; ++i)
                 {
-                    student.Add(BLLMock.GetStudent(i));
+                    student.Add(BLLMock.GetStudentMock(i));
                 }
                 yield return new object[]
                 {

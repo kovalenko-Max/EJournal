@@ -26,7 +26,8 @@ namespace EJournalDAL.Models.BaseModels
             StudentDTO student = obj as StudentDTO;
             if(student!= null  && Id==student.Id && Name==student.Name && Surname==student.Surname 
                 && Email==student.Email && Phone==student.Phone && Git ==student.Git && City==student.City 
-                 && Ranking ==student.Ranking && AgreementNumber == student.AgreementNumber)
+                && Ranking ==student.Ranking && AgreementNumber == student.AgreementNumber
+                && TeacherAssessment == student.TeacherAssessment)
             {
                 return true;
             }
