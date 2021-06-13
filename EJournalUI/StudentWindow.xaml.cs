@@ -115,5 +115,10 @@ namespace EJournalUI
             CommentStackPannel.Children.Add(commentCard);
             new CommentsService().AddComment(comment, Student);
         }
+
+        private void TextBox_Phone_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
     }
 }
