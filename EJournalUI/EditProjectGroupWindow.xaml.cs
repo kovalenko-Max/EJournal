@@ -139,7 +139,8 @@ namespace EJournalUI
             PrintStudents.Invoke();
         }
 
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+
+        private void MarkTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("^[0-9][0-9]?$|^100$");
             string futureText = ((TextBox)sender).Text + e.Text;
@@ -152,7 +153,6 @@ namespace EJournalUI
             {
                 e.Handled = true;
             }
-
         }
 
     }
