@@ -184,6 +184,7 @@ namespace EJournalUI
             {
                 Exercise exercise = new Exercise(SelectedGroupCard.Group);
                 exercise.IdGroup = SelectedGroupCard.Group.Id;
+                exercise.ExerciseType = (ExcerciseType)0;
 
                 foreach (var student in SelectedGroupCard.Group.Students)
                 {
@@ -191,6 +192,8 @@ namespace EJournalUI
                 }
 
                 ExercisesCard homeworkcard = new ExercisesCard(exercise);
+                homeworkcard.Exercise.ExerciseType = (ExcerciseType)homeworkcard.ExcerciseTypeComboBox.SelectedItem;
+
                 HomeworkStackPanel.Children.Insert(0, homeworkcard);
 
                 ExercisesService exercisesService = new ExercisesService();
@@ -205,6 +208,7 @@ namespace EJournalUI
                 if (child is ExercisesCard)
                 {
                     ExercisesCard homeWork = (ExercisesCard)child;
+                    
                     ExercisesService exerciseService = new ExercisesService();
 
                     if (homeWork.ExercisesDateDatePicker.SelectedDate != null)
@@ -264,14 +268,18 @@ namespace EJournalUI
 
         private void Button_CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamNameTextBox.Text != string.Empty)
+            if (SelectedGroupCard != null)
             {
-                ProjectGroup projectGroup = new ProjectGroup(TeamNameTextBox.Text);
-                projectGroup.IdProject = SelectedProjectCard.Project.Id;
-                projectGroup.Id = _projectGroupServices.AddProjectGroup(projectGroup);
-                ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
-                projectGroupCard.MouseUp += ProjectGroupCard_MouseLeftButtonDown;
-                ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
+                if (TeamNameTextBox.Text != string.Empty)
+                {
+                    ProjectGroup projectGroup = new ProjectGroup(TeamNameTextBox.Text);
+                    projectGroup.IdProject = SelectedProjectCard.Project.Id;
+                    projectGroup.Id = _projectGroupServices.AddProjectGroup(projectGroup);
+                    ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
+                    projectGroupCard.MouseUp += ProjectGroupCard_MouseLeftButtonDown;
+                    ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
+                }
+
             }
         }
 
@@ -296,6 +304,7 @@ namespace EJournalUI
 
                 if (SelectedProjectGroupCard != null)
                 {
+                    ProjectTeamsStudentsWrapPanel.Children.Clear();
                     _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
                     SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
                     ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);

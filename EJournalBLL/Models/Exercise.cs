@@ -29,8 +29,6 @@ namespace EJournalBLL.Models
             Description = exerciseDTO.Description;
             Deadline = exerciseDTO.Deadline;
             IdGroup = exerciseDTO.IdGroup;
-
-            ExerciseType = (ExcerciseType)Enum.Parse(typeof(ExcerciseType), exerciseDTO.ExerciseType);
         }
 
         public override bool Equals(object obj)

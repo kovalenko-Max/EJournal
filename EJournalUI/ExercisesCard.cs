@@ -88,12 +88,31 @@ namespace EJournalUI
                 IsReadOnly = true
             });
 
-            dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Mark", Binding = new Binding("Point") });
+            dataGrid.Columns.Add(new DataGridTextColumn()
+            {
+                Header = "Mark",
+
+                Binding = new Binding("Point")
+            });
+
+
+
+            //dataGrid.Columns.Add(new DataGridTextColumn
+            //{
+            //    Header = "Mark2", Binding = new Binding("Point")
+                
+            //});
+
 
             Grid.SetRow(dataGrid, 1);
             grid.Children.Add(dataGrid);
 
             button.Click += Button_DeleteExercise_Click;
+        }
+
+        private void ExercisesCard_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Button_DeleteExercise_Click(object sender, RoutedEventArgs e)
@@ -103,6 +122,18 @@ namespace EJournalUI
                 ExercisesService exercisesService = new ExercisesService();
                 exercisesService.DeleteStudentExercise(Exercise.Id);
                 ((StackPanel)(this.Parent)).Children.Remove(this);
+            }
+        }
+
+        private bool CheckTheValidValue(int value)
+        {
+            if (value < 0 || value > 100)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
