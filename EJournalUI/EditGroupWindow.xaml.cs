@@ -252,7 +252,7 @@ namespace EJournalUI
                 case "City":
                     {
                         var selectedUsers = from Student in Students
-                                            where Student.City.Contains(search)
+                                            where Student.City != null && Student.City.Contains(search)
                                             select Student;
 
                         AllStudentsWrapPanel.Children.Clear();
