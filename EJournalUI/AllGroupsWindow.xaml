@@ -15,7 +15,7 @@
                         <RowDefinition Height="480*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="405"/>
+                        <ColumnDefinition Width="420"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0" Content="Create group" x:Name="CreateGroup" DockPanel.Dock="Left" Width="120" Height="35" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
