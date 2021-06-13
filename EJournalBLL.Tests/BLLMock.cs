@@ -116,6 +116,7 @@ namespace EJournalBLL.Tests
                 Git = $"Git{IdStudent}",
                 Ranking = IdStudent,
                 IsDelete = false,
+                TeacherAssessment= IdStudent,
                 comments = new List<CommentDTO>()
 
             };
@@ -135,6 +136,7 @@ namespace EJournalBLL.Tests
                 Id = IdStudent,
                 IsDelete = false,
                 Ranking = IdStudent,
+                TeacherAssessment = IdStudent,
                 Comments = new List<Comment>()
             };
         }
@@ -145,7 +147,7 @@ namespace EJournalBLL.Tests
             {
                 Id = IdComment,
                 Comment = $"Comment{IdComment}",
-                CommentType=$"CommentType{IdComment}"
+                CommentType=CommentType.Group.ToString()
             };
         }
 
@@ -246,7 +248,7 @@ namespace EJournalBLL.Tests
                 IdStudent = Id + 1
             };
         }
-
+        
         public static ProjectGroupStudent GetProjectGroupStudentMock(int Id)
         {
             return new ProjectGroupStudent()
@@ -267,22 +269,11 @@ namespace EJournalBLL.Tests
 
         public static Attendances GetAttendancesMock(int Id)
         {
-            Student student = new Student()
+            Student student = new Student() { Name = "Name", Surname = "Surname", Email = "email", City = "city", Id = 1, AgreementNumber = "AN", Git = "git", IsDelete = false, Phone = "098031547", Ranking = 10, Comments = new List<Comment>() };
+           
+            return new Attendances( student)
             {
-                Name = "Name",
-                Surname = "Surname",
-                Email = "email",
-                City = "city",
-                Id = 1,
-                AgreementNumber = "AN",
-                Git = "git",
-                IsDelete = false,
-                Phone = "098031547",
-                Ranking = 10,
-                Comments = new List<Comment>()
-            };
-            return new Attendances(student)
-            {
+                Student = student,
                 isPresent = true
             };
         }

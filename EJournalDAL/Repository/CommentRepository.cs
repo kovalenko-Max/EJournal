@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace EJournalDAL.Repository
 {
-    public class CommentRepository
+    public class CommentRepository: ICommentRepository
     {
         private string _connectionString;
 
@@ -38,7 +38,6 @@ namespace EJournalDAL.Repository
             }
             return comment;
         }
-
 
         public int AddComment(CommentDTO commentDTO, int IdStudent)
         {
