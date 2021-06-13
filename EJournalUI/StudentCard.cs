@@ -19,6 +19,7 @@ namespace EJournalUI
             Student = student;
             Height = 70;
             Width = 450;
+            CornerRadius = new CornerRadius(5);
             BorderThickness = new Thickness(3);
             BorderBrush = Brushes.Black;
             Background = Brushes.White;

@@ -18,6 +18,7 @@ namespace EJournalUI
         {
             Lesson = lesson;
             Width = 200;
+            CornerRadius = new CornerRadius(5);
             BorderBrush = Brushes.Black;
             BorderThickness = new Thickness(2);
             Margin = new Thickness(2);

@@ -88,7 +88,6 @@
     <Build Include="dbo\Tables\Projectes.sql" />
     <Build Include="dbo\Tables\ProjectGroups.sql" />
     <Build Include="dbo\Tables\StudentsComments.sql" />
-    <Build Include="dbo\Stored Procedures\AddStudent.sql" />
     <Build Include="dbo\Tables\StudetsProjectGroup.sql" />
     <Build Include="dbo\User Defined Types\StudentAttendance.sql" />
     <Build Include="dbo\Stored Procedures\Courses\AddCourse.sql" />
