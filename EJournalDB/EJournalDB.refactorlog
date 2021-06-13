@@ -542,4 +542,16 @@
     <Property Name="NewSchema" Value="EJournal" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Move Schema" Key="ede7f9c9-d388-4f29-aa2c-da753bb404fa" ChangeDateTime="06/13/2021 20:52:26">
+    <Property Name="ElementName" Value="[dbo].[SearchStudentsEmail]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Move Schema" Key="7d3e1348-bf60-473b-a7d3-638252fac761" ChangeDateTime="06/13/2021 21:25:01">
+    <Property Name="ElementName" Value="[dbo].[SearcStudentsGroup]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
 </Operations>

@@ -35,7 +35,7 @@ namespace EJournalDAL.Repository
      
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec SearchStudentsPhone @Phone";
+                string connectionQuery = "exec [EJournal].[SearchStudentsPhone] @Phone";
                 students = db.Query<StudentDTO>(connectionQuery, new { phone }).ToList<StudentDTO>();
             }
             return students;
@@ -47,32 +47,21 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec SearchStudentsEmail @Email";
+                string connectionQuery = "exec [EJournal].[SearchStudentsEmail] @Email";
                 students = db.Query<StudentDTO>(connectionQuery, new { email }).ToList<StudentDTO>();
             }
+
             return students;
         }
 
-        public List<StudentDTO> SearchStudentName(string name)
+        public List<StudentDTO> SearchStudentsByFullName(string name)
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec SearchStydentsNameSername @Name";
+                string connectionQuery = "exec [EJournal].[SearchStudentsByFullName] @Name";
                 students = db.Query<StudentDTO>(connectionQuery, new { name }).ToList<StudentDTO>();
-            }
-            return students;
-        }
-
-        public List<StudentDTO> SearchStudentSurname(string surname)
-        {
-            List<StudentDTO> students = new List<StudentDTO>();
-
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "exec SearchStydentsSername @Surname";
-                students = db.Query<StudentDTO>(connectionQuery, new { surname }).ToList<StudentDTO>();
             }
             return students;
         }
@@ -83,7 +72,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec SearchStudentCity @City";
+                string connectionQuery = "exec [EJournal].[SearchStudentCity] @City";
                 students = db.Query<StudentDTO>(connectionQuery, new { city }).ToList();
             }
             return students;
@@ -95,7 +84,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec SearcStudentsGroup @Group";
+                string connectionQuery = "exec [EJournal].[SearcStudentsGroup] @Group";
                 students = db.Query<StudentDTO>(connectionQuery, new { group }).ToList();
             }
             return students;
@@ -107,7 +96,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec SearchStudentCours @Courses";
+                string connectionQuery = "exec [EJournal].[SearchStudentCours] @Courses";
                 students = db.Query<StudentDTO>(connectionQuery, new { courses }).ToList();
             }
             return students;
@@ -118,22 +107,12 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec SearchStudentAgreementNumber @AgreementNumbers";
+                string connectionQuery = "exec [EJournal].[SearchStudentAgreementNumber] @AgreementNumbers";
                 students = db.Query<StudentDTO>(connectionQuery, new { AgreementNumbers }).ToList();
             }
             return students;
         }
-        public List<StudentDTO> SearchStudentAllStudents()
-        {
-            List<StudentDTO> students = new List<StudentDTO>();
-
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "exec SearchStudentAll";
-                students = db.Query<StudentDTO>(connectionQuery).ToList();
-            }
-            return students;
-        }
+        
         public List<StudentDTO> GetStudentsFromOneProjectGroup(int idProjectGroup)
         {
 

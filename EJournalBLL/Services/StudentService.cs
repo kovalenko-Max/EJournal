@@ -94,18 +94,10 @@ namespace EJournalBLL.Services
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
 
-        public List<Student> SearchStudentsByName(string name)
+        public List<Student> SearchStudentsByFullName(string name)
         {
             StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentName(name);
-
-            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
-        }
-
-        public List<Student> SearchStudentsBySurname(string surname)
-        {
-            StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentSurname(surname);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentsByFullName(name);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
@@ -130,13 +122,6 @@ namespace EJournalBLL.Services
         {
             StudentsRepository studentsRepository = new StudentsRepository();
             List<StudentDTO> studentsDTO = studentsRepository.SearchStudentCourses(course);
-
-            return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
-        }
-        public List<Student> SearchStudentsAllStudents()
-        {
-            StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentAllStudents();
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }

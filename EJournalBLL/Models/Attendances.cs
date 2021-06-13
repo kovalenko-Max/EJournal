@@ -8,7 +8,7 @@ namespace EJournalBLL.Models
     {
         public Student Student { get; set; }
         public bool isPresent { get; set; }
-
+       
         public Attendances(Student student)
         {
             Student = student;

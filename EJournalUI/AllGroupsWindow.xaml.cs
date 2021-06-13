@@ -28,7 +28,6 @@ namespace EJournalUI
         public AllGroupsWindow()
         {
             InitializeComponent();
-            string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _groupService = new GroupsService();
             _studentServices = new StudentService();
             _projectServices = new ProjectService();
@@ -247,7 +246,7 @@ namespace EJournalUI
                 if (child is ExercisesCard)
                 {
                     ExercisesCard homeWork = (ExercisesCard)child;
-                    
+
                     ExercisesService exerciseService = new ExercisesService();
 
                     if (homeWork.ExercisesDateDatePicker.SelectedDate != null)
@@ -502,12 +501,7 @@ namespace EJournalUI
         }
         #endregion
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
             string search = SearchTextBox.Text;
             string caseSwitch = SearchComboBox.Text;
@@ -522,27 +516,18 @@ namespace EJournalUI
                             AllStudentCardsWrapPanel.Children.Add(studentCard);
                         }
                         break;
-                    }   
-                case "Name":
+                    }
+                case "Name/Surname":
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
-                        foreach (Student student in _studentServices.SearchStudentsByName(search))
+                        foreach (Student student in _studentServices.SearchStudentsByFullName(search))
                         {
                             StudentCard studentCard = new StudentCard(student);
                             AllStudentCardsWrapPanel.Children.Add(studentCard);
                         }
                         break;
                     }
-                case "Surname":
-                    {
-                        AllStudentCardsWrapPanel.Children.Clear();
-                        foreach (Student student in _studentServices.SearchStudentsBySurname(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            AllStudentCardsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
+
                 case "Phone":
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
@@ -557,16 +542,6 @@ namespace EJournalUI
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
                         foreach (Student student in _studentServices.SearchStudentsByCity(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            AllStudentCardsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "AllStudents":
-                    {
-                        AllStudentCardsWrapPanel.Children.Clear();
-                        foreach (Student student in _studentServices.SearchStudentsAllStudents())
                         {
                             StudentCard studentCard = new StudentCard(student);
                             AllStudentCardsWrapPanel.Children.Add(studentCard);
@@ -603,13 +578,7 @@ namespace EJournalUI
                         }
                         break;
                     }
-
-            }  
-        }
-
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            }
         }
     }
 }

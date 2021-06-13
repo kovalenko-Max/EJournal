@@ -196,18 +196,29 @@
                         <RowDefinition Height="100"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Name="AddStudentButton" Content="Add" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="36" Width="133" FontSize="15" Click="Button_AddStudent_Click"/>
+                    
+                    <DockPanel Grid.Row="0">
+                        <Button Grid.Row="0" Name="AddStudentButton" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" Height="36" Width="133" FontSize="15" Click="Button_AddStudent_Click"/>
+                        <Button DockPanel.Dock="Right" x:Name="SearchButton" Width="40" Height="36" Content="Search" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,5,5,5" Click="Button_Search_Click"/>
+                        <TextBox DockPanel.Dock="Right" Grid.Row="0" x:Name="SearchTextBox" HorizontalAlignment="Right" FontSize="15" TextWrapping="Wrap" VerticalAlignment="Center" Width="400" Height="35" Margin="5,5,5,5" />
+                        <ComboBox DockPanel.Dock="Right" Name="SearchComboBox" Grid.Row="0" VerticalAlignment="Center" Height="35" HorizontalAlignment="Right" Width="153" Margin="5,5,5,5">
+                            <TextBlock x:Name="NameTextBlock" Text="Name/Surname"/>
+                            <TextBlock x:Name="PhoneTextBlock" Text="Phone"/>
+                            <TextBlock x:Name="EmailTextBlock" Text="Email"/>
+                            <TextBlock x:Name="CityTextBlock" Text="City"/>
+                            <TextBlock>AgreementNumber</TextBlock>
+                            <TextBlock>Group</TextBlock>
+                            <TextBlock>Courses</TextBlock>
+                        </ComboBox>
+                    </DockPanel>
+                    
+                    
                     <ScrollViewer Grid.Row="1">
                         <WrapPanel x:Name="AllStudentCardsWrapPanel">
 
                         </WrapPanel>
                     </ScrollViewer>
-                    <ComboBox Name="SearchComboBox" Grid.Row="0" VerticalAlignment="Top" Height="35" Margin="0,14,232,0" HorizontalAlignment="Right" Width="153"/>
-                    <TextBox Grid.Row="0" x:Name="SearchTextBox" HorizontalAlignment="Right" FontSize="15" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="35" Margin="0,14,59,0"/>
-                    <Button x:Name="SearchButton" Width="40" Height="35" Margin="1412,12,12,48" Content="Search"/>
+                    
                 </Grid>
             </TabItem>
         </TabControl>
