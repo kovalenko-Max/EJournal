@@ -13,7 +13,7 @@ namespace EJournalDAL.Models.BaseModels
         public string ExerciseType { get; set; }
         public List<StudentExerciseDTO> StudentsExercisesDTO { get; set; }
 
-        public ExerciseDTO()
+        public ExerciseDTO( )
         {
             Description = string.Empty;
             StudentsExercisesDTO = new List<StudentExerciseDTO>();

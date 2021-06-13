@@ -31,7 +31,6 @@ namespace EJournalBLL.Models
             Description = exerciseDTO.Description;
             Deadline = exerciseDTO.Deadline;
             IdGroup = exerciseDTO.IdGroup;
-
         }
 
         public override bool Equals(object obj)
