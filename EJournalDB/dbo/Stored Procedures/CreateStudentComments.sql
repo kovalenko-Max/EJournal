@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [EJournal].[CreateStudentComments]
-    @IdCommentType INT,
+    @CommentType nvarchar(100),
     @Comment nvarchar(255),
 	@StudentCommentVarible as [EJournal].[StudentsComment] READONLY
 AS
@@ -10,8 +10,8 @@ AS
 	Select *
 	from @StudentCommentVarible 
 
-    Insert INTO [EJournal].Comments( Comment, IdCommentType  )
-    Values(@Comment,@IdCommentType )
+    Insert INTO [EJournal].Comments( Comment, CommentType  )
+    Values(@Comment, @CommentType )
 
 	Set @IdComment= SCOPE_IDENTITY()
 
@@ -19,7 +19,7 @@ AS
 	Set IdComment=@IdComment
 
 	InSERT INTO [EJournal].StudentsComments(IdStudent, IdComment)
- Select IdStudent, IdComment
- from @StudentsComment
+	Select IdStudent, IdComment
+	 from @StudentsComment
 
  return @IdComment

@@ -152,15 +152,15 @@ namespace EJournalBLL
                         .ForMember(dto => dto.IdProject, map => map.MapFrom(source => source.IdProject))
                         .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students));
 
-                cfg.CreateMap<CommentType, CommentTypeDTO>()
-                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                    .ForMember(dto => dto.Type, map => map.MapFrom(source => source.Type));
+                cfg.CreateMap<CommentDTO, Comment>()
+                        .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                        .ForMember(dto => dto.Comments, map => map.MapFrom(source => source.Comment))
+                        .ForMember(dto => dto.CommentTypeValue, map => map.MapFrom(source => source.CommentType));
 
                 cfg.CreateMap<Comments, CommentDTO>()
                     .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                     .ForMember(dto => dto.Comment, map => map.MapFrom(source => source.Comment))
-                    .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType))
-                    .ForMember(dto => dto.Students, map => map.MapFrom(source => source.Students));
+                    .ForMember(dto => dto.IdCommentType, map => map.MapFrom(source => source.IdCommentType));
 
                 cfg.CreateMap<Exercise, ExerciseDTO>()
                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))

@@ -176,6 +176,44 @@ namespace EJournalUI
         }
         #endregion
 
+        #region Attendances
+
+        private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var c in AttendancesStackPanel.Children)
+            {
+                if (c is AttendancesCard)
+                {
+                    AttendancesCard ac = (AttendancesCard)c;
+                    LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
+                    ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
+                    ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
+                    lessonsLogic.UpdateLessonAttendances(ac.Lesson);
+                }
+            }
+        }
+
+        private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedGroupCard != null)
+            {
+                Lesson lesson = new Lesson();
+                lesson.IdGroup = SelectedGroupCard.Group.Id;
+
+                foreach (var student in SelectedGroupCard.Group.Students)
+                {
+                    lesson.Attendances.Add(new Attendances(student));
+                }
+
+                AttendancesCard attendancesCard = new AttendancesCard(lesson);
+                AttendancesStackPanel.Children.Insert(0, attendancesCard);
+                LessonsService lessonsService = new LessonsService(new LessonsAttendancesRepository());
+                lessonsService.AddLesson(lesson);
+            }
+        }
+
+        #endregion
+
         #region Exercises
 
         private void Button_ExercisesAdd_Click(object sender, RoutedEventArgs e)
@@ -235,6 +273,7 @@ namespace EJournalUI
 
         #endregion
 
+        #region Projects
         public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
             ProjectTeamsStudentsWrapPanel.Children.Clear();
@@ -431,6 +470,8 @@ namespace EJournalUI
             }
         }
 
+        #endregion
+
         private void Button_AddStudent_Click(object sender, RoutedEventArgs e)
         {
             EditStudentWindow addStudentWindow = new EditStudentWindow();
@@ -442,40 +483,5 @@ namespace EJournalUI
                 AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
-
-        private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var c in AttendancesStackPanel.Children)
-            {
-                if (c is AttendancesCard)
-                {
-                    AttendancesCard ac = (AttendancesCard)c;
-                    LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
-                    ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
-                    ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
-                    lessonsLogic.UpdateLessonAttendances(ac.Lesson);
-                }
-            }
-        }
-
-        private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
-        {
-            if (SelectedGroupCard != null)
-            {
-                Lesson lesson = new Lesson();
-                lesson.IdGroup = SelectedGroupCard.Group.Id;
-
-                foreach (var student in SelectedGroupCard.Group.Students)
-                {
-                    lesson.Attendances.Add(new Attendances(student));
-                }
-
-                AttendancesCard attendancesCard = new AttendancesCard(lesson);
-                AttendancesStackPanel.Children.Insert(0, attendancesCard);
-                LessonsService lessonsService = new LessonsService(new LessonsAttendancesRepository());
-                lessonsService.AddLesson(lesson);
-            }
-        }
-        
     }
 }

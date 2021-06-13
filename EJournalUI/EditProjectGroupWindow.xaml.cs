@@ -18,7 +18,7 @@ namespace EJournalUI
         private StudentService _studentServices;
 
         private ProjectGroupSevice _projectGroupServices;
-        private CommentService _commentService;
+        private CommentsService _commentService;
         public ProjectGroup ProjectGroup { get; set; }
         public Action PrintStudents;
         public List<Student> studentsList;
@@ -31,7 +31,7 @@ namespace EJournalUI
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService();
             _projectGroupServices = new ProjectGroupSevice();
-            _commentService = new CommentService();
+            _commentService = new CommentsService();
             ProjectGroup = projectGroup;
             ProjectGroupTextBox.Text = projectGroup.Name;
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
@@ -39,7 +39,7 @@ namespace EJournalUI
             PrintStudents += PrintProjectGroupStudents;
             PrintStudents.Invoke();
         }
-        public EditProjectGroupWindow() 
+        public EditProjectGroupWindow()
         {
 
         }
@@ -102,10 +102,16 @@ namespace EJournalUI
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
                 _projectGroupServices.Update(ProjectGroup);
+
                 if (TeamCommentsTextBox.Text != string.Empty)
                 {
-                    Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, Students = ProjectGroup.Students };
-                    _commentService.AddCommentsToStudent(comments);
+                    Comment comments = new Comment
+                    {
+                        Comments = TeamCommentsTextBox.Text,
+                        CommentTypeValue = CommentType.Group
+                    };
+
+                    _commentService.AddCommentsToStudent(comments, ProjectGroup.Students);
                 }
 
                 ProjectGroupWindow.Close();
