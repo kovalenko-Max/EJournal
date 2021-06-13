@@ -9,8 +9,7 @@
     <ProjectGuid>{6e3fe2c2-8086-44df-bcf3-dcb1975c495c}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>EJournalDB</RootNamespace>
     <AssemblyName>EJournalDB</AssemblyName>
     <ModelCollation>1049,CI</ModelCollation>
@@ -51,7 +50,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -73,6 +71,7 @@
     <Folder Include="dbo\Stored Procedures\Students" />
     <Folder Include="dbo\Stored Procedures\ExercisesStudents" />
     <Folder Include="dbo\Stored Procedures\Comments" />
+    <Folder Include="dbo\Stored Procedures\Search" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Students.sql" />
@@ -184,6 +183,13 @@
     <Build Include="dbo\Stored Procedures\AddComment.sql" />
     <Build Include="dbo\Stored Procedures\AddProject.sql" />
     <Build Include="dbo\Stored Procedures\Students\UpdateStudentRating.sql" />
+    <Build Include="dbo\Stored Procedures\Search\SearchStudentsEmail.sql" />
+    <Build Include="dbo\Stored Procedures\Search\SearchStydentsNameSername.sql" />
+    <Build Include="dbo\Stored Procedures\Search\SearchStudentsPhone.sql" />
+    <Build Include="dbo\Stored Procedures\Search\SearchStudentCity.sql" />
+    <Build Include="dbo\Stored Procedures\Search\SearchStudentAgreementNumber.sql" />
+    <Build Include="dbo\Stored Procedures\Search\SearchStudentCours.sql" />
+    <Build Include="dbo\Stored Procedures\Search\SearcStudentsGroup.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

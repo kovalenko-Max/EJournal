@@ -4,6 +4,8 @@ using EJournalDAL.Repository;
 using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
+using EJournalBLL;
+using System;
 
 namespace EJournalUI
 {
@@ -33,7 +35,8 @@ namespace EJournalUI
             CourseComboBox.ItemsSource = coursesService.Courses;
             CourseComboBox.SelectedItem = GroupCard.Group.Course;
 
-            SearchComboBox.SelectedItem = NameTextBlock;
+            SearchComboBox.ItemsSource = Enum.GetValues(typeof(SearchTypeInGroups)).Cast<SearchTypeInGroups>();
+            SearchComboBox.SelectedItem = (SearchTypeInGroups)0;
             PrintAllStudents();
             PrintGroupStudent();
 
@@ -68,7 +71,6 @@ namespace EJournalUI
                 GroupCard.Group.Course = (Course)CourseComboBox.SelectedItem;
 
                 _groupsService.AddGroupAndStudentsToDB(GroupCard.Group, GroupCard.Group.Students);
-                //_groupsService.UpdateGroupStudents(GroupCard.Group, GroupCard.Group.Students);
                 DialogResult = true;
 
                 this.Close();
@@ -174,38 +176,16 @@ namespace EJournalUI
             }
         }
 
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-     
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
             string search = SearchTextBox.Text;
-            string caseSwitch = SearchComboBox.Text;
 
-            switch (caseSwitch)
+            switch (SearchComboBox.SelectedItem)
             {
-                case "Email":
+                case SearchTypeInGroups.Name:
                     {
                         var selectedUsers = from Student in Students
-                                                where Student.Email.Contains(search)
-                                                select Student;
-
-                        AllStudentsWrapPanel.Children.Clear();
-                        foreach(var s in selectedUsers)
-                        {
-                            StudentCard studentCard = new StudentCard(s);
-                            AllStudentsWrapPanel.Children.Add(studentCard);
-                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
-                        }
-
-                        break;
-                    }
-                case "Name":
-                    {
-                        var selectedUsers = from Student in Students
-                                            where Student.Name.Contains(search)
+                                            where (Student.Surname + " " + Student.Name).Contains(search)
                                             select Student;
 
                         AllStudentsWrapPanel.Children.Clear();
@@ -218,10 +198,10 @@ namespace EJournalUI
 
                         break;
                     }
-                case "Surname":
+                case SearchTypeInGroups.Email:
                     {
                         var selectedUsers = from Student in Students
-                                            where Student.Surname.Contains(search)
+                                            where Student.Email.Contains(search)
                                             select Student;
 
                         AllStudentsWrapPanel.Children.Clear();
@@ -234,7 +214,7 @@ namespace EJournalUI
 
                         break;
                     }
-                case "Phone":
+                case SearchTypeInGroups.Phone:
                     {
                         var selectedUsers = from Student in Students
                                             where Student.Phone.Contains(search)
@@ -250,7 +230,7 @@ namespace EJournalUI
 
                         break;
                     }
-                case "City":
+                case SearchTypeInGroups.City:
                     {
                         var selectedUsers = from Student in Students
                                             where Student.City != null && Student.City.Contains(search)
@@ -266,7 +246,7 @@ namespace EJournalUI
 
                         break;
                     }
-                case "AgreementNumber":
+                case SearchTypeInGroups.AgreementNumber:
                     {
                         var selectedUsers = from Student in Students
                                             where Student.AgreementNumber.Contains(search)

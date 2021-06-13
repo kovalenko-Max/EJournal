@@ -35,16 +35,9 @@
                 </Canvas>
                 <Canvas Grid.Column="1">
                     <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="207" Canvas.Top="10"/>
-                    <TextBox Name="SearchTextBox"  Canvas.Left="33" Canvas.Top="39" Text="Search" TextWrapping="Wrap" Width="153" Height="26"/>
-                    <ComboBox Canvas.Left="207" Canvas.Top="39" Width="173" Height="26" Name="SearchComboBox">
-                        <TextBlock x:Name="NameTextBlock" Text="Name"/>
-                        <TextBlock x:Name="SurnameTextBlock" Text="Surname"/>
-                        <TextBlock x:Name="PhoneTextBlock" Text="Phone"/>
-                        <TextBlock x:Name="EmailTextBlock" Text="Email"/>
-                        <TextBlock x:Name="CityTextBlock" Text="City"/>
-                        <TextBlock>x:Name="AgreementNumberTextBlock" Text="AgreementNumber"</TextBlock>
-                    </ComboBox>
-                        <Button Name="Search"  Content="Search" Canvas.Left="402" Canvas.Top="39" Width="98" Height="24" RenderTransformOrigin="0.5,0.5" Click="Button_Click">
+                    <TextBox Name="SearchTextBox"  Canvas.Left="33" Canvas.Top="39" TextWrapping="Wrap" Width="153" Height="26"/>
+                    <ComboBox Canvas.Left="207" Canvas.Top="39" Width="173" Height="26" Name="SearchComboBox"/>
+                    <Button Name="Search"  Content="Search" Canvas.Left="402" Canvas.Top="39" Width="98" Height="24" RenderTransformOrigin="0.5,0.5" Click="Button_Search_Click">
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
