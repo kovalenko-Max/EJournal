@@ -1,7 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace EJournalDAL.Models.BaseModels
 {
@@ -10,8 +9,19 @@ namespace EJournalDAL.Models.BaseModels
         public int Id { get; set; }
         public string Comment { get; set; }
         public string CommentType { get; set; }
-        public bool IsDelete { get; set; }
-        public List<StudentDTO> Students { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+            CommentDTO comments = obj as CommentDTO;
+
+            if (!(comments is null) && Id == comments.Id && Comment == comments.Comment
+                && CommentType == comments.CommentType)
+            {
+                equal = true;
+            }
+            return equal;
+        }
 
     }
 }

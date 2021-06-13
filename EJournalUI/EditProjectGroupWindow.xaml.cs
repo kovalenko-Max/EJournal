@@ -4,7 +4,10 @@ using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -34,6 +37,7 @@ namespace EJournalUI
             _commentService = new CommentsService();
             ProjectGroup = projectGroup;
             ProjectGroupTextBox.Text = projectGroup.Name;
+            MarkTextBox.Text = projectGroup.Mark.ToString();
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
             PrintStudents += PrintAllStudents;
             PrintStudents += PrintProjectGroupStudents;
@@ -101,6 +105,7 @@ namespace EJournalUI
             if (ProjectGroupTextBox.Text != string.Empty)
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
+                ProjectGroup.Mark = Convert.ToInt32(MarkTextBox.Text);
                 _projectGroupServices.Update(ProjectGroup);
 
                 if (TeamCommentsTextBox.Text != string.Empty)
@@ -134,5 +139,130 @@ namespace EJournalUI
             }
             PrintStudents.Invoke();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string search = SearchTextBox.Text;
+            string caseSwitch = SearchComboBox.Text;
+
+            switch (caseSwitch)
+            {
+                case "Email":
+                    {
+                        var selectedUsers = from Student in studentsList
+                                            where Student.Email.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
+                        }
+
+                        break;
+                    }
+                case "Name":
+                    {
+                        var selectedUsers = from Student in studentsList
+                                            where Student.Name.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
+                        }
+
+                        break;
+                    }
+                case "Surname":
+                    {
+                        var selectedUsers = from Student in studentsList
+                                            where Student.Surname.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
+                        }
+
+                        break;
+                    }
+                case "Phone":
+                    {
+                        var selectedUsers = from Student in studentsList
+                                            where Student.Phone.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
+                        }
+
+                        break;
+                    }
+                case "City":
+                    {
+                        var selectedUsers = from Student in studentsList
+                                            where Student.City != null && Student.City.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
+                        }
+
+                        break;
+                    }
+                case "AgreementNumber":
+                    {
+                        var selectedUsers = from Student in studentsList
+                                            where Student.AgreementNumber.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
+                        }
+
+                        break;
+                    }
+            }
+        }
+
+
+
+        private void MarkTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[0-9][0-9]?$|^100$");
+            string futureText = ((TextBox)sender).Text + e.Text;
+
+            if (regex.IsMatch(futureText))
+            {
+                e.Handled = !regex.IsMatch(e.Text);
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
     }
+
 }

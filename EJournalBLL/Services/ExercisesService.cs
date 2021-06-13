@@ -9,10 +9,13 @@ namespace EJournalBLL.Services
     public class ExercisesService
     {
         private DataTable exerciseModel;
-        public ExercisesRepository ExercisesRepository { get; set; }
+        public IExercisesRepository ExercisesRepository { get; set; }
         public List<Exercise> Exercises { get; set; }
 
-
+        public ExercisesService(IExercisesRepository exercisesRepository)
+        {
+            ExercisesRepository = exercisesRepository;
+        }
         public ExercisesService()
         {
             ExercisesRepository = new ExercisesRepository();
@@ -66,7 +69,7 @@ namespace EJournalBLL.Services
 
             foreach (ExerciseDTO exerciseDTO in exercisesDTO)
             {
-                exercise.Add(new Exercise(exerciseDTO)
+                 exercise.Add(new Exercise(exerciseDTO)
                 {
                     StudentMarks = StudentMark.GetStudentMarksFromStudentExerciseDTO(exerciseDTO.StudentsExercisesDTO)
                 });

@@ -2,7 +2,7 @@
 AS
 SELECT pg.[Id]
 	,pg.[Name]
+	,pg.Mark
 FROM [EJournal].ProjectGroups pg
 INNER JOIN [EJournal].Projectes p ON p.Id = pg.IdProject
-WHERE pg.IsDelete = 0
-	AND p.Id = @IdProject
+WHERE p.Id = @IdProject

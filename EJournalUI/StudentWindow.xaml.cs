@@ -1,14 +1,7 @@
-﻿using EJournalBLL;
-using EJournalBLL.Models;
+﻿using EJournalBLL.Models;
 using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace EJournalUI
@@ -27,7 +20,6 @@ namespace EJournalUI
         public StudentWindow(StudentCard studentCard)
         {
             InitializeComponent();
-            string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService();
             _commentsService = new CommentsService();
             StudentCard = studentCard;
@@ -42,13 +34,15 @@ namespace EJournalUI
             TextBox_Git.Text = Student.Git;
             TextBox_City.Text = Student.City;
             TextBox_Agreement.Text = Student.AgreementNumber;
+            TextBox_TeacherAssessment.Text = Student.TeacherAssessment.ToString();
+            TextBlock_Rating.Text = Student.Ranking.ToString();
 
             PrintComments();
         }
 
         private void PrintComments()
         {
-            foreach(var comment in Comments)
+            foreach (var comment in Comments)
             {
                 CommentStackPannel.Children.Add(new CommentCard(comment));
             }
@@ -63,6 +57,7 @@ namespace EJournalUI
             TextBox_Git.IsReadOnly = false;
             TextBox_City.IsReadOnly = false;
             TextBox_Agreement.IsReadOnly = false;
+            TextBox_TeacherAssessment.IsReadOnly = false;
             Button_SaveChanges.Visibility = Visibility.Visible;
             Button_SaveChanges.IsEnabled = true;
             Button_DeleteStudent.IsEnabled = false;
@@ -81,6 +76,11 @@ namespace EJournalUI
             Student.Phone = TextBox_Phone.Text;
             Student.Git = TextBox_Git.Text;
             Student.City = TextBox_City.Text;
+            int teacherAssessment;
+            if (Int32.TryParse(TextBox_TeacherAssessment.Text, out teacherAssessment))
+            {
+                Student.TeacherAssessment = teacherAssessment;
+            }
             Student.AgreementNumber = TextBox_Agreement.Text;
             TextBox_Name.IsReadOnly = true;
             TextBox_Surname.IsReadOnly = true;
@@ -89,6 +89,9 @@ namespace EJournalUI
             TextBox_Git.IsReadOnly = true;
             TextBox_City.IsReadOnly = true;
             TextBox_Agreement.IsReadOnly = true;
+
+            TextBox_TeacherAssessment.IsReadOnly = true;
+
             _studentServices.Update(Student);
             StudentCard.UpdateFields();
         }
@@ -119,6 +122,12 @@ namespace EJournalUI
         private void TextBox_Phone_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void Button_UpdateRankin_Click(object sender, RoutedEventArgs e)
+        {
+            _studentServices.UpdateStudentRating(Student);
+            TextBlock_Rating.Text = Student.Ranking.ToString();
         }
     }
 }

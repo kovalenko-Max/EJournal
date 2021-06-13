@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace EJournalDAL.Repository
 {
-    public class ProjectGroupRepository
+    public class ProjectGroupRepository: IProjectGroupRepository
     {
         string connectionString;
         public ProjectGroupRepository()
@@ -44,6 +44,7 @@ namespace EJournalDAL.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@Id", projectGroup.Id);
             parameters.Add("@Name", projectGroup.Name);
+            parameters.Add("@Mark", projectGroup.Mark);
             parameters.Add("@Students", dt.AsTableValuedParameter("[EJournal].[StudentsIds]"));
 
             using (IDbConnection db = new SqlConnection(connectionString))
