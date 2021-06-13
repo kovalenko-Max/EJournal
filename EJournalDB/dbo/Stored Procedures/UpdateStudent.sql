@@ -5,7 +5,7 @@
 	,@Phone NVARCHAR(16)
 	,@Git NVARCHAR(100) = NULL
 	,@City NVARCHAR(100) NULL
-	,@Ranking INT
+	,@TeacherAssessment int
 	,@AgreementNumber NVARCHAR(50)
 AS
 UPDATE [EJournal].[Students]
@@ -15,6 +15,6 @@ SET Name = @Name
 	,Phone = @Phone
 	,Git = @Git
 	,City = @City
-	,Ranking = @Ranking
+	,TeacherAssessment = @TeacherAssessment
 	,AgreementNumber = @AgreementNumber
 WHERE Id = @Id

@@ -12,11 +12,15 @@ namespace EJournalBLL.Services
     {
         public List<Student> Students { get; set; }
 
-        private StudentsRepository _studentsRepository { get; set; }
+        private IStudentsRepository _studentsRepository { get; set; }
 
         public StudentService()
         {
             _studentsRepository = new StudentsRepository();
+        }
+        public StudentService(IStudentsRepository studentsRepository)
+        {
+            _studentsRepository = studentsRepository;
         }
 
         public List<Student> GetAllStudent()
@@ -48,8 +52,7 @@ namespace EJournalBLL.Services
         }
         public List<Student> GetStudentsByGroup(int groupId)
         {
-            StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.GetStudentsByGroup(groupId);
+            List<StudentDTO> studentsDTO = _studentsRepository.GetStudentsByGroup(groupId);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
@@ -68,6 +71,11 @@ namespace EJournalBLL.Services
                 _studentsRepository.GetStudentsNotAreInGroup(idGroup));
 
             return students;
+        }
+
+        public void UpdateStudentRating(Student student)
+        {
+            student.Ranking = _studentsRepository.UpdateStudentRating(student.Id);
         }
 
         public List<Student> SearchStudentsByPhone(string phone)

@@ -1,17 +1,27 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace EJournalDAL.Models.BaseModels
 {
     public class CommentDTO
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Comment { get; set; }
-        public int IdCommentType { get; set; }
-        public bool IsDelete { get; set; }
-        public List<StudentDTO> Students { get; set; }
+        public string CommentType { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+            CommentDTO comments = obj as CommentDTO;
+
+            if (!(comments is null) && Id == comments.Id && Comment == comments.Comment
+                && CommentType == comments.CommentType)
+            {
+                equal = true;
+            }
+            return equal;
+        }
 
     }
 }

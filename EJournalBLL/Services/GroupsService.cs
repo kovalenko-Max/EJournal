@@ -7,7 +7,7 @@ namespace EJournalBLL.Services
 {
     public class GroupsService
     {
-        private GroupsRepository _groupsRepository;
+        public IGroupRepository groupsRepository { get; set; }
 
         public List<Group> Groups
         {
@@ -24,7 +24,11 @@ namespace EJournalBLL.Services
         public GroupsService()
         {
             Groups = new List<Group>();
-            _groupsRepository = new GroupsRepository();
+            groupsRepository = new GroupsRepository();
+        }
+        public GroupsService(IGroupRepository groupRepository)
+        {
+            groupsRepository =groupRepository;
         }
 
         public void AddGroupAndStudentsToDB(Group group, List<Student> students)
@@ -32,7 +36,7 @@ namespace EJournalBLL.Services
             GroupDTO groupDTO = ObjectMapper.Mapper.Map<GroupDTO>(group);
             groupDTO.IdCourse = group.Course.Id;
 
-            groupDTO = _groupsRepository.AddGroupWithStudents(groupDTO,
+            groupDTO = groupsRepository.AddGroupWithStudents(groupDTO,
                 ObjectMapper.Mapper.Map<List<StudentDTO>>(students));
             
             group.Id = groupDTO.Id;
@@ -43,7 +47,7 @@ namespace EJournalBLL.Services
             GroupDTO groupDTO = new GroupDTO();
             groupDTO.Name = group.Name;
             groupDTO.IdCourse = group.Course.Id;
-            groupDTO = _groupsRepository.AddGroup(groupDTO);
+            groupDTO = groupsRepository.AddGroup(groupDTO);
             group.Id = groupDTO.Id;
         }
 
@@ -53,13 +57,13 @@ namespace EJournalBLL.Services
             groupDTO.Id = group.Id;
             groupDTO.Name = group.Name;
             groupDTO.IdCourse = group.Course.Id;
-            groupDTO.IsFinish = group.IsFinish ? 1 : 0;
-            _groupsRepository.UpdateGroup(groupDTO);
+            groupDTO.IsFinish = group.IsFinish ? true : false;
+            groupsRepository.UpdateGroup(groupDTO);
         }
 
-        private List<Group> GetAllGroupsFromDB()
+        public List<Group> GetAllGroupsFromDB()
         {
-            List<GroupDTO> groupDTOs = _groupsRepository.GetAllGroups();
+            List<GroupDTO> groupDTOs = groupsRepository.GetAllGroups();
 
             return ObjectMapper.Mapper.Map<List<Group>>(groupDTOs);
         }
@@ -69,13 +73,18 @@ namespace EJournalBLL.Services
             GroupDTO groupDTO = ObjectMapper.Mapper.Map<GroupDTO>(group);
             groupDTO.IdCourse = group.Course.Id;
 
-            _groupsRepository.UpdateGroupStudents(groupDTO,
+            groupsRepository.UpdateGroupStudents(groupDTO,
                 ObjectMapper.Mapper.Map<List<StudentDTO>>(students));
         }
 
         public void DeleteGroup(Group group)
         {
-            _groupsRepository.DeleteGroup(group.Id);
+            groupsRepository.DeleteGroup(group.Id);
         }
+
+     
+
+
+
     }
 }

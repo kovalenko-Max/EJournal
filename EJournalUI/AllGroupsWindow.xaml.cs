@@ -177,6 +177,44 @@ namespace EJournalUI
         }
         #endregion
 
+        #region Attendances
+
+        private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var c in AttendancesStackPanel.Children)
+            {
+                if (c is AttendancesCard)
+                {
+                    AttendancesCard ac = (AttendancesCard)c;
+                    LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
+                    ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
+                    ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
+                    lessonsLogic.UpdateLessonAttendances(ac.Lesson);
+                }
+            }
+        }
+
+        private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedGroupCard != null)
+            {
+                Lesson lesson = new Lesson();
+                lesson.IdGroup = SelectedGroupCard.Group.Id;
+
+                foreach (var student in SelectedGroupCard.Group.Students)
+                {
+                    lesson.Attendances.Add(new Attendances(student));
+                }
+
+                AttendancesCard attendancesCard = new AttendancesCard(lesson);
+                AttendancesStackPanel.Children.Insert(0, attendancesCard);
+                LessonsService lessonsService = new LessonsService(new LessonsAttendancesRepository());
+                lessonsService.AddLesson(lesson);
+            }
+        }
+
+        #endregion
+
         #region Exercises
 
         private void Button_ExercisesAdd_Click(object sender, RoutedEventArgs e)
@@ -185,6 +223,7 @@ namespace EJournalUI
             {
                 Exercise exercise = new Exercise(SelectedGroupCard.Group);
                 exercise.IdGroup = SelectedGroupCard.Group.Id;
+                exercise.ExerciseType = (ExcerciseType)0;
 
                 foreach (var student in SelectedGroupCard.Group.Students)
                 {
@@ -192,6 +231,8 @@ namespace EJournalUI
                 }
 
                 ExercisesCard homeworkcard = new ExercisesCard(exercise);
+                homeworkcard.Exercise.ExerciseType = (ExcerciseType)homeworkcard.ExcerciseTypeComboBox.SelectedItem;
+
                 HomeworkStackPanel.Children.Insert(0, homeworkcard);
 
                 ExercisesService exercisesService = new ExercisesService();
@@ -206,6 +247,7 @@ namespace EJournalUI
                 if (child is ExercisesCard)
                 {
                     ExercisesCard homeWork = (ExercisesCard)child;
+                    
                     ExercisesService exerciseService = new ExercisesService();
 
                     if (homeWork.ExercisesDateDatePicker.SelectedDate != null)
@@ -236,6 +278,7 @@ namespace EJournalUI
 
         #endregion
 
+        #region Projects
         public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
             ProjectTeamsStudentsWrapPanel.Children.Clear();
@@ -265,14 +308,18 @@ namespace EJournalUI
 
         private void Button_CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamNameTextBox.Text != string.Empty)
+            if (SelectedProjectCard != null)
             {
-                ProjectGroup projectGroup = new ProjectGroup(TeamNameTextBox.Text);
-                projectGroup.IdProject = SelectedProjectCard.Project.Id;
-                projectGroup.Id = _projectGroupServices.AddProjectGroup(projectGroup);
-                ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
-                projectGroupCard.MouseUp += ProjectGroupCard_MouseLeftButtonDown;
-                ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
+                if (TeamNameTextBox.Text != string.Empty)
+                {
+                    ProjectGroup projectGroup = new ProjectGroup(TeamNameTextBox.Text);
+                    projectGroup.IdProject = SelectedProjectCard.Project.Id;
+                    projectGroup.Id = _projectGroupServices.AddProjectGroup(projectGroup);
+                    ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
+                    projectGroupCard.MouseUp += ProjectGroupCard_MouseLeftButtonDown;
+                    ProjectTeamsWrapPanel.Children.Add(projectGroupCard);
+                }
+
             }
         }
 
@@ -292,13 +339,17 @@ namespace EJournalUI
 
         public void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
 
-                if (SelectedProjectGroupCard != null)
+            if (SelectedProjectGroupCard.ProjectGroup == null)
+            {
+                MessageBox.Show("Please select the team", "Select", MessageBoxButton.OK);
+            }
+            else
+            {
+                if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
+                    ProjectTeamsStudentsWrapPanel.Children.Clear();
                     _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
-                    SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
                     ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
                 }
             }
@@ -346,16 +397,6 @@ namespace EJournalUI
             }
         }
 
-        public void PrintAllStudentsFromDB()
-        {
-            AllStudentCardsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetAllStudent())
-            {
-                StudentCard studentCard = new StudentCard(student);
-                AllStudentCardsWrapPanel.Children.Add(studentCard);
-            }
-        }
-
         private void Button_CreateProject_Click(object sender, RoutedEventArgs e)
         {
             EditProjectWindow addProjectWindow = new EditProjectWindow();
@@ -376,7 +417,6 @@ namespace EJournalUI
                 if (SelectedProjectCard != null)
                 {
                     _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
-                    SelectedProjectCard.Project.IsDelete = true;
                     ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
                 }
             }
@@ -390,6 +430,8 @@ namespace EJournalUI
             PrintAllProjectGroupsFromDB(projectCard.Project.Id);
             EditProjectButton.IsEnabled = true;
             DeleteProjectButton.IsEnabled = true;
+            SelectedProjectGroupCard = null;
+            Button_DeleteProjectGroup.IsEnabled = false;
         }
 
         private void HighlightSelectedProject(ProjectCard projectCard)
@@ -434,6 +476,9 @@ namespace EJournalUI
             }
         }
 
+        #endregion
+
+        #region Students
         private void Button_AddStudent_Click(object sender, RoutedEventArgs e)
         {
             EditStudentWindow addStudentWindow = new EditStudentWindow();
@@ -446,20 +491,16 @@ namespace EJournalUI
             }
         }
 
-        private void Button_AttendancesSave_Click(object sender, RoutedEventArgs e)
+        public void PrintAllStudentsFromDB()
         {
-            foreach (var c in AttendancesStackPanel.Children)
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
             {
-                if (c is AttendancesCard)
-                {
-                    AttendancesCard ac = (AttendancesCard)c;
-                    LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
-                    ac.Lesson.DateLesson = (DateTime)ac.LessonDateDatePicker.SelectedDate;
-                    ac.Lesson.Topic = ac.LessonsTopicTexBox.Text.ToString();
-                    lessonsLogic.UpdateLessonAttendances(ac.Lesson);
-                }
+                StudentCard studentCard = new StudentCard(student);
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
+        #endregion
 
         private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
         {

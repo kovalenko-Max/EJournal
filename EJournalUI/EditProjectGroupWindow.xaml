@@ -8,7 +8,12 @@
         Title="EditProjectGroupWindow" Height="785" Width="1020"
         Name="ProjectGroupWindow">
     <Grid>
-        <Grid ShowGridLines="True" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="910*"/>
+        </Grid.ColumnDefinitions>
+        <Grid ShowGridLines="True" Grid.ColumnSpan="3" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="220" MinHeight="200" />
                 <RowDefinition Height="30" MinHeight="75"/>
@@ -29,7 +34,26 @@
                     <TextBlock Text="Team Students" FontSize="18" FontWeight="DemiBold" Canvas.Left="139" Canvas.Top="38" />
                 </Canvas>
                 <Canvas Grid.Column="1">
-                    <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="139" Canvas.Top="41"/>
+                    <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="207" Canvas.Top="10"/>
+                    <TextBox Name="SearchTextBox"  Canvas.Left="33" Canvas.Top="39" Text="Search" TextWrapping="Wrap" Width="153" Height="26"/>
+                    <ComboBox Canvas.Left="207" Canvas.Top="39" Width="173" Height="26" Name="SearchComboBox">
+                        <TextBlock x:Name="NameTextBlock" Text="Name"/>
+                        <TextBlock x:Name="SurnameTextBlock" Text="Surname"/>
+                        <TextBlock x:Name="PhoneTextBlock" Text="Phone"/>
+                        <TextBlock x:Name="EmailTextBlock" Text="Email"/>
+                        <TextBlock x:Name="CityTextBlock" Text="City"/>
+                        <TextBlock>x:Name="AgreementNumberTextBlock" Text="AgreementNumber"</TextBlock>
+                    </ComboBox>
+                        <Button Name="Search"  Content="Search" Canvas.Left="402" Canvas.Top="39" Width="98" Height="24" RenderTransformOrigin="0.5,0.5" Click="Button_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-1.528"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-0.307"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
                 </Canvas>
             </Grid>
             <Grid Grid.Row="2" ShowGridLines="True">
@@ -53,7 +77,9 @@
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Center" Height="40" Width="100" Grid.Row="3" Margin="0,19,0,1" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" Height="40" Width="100" Grid.Row="3" Margin="886,30,0,10" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="398,30,0,0" Grid.Row="3" Text="Team mark:" TextAlignment="Center" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="112"/>
+            <TextBox x:Name="MarkTextBox" HorizontalAlignment="Left" Margin="526,35,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Height="26" PreviewTextInput="MarkTextBox_PreviewTextInput"/>
         </Grid>
     </Grid>
 </Window>

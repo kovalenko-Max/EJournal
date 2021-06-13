@@ -19,7 +19,7 @@
                         <RowDefinition Height="480*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="405"/>
+                        <ColumnDefinition Width="420"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0" Content="Create group" x:Name="CreateGroup" DockPanel.Dock="Left" Width="120" Height="35" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
@@ -77,16 +77,20 @@
                             </TabItem>
                             <TabItem x:Name="HomeworkTabItem" Header="Homework" Height="18" Margin="-2,-2,-2,0">
                                 <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="227*"/>
+                                        <ColumnDefinition Width="825*"/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="30"/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
 
-                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2">
                                         <Button x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>
                                         <Button x:Name="ExercisesAddButton" Content="Add" Width="60" Margin="2" Click="Button_ExercisesAdd_Click"/>
                                     </StackPanel>
-                                    <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.ColumnSpan="2">
                                         <StackPanel x:Name="HomeworkStackPanel" Orientation="Horizontal"/>
                                     </ScrollViewer>
                                 </Grid>
@@ -201,25 +205,8 @@
 
                         </WrapPanel>
                     </ScrollViewer>
-
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="247" Height="36" Margin="1025,14,0,0" Grid.Column="4" SelectionChanged="ComboBox_SelectionChanged" Name="ComboBox">
-                        <TextBlock x:Name="CityTextBlock" Text="City"/>
-                        <TextBlock x:Name="EmailTextBlock" Text="Email"/>
-                        <TextBlock x:Name="PhoneTextBlock" Text="Phone"/>
-                        <TextBlock x:Name="NameTextBlock" Text="Name"/>
-                        <TextBlock x:Name="SurnameTextBlock" Text="Surname"/>
-                        <TextBlock x:Name="AgreementNumberTextBlock" Text="AgreementNumber"/>
-                        <TextBlock x:Name="CourseTextBlock" Text="Courses"/>
-                        <TextBlock x:Name="GroupTextBlock" Text="Group"/>
-                        <TextBlock x:Name="AllStudentsTextBlock" Text="AllStudents"/>
-
-
-                    </ComboBox>
-
-
-                    <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Text="Search" FontSize="15" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="36" Margin="844,14,0,0" Grid.Column="4" TextChanged="txtSearch_TextChanged"></TextBox>
-                    <Button Content="Search" Grid.Column="4" Name="Search" HorizontalAlignment="Left" Margin="1317,30,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-
+                    <ComboBox Grid.Row="0" VerticalAlignment="Top" Height="36" Margin="0,14,16,0" HorizontalAlignment="Right" Width="247"/>
+                    <TextBox Grid.Row="0" x:Name="txtSearch" HorizontalAlignment="Right" Text="Search" FontSize="15" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="36" Margin="0,14,275,0"/>
                 </Grid>
             </TabItem>
         </TabControl>

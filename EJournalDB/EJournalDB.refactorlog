@@ -487,6 +487,19 @@
     <Property Name="NewSchema" Value="EJournal" />
     <Property Name="IsNewSchemaExternal" Value="False" />
   </Operation>
+  <Operation Name="Move Schema" Key="69bdbe73-0e5f-499e-b1d5-016355635c15" ChangeDateTime="06/12/2021 13:56:23">
+    <Property Name="ElementName" Value="[dbo].[GetCommentsByStudent]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="EJournal" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c918fe73-45aa-41e4-8831-4d7db2f1d497" ChangeDateTime="06/12/2021 14:10:14">
+    <Property Name="ElementName" Value="[EJournal].[Comments].[IdCommentType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[EJournal].[Comments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CommentType" />
+  </Operation>
   <Operation Name="Move Schema" Key="807f19f4-d716-4671-821b-80ac9faaa589" ChangeDateTime="06/12/2021 15:34:48">
     <Property Name="ElementName" Value="[dbo].[SearchStudentAgreementNumber]" />
     <Property Name="ElementType" Value="SqlProcedure" />

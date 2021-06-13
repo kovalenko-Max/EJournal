@@ -8,7 +8,7 @@ namespace EJournalBLL
 {
     public class ProjectGroupSevice
     {
-        public ProjectGroupRepository ProjectGroupRepository { get; set; }
+        public IProjectGroupRepository ProjectGroupRepository { get; set; }
         private DataTable _updateProjectGroup;
 
         public ProjectGroupSevice()
@@ -18,8 +18,12 @@ namespace EJournalBLL
             _updateProjectGroup.Columns.Add("IdProjectGroup");
             _updateProjectGroup.Columns.Add("IdStudent");
         }
+        public ProjectGroupSevice(IProjectGroupRepository projectGroupRepository)
+        {
+            ProjectGroupRepository = projectGroupRepository;
+        }
 
-       
+
         public int AddProjectGroup (ProjectGroup projectGroupInput)
         {
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
@@ -49,6 +53,7 @@ namespace EJournalBLL
             List<ProjectGroup> projectGroups = ObjectMapper.Mapper.Map<List<ProjectGroup>>(projectGroupsDTO);
             return projectGroups;
         }
+
         public void AddStudentToProjectGroup( ProjectGroupStudent projectGroupStudent)
         {
             ProjectGroupStudentDTO projectGroupStudentDTO = ObjectMapper.Mapper.Map<ProjectGroupStudentDTO>(projectGroupStudent);
