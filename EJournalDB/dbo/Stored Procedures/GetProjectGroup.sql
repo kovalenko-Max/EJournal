@@ -2,6 +2,6 @@
 AS
 SELECT [Id]
 	,[Name]
+	,[Mark]
 FROM [EJournal].[ProjectGroups]
-WHERE IsDelete = 0
-	AND Id = @Id
+WHERE  Id = @Id

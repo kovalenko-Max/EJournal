@@ -9,6 +9,7 @@ namespace EJournalBLL.Models
         public int Id;
         public string Name { get; set; }
         public int IdProject { get; set; }
+        public int Mark { get; set; }
 
 
         public List<Student> Students { get; set; }
@@ -34,7 +35,7 @@ namespace EJournalBLL.Models
 
             ProjectGroup project = obj as ProjectGroup;
 
-            if (project != null && Id == project.Id && Name == project.Name)
+            if (project != null && Id == project.Id && Name == project.Name && Mark==project.Mark)
             {
                 equal = Students.SequenceEqual(project.Students);
             }

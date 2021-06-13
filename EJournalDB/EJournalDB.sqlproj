@@ -180,9 +180,9 @@
     <Build Include="dbo\Stored Procedures\ExercisesStudents\UpdateStudentExercise.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\DeleteStudentExercise.sql" />
     <Build Include="dbo\Stored Procedures\AddProject.sql" />
-    <Build Include="dbo\Stored Procedures\AddProject.sql" />
     <Build Include="dbo\Stored Procedures\Comments\GetCommentsByStudent.sql" />
     <Build Include="dbo\Stored Procedures\AddComment.sql" />
+    <Build Include="dbo\Stored Procedures\AddProject.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

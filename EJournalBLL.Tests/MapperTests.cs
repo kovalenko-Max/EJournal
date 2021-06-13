@@ -19,19 +19,11 @@ namespace EJournalBLL.Tests
         }
 
         [TestCaseSource(typeof(GetCommentDataSource))]
-        public void CommentDTO_WhenMapToComments_ShouldMapCorrectly(CommentDTO commentDTO, Comments expectedComment)
+        public void CommentDTO_WhenMapToComments_ShouldMapCorrectly(CommentDTO commentDTO, Comment expectedComment)
         {
-            var result = ObjectMapper.Mapper.Map<Comments>(commentDTO);
+            var result = ObjectMapper.Mapper.Map<Comment>(commentDTO);
 
             Assert.AreEqual(expectedComment, result);
-        }
-
-        [TestCaseSource(typeof(GetCommentTypeDataSource))]
-        public void CommentTypeDTO_WhenMapToCommentType_ShouldMapCorrectly(CommentTypeDTO commenTypetDTO, CommentType expectedCommentType)
-        {
-            var result = ObjectMapper.Mapper.Map<CommentType>(commenTypetDTO);
-
-            Assert.AreEqual(expectedCommentType, result);
         }
 
         [TestCaseSource(typeof(GetProjectDataSource))]
@@ -100,19 +92,11 @@ namespace EJournalBLL.Tests
         }
 
         [TestCaseSource(typeof(GetCommentDTODataSource))]
-        public void Comment_WhenMapToCommentDTO_ShouldMapCorrectly(Comments comment, CommentDTO expectedCommentDTO)
+        public void Comment_WhenMapToCommentDTO_ShouldMapCorrectly(Comment comment, CommentDTO expectedCommentDTO)
         {
             var result = ObjectMapper.Mapper.Map<CommentDTO>(comment);
 
             Assert.AreEqual(expectedCommentDTO, result);
-        }
-
-        [TestCaseSource(typeof(GetCommentDTOTypeDataSource))]
-        public void CommentType_WhenMapToCommentTypeDTO_ShouldMapCorrectly(CommentType commenTypet, CommentTypeDTO expectedCommentTypeDTO)
-        {
-            var result = ObjectMapper.Mapper.Map<CommentTypeDTO>(commenTypet);
-
-            Assert.AreEqual(expectedCommentTypeDTO, result);
         }
 
         [TestCaseSource(typeof(GetProjectDTODataSource))]
@@ -219,7 +203,7 @@ namespace EJournalBLL.Tests
             {
 
                 CommentDTO commentDTO = BLLMock.GetCommentDTOMock(1);
-                Comments comment = BLLMock.GetCommenMock(1);
+                Comment comment = BLLMock.GetCommenMock(1);
 
                 yield return new object[]
                 {
@@ -246,40 +230,7 @@ namespace EJournalBLL.Tests
                 };
             }
         }
-        public class GetCommentTypeDataSource : IEnumerable
-        {
-            public IEnumerator GetEnumerator()
-            {
-
-                CommentTypeDTO commentTypeDTO = BLLMock.GetCommenTypetDTOMock(1);
-                CommentType commentType = BLLMock.GetCommenTypeMock(1);
-
-                yield return new object[]
-                {
-                    commentTypeDTO,
-                    commentType
-                };
-
-                commentTypeDTO = BLLMock.GetCommenTypetDTOMock(5);
-                commentType = BLLMock.GetCommenTypeMock(5);
-
-                yield return new object[]
-                {
-                    commentTypeDTO,
-                    commentType
-                };
-
-                commentTypeDTO = BLLMock.GetCommenTypetDTOMock(18);
-                commentType = BLLMock.GetCommenTypeMock(18);
-
-                yield return new object[]
-                {
-                    commentTypeDTO,
-                    commentType
-                };
-            }
-        }
-
+        
         public class GetProjectDataSource : IEnumerable
         {
             public IEnumerator GetEnumerator()
@@ -563,7 +514,7 @@ namespace EJournalBLL.Tests
             public IEnumerator GetEnumerator()
             {
 
-                Comments comment = BLLMock.GetCommenMock(1);
+                Comment comment = BLLMock.GetCommenMock(1);
                 CommentDTO commentDTO = BLLMock.GetCommentDTOMock(1);
 
                 yield return new object[]
@@ -591,41 +542,7 @@ namespace EJournalBLL.Tests
                 };
             }
         }
-
-        public class GetCommentDTOTypeDataSource : IEnumerable
-        {
-            public IEnumerator GetEnumerator()
-            {
-
-                CommentType commentType = BLLMock.GetCommenTypeMock(1);
-                CommentTypeDTO commentTypeDTO = BLLMock.GetCommenTypetDTOMock(1);
-
-                yield return new object[]
-                {
-                    commentType,
-                    commentTypeDTO
-                };
-
-                commentType = BLLMock.GetCommenTypeMock(5);
-                commentTypeDTO = BLLMock.GetCommenTypetDTOMock(5);
-
-                yield return new object[]
-                {
-                    commentType,
-                    commentTypeDTO
-                };
-
-                commentType = BLLMock.GetCommenTypeMock(18);
-                commentTypeDTO = BLLMock.GetCommenTypetDTOMock(18);
-
-                yield return new object[]
-                {
-                    commentType,
-                    commentTypeDTO
-                };
-            }
-        }
-
+       
         public class GetProjectDTODataSource : IEnumerable
         {
             public IEnumerator GetEnumerator()

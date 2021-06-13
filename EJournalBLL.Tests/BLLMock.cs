@@ -135,7 +135,7 @@ namespace EJournalBLL.Tests
                 Id = IdStudent,
                 IsDelete = false,
                 Ranking = IdStudent,
-                Comments = new List<Comments>()
+                Comments = new List<Comment>()
             };
         }
 
@@ -145,36 +145,22 @@ namespace EJournalBLL.Tests
             {
                 Id = IdComment,
                 Comment = $"Comment{IdComment}",
-                Students = new List<StudentDTO>(),
-                IdCommentType = IdComment
+                CommentType=$"CommentType{IdComment}"
             };
         }
 
-        public static Comments GetCommenMock(int IdComment)
+        public static Comment GetCommenMock(int IdComment)
         {
-            return new Comments($"Comment{IdComment}", IdComment)
+            return new Comment()
             {
                 Id = IdComment,
-                Students = new List<Student>()
+                Comments = $"Comment{IdComment}",
+                CommentTypeValue = CommentType.Group
+                
             };
         }
 
-        public static CommentTypeDTO GetCommenTypetDTOMock(int IdCommentTYpe)
-        {
-            return new CommentTypeDTO()
-            {
-                Id = IdCommentTYpe,
-                Type = $"CommentType{IdCommentTYpe}"
-            };
-        }
-
-        public static CommentType GetCommenTypeMock(int IdCommentTYpe)
-        {
-            return new CommentType($"CommentType{IdCommentTYpe}")
-            {
-                Id = IdCommentTYpe
-            };
-        }
+       
 
         public static ProjectGroupDTO GetProjectGroupDTOMock(int IdProjectGroupe)
         {
@@ -183,16 +169,19 @@ namespace EJournalBLL.Tests
                 Id = IdProjectGroupe,
                 Name = $"Name{IdProjectGroupe}",
                 IdProject = IdProjectGroupe,
+                Mark = IdProjectGroupe,
                 Students = new List<StudentDTO>()
             };
         }
 
         public static ProjectGroup GetProjectGroupeMock(int IdProjectGroupe)
         {
-            return new ProjectGroup($"Name{IdProjectGroupe}")
+            return new ProjectGroup()
             {
                 Id = IdProjectGroupe,
+                Name = $"Name{IdProjectGroupe}",
                 IdProject = IdProjectGroupe,
+                Mark = IdProjectGroupe,
                 Students = new List<Student>()
             };
         }
@@ -280,7 +269,7 @@ namespace EJournalBLL.Tests
         {
             return new Attendances()
             {
-                Student = new Student() { Name = "Name", Surname = "Surname", Email = "email", City = "city", Id = 1, AgreementNumber = "AN", Git = "git", IsDelete = false, Phone = "098031547", Ranking = 10, Comments = new List<Comments>() },
+                Student = new Student() { Name = "Name", Surname = "Surname", Email = "email", City = "city", Id = 1, AgreementNumber = "AN", Git = "git", IsDelete = false, Phone = "098031547", Ranking = 10, Comments = new List<Comment>() },
                 isPresent = true
             };
         }
