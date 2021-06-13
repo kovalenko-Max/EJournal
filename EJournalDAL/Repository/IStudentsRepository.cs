@@ -12,7 +12,6 @@ namespace EJournalDAL.Repository
         public List<StudentDTO> GetAll();
         public List<StudentDTO> GetStudentsFromOneProjectGroup(int idProjectGroup);
         public List<StudentDTO> GetStudentsNotAreInProjectGroup(int idProjectGroup);
-        //public StudentDTO GetOne(int id);
         public void Create(StudentDTO student);
         public void Update(StudentDTO student);
         public List<StudentDTO> GetStudentsByGroup(int id);
