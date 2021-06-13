@@ -33,6 +33,7 @@ namespace EJournalUI
             CourseComboBox.ItemsSource = coursesService.Courses;
             CourseComboBox.SelectedItem = GroupCard.Group.Course;
 
+            SearchComboBox.SelectedItem = NameTextBlock;
             PrintAllStudents();
             PrintGroupStudent();
 
