@@ -82,10 +82,23 @@ namespace EJournalDAL.Repository
 
         public void Update(StudentDTO student)
         {
+
+            string command = "[EJournal].[UpdateStudent]";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", student.Id);
+            parameters.Add("@Name", student.Name);
+            parameters.Add("@Surname", student.Surname);
+            parameters.Add("@Email", student.Email);
+            parameters.Add("@Phone", student.Phone);
+            parameters.Add("@Git", student.Git);
+            parameters.Add("@City", student.City);
+            parameters.Add("@TeacherAssessment", student.TeacherAssessment);
+            parameters.Add("@AgreementNumber", student.AgreementNumber);
+
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = " exec [EJournal].[UpdateStudent] @Id, @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
-                db.Execute(connectionQuery, student);
+                db.Execute(command, parameters, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -141,6 +154,11 @@ namespace EJournalDAL.Repository
             }
 
             return students;
+        }
+
+        public void UpdateRating(StudentDTO student)
+        {
+
         }
     }
 }

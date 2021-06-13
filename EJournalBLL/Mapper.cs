@@ -31,8 +31,23 @@ namespace EJournalBLL
                     .ForMember(dto => dto.Email, map => map.MapFrom(source => source.Email))
                     .ForMember(dto => dto.Git, map => map.MapFrom(source => source.Git))
                     .ForMember(dto => dto.Ranking, map => map.MapFrom(source => source.Ranking))
+                    .ForMember(dto => dto.TeacherAssessment, map => map.MapFrom(source => source.TeacherAssessment))
                     .ForMember(dto => dto.City, map => map.MapFrom(source => source.City))
                     .ForMember(dto => dto.Comments, map => map.MapFrom(source => source.comments))
+                    .ForMember(dto => dto.AgreementNumber, map => map.MapFrom(source => source.AgreementNumber))
+                    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
+
+                cfg.CreateMap<Student, StudentDTO>()
+                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
+                    .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
+                    .ForMember(dto => dto.Surname, map => map.MapFrom(source => source.Surname))
+                    .ForMember(dto => dto.Phone, map => map.MapFrom(source => source.Phone))
+                    .ForMember(dto => dto.Email, map => map.MapFrom(source => source.Email))
+                    .ForMember(dto => dto.Git, map => map.MapFrom(source => source.Git))
+                    .ForMember(dto => dto.TeacherAssessment, map => map.MapFrom(source => source.TeacherAssessment))
+                    .ForMember(dto => dto.Ranking, map => map.MapFrom(source => source.Ranking))
+                    .ForMember(dto => dto.City, map => map.MapFrom(source => source.City))
+                    .ForMember(dto => dto.comments, map => map.MapFrom(source => source.Comments))
                     .ForMember(dto => dto.AgreementNumber, map => map.MapFrom(source => source.AgreementNumber))
                     .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
@@ -65,19 +80,6 @@ namespace EJournalBLL
                 cfg.CreateMap<ProjectGroupStudent, ProjectGroupStudentDTO>()
                     .ForMember(dto => dto.IdStudent, map => map.MapFrom(source => source.IdStudent))
                     .ForMember(dto => dto.IdProjectGroup, map => map.MapFrom(source => source.IdProjectGroup));
-
-                cfg.CreateMap<Student, StudentDTO>()
-                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
-                    .ForMember(dto => dto.Name, map => map.MapFrom(source => source.Name))
-                    .ForMember(dto => dto.Surname, map => map.MapFrom(source => source.Surname))
-                    .ForMember(dto => dto.Phone, map => map.MapFrom(source => source.Phone))
-                    .ForMember(dto => dto.Email, map => map.MapFrom(source => source.Email))
-                    .ForMember(dto => dto.Git, map => map.MapFrom(source => source.Git))
-                    .ForMember(dto => dto.Ranking, map => map.MapFrom(source => source.Ranking))
-                    .ForMember(dto => dto.City, map => map.MapFrom(source => source.City))
-                    .ForMember(dto => dto.comments, map => map.MapFrom(source => source.Comments))
-                    .ForMember(dto => dto.AgreementNumber, map => map.MapFrom(source => source.AgreementNumber))
-                    .ForMember(dto => dto.IsDelete, map => map.MapFrom(source => source.IsDelete));
 
                 cfg.CreateMap<ProjectGroup, ProjectGroupDTO>()
                    .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))

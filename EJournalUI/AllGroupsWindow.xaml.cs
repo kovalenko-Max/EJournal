@@ -393,16 +393,6 @@ namespace EJournalUI
             }
         }
 
-        public void PrintAllStudentsFromDB()
-        {
-            AllStudentCardsWrapPanel.Children.Clear();
-            foreach (Student student in _studentServices.GetAllStudent())
-            {
-                StudentCard studentCard = new StudentCard(student);
-                AllStudentCardsWrapPanel.Children.Add(studentCard);
-            }
-        }
-
         private void Button_CreateProject_Click(object sender, RoutedEventArgs e)
         {
             EditProjectWindow addProjectWindow = new EditProjectWindow();
@@ -483,6 +473,7 @@ namespace EJournalUI
 
         #endregion
 
+        #region Students
         private void Button_AddStudent_Click(object sender, RoutedEventArgs e)
         {
             EditStudentWindow addStudentWindow = new EditStudentWindow();
@@ -494,5 +485,16 @@ namespace EJournalUI
                 AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
+
+        public void PrintAllStudentsFromDB()
+        {
+            AllStudentCardsWrapPanel.Children.Clear();
+            foreach (Student student in _studentServices.GetAllStudent())
+            {
+                StudentCard studentCard = new StudentCard(student);
+                AllStudentCardsWrapPanel.Children.Add(studentCard);
+            }
+        }
+        #endregion
     }
 }

@@ -14,6 +14,7 @@ namespace EJournalBLL.Models
         public string Phone { get; set; }
         public string Git { get; set; }
         public string City { get; set; }
+        public int TeacherAssessment { get; set; }
         public int Ranking { get; set; }
         public string AgreementNumber { get; set; }
         public bool IsDelete { get; set; }
@@ -58,7 +59,6 @@ namespace EJournalBLL.Models
         {
             return base.GetHashCode();
         }
-
         public override bool Equals(object obj)
         {
             bool isEquals = false;
