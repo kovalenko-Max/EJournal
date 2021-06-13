@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EJournalBLL.Models
+namespace EJournalDAL.Repository
 {
-    public class CommentType
+    public interface ICommentRepository
     {
-        public int? Id { get; set; }
-        public string Type { get; set; }
     }
 }

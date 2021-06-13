@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
-    public class ProjectRepository
+    public class ProjectRepository: IProjectRepository
     {
         string connectionString;
         public ProjectRepository()
@@ -42,7 +42,7 @@ namespace EJournalDAL.Repository
         }
 
 
-        public int Create(ProjectDTO project)
+        public int AddProject(ProjectDTO project)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -52,7 +52,7 @@ namespace EJournalDAL.Repository
             }
             return project.Id.Value;
         }
-        public void Update(ProjectDTO project)
+        public void UpdateProject(ProjectDTO project)
         {
 
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -63,7 +63,7 @@ namespace EJournalDAL.Repository
             }
 
         }
-        public void Delete(int Id)
+        public void DeleteProject(int Id)
         {
            
             using (IDbConnection db = new SqlConnection(connectionString))

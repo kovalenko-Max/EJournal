@@ -9,7 +9,7 @@ namespace EJournalDAL.Models.BaseModels
         public int Id { get; set; }
         public string Name { get; set; }
         public int IdProject { get; set; }
-        public bool IsDelete { get; set; }
+        public int Mark { get; set; }
 
         public List<StudentDTO> Students { get; set; }
 
@@ -18,7 +18,7 @@ namespace EJournalDAL.Models.BaseModels
             bool equal = false;
             ProjectGroupDTO projectGroupDTO = obj as ProjectGroupDTO;
             if(!(projectGroupDTO is null) && Id == projectGroupDTO.Id
-                && Name ==projectGroupDTO.Name)
+                && Name ==projectGroupDTO.Name && Mark==projectGroupDTO.Mark)
             {
                 equal = Students.SequenceEqual(projectGroupDTO.Students);
             }

@@ -10,5 +10,19 @@ namespace EJournalDAL.Models.BaseModels
     {
         public int? IdStudent { get; set; }
         public int? IdProjectGroup { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+            ProjectGroupStudentDTO projectGroupStudentDTO = obj as ProjectGroupStudentDTO;
+
+            if(!(projectGroupStudentDTO is null) && IdStudent==projectGroupStudentDTO.IdStudent
+                && IdProjectGroup == projectGroupStudentDTO.IdProjectGroup)
+            {
+                equal = true;
+            }
+
+            return equal;
+        }
     }
 }

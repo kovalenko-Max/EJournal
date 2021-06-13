@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -19,7 +21,7 @@ namespace EJournalUI
         private StudentService _studentServices;
 
         private ProjectGroupSevice _projectGroupServices;
-        private CommentService _commentService;
+        private CommentsService _commentService;
         public ProjectGroup ProjectGroup { get; set; }
         public Action PrintStudents;
         public List<Student> studentsList;
@@ -32,9 +34,10 @@ namespace EJournalUI
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService();
             _projectGroupServices = new ProjectGroupSevice();
-            _commentService = new CommentService();
+            _commentService = new CommentsService();
             ProjectGroup = projectGroup;
             ProjectGroupTextBox.Text = projectGroup.Name;
+            MarkTextBox.Text = projectGroup.Mark.ToString();
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
             PrintStudents += PrintAllStudents;
             SearchComboBox.SelectedItem = NameTextBlock;
@@ -104,11 +107,18 @@ namespace EJournalUI
             if (ProjectGroupTextBox.Text != string.Empty)
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
+                ProjectGroup.Mark = Convert.ToInt32(MarkTextBox.Text);
                 _projectGroupServices.Update(ProjectGroup);
+
                 if (TeamCommentsTextBox.Text != string.Empty)
                 {
-                    Comments comments = new Comments { Comment = TeamCommentsTextBox.Text, IdCommentType = 1, IsDelete = false, Students = ProjectGroup.Students };
-                    _commentService.AddCommentsToStudent(comments);
+                    Comment comments = new Comment
+                    {
+                        Comments = TeamCommentsTextBox.Text,
+                        CommentTypeValue = CommentType.Group
+                    };
+
+                    _commentService.AddCommentsToStudent(comments, ProjectGroup.Students);
                 }
 
                 ProjectGroupWindow.Close();
@@ -206,7 +216,7 @@ namespace EJournalUI
                 case "City":
                     {
                         var selectedUsers = from Student in studentsList
-                                            where Student.City.Contains(search)
+                                            where Student.City != null && Student.City.Contains(search)
                                             select Student;
 
                         AllStudentsWrapPanel.Children.Clear();
@@ -235,6 +245,23 @@ namespace EJournalUI
 
                         break;
                     }
+            }
+        }
+
+
+
+        private void MarkTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[0-9][0-9]?$|^100$");
+            string futureText = ((TextBox)sender).Text + e.Text;
+
+            if (regex.IsMatch(futureText))
+            {
+                e.Handled = !regex.IsMatch(e.Text);
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
 

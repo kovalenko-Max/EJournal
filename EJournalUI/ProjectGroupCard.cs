@@ -49,16 +49,16 @@ namespace EJournalUI
 
         private void ProjectGroupCard_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (sender is ProjectCard)
+            if (sender is ProjectGroupCard)
             {
-                ProjectCard projectCard = (ProjectCard)sender;
+                ProjectGroupCard projectCard = (ProjectGroupCard)sender;
                 projectCard.BorderBrush = Brushes.Blue;
             }
         }
 
         private void ProjectGroupCard_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (sender is ProjectCard)
+            if (sender is ProjectGroupCard)
             {
                 ProjectGroupCard projectCard = (ProjectGroupCard)sender;
                 projectCard.BorderBrush = Brushes.Black;

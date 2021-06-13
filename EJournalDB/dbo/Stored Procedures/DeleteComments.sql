@@ -1,5 +1,8 @@
 ﻿CREATE PROCEDURE [EJournal].[DeleteComments] @Id INT
 AS
-UPDATE [EJournal].[Comments]
-SET IsDelete = 1
+
+delete [EJournal].[Comments]
 WHERE Id = @Id
+
+delete [EJournal].[StudentsComments]
+where IdComment = @Id

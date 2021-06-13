@@ -14,11 +14,16 @@ namespace EJournalBLL.Models
         public string Phone { get; set; }
         public string Git { get; set; }
         public string City { get; set; }
+        public int TeacherAssessment { get; set; }
         public int Ranking { get; set; }
         public string AgreementNumber { get; set; }
         public bool IsDelete { get; set; }
-        public List<Comments> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
 
+        public Student()
+        {
+
+        }
         public Student(string name, string surname, string email, string phone, string git, string city, string agreementNumber)
         {
             Name = name;
@@ -28,14 +33,14 @@ namespace EJournalBLL.Models
             Git = git;
             City = city;
             AgreementNumber = agreementNumber;
-            Comments = new List<Comments>();
+            Comments = new List<Comment>();
         }
 
         public Student(string name, string surname)
         {
             Name = name;
             Surname = surname;
-            Comments = new List<Comments>();
+            Comments = new List<Comment>();
         }
 
         public Student(StudentDTO studentDTO)
@@ -47,7 +52,7 @@ namespace EJournalBLL.Models
             Git = studentDTO.Git;
             City = studentDTO.City;
             AgreementNumber = studentDTO.AgreementNumber;
-            Comments = new List<Comments>();
+            Comments = new List<Comment>();
         }
 
         public override string ToString()
@@ -58,7 +63,6 @@ namespace EJournalBLL.Models
         {
             return base.GetHashCode();
         }
-
         public override bool Equals(object obj)
         {
             bool isEquals = false;
@@ -78,7 +82,7 @@ namespace EJournalBLL.Models
 
                 if ((Comments.Count == student.Comments.Count) && Comments.Count != 0)
                 {
-                    EqualityComparer<List<Comments>>.Default.Equals(Comments, student.Comments);
+                    EqualityComparer<List<Comment>>.Default.Equals(Comments, student.Comments);
                 }
             }
 

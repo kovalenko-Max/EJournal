@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [EJournal].[GetListStudentsNotInTheConcreeteProjectGroup] @IdProjectGroup INT
 AS
-SELECT s.Id
+SELECT Distinct s.Id
 	,s.Name
 	,s.Surname
 	,s.Phone
@@ -11,5 +11,7 @@ SELECT s.Id
 	,s.AgreementNumber
 	,s.IsDelete
 FROM [EJournal].[Students] AS s
-left join  [EJournal].StudetsProjectGroup AS spg On s.Id=spg.IdStudent
-where spg.IdProjectGroup <> @IdProjectGroup or spg.IdProjectGroup is NULL
+where S.IsDelete = 0 and Id not in 
+(SELECT IdStudent FROM [EJournal].StudetsProjectGroup
+Where IdProjectGroup=@IdProjectGroup)
+order by S.Name

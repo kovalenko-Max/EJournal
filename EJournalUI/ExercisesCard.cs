@@ -20,7 +20,6 @@ namespace EJournalUI
         public ComboBox ExcerciseTypeComboBox { get; set; }
         public Exercise Exercise { get; set; }
 
-        List<int> rate = new List<int>() { 0, 80, 100 };
         public ExercisesCard(Exercise exercise)
         {
             Exercise = exercise;
@@ -82,18 +81,28 @@ namespace EJournalUI
 
             dataGrid.Columns.Add(new DataGridTextColumn()
             {
-                Width = 130,
+                Width = 152,
                 Header = "Students Name",
                 Binding = new Binding("Student"),
                 IsReadOnly = true
             });
 
-            dataGrid.Columns.Add(new DataGridTextColumn() { Header = "Mark", Binding = new Binding("Point") });
+            dataGrid.Columns.Add(new DataGridNumericColumn()
+            {
+                Header = "Mark",
+                Binding = new Binding("Point")
+
+            });
 
             Grid.SetRow(dataGrid, 1);
             grid.Children.Add(dataGrid);
 
             button.Click += Button_DeleteExercise_Click;
+        }
+
+        private void ExercisesCard_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Button_DeleteExercise_Click(object sender, RoutedEventArgs e)
