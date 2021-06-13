@@ -204,7 +204,8 @@ namespace EJournalBLL.Tests
                 Deadline = new DateTime(11, 11, 11),
                 Description = $"Description{IdExercise}",
                 ExerciseType = ExcerciseType.HomeWork.ToString(),
-                IdGroup = IdExercise
+                IdGroup = IdExercise,
+                StudentsExercisesDTO = new List<StudentExerciseDTO>()
             };
         }
 
@@ -216,7 +217,8 @@ namespace EJournalBLL.Tests
                 Deadline = new DateTime(11, 11, 11),
                 Description = $"Description{IdExercise}",
                 ExerciseType = ExcerciseType.HomeWork,
-                IdGroup = IdExercise
+                IdGroup = IdExercise,
+                StudentMarks = new List<StudentMark>()
             };
         }
 

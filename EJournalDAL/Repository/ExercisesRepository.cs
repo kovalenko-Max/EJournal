@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
-    public class ExercisesRepository
+    public class ExercisesRepository: IExercisesRepository
     {
         string connectionString;
         public ExercisesRepository()

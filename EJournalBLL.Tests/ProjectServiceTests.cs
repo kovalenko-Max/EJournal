@@ -36,11 +36,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-                ////Fixture fixture = new Fixture { RepeatCount = 9 };
-                //Fixture fixture = new Fixture();
-                //fixture.Customize<ProjectDTO>(x => x.With(b => b.Id == 1));
-                //List<ProjectDTO> projectDTO = fixture.CreateMany<ProjectDTO>(5).ToList();
-                //List<Project> project = fixture.CreateMany<Project>(5).ToList();
                 int startIdCourse = 1;
                 int countCourses = 5;
 

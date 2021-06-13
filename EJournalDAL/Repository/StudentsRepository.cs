@@ -56,20 +56,20 @@ namespace EJournalDAL.Repository
 
         }
 
-        public StudentDTO GetOne(int id)
-        {
-            StudentDTO student = new StudentDTO();
+        //public StudentDTO GetOne(int id)
+        //{
+        //    StudentDTO student = new StudentDTO();
 
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "exec [EJournal].[GetStudent] @Id";
-                student = db.Query<StudentDTO>(connectionQuery, new { id }).FirstOrDefault();
-            }
+        //    using (IDbConnection db = new SqlConnection(ConnectionString))
+        //    {
+        //        string connectionQuery = "exec [EJournal].[GetStudent] @Id";
+        //        student = db.Query<StudentDTO>(connectionQuery, new { id }).FirstOrDefault();
+        //    }
 
-            return student;
-        }
+        //    return student;
+        //}
 
-        public StudentDTO Create(StudentDTO student)
+        public void Create(StudentDTO student)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
@@ -77,7 +77,7 @@ namespace EJournalDAL.Repository
                 int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
                 student.Id = userId;
             }
-            return student;
+            //return student;
         }
 
         public void Update(StudentDTO student)

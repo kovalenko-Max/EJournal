@@ -1,6 +1,7 @@
 ﻿using EJournalDAL.Models.BaseModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EJournalBLL.Models
 {
@@ -31,18 +32,22 @@ namespace EJournalBLL.Models
             Deadline = exerciseDTO.Deadline;
             IdGroup = exerciseDTO.IdGroup;
 
-            ExerciseType = (ExcerciseType)Enum.Parse(typeof(ExcerciseType), exerciseDTO.ExerciseType);
         }
 
         public override bool Equals(object obj)
         {
-            return obj is Exercise exercise &&
+            bool equal = false;
+            if( obj is Exercise exercise &&
                    Id == exercise.Id &&
                    Description == exercise.Description &&
                    Deadline == exercise.Deadline &&
                    IdGroup == exercise.IdGroup &&
-                   ExerciseType == exercise.ExerciseType &&
-                   EqualityComparer<List<StudentMark>>.Default.Equals(StudentMarks, exercise.StudentMarks);
+                   ExerciseType == exercise.ExerciseType)
+            {
+
+                 equal=  StudentMarks.SequenceEqual(exercise.StudentMarks); ;
+            }
+            return equal;
         }
         public override int GetHashCode()
         {

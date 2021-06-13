@@ -32,23 +32,23 @@ namespace EJournalBLL.Tests
             CollectionAssert.AreEqual(expectedProjectGroup, actualProject);
         }
 
-        public class GetAlProjectSource : IEnumerable
+        private class GetAlProjectSource : IEnumerable
         {
             public IEnumerator GetEnumerator()
             {
-                int startIdCourse = 1;
-                int countCourses = 5;
+                int startIdProjectGroup = 1;
+                int countProjectGroup = 5;
 
                 List<ProjectGroupDTO> projectGroupDTO = new List<ProjectGroupDTO>();
 
-                for (int i = startIdCourse; i <= countCourses; ++i)
+                for (int i = startIdProjectGroup; i <= countProjectGroup; ++i)
                 {
                     projectGroupDTO.Add(BLLMock.GetProjectGroupDTOMock(i));
                 }
 
                 List<ProjectGroup> project = new List<ProjectGroup>();
 
-                for (int i = startIdCourse; i <= countCourses; ++i)
+                for (int i = startIdProjectGroup; i <= countProjectGroup; ++i)
                 {
                     project.Add(BLLMock.GetProjectGroupeMock(i));
                 }
@@ -59,19 +59,19 @@ namespace EJournalBLL.Tests
                     project
                 };
 
-                startIdCourse = 6;
-                countCourses = 12;
+                startIdProjectGroup = 6;
+                countProjectGroup = 12;
 
                 projectGroupDTO = new List<ProjectGroupDTO>();
 
-                for (int i = startIdCourse; i <= countCourses; ++i)
+                for (int i = startIdProjectGroup; i <= countProjectGroup; ++i)
                 {
                     projectGroupDTO.Add(BLLMock.GetProjectGroupDTOMock(i));
                 }
 
                 project = new List<ProjectGroup>();
 
-                for (int i = startIdCourse; i <= countCourses; ++i)
+                for (int i = startIdProjectGroup; i <= countProjectGroup; ++i)
                 {
                     project.Add(BLLMock.GetProjectGroupeMock(i));
                 }
