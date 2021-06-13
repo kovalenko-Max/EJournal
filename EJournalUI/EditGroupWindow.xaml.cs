@@ -48,6 +48,7 @@ namespace EJournalUI
             InitializeComponent();
             DeleteGroupButton.Visibility = Visibility.Hidden;
             _groupsService = new GroupsService();
+            _studentService = new StudentService();
 
             CoursesService coursesService = new CoursesService(new CoursesRepository());
             CourseComboBox.ItemsSource = coursesService.Courses;
@@ -56,7 +57,12 @@ namespace EJournalUI
             Group group = new Group(string.Empty, coursesService.Courses[0]);
             GroupCard = new GroupCard(group);
 
-            _studentService = new StudentService();
+            CourseComboBox.ItemsSource = coursesService.Courses;
+            CourseComboBox.SelectedItem = GroupCard.Group.Course;
+
+            SearchComboBox.ItemsSource = Enum.GetValues(typeof(SearchTypeInGroups)).Cast<SearchTypeInGroups>();
+            SearchComboBox.SelectedItem = (SearchTypeInGroups)0;
+
             Students = _studentService.GetAllStudent();
             PrintAllStudents();
 

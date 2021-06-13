@@ -32,7 +32,7 @@
                 <Canvas Grid.Column="1" Grid.ColumnSpan="2">
                     <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="207" Canvas.Top="6" Width="96"/>
                     <Button x:Name="SearchButton" Content="Search" Canvas.Left="396" Canvas.Top="38" Click="Button_Search_Click" Width="104" Height="27"/>
-                    <TextBox x:Name="SearchTextBox" Canvas.Left="33" Canvas.Top="38" Text="Search" TextWrapping="Wrap" Width="157" Height="27"/>
+                    <TextBox x:Name="SearchTextBox" Canvas.Left="33" Canvas.Top="38" TextWrapping="Wrap" Width="157" Height="27"/>
                     <ComboBox x:Name="SearchComboBox" Canvas.Left="207" Canvas.Top="38" Width="173" Height="27"/>
                 </Canvas>
 
