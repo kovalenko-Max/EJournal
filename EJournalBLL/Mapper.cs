@@ -142,12 +142,14 @@ namespace EJournalBLL
                 cfg.CreateMap<CommentDTO, Comment>()
                         .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                         .ForMember(dto => dto.Comments, map => map.MapFrom(source => source.Comment))
-                        .ForMember(dto => dto.CommentTypeValue, map => map.MapFrom(source => source.CommentType));
+                        .ForMember(dto => dto.CommentTypeValue, map => map.MapFrom(source => source.CommentType))
+                        .ForMember(dto => dto.CommentDate, map => map.MapFrom(source => source.CommentDate));
 
                 cfg.CreateMap<Comment, CommentDTO>()
                         .ForMember(dto => dto.Id, map => map.MapFrom(source => source.Id))
                         .ForMember(dto => dto.Comment, map => map.MapFrom(source => source.Comments))
-                        .ForMember(dto => dto.CommentType, map => map.MapFrom(source => source.CommentTypeValue));
+                        .ForMember(dto => dto.CommentType, map => map.MapFrom(source => source.CommentTypeValue))
+                        .ForMember(dto => dto.CommentDate, map => map.MapFrom(source => source.CommentDate));
             });
 
             return config.CreateMapper();

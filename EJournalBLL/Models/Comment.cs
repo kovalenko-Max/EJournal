@@ -13,6 +13,7 @@ namespace EJournalBLL.Models
         public int Id { get; set; }
         public string Comments { get; set; }
         public CommentType CommentTypeValue { get; set; }
+        public DateTime CommentDate { get; set; }
 
         public Comment()
         {
