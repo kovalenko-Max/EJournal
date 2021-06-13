@@ -19,5 +19,6 @@ namespace EJournalDAL.Repository
         public void DeleteOne(int Id);
         public void DeleteSoft(int id);
         public List<StudentDTO> GetStudentsNotAreInGroup(int idGroup);
+        int UpdateStudentRating(int id);
     }
 }
