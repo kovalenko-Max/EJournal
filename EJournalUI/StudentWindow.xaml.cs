@@ -3,6 +3,8 @@ using EJournalBLL.Models;
 using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -17,16 +19,22 @@ namespace EJournalUI
     public partial class StudentWindow : Window
     {
         private StudentService _studentServices;
+        private CommentsService _commentsService;
         public StudentCard StudentCard;
         public event EventHandler StudentDeleted;
+        public List<Comment> Comments { get; set; }
         public Student Student { get; set; }
         public StudentWindow(StudentCard studentCard)
         {
             InitializeComponent();
             string ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
             _studentServices = new StudentService();
+            _commentsService = new CommentsService();
             StudentCard = studentCard;
             Student = studentCard.Student;
+
+            Comments = _commentsService.GetCommentsByStudent(Student.Id);
+
             TextBox_Name.Text = Student.Name;
             TextBox_Surname.Text = Student.Surname;
             TextBox_Email.Text = Student.Email;
@@ -34,6 +42,16 @@ namespace EJournalUI
             TextBox_Git.Text = Student.Git;
             TextBox_City.Text = Student.City;
             TextBox_Agreement.Text = Student.AgreementNumber;
+
+            PrintComments();
+        }
+
+        private void PrintComments()
+        {
+            foreach(var comment in Comments)
+            {
+                CommentStackPannel.Children.Add(new CommentCard(comment));
+            }
         }
 
         private void Button_EditStudent_Click(object sender, RoutedEventArgs e)
@@ -88,6 +106,19 @@ namespace EJournalUI
                     this.Close();
                 }
             }
+        }
+
+        private void Button_AddComment_Click(object sender, RoutedEventArgs e)
+        {
+            Comment comment = new Comment();
+            CommentCard commentCard = new CommentCard(comment);
+            CommentStackPannel.Children.Add(commentCard);
+            new CommentsService().AddComment(comment, Student);
+        }
+
+        private void TextBox_Phone_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
         }
     }
 }

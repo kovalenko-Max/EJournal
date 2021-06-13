@@ -72,6 +72,7 @@
     <Folder Include="dbo\Stored Procedures\Projects" />
     <Folder Include="dbo\Stored Procedures\Students" />
     <Folder Include="dbo\Stored Procedures\ExercisesStudents" />
+    <Folder Include="dbo\Stored Procedures\Comments" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Students.sql" />
@@ -87,7 +88,6 @@
     <Build Include="dbo\Tables\Comments.sql" />
     <Build Include="dbo\Tables\Projectes.sql" />
     <Build Include="dbo\Tables\ProjectGroups.sql" />
-    <Build Include="dbo\Stored Procedures\AddComment.sql" />
     <Build Include="dbo\Stored Procedures\DeleteComments.sql" />
     <Build Include="dbo\Stored Procedures\GetComment.sql" />
     <Build Include="dbo\Stored Procedures\GetGroupsAndNumberOfStudentsInThemAndGroupStatus.sql" />
@@ -181,6 +181,8 @@
     <Build Include="dbo\Stored Procedures\ExercisesStudents\GetExercisesByGroup.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\UpdateStudentExercise.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\DeleteStudentExercise.sql" />
+    <Build Include="dbo\Stored Procedures\Comments\GetCommentsByStudent.sql" />
+    <Build Include="dbo\Stored Procedures\AddComment.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />
