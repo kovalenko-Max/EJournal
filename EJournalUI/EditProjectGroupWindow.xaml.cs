@@ -40,12 +40,13 @@ namespace EJournalUI
             MarkTextBox.Text = projectGroup.Mark.ToString();
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
             PrintStudents += PrintAllStudents;
-            SearchComboBox.SelectedItem = NameTextBlock;
+            SearchComboBox.ItemsSource = Enum.GetValues(typeof(SearchTypeInGroups)).Cast<SearchTypeInGroups>();
+            SearchComboBox.SelectedItem = (SearchTypeInGroups)0;
             PrintStudents += PrintProjectGroupStudents;
             PrintStudents.Invoke();
         }
 
-        public EditProjectGroupWindow() 
+        public EditProjectGroupWindow()
         {
 
         }
@@ -142,14 +143,29 @@ namespace EJournalUI
             PrintStudents.Invoke();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
             string search = SearchTextBox.Text;
-            string caseSwitch = SearchComboBox.Text;
 
-            switch (caseSwitch)
+            switch (SearchComboBox.SelectedItem)
             {
-                case "Email":
+                case SearchTypeInGroups.Name:
+                    {
+                        var selectedUsers = from Student in studentsList
+                                            where (Student.Surname + " " + Student.Name).Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
+                        }
+
+                        break;
+                    }
+                case SearchTypeInGroups.Email:
                     {
                         var selectedUsers = from Student in studentsList
                                             where Student.Email.Contains(search)
@@ -165,39 +181,8 @@ namespace EJournalUI
 
                         break;
                     }
-                case "Name":
-                    {
-                        var selectedUsers = from Student in studentsList
-                                            where Student.Name.Contains(search)
-                                            select Student;
 
-                        AllStudentsWrapPanel.Children.Clear();
-                        foreach (var s in selectedUsers)
-                        {
-                            StudentCard studentCard = new StudentCard(s);
-                            AllStudentsWrapPanel.Children.Add(studentCard);
-                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
-                        }
-
-                        break;
-                    }
-                case "Surname":
-                    {
-                        var selectedUsers = from Student in studentsList
-                                            where Student.Surname.Contains(search)
-                                            select Student;
-
-                        AllStudentsWrapPanel.Children.Clear();
-                        foreach (var s in selectedUsers)
-                        {
-                            StudentCard studentCard = new StudentCard(s);
-                            AllStudentsWrapPanel.Children.Add(studentCard);
-                            studentCard.MouseDown += StudentCardMouseLeftButtonDown;
-                        }
-
-                        break;
-                    }
-                case "Phone":
+                case SearchTypeInGroups.Phone:
                     {
                         var selectedUsers = from Student in studentsList
                                             where Student.Phone.Contains(search)
@@ -213,7 +198,7 @@ namespace EJournalUI
 
                         break;
                     }
-                case "City":
+                case SearchTypeInGroups.City:
                     {
                         var selectedUsers = from Student in studentsList
                                             where Student.City != null && Student.City.Contains(search)
@@ -229,7 +214,7 @@ namespace EJournalUI
 
                         break;
                     }
-                case "AgreementNumber":
+                case SearchTypeInGroups.AgreementNumber:
                     {
                         var selectedUsers = from Student in studentsList
                                             where Student.AgreementNumber.Contains(search)
@@ -248,8 +233,6 @@ namespace EJournalUI
             }
         }
 
-
-
         private void MarkTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("^[0-9][0-9]?$|^100$");
@@ -264,7 +247,5 @@ namespace EJournalUI
                 e.Handled = true;
             }
         }
-
     }
-
 }

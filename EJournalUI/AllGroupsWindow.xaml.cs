@@ -1,6 +1,5 @@
 ﻿using EJournalBLL.Services;
 using EJournalBLL.Models;
-using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -8,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using EJournalBLL;
 using EJournalDAL.Repository;
-using System.Windows.Controls;
+using System.Linq;
 
 namespace EJournalUI
 {
@@ -32,6 +31,8 @@ namespace EJournalUI
             _studentServices = new StudentService();
             _projectServices = new ProjectService();
             _projectGroupServices = new ProjectGroupSevice();
+            SearchComboBox.ItemsSource = Enum.GetValues(typeof(SearchType)).Cast<SearchType>();
+            SearchComboBox.SelectedItem = (SearchType)0;
             PrintAllGroupsFromDB();
             PrintAllStudentsFromDB();
             PrintAllProjectsFromDB();
@@ -499,25 +500,14 @@ namespace EJournalUI
                 AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }
-        #endregion
 
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
             string search = SearchTextBox.Text;
-            string caseSwitch = SearchComboBox.Text;
-            switch (caseSwitch)
+
+            switch (SearchComboBox.SelectedItem)
             {
-                case "Email":
-                    {
-                        AllStudentCardsWrapPanel.Children.Clear();
-                        foreach (Student student in _studentServices.SearchStudentsByEmail(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            AllStudentCardsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "Name/Surname":
+                case SearchType.Name:
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
                         foreach (Student student in _studentServices.SearchStudentsByFullName(search))
@@ -527,8 +517,17 @@ namespace EJournalUI
                         }
                         break;
                     }
-
-                case "Phone":
+                case SearchType.Email:
+                    {
+                        AllStudentCardsWrapPanel.Children.Clear();
+                        foreach (Student student in _studentServices.SearchStudentsByEmail(search))
+                        {
+                            StudentCard studentCard = new StudentCard(student);
+                            AllStudentCardsWrapPanel.Children.Add(studentCard);
+                        }
+                        break;
+                    }
+                case SearchType.Phone:
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
                         foreach (Student student in _studentServices.SearchStudentsByPhone(search))
@@ -538,7 +537,7 @@ namespace EJournalUI
                         }
                         break;
                     }
-                case "City":
+                case SearchType.City:
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
                         foreach (Student student in _studentServices.SearchStudentsByCity(search))
@@ -548,7 +547,7 @@ namespace EJournalUI
                         }
                         break;
                     }
-                case "AgreementNumber":
+                case SearchType.AgreementNumber:
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
                         foreach (Student student in _studentServices.SearchStudentsAgreementNumbers(search))
@@ -558,7 +557,7 @@ namespace EJournalUI
                         }
                         break;
                     }
-                case "Group":
+                case SearchType.Group:
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
                         foreach (Student student in _studentServices.SearchStudentsGroup(search))
@@ -568,7 +567,7 @@ namespace EJournalUI
                         }
                         break;
                     }
-                case "Courses":
+                case SearchType.Course:
                     {
                         AllStudentCardsWrapPanel.Children.Clear();
                         foreach (Student student in _studentServices.SearchStudentsCourses(search))
@@ -580,5 +579,6 @@ namespace EJournalUI
                     }
             }
         }
+        #endregion
     }
 }
