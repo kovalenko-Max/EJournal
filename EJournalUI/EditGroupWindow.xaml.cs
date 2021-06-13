@@ -181,7 +181,7 @@ namespace EJournalUI
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
             string search = SearchTextBox.Text;
-            string caseSwitch = "Email";
+            string caseSwitch = SearchComboBox.Text;
 
             switch (caseSwitch)
             {
@@ -201,86 +201,86 @@ namespace EJournalUI
 
                         break;
                     }
-                //case "Name":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsByName(search))
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
-                //case "Surname":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsBySurname(search))
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
-                //case "Phone":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsByPhone(search))
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
-                //case "City":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsByCity(search))
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
-                //case "AllStudents":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsAllStudents())
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
-                //case "AgreementNumber":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsAgreementNumbers(search))
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
-                //case "Group":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsGroup(search))
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
-                //case "Courses":
-                //    {
-                //        GroupStudentsWrapPanel.Children.Clear();
-                //        foreach (Student student in groupsService.SearchStudentsCourses(search))
-                //        {
-                //            StudentCard studentCard = new StudentCard(student);
-                //            GroupStudentsWrapPanel.Children.Add(studentCard);
-                //        }
-                //        break;
-                //    }
+                case "Name":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.Name.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "Surname":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.Surname.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "Phone":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.Phone.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "City":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.City.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "AgreementNumber":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.AgreementNumber.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
             }
         }
     }
