@@ -156,9 +156,20 @@ namespace EJournalDAL.Repository
             return students;
         }
 
-        public void UpdateRating(StudentDTO student)
+        public int UpdateStudentRating(int IdStudent)
         {
+            string commant = "[EJournal].[UpdateStudentRating]";
 
+            var parameters = new DynamicParameters();
+            parameters.Add("@IdStudent", IdStudent);
+            parameters.Add("@Rating", DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+            using (IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                db.Execute(commant, parameters, commandType: CommandType.StoredProcedure);
+            }
+
+            return parameters.Get<int>("@Rating"); ;
         }
     }
 }

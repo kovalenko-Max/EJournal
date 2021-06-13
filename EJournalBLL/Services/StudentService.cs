@@ -69,5 +69,10 @@ namespace EJournalBLL.Services
 
             return students;
         }
+
+        public void UpdateStudentRating(Student student)
+        {
+            student.Ranking = _studentsRepository.UpdateStudentRating(student.Id);
+        }
     }
 }

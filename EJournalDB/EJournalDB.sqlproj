@@ -183,6 +183,7 @@
     <Build Include="dbo\Stored Procedures\ExercisesStudents\DeleteStudentExercise.sql" />
     <Build Include="dbo\Stored Procedures\Comments\GetCommentsByStudent.sql" />
     <Build Include="dbo\Stored Procedures\AddComment.sql" />
+    <Build Include="dbo\Stored Procedures\Students\UpdateStudentRating.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

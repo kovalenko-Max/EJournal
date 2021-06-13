@@ -26,7 +26,7 @@ namespace EJournalDAL.Repository
             parameters.Add("@DateLesson", lessonDTO.DateLesson);
             parameters.Add("@IdGroup", lessonDTO.IdGroup);
             parameters.Add("@StudentAttendanceVariable", dt.AsTableValuedParameter("[EJournal].[StudentAttendance]"));
-            parameters.Add("@IdLesson", DbType.Int32, direction: ParameterDirection.ReturnValue);
+            parameters.Add("@Rating", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

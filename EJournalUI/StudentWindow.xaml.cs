@@ -123,5 +123,11 @@ namespace EJournalUI
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
+
+        private void Button_UpdateRankin_Click(object sender, RoutedEventArgs e)
+        {
+            _studentServices.UpdateStudentRating(Student);
+            TextBlock_Rating.Text = Student.Ranking.ToString();
+        }
     }
 }

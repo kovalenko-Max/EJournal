@@ -30,6 +30,7 @@
                     <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_TeacherAssessment" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,339,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBlock Name="TextBlock_Rating" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="50" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                    <Button x:Name="Button_UpdateRankin" Content="UD" Grid.Row="0" Grid.Column="1" Width="35" Height="35" Margin="265,421,19,17" Click="Button_UpdateRankin_Click"/>
                     <Label Name="Label_Name" Grid.Row="0" Grid.Column="0" Content="Name" FontSize="20" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="136"/>
                     <Label Name="Label_Surname" Grid.Row="0" Grid.Column="0" Content="Surname" FontSize="20" Margin="10,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
                     <Label Name="Label_Email" Grid.Row="0" Grid.Column="0" Content="Email" FontSize="20" Margin="10,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
