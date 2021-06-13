@@ -21,7 +21,7 @@ namespace EJournalUI
         public EditGroupWindow(GroupCard groupCard)
         {
             InitializeComponent();
-            
+
             GroupCard = groupCard;
             GroupNameTextBox.Text = GroupCard.Group.Name;
 
@@ -193,7 +193,7 @@ namespace EJournalUI
                                 student.Email.Remove();
                             }
                         }
-                            GroupStudentsWrapPanel.Children.Clear();
+                        GroupStudentsWrapPanel.Children.Clear();
                         foreach (Student student in Students)
                         {
                             StudentCard studentCard = new StudentCard(student);
@@ -282,10 +282,6 @@ namespace EJournalUI
                         break;
                     }
             }
-    }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
+}

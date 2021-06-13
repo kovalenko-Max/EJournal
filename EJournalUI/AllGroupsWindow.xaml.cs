@@ -478,6 +478,5 @@ namespace EJournalUI
                 lessonsService.AddLesson(lesson);
             }
         }
-        
     }
 }

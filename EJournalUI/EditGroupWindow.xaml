@@ -18,9 +18,7 @@
                 <TextBlock Text="Group name:" Width="80" Margin="2"/>
                 <TextBox MaxLength="30" Name="GroupNameTextBox" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30" Margin="2"/>
                 <TextBlock x:Name="ComboBoxNameTextBlock" Text="Course:" Width="50" Margin="2"/>
-                <ComboBox x:Name="CourseComboBox" IsEditable="True" Width="100" Margin="2"/>
-                <ComboBox Width="104"/>
-                <ComboBox Width="120"/>
+                <ComboBox Width="104" SelectionChanged="ComboBox_SelectionChanged_1"/>
             </StackPanel>
             <Grid Grid.Row="1" RenderTransformOrigin="0.522,0.267">
                 <Grid.ColumnDefinitions>
@@ -29,13 +27,15 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <Canvas Grid.Column="0">
-                    <TextBlock Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="139" Canvas.Top="38" />
+                    <TextBlock Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="192" Canvas.Top="10" />
                 </Canvas>
                 <Canvas Grid.Column="1" Grid.ColumnSpan="2">
-                    <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="482" Canvas.Top="41" Width="118"/>
-                    <Button Content="Search" Canvas.Left="391" Canvas.Top="34" Click="Button_Click_1"/>
+                    <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="207" Canvas.Top="6" Width="96"/>
+                    <Button Content="Search" Canvas.Left="396" Canvas.Top="38" Click="Button_Click_1" Width="104" Height="27"/>
+                    <TextBox Canvas.Left="33" Canvas.Top="38" Text="Search" TextWrapping="Wrap" Width="157" Height="27"/>
+                    <ComboBox Canvas.Left="207" Canvas.Top="38" Width="173" Height="27"/>
                 </Canvas>
-                
+
             </Grid>
             <Grid Grid.Row="2" ShowGridLines="True">
                 <Grid.ColumnDefinitions>
