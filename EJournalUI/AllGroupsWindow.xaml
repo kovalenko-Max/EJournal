@@ -73,11 +73,16 @@
                             </TabItem>
                             <TabItem Background="AliceBlue" x:Name="HomeworkTabItem" Header="Homework" Margin="-1,0,-3,0">
                                 <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="227*"/>
+                                        <ColumnDefinition Width="825*"/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="30"/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
 
+                                        <Button x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>
                                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                                         <Button Background="AliceBlue" x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click" Height="27"/>
                                         <Button Background="AliceBlue" x:Name="ExercisesAddButton" Content="Add" Width="60" Margin="2" Click="Button_ExercisesAdd_Click" Height="27"/>

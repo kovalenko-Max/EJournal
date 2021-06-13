@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="Student Window" Height="600" MinHeight="600" Width="1000" MinWidth="1000">
-    
+
     <Grid>
         <TabControl Background="#2c333d">
             <TabItem Header = "Student info">
@@ -17,7 +17,7 @@
                         <RowDefinition Height="85*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="155"/>
+                        <ColumnDefinition Width="185"/>
                         <ColumnDefinition Width="320"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
@@ -28,6 +28,7 @@
                     <TextBox Name="TextBox_Git" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_TeacherAssessment" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,339,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBlock Name="TextBlock_Rating" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="50" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                     <Label Foreground="White" Name="Label_Name" Grid.Row="0" Grid.Column="0" Content="Name" FontSize="20" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="136"/>
                     <Label Foreground="White" Name="Label_Surname" Grid.Row="0" Grid.Column="0" Content="Surname" FontSize="20" Margin="10,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
@@ -43,7 +44,7 @@
                     <ScrollViewer Grid.Row="0" Grid.Column="2"  VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="CommentStackPannel" Background="#FFEEEEEE" >
                             <Button Content="Add new comment" Height="20" Background="White" Margin="2,2,2,2" BorderBrush="Black" Click="Button_AddComment_Click"/>
-                            
+
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

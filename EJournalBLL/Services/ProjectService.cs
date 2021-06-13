@@ -7,7 +7,7 @@ namespace EJournalBLL
 {
     public class ProjectService
     {
-        public ProjectRepository ProjectRepository { get; set; }
+        public IProjectRepository ProjectRepository { get; set; }
 
         public List<Project> Projects
         {
@@ -26,17 +26,23 @@ namespace EJournalBLL
             ProjectRepository = new ProjectRepository();
         }
 
+        public ProjectService(IProjectRepository projectRepository)
+        {
+            ProjectRepository = projectRepository;
+        }
+
         public List<Project> GetAllProjects()
         {
             List<ProjectDTO> projectDTO = ProjectRepository.GetProjects();
             List<Project> project = ObjectMapper.Mapper.Map<List<Project>>(projectDTO);
             return project;
         }
+
         public int AddProject(Project projectInput)
         {
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
-            projectInput.Id= ProjectRepository.Create(project);
+            projectInput.Id= ProjectRepository.AddProject(project);
             return projectInput.Id;
 
         }
@@ -45,13 +51,13 @@ namespace EJournalBLL
         {
 
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
-            ProjectRepository.Update(project);
+            ProjectRepository.UpdateProject(project);
 
         }
 
         public void DeleteProject(int Id)
         {
-            ProjectRepository.Delete(Id);
+            ProjectRepository.DeleteProject(Id);
 
         }
 

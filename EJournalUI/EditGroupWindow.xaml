@@ -20,10 +20,11 @@
                 <TextBlock Foreground="White" x:Name="ComboBoxNameTextBlock" Text="Course:" Width="50" Margin="2"/>
                 <ComboBox x:Name="CourseComboBox" IsEditable="True" Width="100" Margin="2"/>
             </StackPanel>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" RenderTransformOrigin="0.522,0.267">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="34*"/>
+                    <ColumnDefinition Width="29*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <Canvas Grid.Column="0">
                     <TextBlock Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="154" Canvas.Top="38" />
@@ -31,6 +32,7 @@
                 <Canvas Grid.Column="1">
                     <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="230" Canvas.Top="41"/>
                 </Canvas>
+
             </Grid>
             <Grid Grid.Row="2" ShowGridLines="True">
                 <Grid.ColumnDefinitions>
