@@ -40,10 +40,12 @@ namespace EJournalUI
             MarkTextBox.Text = projectGroup.Mark.ToString();
             studentsList = _studentServices.GetStudentsNotAreInProjectGroups(ProjectGroup.Id);
             PrintStudents += PrintAllStudents;
+            SearchComboBox.SelectedItem = NameTextBlock;
             PrintStudents += PrintProjectGroupStudents;
             PrintStudents.Invoke();
         }
-        public EditProjectGroupWindow()
+
+        public EditProjectGroupWindow() 
         {
 
         }
