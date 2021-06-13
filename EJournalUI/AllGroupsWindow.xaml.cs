@@ -502,25 +502,6 @@ namespace EJournalUI
         }
         #endregion
 
-        private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
-        {
-            if (SelectedGroupCard != null)
-            {
-                Lesson lesson = new Lesson();
-                lesson.IdGroup = SelectedGroupCard.Group.Id;
-
-                foreach (var student in SelectedGroupCard.Group.Students)
-                {
-                    lesson.Attendances.Add(new Attendances(student));
-                }
-
-                AttendancesCard attendancesCard = new AttendancesCard(lesson);
-                AttendancesStackPanel.Children.Insert(0, attendancesCard);
-                LessonsService lessonsService = new LessonsService(new LessonsAttendancesRepository());
-                lessonsService.AddLesson(lesson);
-            }
-        }
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
@@ -528,8 +509,8 @@ namespace EJournalUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string search = txtSearch.Text;
-            string caseSwitch = ComboBox.Text;
+            string search = SearchTextBox.Text;
+            string caseSwitch = SearchComboBox.Text;
             switch (caseSwitch)
             {
                 case "Email":

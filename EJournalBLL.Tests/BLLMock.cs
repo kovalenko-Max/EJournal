@@ -267,9 +267,22 @@ namespace EJournalBLL.Tests
 
         public static Attendances GetAttendancesMock(int Id)
         {
-            return new Attendances()
+            Student student = new Student()
             {
-                Student = new Student() { Name = "Name", Surname = "Surname", Email = "email", City = "city", Id = 1, AgreementNumber = "AN", Git = "git", IsDelete = false, Phone = "098031547", Ranking = 10, Comments = new List<Comment>() },
+                Name = "Name",
+                Surname = "Surname",
+                Email = "email",
+                City = "city",
+                Id = 1,
+                AgreementNumber = "AN",
+                Git = "git",
+                IsDelete = false,
+                Phone = "098031547",
+                Ranking = 10,
+                Comments = new List<Comment>()
+            };
+            return new Attendances(student)
+            {
                 isPresent = true
             };
         }
