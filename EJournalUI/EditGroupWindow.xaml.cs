@@ -3,6 +3,7 @@ using EJournalBLL.Services;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
 using System.Windows;
+using System.Linq;
 
 namespace EJournalUI
 {
@@ -176,33 +177,28 @@ namespace EJournalUI
         {
 
         }
-
-        
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+     
+        private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
-            GroupsService groupsService = new GroupsService();
-            string search = "";
-            string caseSwitch = "";
+            string search = SearchTextBox.Text;
+            string caseSwitch = "Email";
+
             switch (caseSwitch)
             {
                 case "Email":
                     {
-                        List<Student> sortedUsers = new List<Student>; 
-                        foreach (Student student in Students)
+                        var selectedUsers = from Student in Students
+                                                where Student.Email.Contains(search)
+                                                select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach(var s in selectedUsers)
                         {
-                            if (student.Email != search)
-                            {
-                                sortedUsers.Add(student);
-                            }
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
                         }
-                        Students = sortedUsers;
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in Students)
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
+
                         break;
                     }
                 //case "Name":
