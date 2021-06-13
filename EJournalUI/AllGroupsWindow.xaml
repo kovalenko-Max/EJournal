@@ -199,7 +199,6 @@
                     </ScrollViewer>
                     <ComboBox Grid.Row="0" VerticalAlignment="Top" Height="36" Margin="0,14,16,0" HorizontalAlignment="Right" Width="247"/>
                     <TextBox Grid.Row="0" x:Name="txtSearch" HorizontalAlignment="Right" Text="Search" FontSize="15" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="36" Margin="0,14,275,0"/>
-
                 </Grid>
             </TabItem>
         </TabControl>

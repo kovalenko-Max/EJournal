@@ -1,9 +1,9 @@
-﻿using EJournalBLL;
-using EJournalBLL.Models;
+﻿using EJournalBLL.Models;
 using EJournalBLL.Services;
 using EJournalDAL.Repository;
 using System.Collections.Generic;
 using System.Windows;
+using System.Linq;
 
 namespace EJournalUI
 {
@@ -22,7 +22,7 @@ namespace EJournalUI
         public EditGroupWindow(GroupCard groupCard)
         {
             InitializeComponent();
-            
+
             GroupCard = groupCard;
             GroupNameTextBox.Text = GroupCard.Group.Name;
 
@@ -170,6 +170,117 @@ namespace EJournalUI
                     GroupCard.DeleteGroupCard();
                     this.Close();
                 }
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+     
+        private void Button_Search_Click(object sender, RoutedEventArgs e)
+        {
+            string search = SearchTextBox.Text;
+            string caseSwitch = SearchComboBox.Text;
+
+            switch (caseSwitch)
+            {
+                case "Email":
+                    {
+                        var selectedUsers = from Student in Students
+                                                where Student.Email.Contains(search)
+                                                select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach(var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "Name":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.Name.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "Surname":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.Surname.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "Phone":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.Phone.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "City":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.City.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
+                case "AgreementNumber":
+                    {
+                        var selectedUsers = from Student in Students
+                                            where Student.AgreementNumber.Contains(search)
+                                            select Student;
+
+                        AllStudentsWrapPanel.Children.Clear();
+                        foreach (var s in selectedUsers)
+                        {
+                            StudentCard studentCard = new StudentCard(s);
+                            AllStudentsWrapPanel.Children.Add(studentCard);
+                            studentCard.MouseDown += StudentCard_AddStudentToGroup_Click;
+                        }
+
+                        break;
+                    }
             }
         }
     }

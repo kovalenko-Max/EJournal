@@ -77,5 +77,10 @@ namespace EJournalBLL.Services
         {
             _groupsRepository.DeleteGroup(group.Id);
         }
+
+     
+
+
+
     }
 }
