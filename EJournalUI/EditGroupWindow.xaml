@@ -14,10 +14,10 @@
                 <RowDefinition />
                 <RowDefinition Height="80" MinHeight="50"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
-                <TextBlock Text="Group name:" Width="80" Margin="2"/>
-                <TextBox MaxLength="30" Name="GroupNameTextBox" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30" Margin="2"/>
-                <TextBlock x:Name="ComboBoxNameTextBlock" Text="Course:" Width="50" Margin="2"/>
+            <StackPanel Background="#2c333d" Grid.Row="0">
+                <TextBlock Foreground="White" Text="Group name:" Width="80" Margin="2"/>
+                <TextBox MaxLength="30" Name="GroupNameTextBox" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="25" Margin="2"/>
+                <TextBlock Foreground="White" x:Name="ComboBoxNameTextBlock" Text="Course:" Width="50" Margin="2"/>
                 <ComboBox x:Name="CourseComboBox" IsEditable="True" Width="100" Margin="2"/>
             </StackPanel>
             <Grid Grid.Row="1">
@@ -26,10 +26,10 @@
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <Canvas Grid.Column="0">
-                    <TextBlock Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="139" Canvas.Top="38" />
+                    <TextBlock Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="154" Canvas.Top="38" />
                 </Canvas>
                 <Canvas Grid.Column="1">
-                    <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="139" Canvas.Top="41"/>
+                    <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="230" Canvas.Top="41"/>
                 </Canvas>
             </Grid>
             <Grid Grid.Row="2" ShowGridLines="True">
@@ -39,7 +39,7 @@
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#2c333d" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="GroupStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
@@ -47,13 +47,13 @@
                 <Grid Grid.Column="1" Background="AliceBlue">
                 </Grid>
                 <Grid Grid.Column="2" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#2c333d" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="AllStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            <Button x:Name="AcceptButton" Content="Accept" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" FontWeight="Normal" FontSize="16" Margin="0,0,6,0"/>
+            <Button Background="AliceBlue" x:Name="AcceptButton" Content="Accept" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" FontWeight="Normal" FontSize="16" Margin="0,0,6,0"/>
             <Button x:Name="DeleteGroupButton" Content="Delete" Background="White" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" Margin="0,0,115,0" Click="Button_DeleteGroup_Click"/>
         </Grid>
     </Grid>

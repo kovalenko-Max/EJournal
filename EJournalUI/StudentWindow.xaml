@@ -9,7 +9,7 @@
       Title="Student Window" Height="600" MinHeight="600" Width="1000" MinWidth="1000">
     
     <Grid>
-        <TabControl>
+        <TabControl Background="#2c333d">
             <TabItem Header = "Student info">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -29,16 +29,16 @@
                     <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBlock Name="TextBlock_Rating" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="50" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                    <Label Name="Label_Name" Grid.Row="0" Grid.Column="0" Content="Name" FontSize="20" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="136"/>
-                    <Label Name="Label_Surname" Grid.Row="0" Grid.Column="0" Content="Surname" FontSize="20" Margin="10,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
-                    <Label Name="Label_Email" Grid.Row="0" Grid.Column="0" Content="Email" FontSize="20" Margin="10,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
-                    <Label Name="Label_Phone" Grid.Row="0" Grid.Column="0" Content="Phone" FontSize="20" Margin="10,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
-                    <Label Name="Label_Git" Grid.Row="0" Grid.Column="0" Content="Git" FontSize="20" Margin="10,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="40" Width="136"/>
-                    <Label Name="Label_City" Grid.Row="0" Grid.Column="0" Content="City" FontSize="20" Margin="10,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
-                    <Label Name="Label_Agreement" Grid.Row="0" Grid.Column="0" Content="Agreement №" FontSize="20" Margin="10,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
-                    <Label Name="Label_Rating" Grid.Row="0" Grid.Column="0" Content="Rating" FontSize="30" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="100"/>
-                    <Button Grid.Row="1" Grid.Column="0" Name="Button_EditStudent" Content="Edit Student Info" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="136" Margin="5,0,0,5" Click="Button_EditStudent_Click"/>
-                    <Button Grid.Row="1" Grid.Column="2" Name="Button_DeleteStudent"  Content="Delete Student" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" Margin="0,0,5,5" Background="#FFDA2626" Click="Button_DeleteStudent_Click"/>
+                    <Label Foreground="White" Name="Label_Name" Grid.Row="0" Grid.Column="0" Content="Name" FontSize="20" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="136"/>
+                    <Label Foreground="White" Name="Label_Surname" Grid.Row="0" Grid.Column="0" Content="Surname" FontSize="20" Margin="10,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
+                    <Label Foreground="White" Name="Label_Email" Grid.Row="0" Grid.Column="0" Content="Email" FontSize="20" Margin="10,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
+                    <Label Foreground="White" Name="Label_Phone" Grid.Row="0" Grid.Column="0" Content="Phone" FontSize="20" Margin="10,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
+                    <Label Foreground="White" Name="Label_Git" Grid.Row="0" Grid.Column="0" Content="Git" FontSize="20" Margin="10,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="40" Width="136"/>
+                    <Label Foreground="White" Name="Label_City" Grid.Row="0" Grid.Column="0" Content="City" FontSize="20" Margin="10,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
+                    <Label Foreground="White" Name="Label_Agreement" Grid.Row="0" Grid.Column="0" Content="Agreement №" FontSize="20" Margin="10,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
+                    <Label Foreground="White" Name="Label_Rating" Grid.Row="0" Grid.Column="0" Content="Rating" FontSize="30" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="100"/>
+                    <Button Background="AliceBlue" Grid.Row="1" Grid.Column="0" Name="Button_EditStudent" Content="Edit Student Info" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="136" Margin="5,0,0,5" Click="Button_EditStudent_Click"/>
+                    <Button Grid.Row="1" Grid.Column="2" Name="Button_DeleteStudent"  Content="Delete Student" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" Margin="0,0,5,5" Background="DarkRed" Foreground="LightGray" Click="Button_DeleteStudent_Click"/>
                     <Button Grid.Row="1" Grid.Column="1" Name="Button_SaveChanges" Content="Save Changes" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,5" Width="136" Visibility="Hidden" Click="Button_SaveChanges_Click" IsEnabled="False"/>
                     <ScrollViewer Grid.Row="0" Grid.Column="2"  VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="CommentStackPannel" Background="#FFEEEEEE" >

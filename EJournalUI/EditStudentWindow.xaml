@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
         Title="EditStudentWindow" Height="310" Width="380">
-    <Grid>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top"/>
-        <Label Content="Surname" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
-        <Label Content="Phone" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
-        <Label Content="Git" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
-        <Label Content="City" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
-        <Label Content="Agreement №" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
+    <Grid Background="#2c333d">
+        <Label Foreground="White" Content="Name" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="Surname" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="Email" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="Phone" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="Git" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="City" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="White" Content="Agreement №" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="TextBox_Name"  HorizontalAlignment="Left" Margin="126,31,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_Surname" HorizontalAlignment="Left" Margin="126,57,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_Email" HorizontalAlignment="Left" Margin="126,83,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
@@ -21,6 +21,6 @@
         <TextBox Name ="TextBox_Git" HorizontalAlignment="Left" Margin="126,136,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_City" HorizontalAlignment="Left" Margin="126,162,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_AgreementNumber" HorizontalAlignment="Left" Margin="126,188,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
-        <Button Name="Button_ConfirmAddStudent" Content="Confirm" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="Button_ConfirmAddStudent_Click"/>
+        <Button Background="AliceBlue" Name="Button_ConfirmAddStudent" Content="Confirm" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="Button_ConfirmAddStudent_Click"/>
     </Grid>
 </Window>
