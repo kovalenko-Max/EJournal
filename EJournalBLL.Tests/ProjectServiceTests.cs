@@ -57,6 +57,38 @@ namespace EJournalBLL.Tests
                     projectDTO,
                     project
                 };
+
+                 startIdCourse = 0;
+                 countCourses = 0;
+
+                 projectDTO = new List<ProjectDTO>();
+
+                for (int i = startIdCourse; i <= countCourses; ++i)
+                {
+                    projectDTO.Add(BLLMock.GetProjectDTOMock(i));
+                }
+
+                 project = new List<Project>();
+
+                for (int i = startIdCourse; i <= countCourses; ++i)
+                {
+                    project.Add(BLLMock.GetProjectMock(i));
+                }
+
+                yield return new object[]
+                {
+                    projectDTO,
+                    project
+                };
+
+                projectDTO = null;
+                project = new List<Project>();
+
+                yield return new object[]
+                {
+                    projectDTO,
+                    project
+                };
             }
         }
     }

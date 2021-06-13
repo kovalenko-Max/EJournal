@@ -14,7 +14,7 @@ namespace EJournalBLL.Services
 
         private DataTable _studentsComment;
 
-        public CommentRepository CommentRepository { get; set; }
+        public ICommentRepository CommentRepository { get; set; }
 
         public CommentsService()
         {
@@ -22,6 +22,10 @@ namespace EJournalBLL.Services
             _studentsComment = new DataTable();
             _studentsComment.Columns.Add("IdStudent");
             _studentsComment.Columns.Add("IdComment");
+        }
+        public CommentsService(ICommentRepository commentRepository)
+        {
+            CommentRepository = commentRepository;
         }
 
         public List<Comment> GetCommentsByStudent(int id)

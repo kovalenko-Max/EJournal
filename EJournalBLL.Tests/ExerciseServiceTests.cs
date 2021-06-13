@@ -51,7 +51,7 @@ namespace EJournalBLL.Tests
                 }
 
                 List<Exercise> exercise = new List<Exercise>();
-               
+
                 for (int i = startIdExercise; i <= countExercise; i++)
                 {
                     exercise.Add(BLLMock.GetExerciseMock(i));
@@ -63,8 +63,8 @@ namespace EJournalBLL.Tests
                     exercise
                 };
 
-                startIdExercise = 6;
-                countExercise = 12;
+                startIdExercise = 0;
+                countExercise = 0;
                 group = BLLMock.GetGroupMock(5);
                 exerciseDTO = new List<ExerciseDTO>();
 
@@ -75,7 +75,7 @@ namespace EJournalBLL.Tests
 
                 exercise = new List<Exercise>();
 
-                
+
                 for (int i = startIdExercise; i <= countExercise; ++i)
                 {
                     exercise.Add(BLLMock.GetExerciseMock(i));
