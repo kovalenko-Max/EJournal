@@ -20,7 +20,6 @@ namespace EJournalUI
         public ComboBox ExcerciseTypeComboBox { get; set; }
         public Exercise Exercise { get; set; }
 
-        List<int> rate = new List<int>() { 0, 80, 100 };
         public ExercisesCard(Exercise exercise)
         {
             Exercise = exercise;
@@ -82,27 +81,18 @@ namespace EJournalUI
 
             dataGrid.Columns.Add(new DataGridTextColumn()
             {
-                Width = 130,
+                Width = 152,
                 Header = "Students Name",
                 Binding = new Binding("Student"),
                 IsReadOnly = true
             });
 
-            dataGrid.Columns.Add(new DataGridTextColumn()
+            dataGrid.Columns.Add(new DataGridNumericColumn()
             {
                 Header = "Mark",
-
                 Binding = new Binding("Point")
+
             });
-
-
-
-            //dataGrid.Columns.Add(new DataGridTextColumn
-            //{
-            //    Header = "Mark2", Binding = new Binding("Point")
-                
-            //});
-
 
             Grid.SetRow(dataGrid, 1);
             grid.Children.Add(dataGrid);
@@ -122,18 +112,6 @@ namespace EJournalUI
                 ExercisesService exercisesService = new ExercisesService();
                 exercisesService.DeleteStudentExercise(Exercise.Id);
                 ((StackPanel)(this.Parent)).Children.Remove(this);
-            }
-        }
-
-        private bool CheckTheValidValue(int value)
-        {
-            if (value < 0 || value > 100)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
             }
         }
     }
