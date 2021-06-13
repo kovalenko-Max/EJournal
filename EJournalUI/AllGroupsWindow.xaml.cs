@@ -307,7 +307,7 @@ namespace EJournalUI
 
         private void Button_CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGroupCard != null)
+            if (SelectedProjectCard != null)
             {
                 if (TeamNameTextBox.Text != string.Empty)
                 {
@@ -338,14 +338,17 @@ namespace EJournalUI
 
         public void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
 
-                if (SelectedProjectGroupCard != null)
+            if (SelectedProjectGroupCard.ProjectGroup == null)
+            {
+                MessageBox.Show("Please select the team", "Select", MessageBoxButton.OK);
+            }
+            else
+            {
+                if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     ProjectTeamsStudentsWrapPanel.Children.Clear();
                     _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
-                    SelectedProjectGroupCard.ProjectGroup.IsDelete = true;
                     ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
                 }
             }
@@ -413,7 +416,6 @@ namespace EJournalUI
                 if (SelectedProjectCard != null)
                 {
                     _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
-                    SelectedProjectCard.Project.IsDelete = true;
                     ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
                 }
             }
@@ -427,6 +429,8 @@ namespace EJournalUI
             PrintAllProjectGroupsFromDB(projectCard.Project.Id);
             EditProjectButton.IsEnabled = true;
             DeleteProjectButton.IsEnabled = true;
+            SelectedProjectGroupCard = null;
+            Button_DeleteProjectGroup.IsEnabled = false;
         }
 
         private void HighlightSelectedProject(ProjectCard projectCard)

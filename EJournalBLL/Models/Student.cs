@@ -20,6 +20,10 @@ namespace EJournalBLL.Models
         public bool IsDelete { get; set; }
         public List<Comment> Comments { get; set; }
 
+        public Student()
+        {
+
+        }
         public Student(string name, string surname, string email, string phone, string git, string city, string agreementNumber)
         {
             Name = name;
