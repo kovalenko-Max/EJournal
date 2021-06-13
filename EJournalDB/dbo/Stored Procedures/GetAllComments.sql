@@ -2,6 +2,5 @@
 AS
 SELECT Id
 	,Comment
-	,IdCommentType
+	,CommentType
 FROM [EJournal].[Comments]
-WHERE IsDelete = 0

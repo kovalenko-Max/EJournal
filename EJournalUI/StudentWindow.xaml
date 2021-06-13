@@ -6,29 +6,28 @@
       xmlns:local="clr-namespace:EJournalUI"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
-      Title="Student Window" Height="600" Width="1000">
-
+      Title="Student Window" Height="600" MinHeight="600" Width="1000" MinWidth="1000">
+    
     <Grid>
         <TabControl>
             <TabItem Header = "Student info">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="487*"></RowDefinition>
-                        <RowDefinition Height="85*"></RowDefinition>
+                        <RowDefinition Height="487*"/>
+                        <RowDefinition Height="85*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="156*"></ColumnDefinition>
-                        <ColumnDefinition Width="275*"></ColumnDefinition>
-                        <ColumnDefinition Width="563*"></ColumnDefinition>
+                        <ColumnDefinition Width="155"/>
+                        <ColumnDefinition Width="320"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <TextBox Name="TextBox_Name"  Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_Surname" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_Email" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_Phone" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Phone" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True" PreviewTextInput="TextBox_Phone_PreviewTextInput"/>
                     <TextBox Name="TextBox_Git" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_Group" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,340,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
                     <TextBlock Name="TextBlock_Rating" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="50" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                     <Label Name="Label_Name" Grid.Row="0" Grid.Column="0" Content="Name" FontSize="20" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="136"/>
                     <Label Name="Label_Surname" Grid.Row="0" Grid.Column="0" Content="Surname" FontSize="20" Margin="10,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
@@ -37,11 +36,16 @@
                     <Label Name="Label_Git" Grid.Row="0" Grid.Column="0" Content="Git" FontSize="20" Margin="10,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="40" Width="136"/>
                     <Label Name="Label_City" Grid.Row="0" Grid.Column="0" Content="City" FontSize="20" Margin="10,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
                     <Label Name="Label_Agreement" Grid.Row="0" Grid.Column="0" Content="Agreement №" FontSize="20" Margin="10,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
-                    <Label Name="Label_Group" Grid.Row="0" Grid.Column="0" Content="Group" FontSize="20" Margin="10,340,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
                     <Label Name="Label_Rating" Grid.Row="0" Grid.Column="0" Content="Rating" FontSize="30" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="100"/>
                     <Button Grid.Row="1" Grid.Column="0" Name="Button_EditStudent" Content="Edit Student Info" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="136" Margin="5,0,0,5" Click="Button_EditStudent_Click"/>
                     <Button Grid.Row="1" Grid.Column="2" Name="Button_DeleteStudent"  Content="Delete Student" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" Margin="0,0,5,5" Background="#FFDA2626" Click="Button_DeleteStudent_Click"/>
                     <Button Grid.Row="1" Grid.Column="1" Name="Button_SaveChanges" Content="Save Changes" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,5" Width="136" Visibility="Hidden" Click="Button_SaveChanges_Click" IsEnabled="False"/>
+                    <ScrollViewer Grid.Row="0" Grid.Column="2"  VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="CommentStackPannel" Background="#FFEEEEEE" >
+                            <Button Content="Add new comment" Height="20" Background="White" Margin="2,2,2,2" BorderBrush="Black" Click="Button_AddComment_Click"/>
+                            
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
 
