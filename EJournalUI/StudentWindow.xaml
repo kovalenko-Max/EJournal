@@ -21,16 +21,16 @@
                         <ColumnDefinition Width="320"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBox Name="TextBox_Name"  Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_Surname" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_Email" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_Phone" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True" PreviewTextInput="TextBox_Phone_PreviewTextInput"/>
-                    <TextBox Name="TextBox_Git" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBox Name="TextBox_TeacherAssessment" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="5,339,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
-                    <TextBlock Name="TextBlock_Rating" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="50" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                    <Button x:Name="Button_UpdateRankin" Content="UD" Grid.Row="0" Grid.Column="1" Width="35" Height="35" Margin="265,421,19,17" Click="Button_UpdateRankin_Click"/>
+                    <TextBox Name="TextBox_Name"  Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Surname" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Email" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Phone" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,160,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True" PreviewTextInput="TextBox_Phone_PreviewTextInput"/>
+                    <TextBox Name="TextBox_Git" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_Agreement" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBox Name="TextBox_TeacherAssessment" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="40" Margin="19,339,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsReadOnly="True"/>
+                    <TextBlock Name="TextBlock_Rating" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Width="250" Height="35" Margin="10,0,0,14" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="20"/>
+                    <Button x:Name="Button_UpdateRankin" Content="UPD" Grid.Row="0" Grid.Column="1" Width="35" Height="35" Margin="270,0,0,14" Click="Button_UpdateRankin_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                     <Label Name="Label_Name" Grid.Row="0" Grid.Column="0" Content="Name" FontSize="20" Margin="10,25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="136"/>
                     <Label Name="Label_Surname" Grid.Row="0" Grid.Column="0" Content="Surname" FontSize="20" Margin="10,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
                     <Label Name="Label_Email" Grid.Row="0" Grid.Column="0" Content="Email" FontSize="20" Margin="10,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
@@ -38,8 +38,8 @@
                     <Label Name="Label_Git" Grid.Row="0" Grid.Column="0" Content="Git" FontSize="20" Margin="10,205,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="40" Width="136"/>
                     <Label Name="Label_City" Grid.Row="0" Grid.Column="0" Content="City" FontSize="20" Margin="10,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
                     <Label Name="Label_Agreement" Grid.Row="0" Grid.Column="0" Content="Agreement №" FontSize="20" Margin="10,295,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="136"/>
-                    <Label Name="Label_TeacherAssessment" Grid.Row="0" Content="Teacher assessment" FontSize="18" Margin="0,343,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="167"/>
-                    <Label Name="Label_Ranking" Grid.Row="0" Grid.Column="0" Content="Ranking" FontSize="30" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="100"/>
+                    <Label Name="Label_TeacherAssessment" Grid.Row="0" Content="Teacher assessment" FontSize="20" Margin="10,340,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="189" Grid.ColumnSpan="2"/>
+                    <Label Name="Label_Ranking" Grid.Row="0" Grid.Column="0" Content="Ranking" FontSize="30" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="131"/>
                     <Button Grid.Row="1" Grid.Column="0" Name="Button_EditStudent" Content="Edit Student Info" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="136" Margin="5,0,0,5" Click="Button_EditStudent_Click"/>
                     <Button Grid.Row="1" Grid.Column="2" Name="Button_DeleteStudent"  Content="Delete Student" Height="50"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" Margin="0,0,5,5" Background="#FFDA2626" Click="Button_DeleteStudent_Click"/>
                     <Button Grid.Row="1" Grid.Column="1" Name="Button_SaveChanges" Content="Save Changes" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,5" Width="136" Visibility="Hidden" Click="Button_SaveChanges_Click" IsEnabled="False"/>
@@ -51,24 +51,6 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
-
-            <TabItem Header="Exercises">
-                <DataGrid Height="250">
-
-                </DataGrid>
-            </TabItem>
-
-            <TabItem Header = "Teams">
-                <DataGrid Margin ="12, 15">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header ="Project" Width ="150"/>
-                        <DataGridTextColumn Header ="Team title" Width ="150"/>
-                        <DataGridTextColumn Header ="Team comments" Width ="150"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-
-
         </TabControl>
     </Grid>
 </Window>
