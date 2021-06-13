@@ -177,7 +177,9 @@ namespace EJournalUI
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             GroupsService groupsService = new GroupsService();
             string search = "";
@@ -186,13 +188,15 @@ namespace EJournalUI
             {
                 case "Email":
                     {
+                        List<Student> sortedUsers = new List<Student>; 
                         foreach (Student student in Students)
                         {
-                            if (student.Email != search):
+                            if (student.Email != search)
                             {
-                                student.Email.Remove();
+                                sortedUsers.Add(student);
                             }
                         }
+                        Students = sortedUsers;
                         GroupStudentsWrapPanel.Children.Clear();
                         foreach (Student student in Students)
                         {
@@ -201,86 +205,86 @@ namespace EJournalUI
                         }
                         break;
                     }
-                case "Name":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsByName(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "Surname":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsBySurname(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "Phone":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsByPhone(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "City":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsByCity(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "AllStudents":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsAllStudents())
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "AgreementNumber":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsAgreementNumbers(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "Group":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsGroup(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
-                case "Courses":
-                    {
-                        GroupStudentsWrapPanel.Children.Clear();
-                        foreach (Student student in groupsService.SearchStudentsCourses(search))
-                        {
-                            StudentCard studentCard = new StudentCard(student);
-                            GroupStudentsWrapPanel.Children.Add(studentCard);
-                        }
-                        break;
-                    }
+                //case "Name":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsByName(search))
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
+                //case "Surname":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsBySurname(search))
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
+                //case "Phone":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsByPhone(search))
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
+                //case "City":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsByCity(search))
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
+                //case "AllStudents":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsAllStudents())
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
+                //case "AgreementNumber":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsAgreementNumbers(search))
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
+                //case "Group":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsGroup(search))
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
+                //case "Courses":
+                //    {
+                //        GroupStudentsWrapPanel.Children.Clear();
+                //        foreach (Student student in groupsService.SearchStudentsCourses(search))
+                //        {
+                //            StudentCard studentCard = new StudentCard(student);
+                //            GroupStudentsWrapPanel.Children.Add(studentCard);
+                //        }
+                //        break;
+                //    }
             }
         }
     }
