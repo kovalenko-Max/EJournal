@@ -17,7 +17,6 @@ namespace EJournalBLL.Services
             }
             set
             {
-
             }
         }
 

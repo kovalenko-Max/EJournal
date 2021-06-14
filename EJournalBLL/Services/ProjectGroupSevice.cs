@@ -30,7 +30,7 @@ namespace EJournalBLL
             projectGroupInput.Id = ProjectGroupRepository.AddProjectGroup(projectGroup);
             return projectGroupInput.Id;
         }
-        public void Update(ProjectGroup projectGroupInput)
+        public void UpdateProjectGroup(ProjectGroup projectGroupInput)
         {
             _updateProjectGroup.Clear();
             foreach (var a in projectGroupInput.Students)
@@ -42,7 +42,7 @@ namespace EJournalBLL
             ProjectGroupRepository.UpdateProjectGroup(projectGroup, _updateProjectGroup);
         }
 
-        public void Delete(int Id)
+        public void DeleteProjectGroup(int Id)
         {
             ProjectGroupRepository.DeleteProjectGroup(Id);
         }

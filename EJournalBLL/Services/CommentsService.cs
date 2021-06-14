@@ -46,7 +46,7 @@ namespace EJournalBLL.Services
             CommentRepository.UpdateComment(commentDTO);
         }
 
-        public void AddCommentsToStudent(Comment comments, List<Student> students)
+        public void AddCommentToStudent(Comment comments, List<Student> students)
         {
             _studentsComment.Clear();
 

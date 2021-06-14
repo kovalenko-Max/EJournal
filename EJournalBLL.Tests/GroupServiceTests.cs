@@ -32,7 +32,7 @@ namespace EJournalBLL.Tests
             _mock.Setup(СoursesRepository => (
             СoursesRepository.GetAllGroups())).Returns(RepositoryReturns);
 
-            List<Group> actualProject = _groupService.GetAllGroupsFromDB();
+            List<Group> actualProject = _groupService.GetAllGroups();
 
             CollectionAssert.AreEqual(expectedGroups, actualProject);
         }

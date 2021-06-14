@@ -2,12 +2,10 @@
 using EJournalBLL.Services;
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
-using EJournalDAL.Models;
 using Moq;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 namespace EJournalBLL.Tests
 {

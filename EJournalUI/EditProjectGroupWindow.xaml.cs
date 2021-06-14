@@ -109,7 +109,7 @@ namespace EJournalUI
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
                 ProjectGroup.Mark = Convert.ToInt32(MarkTextBox.Text);
-                _projectGroupServices.Update(ProjectGroup);
+                _projectGroupServices.UpdateProjectGroup(ProjectGroup);
 
                 if (TeamCommentsTextBox.Text != string.Empty)
                 {
@@ -119,7 +119,7 @@ namespace EJournalUI
                         CommentTypeValue = CommentType.Group
                     };
 
-                    _commentService.AddCommentsToStudent(comments, ProjectGroup.Students);
+                    _commentService.AddCommentToStudent(comments, ProjectGroup.Students);
                 }
 
                 ProjectGroupWindow.Close();

@@ -17,7 +17,6 @@ namespace EJournalBLL
             }
             set
             {
-
             }
         }
 
@@ -40,16 +39,13 @@ namespace EJournalBLL
 
         public int AddProject(Project projectInput)
         {
-
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
             projectInput.Id= ProjectRepository.AddProject(project);
             return projectInput.Id;
-
         }
 
         public void UpdateProject(Project projectInput)
         {
-
             ProjectDTO project = ObjectMapper.Mapper.Map<ProjectDTO>(projectInput);
             ProjectRepository.UpdateProject(project);
 
@@ -58,7 +54,6 @@ namespace EJournalBLL
         public void DeleteProject(int Id)
         {
             ProjectRepository.DeleteProject(Id);
-
         }
 
     }
