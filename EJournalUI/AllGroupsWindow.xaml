@@ -9,7 +9,7 @@
     <Grid>
         <TabControl>
             <TabItem Header = "Groups" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
-                <Grid Background="#2c333d">
+                <Grid Background="#c5cfd4">
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="443*"/>
@@ -22,7 +22,7 @@
                         <ColumnDefinition Width="420"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Content="Create group" x:Name="CreateGroup" DockPanel.Dock="Left" Width="120" Height="35" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
+                    <Button Background="White" Grid.Row="0" Grid.Column="0" Content="Create group" x:Name="CreateGroup" DockPanel.Dock="Left" Width="120" Height="35" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateGroup_Click"/>
                     <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                         <Button Background="White" Content="Create course" x:Name="CreateCourseButton" DockPanel.Dock="Left" Width="120" Margin="2,2,2,2" Click="Button_CreateCourse_Click" Height="35" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
                         <Button Background="White" Content="Edit courses" x:Name="EditCoursesButton" DockPanel.Dock="Left" Width="120" Margin="2,2,2,2" Height="35" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="Button_EditCourses_Click"/>
@@ -55,7 +55,7 @@
                         </Grid>
                         <TabControl Grid.Row="1">
                             <TabItem Header = "Students of group">
-                                <ScrollViewer Background="#2c333d" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer Background="#c5cfd4" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                     <WrapPanel x:Name="GroupStudentsWrapPanel"/>
                                 </ScrollViewer>
                             </TabItem>
@@ -70,7 +70,7 @@
                                         <Button Background="White" x:Name="AttendancesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_AttendancesSave_Click"/>
                                         <Button Background="White" x:Name="AttendancesAddButton" Content="Add" Width="60" Margin="2" Click="Button_AttendancesAdd_Click"/>
                                     </StackPanel>
-                                    <ScrollViewer Background="#2c333d" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <ScrollViewer Background="#c5cfd4" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                         <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
                                     </ScrollViewer>
                                 </Grid>
@@ -90,7 +90,7 @@
                                         <Button Background="White" x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>
                                         <Button Background="White" x:Name="ExercisesAddButton" Content="Add" Width="60" Margin="2" Click="Button_ExercisesAdd_Click"/>
                                     </StackPanel>
-                                    <ScrollViewer Background="#2c333d" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.ColumnSpan="2">
+                                    <ScrollViewer Background="#c5cfd4" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.ColumnSpan="2">
                                         <StackPanel x:Name="HomeworkStackPanel" Orientation="Horizontal"/>
                                     </ScrollViewer>
                                 </Grid>
@@ -114,7 +114,7 @@
                         <RowDefinition Height="480*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Background="#2c333d" Grid.Row="0">
+                    <DockPanel Background="#c5cfd4" Grid.Row="0">
                         <Button Background="White" Content="Create project" DockPanel.Dock="Left" Width="106" Height="33" HorizontalAlignment="Left" Margin="2,2,2,2" Click="Button_CreateProject_Click"/>
                     </DockPanel>
                     <Grid Grid.Row="1">
@@ -122,7 +122,7 @@
                             <ColumnDefinition Width="421"/>
                             <ColumnDefinition Width="145*"/>
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer Background="#2c333d" Grid.Column="0">
+                        <ScrollViewer Background="#c5cfd4" Grid.Column="0">
                             <WrapPanel  x:Name="ProjectsWrapPanel">
 
                             </WrapPanel>
@@ -169,13 +169,13 @@
                                                 <ColumnDefinition Width="30"/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
-                                            <ScrollViewer Background="#2c333d" Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                                            <ScrollViewer Background="#c5cfd4" Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
                                                 <WrapPanel x:Name="ProjectTeamsWrapPanel">
                                                 </WrapPanel>
                                             </ScrollViewer>
                                             <Border Grid.Column="1" Background="AliceBlue"/>
                                             <Grid Grid.Column="2">
-                                                <ScrollViewer Background="#2c333d" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                                <ScrollViewer Background="#c5cfd4" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                                     <WrapPanel x:Name="ProjectTeamsStudentsWrapPanel">
                                                     </WrapPanel>
                                                 </ScrollViewer>
@@ -206,7 +206,7 @@
                     </DockPanel>
 
 
-                    <ScrollViewer Background="#2c333d" Grid.Row="1">
+                    <ScrollViewer Background="#c5cfd4" Grid.Row="1">
                         <WrapPanel x:Name="AllStudentCardsWrapPanel">
 
                         </WrapPanel>
