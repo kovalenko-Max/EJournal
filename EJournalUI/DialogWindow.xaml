@@ -9,7 +9,7 @@
         Title="Dialog Window" Height="156" Width="250">
     <StackPanel Background="#2c333d">
         <TextBlock x:Name="TitleTextBlock"/>
-        <TextBox x:Name="NameTextBox" Height="22" TextChanged="NameTextBox_TextChanged"/>
+        <TextBox x:Name="NameTextBox" Height="22"/>
         <TextBlock Foreground="White" x:Name="ComboBoxNameTextBlock" Text="Course:"/>
         <ComboBox x:Name="CourseComboBox" IsEditable="True"/>
         <DockPanel >
