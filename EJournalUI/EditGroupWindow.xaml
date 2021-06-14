@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         Title="EditGroupWindow" Height="785" MinHeight="350" Width="1020" MinWidth="1020">
     <Grid>
-        <Grid ShowGridLines="True" >
+        <Grid Background="AliceBlue" ShowGridLines="True" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="110" MinHeight="80" />
                 <RowDefinition Height="30" MinHeight="75"/>
                 <RowDefinition />
                 <RowDefinition Height="80" MinHeight="50"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
-                <TextBlock Text="Group name:" Width="80" Margin="2"/>
+            <StackPanel Background="#c5cfd4" Grid.Row="0">
+                <TextBlock Foreground="White" Text="Group name:" Width="80" Margin="2"/>
                 <TextBox MaxLength="30" Name="GroupNameTextBox" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30" Margin="2"/>
-                <TextBlock x:Name="ComboBoxNameTextBlock" Text="Course:" Width="50" Margin="2"/>
+                <TextBlock Foreground="White" x:Name="ComboBoxNameTextBlock" Text="Course:" Width="50" Margin="2"/>
                 <ComboBox x:Name="CourseComboBox" IsEditable="True" Width="100" Margin="2"/>
             </StackPanel>
             <Grid Grid.Row="1" RenderTransformOrigin="0.522,0.267">
@@ -26,12 +26,12 @@
                     <ColumnDefinition Width="29*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <Canvas Grid.Column="0">
-                    <TextBlock Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="192" Canvas.Top="10" />
+                <Canvas Background="AliceBlue" Grid.Column="0">
+                    <TextBlock  Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="192" Canvas.Top="10" />
                 </Canvas>
-                <Canvas Grid.Column="1" Grid.ColumnSpan="2">
+                <Canvas Background="AliceBlue" Grid.Column="1" Grid.ColumnSpan="2">
                     <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="207" Canvas.Top="6" Width="96"/>
-                    <Button x:Name="SearchButton" Content="Search" Canvas.Left="396" Canvas.Top="38" Click="Button_Search_Click" Width="104" Height="27"/>
+                    <Button Background="White" x:Name="SearchButton" Content="Search" Canvas.Left="396" Canvas.Top="38" Click="Button_Search_Click" Width="104" Height="27"/>
                     <TextBox x:Name="SearchTextBox" Canvas.Left="33" Canvas.Top="38" TextWrapping="Wrap" Width="157" Height="27"/>
                     <ComboBox x:Name="SearchComboBox" Canvas.Left="207" Canvas.Top="38" Width="173" Height="27"/>
                 </Canvas>
@@ -44,7 +44,7 @@
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#c5cfd4" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="GroupStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
@@ -52,14 +52,14 @@
                 <Grid Grid.Column="1" Background="AliceBlue">
                 </Grid>
                 <Grid Grid.Column="2" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#c5cfd4" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="AllStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            <Button x:Name="AcceptButton" Content="Accept" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" FontWeight="Normal" FontSize="16" Margin="0,0,6,0"/>
-            <Button x:Name="DeleteGroupButton" Content="Delete" Background="White" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" Margin="0,0,115,0" Click="Button_DeleteGroup_Click"/>
+            <Button Background="White" x:Name="AcceptButton" Content="Accept" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" FontWeight="Normal" FontSize="16" Margin="0,0,6,0"/>
+            <Button x:Name="DeleteGroupButton" Content="Delete" Background="IndianRed" HorizontalAlignment="Right" Height="40" Width="100" Grid.Row="3" Margin="0,0,115,0" Click="Button_DeleteGroup_Click"/>
         </Grid>
     </Grid>
 </Window>
