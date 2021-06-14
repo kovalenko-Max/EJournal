@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="EditGroupWindow" Height="785" MinHeight="350" Width="1020" MinWidth="1020">
     <Grid>
-        <Grid ShowGridLines="True" >
+        <Grid Background="AliceBlue" ShowGridLines="True" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="110" MinHeight="80" />
                 <RowDefinition Height="30" MinHeight="75"/>
@@ -26,10 +26,10 @@
                     <ColumnDefinition Width="29*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <Canvas Grid.Column="0">
+                <Canvas Background="AliceBlue" Grid.Column="0">
                     <TextBlock  Text="Group students" FontSize="18" FontWeight="DemiBold" Canvas.Left="192" Canvas.Top="10" />
                 </Canvas>
-                <Canvas Grid.Column="1" Grid.ColumnSpan="2">
+                <Canvas Background="AliceBlue" Grid.Column="1" Grid.ColumnSpan="2">
                     <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="207" Canvas.Top="6" Width="96"/>
                     <Button Background="White" x:Name="SearchButton" Content="Search" Canvas.Left="396" Canvas.Top="38" Click="Button_Search_Click" Width="104" Height="27"/>
                     <TextBox x:Name="SearchTextBox" Canvas.Left="33" Canvas.Top="38" TextWrapping="Wrap" Width="157" Height="27"/>
@@ -49,7 +49,7 @@
                         </WrapPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid Grid.Column="1" Background="White">
+                <Grid Grid.Column="1" Background="AliceBlue">
                 </Grid>
                 <Grid Grid.Column="2" ShowGridLines="True" Background="LightGray">
                     <ScrollViewer Background="#2c333d" Grid.Row="2" VerticalScrollBarVisibility="Auto">
