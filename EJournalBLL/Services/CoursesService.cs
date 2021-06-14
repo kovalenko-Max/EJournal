@@ -48,7 +48,7 @@ namespace EJournalBLL.Services
 
         public bool IsGroupsContainsThisCourse(Course course)
         {
-            return (_coursesRepository.CountGroupsByCourse(course.Id) > 0);
+            return (_coursesRepository.GetCountGroupsByCourse(course.Id) > 0);
         }
     }
 }

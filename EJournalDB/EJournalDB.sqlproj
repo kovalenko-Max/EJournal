@@ -95,7 +95,7 @@
     <Build Include="dbo\Stored Procedures\Courses\GetAllCourses.sql" />
     <Build Include="dbo\Stored Procedures\Courses\GetCourse.sql" />
     <Build Include="dbo\Stored Procedures\Courses\UpdateCourse.sql" />
-    <Build Include="dbo\Stored Procedures\Courses\CountGroupsByCourse.sql" />
+    <Build Include="dbo\Stored Procedures\Courses\GetCountGroupsByCourse.sql" />
     <Build Include="dbo\Stored Procedures\Groups\AddGroup.sql" />
     <Build Include="dbo\Stored Procedures\Groups\DeleteGroupAndGroupStudent.sql" />
     <Build Include="dbo\Stored Procedures\Groups\GetAllGroups.sql" />
@@ -135,10 +135,8 @@
     <Build Include="dbo\Stored Procedures\Search\SearchStudentCours.sql" />
     <Build Include="dbo\Stored Procedures\Search\SearcStudentsGroup.sql" />
     <Build Include="dbo\Stored Procedures\Comments\AddComment.sql" />
-    <Build Include="dbo\Stored Procedures\Comments\DeleteComments.sql" />
-    <Build Include="dbo\Stored Procedures\Comments\GetAllComments.sql" />
+    <Build Include="dbo\Stored Procedures\Comments\DeleteComment.sql" />
     <Build Include="dbo\Stored Procedures\Comments\UpdateComment.sql" />
-    <Build Include="dbo\Stored Procedures\Comments\GetComment.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\AddExercises.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\DeleteExercises.sql" />
     <Build Include="dbo\Stored Procedures\ExercisesStudents\GetAllExercises.sql" />
@@ -166,7 +164,7 @@
     <Build Include="dbo\Stored Procedures\Projects\GetListStudentsInOneProjectGroup.sql" />
     <Build Include="dbo\Stored Procedures\Groups\GetGroupsAndNumberOfStudentsInThemAndGroupStatus.sql" />
     <Build Include="dbo\Stored Procedures\Groups\GetGroupAndStudentsInIt.sql" />
-    <Build Include="dbo\Stored Procedures\Comments\CreateStudentComments.sql" />
+    <Build Include="dbo\Stored Procedures\Comments\AddCommentToStudent.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EJournalDB.refactorlog" />

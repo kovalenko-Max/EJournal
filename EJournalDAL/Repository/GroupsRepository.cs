@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
 using System.Configuration;
+using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
@@ -19,7 +20,7 @@ namespace EJournalDAL.Repository
 
         public GroupDTO AddGroup(GroupDTO groupDTO)
         {
-            string command = "exec [EJournal].[AddGroup] @Name, @IdCourse";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}p] @Name, @IdCourse";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 groupDTO.Id = db.Query<int>(command, new { groupDTO.Name, groupDTO.IdCourse }).First();
@@ -33,7 +34,7 @@ namespace EJournalDAL.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@IdGroup", idGroup);
 
-            string command = "[EJournal].[DeleteGroup]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -43,7 +44,7 @@ namespace EJournalDAL.Repository
 
         public List<GroupDTO> GetAllGroups()
         {
-            string command = "exec [EJournal].[GetAllGroups]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -60,7 +61,7 @@ namespace EJournalDAL.Repository
         }
         public List<GroupDTO> GetAllGroupsWithCourses()
         {
-            string command = "exec [EJournal].[GetAllGroupsWithCourses]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
             List<GroupDTO> groupsDTO = new List<GroupDTO>();
 
             using (IDbConnection db = new SqlConnection(_connectionString))
@@ -89,7 +90,7 @@ namespace EJournalDAL.Repository
 
         public GroupDTO GetGroup(int id)
         {
-            string command = "exec [EJournal].[GetGroup] @Id";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
             GroupDTO groupDTO = null;
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -101,7 +102,7 @@ namespace EJournalDAL.Repository
 
         public void UpdateGroup(GroupDTO groupDTO)
         {
-            string command = "exec [EJournal].[UpdateGroup] @Id, @Name, @IdCourse";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id, @Name, @IdCourse";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { groupDTO.Id, groupDTO.Name, groupDTO.IdCourse });
@@ -125,7 +126,7 @@ namespace EJournalDAL.Repository
             parameters.Add("@IdsStudent", dt.AsTableValuedParameter("[EJournal].[GroupIdsStudentsIds]"));
             parameters.Add("@IdGroup", direction: ParameterDirection.ReturnValue);
 
-            string command = "[EJournal].[AddGroupWithStudents]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -154,7 +155,7 @@ namespace EJournalDAL.Repository
             parameters.Add("@IdCourse", groupDTO.IdCourse);
             parameters.Add("@IdsStudent", dt.AsTableValuedParameter("[EJournal].[GroupIdsStudentsIds]"));
 
-            string command = "[EJournal].[UpdateGroupStudents]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
