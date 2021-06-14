@@ -2,7 +2,9 @@
 using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 
 namespace EJournalUI
 {
@@ -24,6 +26,15 @@ namespace EJournalUI
             _commentsService = new CommentsService();
             StudentCard = studentCard;
             Student = studentCard.Student;
+
+            TextBox_Name.MaxLength = 100;
+            TextBox_Surname.MaxLength = 100;
+            TextBox_Email.MaxLength = 100;
+            TextBox_Phone.MaxLength = 16;
+            TextBox_Git.MaxLength = 100;
+            TextBox_City.MaxLength = 255;
+            TextBox_Agreement.MaxLength = 50;
+            TextBox_TeacherAssessment.MaxLength = 3;
 
             Comments = _commentsService.GetCommentsByStudent(Student.Id);
 
@@ -119,7 +130,7 @@ namespace EJournalUI
             new CommentsService().AddComment(comment, Student);
         }
 
-        private void TextBox_Phone_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void TextBox_Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
@@ -128,6 +139,39 @@ namespace EJournalUI
         {
             _studentServices.UpdateStudentRating(Student);
             TextBlock_Rating.Text = Student.Ranking.ToString();
+        }
+
+        private void TextBox_Name_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void TextBox_Surname_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_Email_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var regex = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            bool result = Regex.IsMatch(e.Text, regex, RegexOptions.IgnoreCase);
+
+            if(result)
+            {
+
+            }
+        }
+
+        private void TextBox_City_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var regex = new Regex("[^([a-zA-Z\u0080-\u024F]+(?:. |-| |')*[a-zA-Z\u0080-\u024F]*$]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_TeacherAssessment_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
         }
     }
 }
