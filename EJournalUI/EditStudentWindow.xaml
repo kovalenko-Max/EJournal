@@ -1,0 +1,26 @@
+﻿<Window x:Class="EJournalUI.EditStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EJournalUI"
+        mc:Ignorable="d"
+        Title="EditStudentWindow" Height="310" Width="380">
+    <Grid Background="#c5cfd4">
+        <Label Foreground="Black" Content="Name" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Surname" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Email" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Phone" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Git" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="City" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Agreement №" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
+        <TextBox Name ="TextBox_Name"  HorizontalAlignment="Left" Margin="126,31,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
+        <TextBox Name ="TextBox_Surname" HorizontalAlignment="Left" Margin="126,57,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
+        <TextBox Name ="TextBox_Email" HorizontalAlignment="Left" Margin="126,83,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
+        <TextBox Name ="TextBox_Phone" HorizontalAlignment="Left" Margin="126,109,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214" PreviewTextInput="TextBox_Phone_PreviewTextInput"/>
+        <TextBox Name ="TextBox_Git" HorizontalAlignment="Left" Margin="126,136,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
+        <TextBox Name ="TextBox_City" HorizontalAlignment="Left" Margin="126,162,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
+        <TextBox Name ="TextBox_AgreementNumber" HorizontalAlignment="Left" Margin="126,188,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
+        <Button Background="White" Name="Button_ConfirmAddStudent" Content="Confirm" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="Button_ConfirmAddStudent_Click"/>
+    </Grid>
+</Window>
