@@ -349,7 +349,7 @@ namespace EJournalUI
                 if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     ProjectTeamsStudentsWrapPanel.Children.Clear();
-                    _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
+                    _projectGroupServices.DeleteProjectGroup(SelectedProjectGroupCard.ProjectGroup.Id);
                     ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
                 }
             }

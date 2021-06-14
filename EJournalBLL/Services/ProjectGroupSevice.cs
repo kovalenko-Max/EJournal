@@ -24,7 +24,7 @@ namespace EJournalBLL
         }
 
 
-        public int AddProjectGroup (ProjectGroup projectGroupInput)
+        public int AddProjectGroup(ProjectGroup projectGroupInput)
         {
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
             projectGroupInput.Id = ProjectGroupRepository.AddProjectGroup(projectGroup);
@@ -52,18 +52,6 @@ namespace EJournalBLL
             List<ProjectGroupDTO> projectGroupsDTO = ProjectGroupRepository.GetAllProjectGroups(IdProject);
             List<ProjectGroup> projectGroups = ObjectMapper.Mapper.Map<List<ProjectGroup>>(projectGroupsDTO);
             return projectGroups;
-        }
-
-        public void AddStudentToProjectGroup( ProjectGroupStudent projectGroupStudent)
-        {
-            ProjectGroupStudentDTO projectGroupStudentDTO = ObjectMapper.Mapper.Map<ProjectGroupStudentDTO>(projectGroupStudent);
-            ProjectGroupRepository.AddStudentToProjectGroup(projectGroupStudentDTO);
-        }
-
-        public void DeleteStudentFromProjectGroup(ProjectGroupStudent projectGroupStudent)
-        {
-            ProjectGroupStudentDTO projectGroupStudentDTO = ObjectMapper.Mapper.Map<ProjectGroupStudentDTO>(projectGroupStudent);
-            ProjectGroupRepository.DeleteStudentFromProjectGroup(projectGroupStudentDTO);
         }
     }
 }
