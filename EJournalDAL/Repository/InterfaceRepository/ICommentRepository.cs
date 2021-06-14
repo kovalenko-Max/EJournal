@@ -14,7 +14,7 @@ namespace EJournalDAL.Repository
         public void UpdateComment(CommentDTO comment);
         public void DeleteComment(int id);
         public List<CommentDTO> GetCommentsByStudent(int IdStudent);
-        public void AddCommentsToStudents(CommentDTO commentDTO, DataTable dt);
+        public void AddCommentToStudent(CommentDTO commentDTO, DataTable dt);
 
 
     }

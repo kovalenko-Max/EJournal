@@ -236,7 +236,7 @@ namespace EJournalUI
                 HomeworkStackPanel.Children.Insert(0, homeworkcard);
 
                 ExercisesService exercisesService = new ExercisesService();
-                exercisesService.AddExercise(exercise);
+                exercisesService.AddExerciseToStudent(exercise);
             }
         }
 
@@ -259,7 +259,7 @@ namespace EJournalUI
 
                     homeWork.Exercise.ExerciseType = (ExcerciseType)homeWork.ExcerciseTypeComboBox.SelectedItem;
 
-                    exerciseService.UpdateExercise(homeWork.Exercise);
+                    exerciseService.UpdateStudentExercise(homeWork.Exercise);
                 }
             }
         }
@@ -349,7 +349,7 @@ namespace EJournalUI
                 if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     ProjectTeamsStudentsWrapPanel.Children.Clear();
-                    _projectGroupServices.Delete(SelectedProjectGroupCard.ProjectGroup.Id);
+                    _projectGroupServices.DeleteProjectGroup(SelectedProjectGroupCard.ProjectGroup.Id);
                     ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
                 }
             }

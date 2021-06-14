@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using EJournalDAL.Models.BaseModels;
 using System.Configuration;
+using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
@@ -19,7 +20,7 @@ namespace EJournalDAL.Repository
 
         public CourseDTO AddCourse(CourseDTO courseDTO)
         {
-            string command = "exec [EJournal].[AddCourse] @Name";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Name";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 courseDTO.Id = db.Query<int>(command, new { courseDTO.Name }).FirstOrDefault();
@@ -30,7 +31,7 @@ namespace EJournalDAL.Repository
 
         public void DeleteCourse(int Id)
         {
-            string command = "exec [EJournal].[DeleteCourse] @Id";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { Id });
@@ -39,7 +40,7 @@ namespace EJournalDAL.Repository
 
         public List<CourseDTO> GetAllCourses()
         {
-            string command = "exec [EJournal].[GetAllCourses]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
             List<CourseDTO> courseDTO = new List<CourseDTO>();
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -51,7 +52,7 @@ namespace EJournalDAL.Repository
 
         public CourseDTO GetCourse(int id)
         {
-            string command = "exec [EJournal].[GetCourse] @Id";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
             CourseDTO courseDTO = null;
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -63,17 +64,17 @@ namespace EJournalDAL.Repository
 
         public void UpdateCourse(CourseDTO courseDTO)
         {
-            string command = "exec [EJournal].[UpdateCourse] @Id, @Name";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id, @Name";
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(command, new { courseDTO.Id, courseDTO.Name });
             }
         }
 
-        public int CountGroupsByCourse(int Id)
+        public int GetCountGroupsByCourse(int Id)
         {
             int count = 0;
-            string command = "exec [EJournal].[CountGroupsByCourse] @Id";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

@@ -13,11 +13,10 @@ namespace EJournalBLL.Services
         {
             get
             {
-                return Groups = GetAllGroupsFromDB();
+                return Groups = GetAllGroups();
             }
             set
             {
-
             }
         }
 
@@ -51,7 +50,7 @@ namespace EJournalBLL.Services
             group.Id = groupDTO.Id;
         }
 
-        public void UpdateGroupInDB(Group group)
+        public void UpdateGroup(Group group)
         {
             GroupDTO groupDTO = new GroupDTO();
             groupDTO.Id = group.Id;
@@ -61,7 +60,7 @@ namespace EJournalBLL.Services
             groupsRepository.UpdateGroup(groupDTO);
         }
 
-        public List<Group> GetAllGroupsFromDB()
+        public List<Group> GetAllGroups()
         {
             List<GroupDTO> groupDTOs = groupsRepository.GetAllGroups();
 

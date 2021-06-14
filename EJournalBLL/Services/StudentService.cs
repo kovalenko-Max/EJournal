@@ -25,28 +25,28 @@ namespace EJournalBLL.Services
 
         public List<Student> GetAllStudent()
         {
-            List<StudentDTO> studentDTO = _studentsRepository.GetAll();
+            List<StudentDTO> studentDTO = _studentsRepository.GetAllStudents();
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentDTO);
         }
         public void AddStudent(Student studentInput)
         {
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            _studentsRepository.Create(student);
+            _studentsRepository.AddStudent(student);
         }
         public void Update(Student studentInput)
         {
             StudentDTO student = ObjectMapper.Mapper.Map<StudentDTO>(studentInput);
-            _studentsRepository.Update(student);
+            _studentsRepository.UpdateStudent(student);
         }
 
         public void Delete(int Id)
         {
-            _studentsRepository.DeleteSoft(Id);
+            _studentsRepository.DeleteStudent(Id);
         }
 
         public List<Student> GetStudentsFromProjectGroups(int IdProjectGroup)
         {
-            List<StudentDTO> StudentsDTO = _studentsRepository.GetStudentsFromOneProjectGroup(IdProjectGroup);
+            List<StudentDTO> StudentsDTO = _studentsRepository.GetStudentsFromProjectGroup(IdProjectGroup);
             List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
             return students;
         }
@@ -59,7 +59,7 @@ namespace EJournalBLL.Services
 
         public List<Student> GetStudentsNotAreInProjectGroups(int IdProjectGroup)
         {
-            List<StudentDTO> StudentsDTO = _studentsRepository.GetStudentsNotAreInProjectGroup
+            List<StudentDTO> StudentsDTO = _studentsRepository.GetStudentsNotInProjectGroup
                 (IdProjectGroup);
             List<Student> students = ObjectMapper.Mapper.Map<List<Student>>(StudentsDTO);
             return students;
@@ -81,7 +81,7 @@ namespace EJournalBLL.Services
         public List<Student> SearchStudentsByPhone(string phone)
         {
             StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentPhone(phone);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchByStudentPhone(phone);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
@@ -89,7 +89,7 @@ namespace EJournalBLL.Services
         public List<Student> SearchStudentsByEmail(string email)
         {
             StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentEmail(email);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchByStudentEmail(email);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
@@ -105,7 +105,7 @@ namespace EJournalBLL.Services
         public List<Student> SearchStudentsByCity(string city)
         {
             StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentCity(city);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchByStudentCity(city);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
@@ -113,7 +113,7 @@ namespace EJournalBLL.Services
         public List<Student> SearchStudentsGroup(string group)
         {
             StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentGroup(group);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchByStudentGroup(group);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
@@ -121,7 +121,7 @@ namespace EJournalBLL.Services
         public List<Student> SearchStudentsCourses(string course)
         {
             StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentCourses(course);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchByStudentCourses(course);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }
@@ -129,7 +129,7 @@ namespace EJournalBLL.Services
         public List<Student> SearchStudentsAgreementNumbers(string AgreementNumbers)
         {
             StudentsRepository studentsRepository = new StudentsRepository();
-            List<StudentDTO> studentsDTO = studentsRepository.SearchStudentAgreementNumbers(AgreementNumbers);
+            List<StudentDTO> studentsDTO = studentsRepository.SearchByStudentAgreementNumbers(AgreementNumbers);
 
             return Students = ObjectMapper.Mapper.Map<List<Student>>(studentsDTO);
         }

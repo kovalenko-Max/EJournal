@@ -29,7 +29,7 @@ namespace EJournalBLL.Tests
             Group group, List<LessonDTO> GetLessonsAttendancesByGroupReturns, List<Lesson> expectedLessons)
         {
             _mock.Setup(LessonsAttendancesRepository => (
-            LessonsAttendancesRepository.GetLessonsAttendancesByGroup(group.Id))).Returns(GetLessonsAttendancesByGroupReturns);
+            LessonsAttendancesRepository.GetStudentsAttendancesByGroup(group.Id))).Returns(GetLessonsAttendancesByGroupReturns);
 
             List<Lesson> actualLessons = _lessonService.GetLessonsAttendancesByGroup(group);
 

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[DeleteComments] @Id INT
+﻿CREATE PROCEDURE [EJournal].[DeleteComment] @Id INT
 AS
 
 delete [EJournal].[Comments]

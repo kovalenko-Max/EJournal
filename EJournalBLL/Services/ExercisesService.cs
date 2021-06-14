@@ -27,7 +27,7 @@ namespace EJournalBLL.Services
             exerciseModel.Columns.Add("Points");
         }
 
-        public void AddExercise(Exercise exercise)
+        public void AddExerciseToStudent(Exercise exercise)
         {
             exerciseModel.Clear();
             foreach (var student in exercise.StudentMarks)
@@ -38,7 +38,7 @@ namespace EJournalBLL.Services
             exercise.Id = ExercisesRepository.AddExerciseToStudent(ObjectMapper.Mapper.Map<ExerciseDTO>(exercise), exerciseModel);
         }
 
-        public void UpdateExercise(Exercise exercise)
+        public void UpdateStudentExercise(Exercise exercise)
         {
             exerciseModel.Clear();
             foreach (var student in exercise.StudentMarks)

@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
@@ -17,31 +18,9 @@ namespace EJournalDAL.Repository
             _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
-        public List<CommentDTO> GetAllComments()
-        {
-            List<CommentDTO> comments = new List<CommentDTO>();
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                string connectionQuery = "exec GetAllComments";
-                comments = db.Query<CommentDTO>(connectionQuery).ToList();
-            }
-            return comments;
-        }
-
-        public CommentDTO GetComment(int id)
-        {
-            CommentDTO comment = null;
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                string connectionQuery = "exec GetComment @Id";
-                comment = db.Query<CommentDTO>(connectionQuery, new { id }).FirstOrDefault();
-            }
-            return comment;
-        }
-
         public int AddComment(CommentDTO commentDTO, int IdStudent)
         {
-            string connectionQuery = "[EJournal].[AddComment]";
+            string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("IdStudent", IdStudent);
@@ -61,7 +40,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string connectionQuery = "exec [EJournal].[UpdateComment] @Id, @Comment, @CommentType";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @Id, @Comment, @CommentType";
                 db.Execute(connectionQuery, comment);
             }
         }
@@ -70,27 +49,18 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string connectionQuery = " exec [EJournal].[DeleteComments] @Id";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
                 db.Execute(connectionQuery, new { id });
             }
         }
-        public void AddCommentToProjectRepository(string comment, int idStudent)
-        {
-            string connectionQuery = " exec AddCommentToEachStudentFromProjectGroup @Comment, @IdStudent";
-
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                db.Execute(connectionQuery, new { comment, idStudent });
-            }
-        }
-
+       
         public List<CommentDTO> GetCommentsByStudent(int IdStudent)
         {
             List<CommentDTO> commentsDTO = new List<CommentDTO>();
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string connectionQuery = "exec [EJournal].[GetCommentsByStudent] @IdStudent";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @IdStudent";
 
                 commentsDTO = db.Query<CommentDTO>(connectionQuery, new { IdStudent }).ToList();
             }
@@ -98,9 +68,9 @@ namespace EJournalDAL.Repository
             return commentsDTO;
         }
 
-        public void AddCommentsToStudents(CommentDTO commentDTO, DataTable dt)
+        public void AddCommentToStudent(CommentDTO commentDTO, DataTable dt)
         {
-            string command = "[EJournal].[CreateStudentComments]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@CommentType", commentDTO.CommentType);

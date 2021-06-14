@@ -20,7 +20,7 @@ namespace EJournalDAL.Repository
 
         public int AddExerciseToStudent(ExerciseDTO exerciseDTO, DataTable dt)
         {
-            string command = "[EJournal].[AddExerciseToStudent]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@IdGroup", exerciseDTO.IdGroup);
@@ -40,7 +40,7 @@ namespace EJournalDAL.Repository
 
         public void UpdateStudentExercise(ExerciseDTO exerciseDTO, DataTable dt)
         {
-            string command = "[EJournal].[UpdateStudentExercise]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Id", exerciseDTO.Id);
@@ -58,7 +58,7 @@ namespace EJournalDAL.Repository
 
         public List<ExerciseDTO> GetExercisesByGroup (int IdGroup)
         {
-            string command = "exec [EJournal].[GetExercisesByGroup] @IdGroup";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @IdGroup";
             List<ExerciseDTO> exercisesDTO = new List<ExerciseDTO>();
 
             using (IDbConnection dbConnection = new SqlConnection(connectionString))
@@ -101,7 +101,7 @@ namespace EJournalDAL.Repository
 
         public void DeleteStudentExercise(int id)
         {
-            string command = "exec [EJournal].[DeleteStudentExercise] @Id";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
 
             using(IDbConnection db = new SqlConnection(connectionString))
             {

@@ -46,7 +46,7 @@ namespace EJournalBLL.Services
             CommentRepository.UpdateComment(commentDTO);
         }
 
-        public void AddCommentsToStudent(Comment comments, List<Student> students)
+        public void AddCommentToStudent(Comment comments, List<Student> students)
         {
             _studentsComment.Clear();
 
@@ -57,7 +57,7 @@ namespace EJournalBLL.Services
 
             CommentDTO commentDTO = ObjectMapper.Mapper.Map<CommentDTO>(comments);
 
-            CommentRepository.AddCommentsToStudents(commentDTO, _studentsComment);
+            CommentRepository.AddCommentToStudent(commentDTO, _studentsComment);
         }
 
         public void DeleteComment(Comment comment)

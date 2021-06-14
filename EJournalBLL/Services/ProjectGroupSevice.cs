@@ -24,13 +24,13 @@ namespace EJournalBLL
         }
 
 
-        public int AddProjectGroup (ProjectGroup projectGroupInput)
+        public int AddProjectGroup(ProjectGroup projectGroupInput)
         {
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
-            projectGroupInput.Id = ProjectGroupRepository.Create(projectGroup);
+            projectGroupInput.Id = ProjectGroupRepository.AddProjectGroup(projectGroup);
             return projectGroupInput.Id;
         }
-        public void Update(ProjectGroup projectGroupInput)
+        public void UpdateProjectGroup(ProjectGroup projectGroupInput)
         {
             _updateProjectGroup.Clear();
             foreach (var a in projectGroupInput.Students)
@@ -39,31 +39,19 @@ namespace EJournalBLL
             }
 
             ProjectGroupDTO projectGroup = ObjectMapper.Mapper.Map<ProjectGroupDTO>(projectGroupInput);
-            ProjectGroupRepository.Update(projectGroup, _updateProjectGroup);
+            ProjectGroupRepository.UpdateProjectGroup(projectGroup, _updateProjectGroup);
         }
 
-        public void Delete(int Id)
+        public void DeleteProjectGroup(int Id)
         {
-            ProjectGroupRepository.Delete(Id);
+            ProjectGroupRepository.DeleteProjectGroup(Id);
         }
 
         public List<ProjectGroup> GetProjectGroups(int IdProject)
         {
-            List<ProjectGroupDTO> projectGroupsDTO = ProjectGroupRepository.GetAllProjectsGroup(IdProject);
+            List<ProjectGroupDTO> projectGroupsDTO = ProjectGroupRepository.GetAllProjectGroups(IdProject);
             List<ProjectGroup> projectGroups = ObjectMapper.Mapper.Map<List<ProjectGroup>>(projectGroupsDTO);
             return projectGroups;
-        }
-
-        public void AddStudentToProjectGroup( ProjectGroupStudent projectGroupStudent)
-        {
-            ProjectGroupStudentDTO projectGroupStudentDTO = ObjectMapper.Mapper.Map<ProjectGroupStudentDTO>(projectGroupStudent);
-            ProjectGroupRepository.AddStudentToProjectGroup(projectGroupStudentDTO);
-        }
-
-        public void DeleteStudentFromProjectGroup(ProjectGroupStudent projectGroupStudent)
-        {
-            ProjectGroupStudentDTO projectGroupStudentDTO = ObjectMapper.Mapper.Map<ProjectGroupStudentDTO>(projectGroupStudent);
-            ProjectGroupRepository.DeleteStudentFromProjectGroup(projectGroupStudentDTO);
         }
     }
 }
