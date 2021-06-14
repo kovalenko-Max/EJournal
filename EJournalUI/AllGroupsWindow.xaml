@@ -70,7 +70,7 @@
                                         <Button Background="White" x:Name="AttendancesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_AttendancesSave_Click"/>
                                         <Button Background="White" x:Name="AttendancesAddButton" Content="Add" Width="60" Margin="2" Click="Button_AttendancesAdd_Click"/>
                                     </StackPanel>
-                                    <ScrollViewer Background="#2c333d" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <ScrollViewer Background="#c5cfd4" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                         <StackPanel x:Name="AttendancesStackPanel" Orientation="Horizontal"/>
                                     </ScrollViewer>
                                 </Grid>
@@ -90,7 +90,7 @@
                                         <Button Background="White" x:Name="ExercisesSaveButton" Content="Save" Width="60" Margin="2" Click="Button_ExercisesSave_Click"/>
                                         <Button Background="White" x:Name="ExercisesAddButton" Content="Add" Width="60" Margin="2" Click="Button_ExercisesAdd_Click"/>
                                     </StackPanel>
-                                    <ScrollViewer Background="#2c333d" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.ColumnSpan="2">
+                                    <ScrollViewer Background="#c5cfd4" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.ColumnSpan="2">
                                         <StackPanel x:Name="HomeworkStackPanel" Orientation="Horizontal"/>
                                     </ScrollViewer>
                                 </Grid>
