@@ -20,9 +20,9 @@
                 <RowDefinition />
                 <RowDefinition Height="80" MinHeight="50"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
+            <StackPanel Background="#2c333d" Grid.Row="0">
                 <TextBox MaxLength="30" Name="ProjectGroupTextBox" Text="JWT Team" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30" Margin="0,20,0,0"/>
-                <TextBlock Text="Comments" FontSize="18" FontWeight="DemiBold" Width="100" Margin="5,10,5,5"/>
+                <TextBlock Foreground="White" Text="Comments" FontSize="18" FontWeight="DemiBold" Width="100" Margin="5,10,5,5"/>
                 <TextBox MaxLength="30" Name="TeamCommentsTextBox" Text="" TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Canvas.Left="240" Canvas.Top="100" Width="320" Height="88" Margin="5,20,5,5"/>
             </StackPanel>
             <Grid Grid.Row="1">
@@ -37,7 +37,7 @@
                     <TextBlock Text="All students" FontSize="18" FontWeight="DemiBold" Canvas.Left="207" Canvas.Top="10"/>
                     <TextBox Name="SearchTextBox"  Canvas.Left="33" Canvas.Top="39" TextWrapping="Wrap" Width="153" Height="26"/>
                     <ComboBox Canvas.Left="207" Canvas.Top="39" Width="173" Height="26" Name="SearchComboBox"/>
-                    <Button Name="Search"  Content="Search" Canvas.Left="402" Canvas.Top="39" Width="98" Height="24" RenderTransformOrigin="0.5,0.5" Click="Button_Search_Click">
+                    <Button Background="White" Name="Search"  Content="Search" Canvas.Left="402" Canvas.Top="39" Width="98" Height="24" RenderTransformOrigin="0.5,0.5" Click="Button_Search_Click">
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -56,7 +56,7 @@
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#2c333d" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="TeamStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
@@ -64,13 +64,13 @@
                 <Grid Grid.Column="1" Background="AliceBlue">
                 </Grid>
                 <Grid Grid.Column="2" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#2c333d" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="AllStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
                 </Grid>
             </Grid>
-            <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" Height="40" Width="100" Grid.Row="3" Margin="886,30,0,10" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
+            <Button Background="White" x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" Height="40" Width="100" Grid.Row="3" Margin="886,30,0,10" FontWeight="Normal" FontSize="16" Click="ButtonSave_Click"/>
             <TextBlock HorizontalAlignment="Left" Margin="398,30,0,0" Grid.Row="3" Text="Team mark:" TextAlignment="Center" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="112"/>
             <TextBox x:Name="MarkTextBox" HorizontalAlignment="Left" Margin="526,35,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" Height="26" PreviewTextInput="MarkTextBox_PreviewTextInput"/>
         </Grid>
