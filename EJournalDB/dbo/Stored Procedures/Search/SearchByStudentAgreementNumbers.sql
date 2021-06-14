@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[SearchStudentAgreementNumber]
+﻿CREATE PROCEDURE [EJournal].[SearchByStudentAgreementNumbers]
 @AgreementNumber NVARCHAR(50)
 AS
 	SELECT [Id]

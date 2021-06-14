@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[GetLessonsAttendancesByGroup]
+﻿CREATE PROCEDURE [EJournal].[GetStudentsAttendancesByGroup]
 	@GroupId int
 AS
 	SELECT 

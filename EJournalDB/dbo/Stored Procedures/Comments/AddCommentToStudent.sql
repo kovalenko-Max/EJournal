@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[CreateStudentComments]
+﻿CREATE PROCEDURE [EJournal].[AddCommentToStudent]
     @CommentType nvarchar(100),
     @Comment nvarchar(255),
 	@StudentCommentVarible as [EJournal].[StudentsComment] READONLY

@@ -25,7 +25,7 @@ namespace EJournalBLL.Tests
         public void GetAllStudent_WhenStudentService_ShouldReturnAllStudents(List<StudentDTO> RepositoryReturns, List<Student> expectedStudents)
         {
             _mock.Setup(СoursesRepository => (
-            СoursesRepository.GetAll())).Returns(RepositoryReturns);
+            СoursesRepository.GetAllStudents())).Returns(RepositoryReturns);
 
             List<Student> actualStudent = _studentService.GetAllStudent();
 
@@ -36,7 +36,7 @@ namespace EJournalBLL.Tests
         public void GetStudentdsFromProjectGroup_WhenStudentService_ShouldReturnAllStudents(int IdProjectGroup, List<StudentDTO> RepositoryReturns, List<Student> expectedStudents)
         {
             _mock.Setup(СoursesRepository => (
-            СoursesRepository.GetStudentsFromOneProjectGroup(IdProjectGroup))).Returns(RepositoryReturns);
+            СoursesRepository.GetStudentsFromProjectGroup(IdProjectGroup))).Returns(RepositoryReturns);
 
             List<Student> actualStudent = _studentService.GetStudentsFromProjectGroups(IdProjectGroup);
 
@@ -58,7 +58,7 @@ namespace EJournalBLL.Tests
         public void GetStudentdsWhoAreNotInProjectGroup_WhenStudentService_ShouldReturnAllStudents(int IdProjectGroup, List<StudentDTO> RepositoryReturns, List<Student> expectedStudents)
         {
             _mock.Setup(СoursesRepository => (
-            СoursesRepository.GetStudentsNotAreInProjectGroup(IdProjectGroup))).Returns(RepositoryReturns);
+            СoursesRepository.GetStudentsNotInProjectGroup(IdProjectGroup))).Returns(RepositoryReturns);
 
             List<Student> actualStudent = _studentService.GetStudentsNotAreInProjectGroups(IdProjectGroup);
 

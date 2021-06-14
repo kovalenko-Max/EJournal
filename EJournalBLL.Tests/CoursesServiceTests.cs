@@ -2,12 +2,10 @@
 using EJournalBLL.Services;
 using EJournalDAL.Models.BaseModels;
 using EJournalDAL.Repository;
-using EJournalDAL.Models;
 using Moq;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 namespace EJournalBLL.Tests
 {
@@ -41,7 +39,7 @@ namespace EJournalBLL.Tests
         public void IsGroupsContainsThisCourse_WhenCourse_ShouldReturnBool(int IdCourse, int RepositoryReturns, bool expected)
         {
             _mock.Setup(СoursesRepository => (
-            СoursesRepository.CountGroupsByCourse(IdCourse))).Returns(RepositoryReturns);
+            СoursesRepository.GetCountGroupsByCourse(IdCourse))).Returns(RepositoryReturns);
             Course course = BLLMock.GetCourseMock(IdCourse);
 
             bool actual = _courseService.IsGroupsContainsThisCourse(course);

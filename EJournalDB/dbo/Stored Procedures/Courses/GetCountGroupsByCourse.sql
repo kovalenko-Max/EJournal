@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[CountGroupsByCourse]
+﻿CREATE PROCEDURE [EJournal].[GetCountGroupsByCourse]
 	@Id int
 AS
 	SELECT Count(G.Id)

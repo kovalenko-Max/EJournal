@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
@@ -17,37 +18,37 @@ namespace EJournalDAL.Repository
             ConnectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString; ;
         }
 
-        public List<StudentDTO> GetAll()
+        public List<StudentDTO> GetAllStudents()
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[GetAllStudents]";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
                 students = db.Query<StudentDTO>(connectionQuery).ToList<StudentDTO>();
             }
             return students;
         }
 
-        public List<StudentDTO> SearchStudentPhone(string phone)
+        public List<StudentDTO> SearchByStudentPhone(string phone)
         {
             List<StudentDTO> students = new List<StudentDTO>();
      
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[SearchStudentsPhone] @Phone";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @Phone";
                 students = db.Query<StudentDTO>(connectionQuery, new { phone }).ToList<StudentDTO>();
             }
             return students;
         }
 
-        public List<StudentDTO> SearchStudentEmail(string email)
+        public List<StudentDTO> SearchByStudentEmail(string email)
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[SearchStudentsEmail] @Email";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @Email";
                 students = db.Query<StudentDTO>(connectionQuery, new { email }).ToList<StudentDTO>();
             }
 
@@ -60,64 +61,64 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[SearchStudentsByFullName] @Name";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @Name";
                 students = db.Query<StudentDTO>(connectionQuery, new { name }).ToList<StudentDTO>();
             }
             return students;
         }
 
-        public List<StudentDTO> SearchStudentCity(string city)
+        public List<StudentDTO> SearchByStudentCity(string city)
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[SearchStudentCity] @City";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @City";
                 students = db.Query<StudentDTO>(connectionQuery, new { city }).ToList();
             }
             return students;
         }
 
-        public List<StudentDTO> SearchStudentGroup(string group)
+        public List<StudentDTO> SearchByStudentGroup(string group)
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[SearcStudentsGroup] @Group";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @Group";
                 students = db.Query<StudentDTO>(connectionQuery, new { group }).ToList();
             }
             return students;
         }
 
-        public List<StudentDTO> SearchStudentCourses(string courses)
+        public List<StudentDTO> SearchByStudentCourses(string courses)
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[SearchStudentCours] @Courses";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @Courses";
                 students = db.Query<StudentDTO>(connectionQuery, new { courses }).ToList();
             }
             return students;
         }
-        public List<StudentDTO> SearchStudentAgreementNumbers(string AgreementNumbers)
+        public List<StudentDTO> SearchByStudentAgreementNumbers(string AgreementNumbers)
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[SearchStudentAgreementNumber] @AgreementNumbers";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @AgreementNumbers";
                 students = db.Query<StudentDTO>(connectionQuery, new { AgreementNumbers }).ToList();
             }
             return students;
         }
         
-        public List<StudentDTO> GetStudentsFromOneProjectGroup(int idProjectGroup)
+        public List<StudentDTO> GetStudentsFromProjectGroup(int idProjectGroup)
         {
 
             List<StudentDTO> students = new List<StudentDTO>();
-            string connectionQuery = $"exec [EJournal].[GetListStudentsInOneProjectGroup] @idProjectGroup";
+            string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @idProjectGroup";
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
@@ -127,11 +128,11 @@ namespace EJournalDAL.Repository
 
         }
 
-        public List<StudentDTO> GetStudentsNotAreInProjectGroup(int idProjectGroup)
+        public List<StudentDTO> GetStudentsNotInProjectGroup(int idProjectGroup)
         {
 
             List<StudentDTO> students = new List<StudentDTO>();
-            string connectionQuery = $"exec [EJournal].[GetListStudentsNotInTheConcreeteProjectGroup] @idProjectGroup";
+            string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @idProjectGroup";
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
@@ -141,20 +142,20 @@ namespace EJournalDAL.Repository
 
         }
 
-        public void Create(StudentDTO student)
+        public void AddStudent(StudentDTO student)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[AddStudent] @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @Name, @Surname, @Email, @Phone, @Git, @City, @Ranking, @AgreementNumber";
                 int? userId = db.Query<int>(connectionQuery, student).FirstOrDefault();
                 student.Id = userId;
             }
         }
 
-        public void Update(StudentDTO student)
+        public void UpdateStudent(StudentDTO student)
         {
 
-            string command = "[EJournal].[UpdateStudent]";
+            string command = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Id", student.Id);
@@ -173,32 +174,15 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public void DeleteSoft(int id)
+        public void DeleteStudent(int id)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[DeleteStudent] @id";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @id";
                 db.Execute(connectionQuery, new { id });
             }
         }
 
-        public void DeleteOne(int Id)
-        {
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "exec ";
-                db.Execute(connectionQuery, new { Id });
-            }
-        }
-
-        public void DeleteAll()
-        {
-            using (IDbConnection db = new SqlConnection(ConnectionString))
-            {
-                string connectionQuery = "exec ";
-                db.Execute(connectionQuery);
-            }
-        }
 
         public List<StudentDTO> GetStudentsByGroup(int id)
         {
@@ -206,7 +190,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
-                string connectionQuery = "exec [EJournal].[GetStudentByGroup] @id";
+                string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @id";
                 students = db.Query<StudentDTO>(connectionQuery, new { id }).ToList();
             }
 
@@ -217,7 +201,7 @@ namespace EJournalDAL.Repository
         {
             List<StudentDTO> students = new List<StudentDTO>();
 
-            string connectionQuery = $"exec [EJournal].[GetStudentsNotAreInGroup] @idGroup";
+            string connectionQuery = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}] @idGroup";
 
             using (IDbConnection db = new SqlConnection(ConnectionString))
             {
@@ -229,8 +213,7 @@ namespace EJournalDAL.Repository
 
         public int UpdateStudentRating(int IdStudent)
         {
-            string commant = "[EJournal].[UpdateStudentRating]";
-
+            string commant = $"[EJournal].[{ MethodBase.GetCurrentMethod().Name}]";
             var parameters = new DynamicParameters();
             parameters.Add("@IdStudent", IdStudent);
             parameters.Add("@Rating", DbType.Int32, direction: ParameterDirection.ReturnValue);

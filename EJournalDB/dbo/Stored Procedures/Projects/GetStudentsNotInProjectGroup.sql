@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[GetListStudentsNotInTheConcreeteProjectGroup] @IdProjectGroup INT
+﻿CREATE PROCEDURE [EJournal].[GetStudentsNotInProjectGroup] @IdProjectGroup INT
 AS
 SELECT Distinct s.Id
 	,s.Name
@@ -8,6 +8,7 @@ SELECT Distinct s.Id
 	,s.Git
 	,s.City
 	,s.Ranking
+	,s.TeacherAssessment
 	,s.AgreementNumber
 	,s.IsDelete
 FROM [EJournal].[Students] AS s
