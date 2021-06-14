@@ -36,7 +36,7 @@
                             <RowDefinition Height="75" MinHeight="75"/>
                             <RowDefinition Height="480*"/>
                         </Grid.RowDefinitions>
-                        <Grid x:Name="GroupInfoGrid" Grid.Row="0" Background="#FFEAEAEA">
+                        <Grid x:Name="GroupInfoGrid" Grid.Row="0" Background="AliceBlue">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
@@ -55,7 +55,7 @@
                         </Grid>
                         <TabControl Grid.Row="1">
                             <TabItem Header = "Students of group">
-                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer Background="#2c333d" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                     <WrapPanel x:Name="GroupStudentsWrapPanel"/>
                                 </ScrollViewer>
                             </TabItem>
