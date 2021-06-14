@@ -267,6 +267,7 @@ namespace EJournalUI
             ExercisesService exercisesService = new ExercisesService();
 
             List<Exercise> exercises = exercisesService.GetExercisesByGroup(_selectedGroupCard.Group);
+
             foreach (var exercise in exercises)
             {
                 HomeworkStackPanel.Children.Add(new ExercisesCard(exercise));

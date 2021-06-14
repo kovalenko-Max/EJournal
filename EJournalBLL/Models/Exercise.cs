@@ -30,6 +30,12 @@ namespace EJournalBLL.Models
             Id = (int)exerciseDTO.Id;
             Description = exerciseDTO.Description;
             Deadline = exerciseDTO.Deadline;
+
+            if(Enum.TryParse(exerciseDTO.ExerciseType, out EJournalBLL.ExcerciseType exerciseType))
+            {
+                ExerciseType = exerciseType;
+            }
+
             IdGroup = exerciseDTO.IdGroup;
         }
 
