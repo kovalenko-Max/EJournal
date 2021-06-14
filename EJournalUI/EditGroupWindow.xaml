@@ -14,7 +14,7 @@
                 <RowDefinition />
                 <RowDefinition Height="80" MinHeight="50"/>
             </Grid.RowDefinitions>
-            <StackPanel Background="#2c333d" Grid.Row="0">
+            <StackPanel Background="#c5cfd4" Grid.Row="0">
                 <TextBlock Foreground="White" Text="Group name:" Width="80" Margin="2"/>
                 <TextBox MaxLength="30" Name="GroupNameTextBox" FontSize="16" TextAlignment="Center" Canvas.Left="302" Canvas.Top="21" Width="196" Height="30" Margin="2"/>
                 <TextBlock Foreground="White" x:Name="ComboBoxNameTextBlock" Text="Course:" Width="50" Margin="2"/>
@@ -44,7 +44,7 @@
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Background="#2c333d" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#c5cfd4" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="GroupStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>
@@ -52,7 +52,7 @@
                 <Grid Grid.Column="1" Background="AliceBlue">
                 </Grid>
                 <Grid Grid.Column="2" ShowGridLines="True" Background="LightGray">
-                    <ScrollViewer Background="#2c333d" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer Background="#c5cfd4" Grid.Row="2" VerticalScrollBarVisibility="Auto">
                         <WrapPanel x:Name="AllStudentsWrapPanel">
                         </WrapPanel>
                     </ScrollViewer>

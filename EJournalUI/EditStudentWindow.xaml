@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:EJournalUI"
         mc:Ignorable="d"
         Title="EditStudentWindow" Height="310" Width="380">
-    <Grid Background="#2c333d">
-        <Label Foreground="White" Content="Name" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top"/>
-        <Label Foreground="White" Content="Surname" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
-        <Label Foreground="White" Content="Email" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
-        <Label Foreground="White" Content="Phone" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
-        <Label Foreground="White" Content="Git" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
-        <Label Foreground="White" Content="City" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
-        <Label Foreground="White" Content="Agreement №" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
+    <Grid Background="#c5cfd4">
+        <Label Foreground="Black" Content="Name" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Surname" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Email" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Phone" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Git" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="City" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
+        <Label Foreground="Black" Content="Agreement №" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="TextBox_Name"  HorizontalAlignment="Left" Margin="126,31,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_Surname" HorizontalAlignment="Left" Margin="126,57,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_Email" HorizontalAlignment="Left" Margin="126,83,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
