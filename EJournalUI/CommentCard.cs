@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using EJournalBLL.Services;
 
@@ -14,9 +13,9 @@ namespace EJournalUI
     {
         public Comment Comment { get; set; }
 
-        ComboBox CommentTypeComboBox { get; set; }
+        public ComboBox CommentTypeComboBox { get; set; }
 
-        TextBox CommentTextBox { get; set; }
+        public TextBox CommentTextBox { get; set; }
 
         public CommentCard(Comment comment)
         {

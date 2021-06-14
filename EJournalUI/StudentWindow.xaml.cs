@@ -2,7 +2,9 @@
 using EJournalBLL.Services;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 
 namespace EJournalUI
 {
@@ -24,6 +26,15 @@ namespace EJournalUI
             _commentsService = new CommentsService();
             StudentCard = studentCard;
             Student = studentCard.Student;
+
+            TextBox_Name.MaxLength = 100;
+            TextBox_Surname.MaxLength = 100;
+            TextBox_Email.MaxLength = 100;
+            TextBox_Phone.MaxLength = 16;
+            TextBox_Git.MaxLength = 100;
+            TextBox_City.MaxLength = 255;
+            TextBox_Agreement.MaxLength = 50;
+            TextBox_TeacherAssessment.MaxLength = 3;
 
             Comments = _commentsService.GetCommentsByStudent(Student.Id);
 
@@ -66,34 +77,54 @@ namespace EJournalUI
 
         private void Button_SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            Button_SaveChanges.Visibility = Visibility.Hidden;
-            Button_SaveChanges.IsEnabled = false;
-            Button_DeleteStudent.IsEnabled = true;
-            Button_EditStudent.IsEnabled = true;
-            Student.Name = TextBox_Name.Text;
-            Student.Surname = TextBox_Surname.Text;
-            Student.Email = TextBox_Email.Text;
-            Student.Phone = TextBox_Phone.Text;
-            Student.Git = TextBox_Git.Text;
-            Student.City = TextBox_City.Text;
-            int teacherAssessment;
-            if (Int32.TryParse(TextBox_TeacherAssessment.Text, out teacherAssessment))
+            Regex regex = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+
+            if (!String.IsNullOrEmpty(TextBox_Name.Text) &&
+                !String.IsNullOrEmpty(TextBox_Surname.Text) &&
+                !String.IsNullOrEmpty(TextBox_Email.Text) &&
+                regex.IsMatch(TextBox_Email.Text) &&
+                !String.IsNullOrEmpty(TextBox_Phone.Text))
             {
-                Student.TeacherAssessment = teacherAssessment;
+                Button_SaveChanges.Visibility = Visibility.Hidden;
+                Button_SaveChanges.IsEnabled = false;
+                Button_DeleteStudent.IsEnabled = true;
+                Button_EditStudent.IsEnabled = true;
+                Student.Name = TextBox_Name.Text;
+                Student.Surname = TextBox_Surname.Text;
+                Student.Email = TextBox_Email.Text;
+                Student.Phone = TextBox_Phone.Text;
+                Student.Git = TextBox_Git.Text;
+                Student.City = TextBox_City.Text;
+                int teacherAssessment;
+                if (Int32.TryParse(TextBox_TeacherAssessment.Text, out teacherAssessment))
+                {
+                    Student.TeacherAssessment = teacherAssessment;
+                }
+                Student.AgreementNumber = TextBox_Agreement.Text;
+                TextBox_Name.IsReadOnly = true;
+                TextBox_Surname.IsReadOnly = true;
+                TextBox_Email.IsReadOnly = true;
+                TextBox_Phone.IsReadOnly = true;
+                TextBox_Git.IsReadOnly = true;
+                TextBox_City.IsReadOnly = true;
+                TextBox_Agreement.IsReadOnly = true;
+
+                TextBox_TeacherAssessment.IsReadOnly = true;
+
+                _studentServices.Update(Student);
+                StudentCard.UpdateFields();
             }
-            Student.AgreementNumber = TextBox_Agreement.Text;
-            TextBox_Name.IsReadOnly = true;
-            TextBox_Surname.IsReadOnly = true;
-            TextBox_Email.IsReadOnly = true;
-            TextBox_Phone.IsReadOnly = true;
-            TextBox_Git.IsReadOnly = true;
-            TextBox_City.IsReadOnly = true;
-            TextBox_Agreement.IsReadOnly = true;
-
-            TextBox_TeacherAssessment.IsReadOnly = true;
-
-            _studentServices.Update(Student);
-            StudentCard.UpdateFields();
+            else
+            {
+                if (regex.IsMatch(TextBox_Email.Text) == false)
+                {
+                    MessageBox.Show("Incorrect email format");
+                }
+                else
+                {
+                    MessageBox.Show("Name, Surname, Email and Phone are required fields. Please fill them to create a student");
+                }
+            }
         }
 
         private void Button_DeleteStudent_Click(object sender, RoutedEventArgs e)
@@ -119,7 +150,7 @@ namespace EJournalUI
             new CommentsService().AddComment(comment, Student);
         }
 
-        private void TextBox_Phone_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void TextBox_Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
@@ -128,6 +159,22 @@ namespace EJournalUI
         {
             _studentServices.UpdateStudentRating(Student);
             TextBlock_Rating.Text = Student.Ranking.ToString();
+        }
+
+        private void TextBox_Name_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void TextBox_Surname_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_TeacherAssessment_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
         }
     }
 }

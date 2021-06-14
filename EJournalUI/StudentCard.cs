@@ -9,10 +9,11 @@ namespace EJournalUI
 {
     public class StudentCard : Border
     {
-        public Student Student { get; set; }
         private TextBlock _fullName;
-        private TextBlock _email;
-        private TextBlock _git;
+        private TextBlock _agreementNumberTextBlock;
+        private TextBlock _cityTexBlock;
+        
+        public Student Student { get; set; }
 
         public StudentCard(Student student)
         {
@@ -33,25 +34,25 @@ namespace EJournalUI
             TextBlock textBlock = new TextBlock();
 
             _fullName = new TextBlock();
-            _fullName.Text = $"{Student.Surname} {Student.Name}";
+            _fullName.Text = $"{Student.Name} {Student.Surname}";
             _fullName.Margin = new Thickness(5, 22, 0, 24);
             _fullName.TextAlignment = TextAlignment.Left;
             Grid.SetColumn(_fullName, 0);
             grid.Children.Add(_fullName);
 
-            _email = new TextBlock();
-            _email.Text = Student.Email;
-            _email.Margin = new Thickness(5, 10, 5, 35);
-            _email.TextAlignment = TextAlignment.Left;
-            Grid.SetColumn(_email, 1);
-            grid.Children.Add(_email);
+            _agreementNumberTextBlock = new TextBlock();
+            _agreementNumberTextBlock.Text = Student.Email;
+            _agreementNumberTextBlock.Margin = new Thickness(5, 10, 5, 35);
+            _agreementNumberTextBlock.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(_agreementNumberTextBlock, 1);
+            grid.Children.Add(_agreementNumberTextBlock);
 
-            _git = new TextBlock();
-            _git.Text = Student.Git;
-            _git.Margin = new Thickness(5, 35, 5, 10);
-            _git.TextAlignment = TextAlignment.Left;
-            Grid.SetColumn(_git, 1);
-            grid.Children.Add(_git);
+            _cityTexBlock = new TextBlock();
+            _cityTexBlock.Text = Student.City;
+            _cityTexBlock.Margin = new Thickness(5, 35, 5, 10);
+            _cityTexBlock.TextAlignment = TextAlignment.Left;
+            Grid.SetColumn(_cityTexBlock, 1);
+            grid.Children.Add(_cityTexBlock);
 
             MouseEnter += StudentCard_MouseEnter;
             MouseLeave += StudentCard_MouseLeave;
@@ -71,14 +72,14 @@ namespace EJournalUI
 
         private void StudentWindow_StudentDeleted(object sender, System.EventArgs e)
         {
-            ((WrapPanel)(this.Parent)).Children.Remove(this);
+            ((WrapPanel)(Parent)).Children.Remove(this);
         }
 
         public void UpdateFields()
         {
             _fullName.Text = $"{Student.Surname} {Student.Name}";
-            _email.Text = Student.Email;
-            _git.Text = Student.Git;
+            _agreementNumberTextBlock.Text = Student.Email;
+            _cityTexBlock.Text = Student.Git;
         }
 
         private void StudentCard_MouseEnter(object sender, MouseEventArgs e)

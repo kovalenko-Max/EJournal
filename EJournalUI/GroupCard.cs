@@ -19,7 +19,6 @@ namespace EJournalUI
 
         public GroupCard(Group group)
         {
-            
             Group = group;
             Height = 70;
             Width = 400;
@@ -82,12 +81,13 @@ namespace EJournalUI
             MouseLeave += GroupCard_MouseLeave;
             Group.GrouChanged += UpdateFields;
         }
+
         public void DeleteGroupCard()
         {
             WasDeleted?.Invoke(this, new EventArgs());
         }
 
-        public void UpdateFields(object sender, EventArgs e)
+        private void UpdateFields(object sender, EventArgs e)
         {
             if (sender is Group)
             {

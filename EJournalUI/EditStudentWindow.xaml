@@ -17,7 +17,7 @@
         <TextBox Name ="TextBox_Name"  HorizontalAlignment="Left" Margin="126,31,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_Surname" HorizontalAlignment="Left" Margin="126,57,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_Email" HorizontalAlignment="Left" Margin="126,83,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
-        <TextBox Name ="TextBox_Phone" HorizontalAlignment="Left" Margin="126,109,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
+        <TextBox Name ="TextBox_Phone" HorizontalAlignment="Left" Margin="126,109,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214" PreviewTextInput="TextBox_Phone_PreviewTextInput"/>
         <TextBox Name ="TextBox_Git" HorizontalAlignment="Left" Margin="126,136,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_City" HorizontalAlignment="Left" Margin="126,162,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>
         <TextBox Name ="TextBox_AgreementNumber" HorizontalAlignment="Left" Margin="126,188,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="214"/>

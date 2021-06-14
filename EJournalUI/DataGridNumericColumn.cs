@@ -5,7 +5,8 @@ namespace EJournalUI
 {
     class DataGridNumericColumn : DataGridTextColumn
     {
-        protected override object PrepareCellForEdit(System.Windows.FrameworkElement editingElement, System.Windows.RoutedEventArgs editingEventArgs)
+        protected override object PrepareCellForEdit(System.Windows.FrameworkElement editingElement,
+            System.Windows.RoutedEventArgs editingEventArgs)
         {
             TextBox edit = editingElement as TextBox;
             edit.PreviewTextInput += OnPreviewTextInput;
@@ -13,7 +14,7 @@ namespace EJournalUI
             return base.PrepareCellForEdit(editingElement, editingEventArgs);
         }
 
-        void OnPreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void OnPreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             Regex regex = new Regex("^[0-9][0-9]?$|^100$");
             string futureText = ((TextBox)sender).Text + e.Text;
