@@ -9,7 +9,6 @@
         Name="ProjectGroupWindow">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="107*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="910*"/>
         </Grid.ColumnDefinitions>

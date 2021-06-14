@@ -1,10 +1,7 @@
 ﻿using EJournalBLL;
 using EJournalBLL.Models;
 using EJournalBLL.Services;
-using EJournalDAL.Repository;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -101,18 +98,13 @@ namespace EJournalUI
             button.Click += Button_DeleteExercise_Click;
         }
 
-        private void ExercisesCard_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Button_DeleteExercise_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Are you sure want to delete item?", "Delete confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 ExercisesService exercisesService = new ExercisesService();
                 exercisesService.DeleteStudentExercise(Exercise.Id);
-                ((StackPanel)(this.Parent)).Children.Remove(this);
+                ((StackPanel)(Parent)).Children.Remove(this);
             }
         }
     }

@@ -17,12 +17,9 @@ namespace EJournalUI
         private ProjectService _projectServices;
         private ProjectGroupSevice _projectGroupServices;
         private StudentService _studentServices;
-
-        public ProjectGroup ProjectGroup { get; set; }
-        public GroupCard SelectedGroupCard { get; set; }
-        public StudentCard SelectedStudentCard;
-        public ProjectCard SelectedProjectCard;
-        public ProjectGroupCard SelectedProjectGroupCard;
+        private GroupCard _selectedGroupCard;
+        private ProjectCard _selectedProjectCard;
+        private ProjectGroupCard _selectedProjectGroupCard;
 
         public AllGroupsWindow()
         {
@@ -39,7 +36,7 @@ namespace EJournalUI
         }
 
         #region Groups
-        public void PrintAllGroupsFromDB()
+        private void PrintAllGroupsFromDB()
         {
             GroupsWrapPanel.Children.Clear();
             foreach (Group group in _groupService.Groups)
@@ -51,7 +48,7 @@ namespace EJournalUI
             }
         }
 
-        public void SelectGroupCard(GroupCard groupCard)
+        private void SelectGroupCard(GroupCard groupCard)
         {
             HighlightSelectedGroupCard(groupCard);
             UpdateGroupInfoGridFieldts(null, null);
@@ -62,27 +59,27 @@ namespace EJournalUI
 
         private void HighlightSelectedGroupCard(GroupCard groupCard)
         {
-            if (SelectedGroupCard != null)
+            if (_selectedGroupCard != null)
             {
-                SelectedGroupCard.Background = Brushes.White;
-                SelectedGroupCard.Group.GrouChanged -= UpdateGroupInfoGridFieldts;
+                _selectedGroupCard.Background = Brushes.White;
+                _selectedGroupCard.Group.GrouChanged -= UpdateGroupInfoGridFieldts;
             }
 
-            SelectedGroupCard = groupCard;
+            _selectedGroupCard = groupCard;
             BrushConverter brushConverter = new BrushConverter();
-            SelectedGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
-            SelectedGroupCard.Group.GrouChanged += UpdateGroupInfoGridFieldts;
+            _selectedGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
+            _selectedGroupCard.Group.GrouChanged += UpdateGroupInfoGridFieldts;
         }
 
         private void UpdateGroupInfoGridFieldts(object sender, EventArgs e)
         {
-            GroupNameTextBox.Text = SelectedGroupCard.Group.Name;
-            GroupCourseTextBox.Text = SelectedGroupCard.Group.Course.Name;
-            StudentsCountTextBox.Text = SelectedGroupCard.Group.Students.Count.ToString();
+            GroupNameTextBox.Text = _selectedGroupCard.Group.Name;
+            GroupCourseTextBox.Text = _selectedGroupCard.Group.Course.Name;
+            StudentsCountTextBox.Text = _selectedGroupCard.Group.Students.Count.ToString();
 
             GroupStudentsWrapPanel.Children.Clear();
 
-            foreach (Student student in SelectedGroupCard.Group.Students)
+            foreach (Student student in _selectedGroupCard.Group.Students)
             {
                 StudentCard studentCard = new StudentCard(student);
                 GroupStudentsWrapPanel.Children.Add(studentCard);
@@ -108,9 +105,9 @@ namespace EJournalUI
 
         private void Button_EditGroup_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGroupCard != null)
+            if (_selectedGroupCard != null)
             {
-                EditGroupWindow editGroupWindow = new EditGroupWindow(SelectedGroupCard);
+                EditGroupWindow editGroupWindow = new EditGroupWindow(_selectedGroupCard);
                 Hide();
                 editGroupWindow.ShowDialog();
                 Show();
@@ -131,8 +128,8 @@ namespace EJournalUI
         private void GetStudentsByGroup()
         {
             GroupStudentsWrapPanel.Children.Clear();
-            _studentServices.GetStudentsByGroup(SelectedGroupCard.Group.Id);
-            SelectedGroupCard.Group.Students = _studentServices.Students;
+            _studentServices.GetStudentsByGroup(_selectedGroupCard.Group.Id);
+            _selectedGroupCard.Group.Students = _studentServices.Students;
 
             foreach (Student student in _studentServices.Students)
             {
@@ -150,7 +147,7 @@ namespace EJournalUI
         {
             AttendancesStackPanel.Children.Clear();
             LessonsService lessonsLogic = new LessonsService(new LessonsAttendancesRepository());
-            List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(SelectedGroupCard.Group);
+            List<Lesson> lessons = lessonsLogic.GetLessonsAttendancesByGroup(_selectedGroupCard.Group);
 
             foreach (var lesson in lessons)
             {
@@ -196,12 +193,12 @@ namespace EJournalUI
 
         private void Button_AttendancesAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGroupCard != null)
+            if (_selectedGroupCard != null)
             {
                 Lesson lesson = new Lesson();
-                lesson.IdGroup = SelectedGroupCard.Group.Id;
+                lesson.IdGroup = _selectedGroupCard.Group.Id;
 
-                foreach (var student in SelectedGroupCard.Group.Students)
+                foreach (var student in _selectedGroupCard.Group.Students)
                 {
                     lesson.Attendances.Add(new Attendances(student));
                 }
@@ -219,13 +216,13 @@ namespace EJournalUI
 
         private void Button_ExercisesAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGroupCard != null)
+            if (_selectedGroupCard != null)
             {
-                Exercise exercise = new Exercise(SelectedGroupCard.Group);
-                exercise.IdGroup = SelectedGroupCard.Group.Id;
+                Exercise exercise = new Exercise(_selectedGroupCard.Group);
+                exercise.IdGroup = _selectedGroupCard.Group.Id;
                 exercise.ExerciseType = (ExcerciseType)0;
 
-                foreach (var student in SelectedGroupCard.Group.Students)
+                foreach (var student in _selectedGroupCard.Group.Students)
                 {
                     exercise.StudentMarks.Add(new StudentMark(student));
                 }
@@ -269,7 +266,7 @@ namespace EJournalUI
             HomeworkStackPanel.Children.Clear();
             ExercisesService exercisesService = new ExercisesService();
 
-            List<Exercise> exercises = exercisesService.GetExercisesByGroup(SelectedGroupCard.Group);
+            List<Exercise> exercises = exercisesService.GetExercisesByGroup(_selectedGroupCard.Group);
             foreach (var exercise in exercises)
             {
                 HomeworkStackPanel.Children.Add(new ExercisesCard(exercise));
@@ -279,21 +276,21 @@ namespace EJournalUI
         #endregion
 
         #region Projects
-        public void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
+        private void PrintStudentsFromProjectGroup(ProjectGroup projectGroup)
         {
             ProjectTeamsStudentsWrapPanel.Children.Clear();
             projectGroup.Students = new List<Student>();
             foreach (Student student in _studentServices.GetStudentsFromProjectGroups(projectGroup.Id))
             {
                 projectGroup.Students.Add(student);
-                projectGroup.IdProject = SelectedProjectCard.Project.Id;
+                projectGroup.IdProject = _selectedProjectCard.Project.Id;
                 StudentCard studentCard = new StudentCard(student);
                 studentCard.MouseDown += ProjectGroupCard_MouseLeftButtonDown;
                 ProjectTeamsStudentsWrapPanel.Children.Add(studentCard);
             }
         }
 
-        public void PrintAllProjectGroupsFromDB(int IdProject)
+        private void PrintAllProjectGroupsFromDB(int IdProject)
         {
             ProjectTeamsWrapPanel.Children.Clear();
             ProjectTeamsStudentsWrapPanel.Children.Clear();
@@ -308,12 +305,12 @@ namespace EJournalUI
 
         private void Button_CreateTeam_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedProjectCard != null)
+            if (_selectedProjectCard != null)
             {
                 if (TeamNameTextBox.Text != string.Empty)
                 {
                     ProjectGroup projectGroup = new ProjectGroup(TeamNameTextBox.Text);
-                    projectGroup.IdProject = SelectedProjectCard.Project.Id;
+                    projectGroup.IdProject = _selectedProjectCard.Project.Id;
                     projectGroup.Id = _projectGroupServices.AddProjectGroup(projectGroup);
                     ProjectGroupCard projectGroupCard = new ProjectGroupCard(projectGroup);
                     projectGroupCard.MouseUp += ProjectGroupCard_MouseLeftButtonDown;
@@ -325,22 +322,22 @@ namespace EJournalUI
 
         private void Button_EditProjectGroup_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedProjectGroupCard != null)
+            if (_selectedProjectGroupCard != null)
             {
-                ProjectGroup projectGroup = SelectedProjectGroupCard.ProjectGroup;
+                ProjectGroup projectGroup = _selectedProjectGroupCard.ProjectGroup;
                 EditProjectGroupWindow groupWindow = new EditProjectGroupWindow(projectGroup);
                 Hide();
                 groupWindow.ShowDialog();
                 PrintAllProjectGroupsFromDB(projectGroup.Id);
-                SelectProjectCard(SelectedProjectCard);
+                SelectProjectCard(_selectedProjectCard);
                 Show();
             }
         }
 
-        public void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
+        private void Button_DeleteProjectGroup_Click(object sender, RoutedEventArgs e)
         {
 
-            if (SelectedProjectGroupCard.ProjectGroup == null)
+            if (_selectedProjectGroupCard.ProjectGroup == null)
             {
                 MessageBox.Show("Please select the team", "Select", MessageBoxButton.OK);
             }
@@ -349,13 +346,13 @@ namespace EJournalUI
                 if (MessageBox.Show("Delete this team?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     ProjectTeamsStudentsWrapPanel.Children.Clear();
-                    _projectGroupServices.DeleteProjectGroup(SelectedProjectGroupCard.ProjectGroup.Id);
-                    ProjectTeamsWrapPanel.Children.Remove(SelectedProjectGroupCard);
+                    _projectGroupServices.DeleteProjectGroup(_selectedProjectGroupCard.ProjectGroup.Id);
+                    ProjectTeamsWrapPanel.Children.Remove(_selectedProjectGroupCard);
                 }
             }
         }
 
-        public void SelectProjectGroupCard(ProjectGroupCard projectGroupCard)
+        private void SelectProjectGroupCard(ProjectGroupCard projectGroupCard)
         {
             HighlightSelectedProjectGroup(projectGroupCard);
             PrintStudentsFromProjectGroup(projectGroupCard.ProjectGroup);
@@ -365,14 +362,14 @@ namespace EJournalUI
 
         private void HighlightSelectedProjectGroup(ProjectGroupCard projectGroupCard)
         {
-            if (SelectedProjectGroupCard != null)
+            if (_selectedProjectGroupCard != null)
             {
-                SelectedProjectGroupCard.Background = Brushes.White;
+                _selectedProjectGroupCard.Background = Brushes.White;
             }
 
-            SelectedProjectGroupCard = projectGroupCard;
+            _selectedProjectGroupCard = projectGroupCard;
             BrushConverter brushConverter = new BrushConverter();
-            SelectedProjectGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
+            _selectedProjectGroupCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
         }
 
         private void ProjectGroupCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -386,7 +383,7 @@ namespace EJournalUI
             }
         }
 
-        public void PrintAllProjectsFromDB()
+        private void PrintAllProjectsFromDB()
         {
             ProjectsWrapPanel.Children.Clear();
             foreach (Project project in _projectServices.GetAllProjects())
@@ -414,15 +411,15 @@ namespace EJournalUI
         {
             if (MessageBox.Show("Delete this project?", "Please select", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                if (SelectedProjectCard != null)
+                if (_selectedProjectCard != null)
                 {
-                    _projectServices.DeleteProject(SelectedProjectCard.Project.Id);
-                    ProjectsWrapPanel.Children.Remove(SelectedProjectCard);
+                    _projectServices.DeleteProject(_selectedProjectCard.Project.Id);
+                    ProjectsWrapPanel.Children.Remove(_selectedProjectCard);
                 }
             }
         }
 
-        public void SelectProjectCard(ProjectCard projectCard)
+        private void SelectProjectCard(ProjectCard projectCard)
         {
             ProjectNameTextBox.Text = projectCard.Project.Name;
             ProjectDescriptionTextBox.Text = projectCard.Project.Description;
@@ -430,20 +427,20 @@ namespace EJournalUI
             PrintAllProjectGroupsFromDB(projectCard.Project.Id);
             EditProjectButton.IsEnabled = true;
             DeleteProjectButton.IsEnabled = true;
-            SelectedProjectGroupCard = null;
+            _selectedProjectGroupCard = null;
             Button_DeleteProjectGroup.IsEnabled = false;
         }
 
         private void HighlightSelectedProject(ProjectCard projectCard)
         {
-            if (SelectedProjectCard != null)
+            if (_selectedProjectCard != null)
             {
-                SelectedProjectCard.Background = Brushes.White;
+                _selectedProjectCard.Background = Brushes.White;
             }
 
-            SelectedProjectCard = projectCard;
+            _selectedProjectCard = projectCard;
             BrushConverter brushConverter = new BrushConverter();
-            SelectedProjectCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
+            _selectedProjectCard.Background = (Brush)brushConverter.ConvertFrom("#FFCBCBCB");
         }
 
         private void ProjectCard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -459,19 +456,19 @@ namespace EJournalUI
 
         private void Button_EditProject_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedProjectCard != null)
+            if (_selectedProjectCard != null)
             {
                 EditProjectWindow editProjectWindow = new EditProjectWindow();
-                editProjectWindow.Project = SelectedProjectCard.Project;
+                editProjectWindow.Project = _selectedProjectCard.Project;
                 editProjectWindow.ProjectNameTextBox.Text = editProjectWindow.Project.Name;
                 editProjectWindow.DescriptionTextBox.Text = editProjectWindow.Project.Description;
 
                 if (editProjectWindow.ShowDialog() == true)
                 {
                     ProjectService projectServices = new ProjectService();
-                    projectServices.UpdateProject(SelectedProjectCard.Project);
-                    SelectedProjectCard.UpdateFields();
-                    SelectProjectCard(SelectedProjectCard);
+                    projectServices.UpdateProject(_selectedProjectCard.Project);
+                    _selectedProjectCard.UpdateFields();
+                    SelectProjectCard(_selectedProjectCard);
                 }
             }
         }
@@ -485,8 +482,8 @@ namespace EJournalUI
 
             if (addStudentWindow.ShowDialog() == true)
             {
-                _studentServices.AddStudent(addStudentWindow.student);
-                StudentCard studentCard = new StudentCard(addStudentWindow.student);
+                _studentServices.AddStudent(addStudentWindow.Student);
+                StudentCard studentCard = new StudentCard(addStudentWindow.Student);
                 AllStudentCardsWrapPanel.Children.Add(studentCard);
             }
         }

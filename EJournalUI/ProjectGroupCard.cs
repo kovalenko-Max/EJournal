@@ -8,9 +8,9 @@ namespace EJournalUI
 {
     public class ProjectGroupCard : Border
     {
-        public ProjectGroup ProjectGroup { get; set; }
-
         private TextBlock _projectGroupNameTextBox;
+
+        public ProjectGroup ProjectGroup { get; set; }
 
         public ProjectGroupCard(ProjectGroup projectGroup)
         {

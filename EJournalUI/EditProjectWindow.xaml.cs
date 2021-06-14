@@ -32,7 +32,7 @@ namespace EJournalUI
                 }
             }
 
-            this.DialogResult = true;
+            DialogResult = true;
         }
     }
 }

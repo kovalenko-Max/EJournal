@@ -19,14 +19,13 @@ namespace EJournalUI
     public partial class EditProjectGroupWindow : Window
     {
         private StudentService _studentServices;
-
         private ProjectGroupSevice _projectGroupServices;
         private CommentsService _commentService;
-        public ProjectGroup ProjectGroup { get; set; }
-        public Action PrintStudents;
-        public List<Student> studentsList;
 
-        public StudentCard StudentCard;
+        public ProjectGroup ProjectGroup { get; set; }
+        public Action PrintStudents { get; set; }
+        public List<Student> studentsList { get; set; }
+        public StudentCard StudentCard { get; set; }
 
         public EditProjectGroupWindow(ProjectGroup projectGroup)
         {
@@ -46,12 +45,7 @@ namespace EJournalUI
             PrintStudents.Invoke();
         }
 
-        public EditProjectGroupWindow()
-        {
-
-        }
-
-        public void PrintAllStudents()
+        private void PrintAllStudents()
         {
             AllStudentsWrapPanel.Children.Clear();
             foreach (Student student in studentsList)
@@ -62,7 +56,7 @@ namespace EJournalUI
             }
         }
 
-        public void PrintProjectGroupStudents()
+        private void PrintProjectGroupStudents()
         {
             TeamStudentsWrapPanel.Children.Clear();
             foreach (Student student in ProjectGroup.Students)
@@ -73,7 +67,7 @@ namespace EJournalUI
             }
         }
 
-        public void SelectStudentCard(StudentCard studentCard)
+        private void SelectStudentCard(StudentCard studentCard)
         {
             HighlightSelectedStudentCard(studentCard);
             AddOrRemoveStudentFromProjectGroup(studentCard.Student);
@@ -104,7 +98,6 @@ namespace EJournalUI
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-
             if (ProjectGroupTextBox.Text != string.Empty)
             {
                 ProjectGroup.Name = ProjectGroupTextBox.Text;
@@ -138,7 +131,6 @@ namespace EJournalUI
             {
                 studentsList.Remove(studentInput);
                 ProjectGroup.Students.Add(studentInput);
-
             }
             PrintStudents.Invoke();
         }

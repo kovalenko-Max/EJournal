@@ -1,6 +1,5 @@
 ﻿using EJournalBLL.Services;
 using EJournalBLL.Models;
-using System.Configuration;
 using System.Windows;
 using EJournalDAL.Repository;
 
@@ -11,8 +10,9 @@ namespace EJournalUI
     /// </summary>
     public partial class DialogWindow : Window
     {
-        public Group Group;
         private CoursesService _coursesService;
+
+        public Group Group { get; set; }
         public DialogWindow(DialogWindowType dialogWindowType)
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace EJournalUI
                 && CourseComboBox.SelectedItem != null)
             {
                 Group = new Group(NameTextBox.Text, (Course)CourseComboBox.SelectedItem);
-                this.DialogResult = true;
+                DialogResult = true;
             }
         }
 
@@ -37,7 +37,7 @@ namespace EJournalUI
             Group.Name = NameTextBox.Text;
             Group.Course = (Course)CourseComboBox.SelectedItem;
 
-            this.DialogResult = true;
+            DialogResult = true;
         }
 
         private void Button_EditCourse_Accept_Click(object sender, RoutedEventArgs e)
@@ -48,7 +48,7 @@ namespace EJournalUI
                 Course course = (Course)CourseComboBox.SelectedItem;
                 course.Name = NameTextBox.Text;
                 _coursesService.UpdateCourse(course);
-                this.DialogResult = true;
+                DialogResult = true;
             }
         }
 
@@ -57,7 +57,7 @@ namespace EJournalUI
             if (NameTextBox.Text != string.Empty)
             {
                 _coursesService.AddCourse(new EJournalBLL.Models.Course(NameTextBox.Text));
-                this.DialogResult = true;
+                DialogResult = true;
             }
         }
 
@@ -69,7 +69,7 @@ namespace EJournalUI
                 if (!_coursesService.IsGroupsContainsThisCourse(course))
                 {
                     _coursesService.DeleteCourse(course);
-                    this.DialogResult = true;
+                    DialogResult = true;
                 }
                 else
                 {

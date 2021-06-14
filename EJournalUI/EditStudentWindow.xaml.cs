@@ -1,18 +1,8 @@
 ﻿using EJournalBLL.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace EJournalUI
 {
@@ -21,7 +11,7 @@ namespace EJournalUI
     /// </summary>
     public partial class EditStudentWindow : Window
     {
-        public Student student;
+        public Student Student { get; set; }
         public EditStudentWindow()
         {
             InitializeComponent();
@@ -39,13 +29,13 @@ namespace EJournalUI
         {
             Regex regex = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 
-            if (student is null && !String.IsNullOrEmpty(TextBox_Name.Text) &&
+            if (Student is null && !String.IsNullOrEmpty(TextBox_Name.Text) &&
                 !String.IsNullOrEmpty(TextBox_Surname.Text) &&
                 !String.IsNullOrEmpty(TextBox_Email.Text) &&
                 regex.IsMatch(TextBox_Email.Text) &&
                 !String.IsNullOrEmpty(TextBox_Phone.Text))
             {
-                student = new Student(TextBox_Name.Text, TextBox_Surname.Text, TextBox_Email.Text, TextBox_Phone.Text, TextBox_Git.Text, TextBox_City.Text, TextBox_AgreementNumber.Text);
+                Student = new Student(TextBox_Name.Text, TextBox_Surname.Text, TextBox_Email.Text, TextBox_Phone.Text, TextBox_Git.Text, TextBox_City.Text, TextBox_AgreementNumber.Text);
                 MessageBox.Show("Student created");
                 this.DialogResult = true;
             }
@@ -60,7 +50,6 @@ namespace EJournalUI
                     MessageBox.Show("Name, Surname, Email and Phone are required fields. Please fill them to create a student");
                 }
             }
-
         }
 
         private void TextBox_Name_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -79,6 +68,5 @@ namespace EJournalUI
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
-
     }
 }

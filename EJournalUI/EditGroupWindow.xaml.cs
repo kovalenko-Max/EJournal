@@ -14,12 +14,11 @@ namespace EJournalUI
     /// </summary>
     public partial class EditGroupWindow : Window
     {
-        public List<Student> Students { get; set; }
-
-        public GroupCard GroupCard { get; set; }
-
         private StudentService _studentService;
         private GroupsService _groupsService;
+
+        public List<Student> Students { get; set; }
+        public GroupCard GroupCard { get; set; }
 
         public EditGroupWindow(GroupCard groupCard)
         {

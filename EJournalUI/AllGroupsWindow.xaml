@@ -10,10 +10,6 @@
         <TabControl>
             <TabItem Header = "Groups" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
                 <Grid Background="#c5cfd4">
-                    <!--<Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45*"/>
-                        <ColumnDefinition Width="443*"/>
-                    </Grid.ColumnDefinitions>-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75" MinHeight="75"/>
                         <RowDefinition Height="480*"/>
