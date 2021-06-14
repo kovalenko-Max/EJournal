@@ -147,15 +147,6 @@ namespace EJournalBLL.Tests
             Assert.AreEqual(expectedGroupDTO, result);
         }
 
-
-        [TestCaseSource(typeof(GetAttandanceDataSource))]
-        public void AttendanceDTO_WhenMapToCourse_ShouldMapCorrectly(AttendanceDTO attandanceDTO, Attendances expectedAttandance)
-        {
-            var result = ObjectMapper.Mapper.Map<Attendances>(attandanceDTO);
-
-            Assert.AreEqual(expectedAttandance, result);
-        }
-
         [TestCaseSource(typeof(GetAttandanceDTODataSource))]
         public void Attendance_WhenMapToCourseDTO_ShouldMapCorrectly(Attendances attandance, AttendanceDTO expectedAttandanceDTO)
         {
@@ -168,7 +159,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 StudentDTO studentDTO = BLLMock.GetStudentDTOMock(1);
                 Student student = BLLMock.GetStudentMock(1);
 
@@ -201,7 +191,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 CommentDTO commentDTO = BLLMock.GetCommentDTOMock(1);
                 Comment comment = BLLMock.GetCommenMock(1);
 
@@ -269,7 +258,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 ProjectGroupDTO projectDTO = BLLMock.GetProjectGroupDTOMock(1);
                 ProjectGroup project = BLLMock.GetProjectGroupeMock(1);
 
@@ -304,7 +292,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 ExerciseDTO projectDTO = BLLMock.GetExerciseDTOMock(1);
                 Exercise project = BLLMock.GetExerciseMock(1);
 
@@ -316,7 +303,6 @@ namespace EJournalBLL.Tests
 
                 projectDTO = BLLMock.GetExerciseDTOMock(8);
                 project = BLLMock.GetExerciseMock(8);
-
 
                 yield return new object[]
                 {
@@ -339,7 +325,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 LessonDTO lessonDTO = BLLMock.GetLessonDTOMock(1,2,0,0);
                 Lesson lesson= BLLMock.GetLesson(1, 2, 0, 0);
 
@@ -351,7 +336,6 @@ namespace EJournalBLL.Tests
 
                 lessonDTO = BLLMock.GetLessonDTOMock(3, 4, 0, 0);
                 lesson = BLLMock.GetLesson(3, 4, 0, 0);
-
 
                 yield return new object[]
                 {
@@ -374,7 +358,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 CourseDTO courseDTO = BLLMock.GetCourseDTOMock(2);
                 Course course = BLLMock.GetCourseMock(2);
 
@@ -386,7 +369,6 @@ namespace EJournalBLL.Tests
 
                 courseDTO = BLLMock.GetCourseDTOMock(5);
                 course = BLLMock.GetCourseMock(5);
-
 
                 yield return new object[]
                 {
@@ -409,7 +391,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 GroupDTO groupDTO = BLLMock.GetGroupDTOMock(4);
                 Group course = BLLMock.GetGroupMock(4);
 
@@ -421,7 +402,6 @@ namespace EJournalBLL.Tests
 
                 groupDTO = BLLMock.GetGroupDTOMock(10);
                 course = BLLMock.GetGroupMock(10);
-
 
                 yield return new object[]
                 {
@@ -444,7 +424,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 ProjectGroupStudent projectGroupStudent = BLLMock.GetProjectGroupStudentMock(5);
                 ProjectGroupStudentDTO projectGroupStudentDTO = BLLMock.GetProjectGroupStudentDTOMock(5);
 
@@ -456,7 +435,6 @@ namespace EJournalBLL.Tests
 
                 projectGroupStudent = BLLMock.GetProjectGroupStudentMock(15);
                 projectGroupStudentDTO = BLLMock.GetProjectGroupStudentDTOMock(15);
-
 
                 yield return new object[]
                 {
@@ -479,7 +457,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 Student student = BLLMock.GetStudentMock(1);
                 StudentDTO studentDTO = BLLMock.GetStudentDTOMock(1);
 
@@ -513,7 +490,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 Comment comment = BLLMock.GetCommenMock(1);
                 CommentDTO commentDTO = BLLMock.GetCommentDTOMock(1);
 
@@ -547,7 +523,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 Project project = BLLMock.GetProjectMock(1);
                 ProjectDTO projectDTO = BLLMock.GetProjectDTOMock(1);
 
@@ -581,7 +556,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 ProjectGroup project = BLLMock.GetProjectGroupeMock(1);
                 ProjectGroupDTO projectDTO = BLLMock.GetProjectGroupDTOMock(1);
 
@@ -616,7 +590,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 Exercise project = BLLMock.GetExerciseMock(1);
                 ExerciseDTO projectDTO = BLLMock.GetExerciseDTOMock(1);
 
@@ -651,7 +624,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 Lesson lesson = BLLMock.GetLesson(1, 2, 3, 4);
                 LessonDTO lessonDTO = BLLMock.GetLessonDTOMock(1, 2, 3, 4);
 
@@ -686,7 +658,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 Course course = BLLMock.GetCourseMock(2);
                 CourseDTO courseDTO = BLLMock.GetCourseDTOMock(2);
 
@@ -721,7 +692,6 @@ namespace EJournalBLL.Tests
         {
             public IEnumerator GetEnumerator()
             {
-
                 Group group = BLLMock.GetGroupMock(4);
                 GroupDTO groupDTO = BLLMock.GetGroupDTOMock(4);
 
@@ -733,7 +703,6 @@ namespace EJournalBLL.Tests
 
                 group = BLLMock.GetGroupMock(10);
                 groupDTO = BLLMock.GetGroupDTOMock(10);
-
 
                 yield return new object[]
                 {
@@ -752,45 +721,10 @@ namespace EJournalBLL.Tests
             }
         }
 
-        public class GetAttandanceDataSource : IEnumerable
-        {
-            public IEnumerator GetEnumerator()
-            {
-
-                AttendanceDTO attandanceDTO = BLLMock.GetAttendanceDTOMock(10);
-                Attendances attandance = BLLMock.GetAttendancesMock(10);
-
-                yield return new object[]
-                {
-                    attandanceDTO,
-                    attandance
-                };
-
-                attandanceDTO = BLLMock.GetAttendanceDTOMock(30);
-                attandance = BLLMock.GetAttendancesMock(30);
-
-
-                yield return new object[]
-                {
-                    attandanceDTO,
-                    attandance
-                };
-
-                attandanceDTO = BLLMock.GetAttendanceDTOMock(20);
-                attandance = BLLMock.GetAttendancesMock(20);
-
-                yield return new object[]
-                {
-                    attandanceDTO,
-                    attandance
-                };
-            }
-        }
         public class GetAttandanceDTODataSource : IEnumerable
         {
             public IEnumerator GetEnumerator()
             {
-
                 Attendances attandance = BLLMock.GetAttendancesMock(10);
                 AttendanceDTO attandanceDTO = BLLMock.GetAttendanceDTOMock(10);
 
@@ -802,7 +736,6 @@ namespace EJournalBLL.Tests
 
                 attandance = BLLMock.GetAttendancesMock(30);
                 attandanceDTO = BLLMock.GetAttendanceDTOMock(30);
-
 
                 yield return new object[]
                 {

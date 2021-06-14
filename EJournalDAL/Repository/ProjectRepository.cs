@@ -17,12 +17,12 @@ namespace EJournalDAL.Repository
              connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ToString();
         }
 
-        public List<ProjectDTO> GetProjects()
+        public List<ProjectDTO> GetAllProjects()
         {
             List<ProjectDTO> projects = new List<ProjectDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = $"exec [EJournal].[{MethodBase.GetCurrentMethod().Name}]";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
                 projects = db.Query<ProjectDTO>(connectionQuery).ToList();
 
             }
@@ -34,7 +34,7 @@ namespace EJournalDAL.Repository
             ProjectDTO project = null;
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[GetProject] @Id";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
                 project = db.Query<ProjectDTO>(connectionQuery, new { id }).FirstOrDefault();
 
             }
@@ -46,7 +46,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[AddProject] @Name, @Description";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Name, @Description";
                 int? projectId = db.Query<int>(connectionQuery, project).FirstOrDefault();
                 project.Id = projectId;
             }
@@ -57,7 +57,7 @@ namespace EJournalDAL.Repository
 
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[UpdateProject] @Id, @Name, @Description";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id, @Name, @Description";
                 db.Execute(connectionQuery, project);
                 
             }

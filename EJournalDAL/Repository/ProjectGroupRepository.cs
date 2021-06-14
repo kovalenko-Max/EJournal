@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using Dapper;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
@@ -17,29 +18,29 @@ namespace EJournalDAL.Repository
 
         }
 
-        public int Create(ProjectGroupDTO projectGroup)
+        public int AddProjectGroup(ProjectGroupDTO projectGroup)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[AddProjectGroup] @Name, @IdProject";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Name, @IdProject";
                 int projectGroupId = db.Query<int>(connectionQuery, projectGroup).FirstOrDefault();
                 projectGroup.Id = projectGroupId;
             }
             return projectGroup.Id;
         }
 
-        public void Delete(int id)
+        public void DeleteProjectGroup(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[DeleteProjectGroup] @id";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @id";
                 db.Execute(connectionQuery, new { id });
             }
         }
-        public void Update(ProjectGroupDTO projectGroup, DataTable dt)
+        public void UpdateProjectGroup(ProjectGroupDTO projectGroup, DataTable dt)
         {
 
-            string command = "[EJournal].[UpdateProjectGroup]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Id", projectGroup.Id);
@@ -54,12 +55,12 @@ namespace EJournalDAL.Repository
 
         }
 
-        public List<ProjectGroupDTO> GetAllProjectsGroup(int IdProject)
+        public List<ProjectGroupDTO> GetAllProjectGroups(int IdProject)
         {
             List<ProjectGroupDTO> projectGroups = new List<ProjectGroupDTO>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[GetAllProjectGroups]  @IdProject";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @IdProject";
                 projectGroups = db.Query<ProjectGroupDTO>(connectionQuery, new { IdProject }).ToList();
 
             }
@@ -70,7 +71,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[AddStudentToProjectGroup] @IdStudent, @IdProjectGroup";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @IdStudent, @IdProjectGroup";
                 db.Execute(connectionQuery, projectGroupStudent );
             }
         }
@@ -78,7 +79,7 @@ namespace EJournalDAL.Repository
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                string connectionQuery = "exec [EJournal].[DeleteStudentFromProjectGroup] @IdStudent, @IdProjectGroup";
+                string connectionQuery = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @IdStudent, @IdProjectGroup";
                 db.Execute(connectionQuery, projectGroupStudent);
             }
         }

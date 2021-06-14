@@ -25,7 +25,7 @@ namespace EJournalBLL.Tests
         public void GetAllProject_WhenProjectService_ShouldReturnAllProjects(List<ProjectDTO> RepositoryReturns, List<Project> expectedProject)
         {
             _mock.Setup(СoursesRepository => (
-            СoursesRepository.GetProjects())).Returns(RepositoryReturns);
+            СoursesRepository.GetAllProjects())).Returns(RepositoryReturns);
 
             List<Project> actualProject = _projectService.GetAllProjects();
 

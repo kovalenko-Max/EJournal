@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[GetListStudentsInOneProjectGroup] @IdProjectGroup INT
+﻿CREATE PROCEDURE [EJournal].[GetStudentsFromProjectGroup] @IdProjectGroup INT
 AS
 SELECT s.Id
 	,s.Name
@@ -8,6 +8,7 @@ SELECT s.Id
 	,s.Git
 	,s.City
 	,s.Ranking
+	,s.TeacherAssessment
 	,s.AgreementNumber
 	,s.IsDelete
 FROM [EJournal].[StudetsProjectGroup] AS spg

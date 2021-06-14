@@ -10,10 +10,10 @@ namespace EJournalDAL.Repository
 {
     public interface IProjectGroupRepository
     {
-        public int Create(ProjectGroupDTO projectGroup);
-        public void Delete(int id);
-        public void Update(ProjectGroupDTO projectGroup, DataTable dt);
-        public List<ProjectGroupDTO> GetAllProjectsGroup(int IdProject);
+        public int AddProjectGroup(ProjectGroupDTO projectGroup);
+        public void DeleteProjectGroup(int id);
+        public void UpdateProjectGroup(ProjectGroupDTO projectGroup, DataTable dt);
+        public List<ProjectGroupDTO> GetAllProjectGroups(int IdProject);
         public void AddStudentToProjectGroup(ProjectGroupStudentDTO projectGroupStudent);
         public void DeleteStudentFromProjectGroup(ProjectGroupStudentDTO projectGroupStudent);
     }

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[UpdateLessonAttendances]
+﻿CREATE PROCEDURE [EJournal].[UpdateStudentsAttendances]
 	@StudentAttendance [EJournal].[StudentAttendance] READONLY,
     @Id int,
     @Topic nvarchar(250),

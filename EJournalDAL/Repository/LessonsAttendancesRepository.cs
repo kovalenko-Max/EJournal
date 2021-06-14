@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 
 namespace EJournalDAL.Repository
 {
@@ -17,9 +18,9 @@ namespace EJournalDAL.Repository
             _connectionString = ConfigurationManager.ConnectionStrings["EJournalDB"].ConnectionString;
         }
 
-        public int AddLessonAttendances(LessonDTO lessonDTO, DataTable dt)
+        public int AddStudentsAttendance(LessonDTO lessonDTO, DataTable dt)
         {
-            string command = "[EJournal].[AddStudentsAttendance]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Topic", lessonDTO.Topic);
@@ -36,9 +37,9 @@ namespace EJournalDAL.Repository
             return parameters.Get<int>("@IdLesson");
         }
 
-        public List<LessonDTO> GetLessonsAttendancesByGroup(int groupId)
+        public List<LessonDTO> GetStudentsAttendancesByGroup(int groupId)
         {
-            string qr = "exec [EJournal].[GetLessonsAttendancesByGroup] @GroupId";
+            string qr = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @GroupId";
 
             List<LessonDTO> lessonsDTO = new List<LessonDTO>();
 
@@ -80,9 +81,9 @@ namespace EJournalDAL.Repository
             return lessonsDTO;
         }
 
-        public void UpdateLessonsAttendances(LessonDTO lessonDTO, DataTable dt)
+        public void UpdateStudentsAttendances(LessonDTO lessonDTO, DataTable dt)
         {
-            string command = "[EJournal].[UpdateLessonAttendances]";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}]";
 
             var parameters = new DynamicParameters();
             parameters.Add("@StudentAttendance", dt.AsTableValuedParameter("[EJournal].[StudentAttendance]"));
@@ -96,9 +97,9 @@ namespace EJournalDAL.Repository
             }
         }
 
-        public void DeleteLessonAndAttendances(int id)
+        public void DeleteLessonAndStudentsAttendances(int id)
         {
-            string command = "exec [EJournal].[DeleteLessonAndAttendances] @Id";
+            string command = $"[EJournal].[{MethodBase.GetCurrentMethod().Name}] @Id";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

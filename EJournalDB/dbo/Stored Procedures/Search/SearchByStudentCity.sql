@@ -1,5 +1,5 @@
-﻿CREATE PROCEDURE [EJournal].[SearchStudentsPhone]
-@Phone NVARCHAR(50)
+﻿CREATE PROCEDURE [EJournal].[SearchByStudentCity]
+@City NVARCHAR(100)
 AS
 	SELECT [Id]
 	,[Name]
@@ -12,4 +12,4 @@ AS
 	,[AgreementNumber]
 FROM [EJournal].[Students]
 WHERE IsDelete = 0
-	AND [Phone] like ('%' + LTRIM(RTRIM(@Phone))+ '%')
+	AND City like ('%' + LTRIM(RTRIM(@City))+ '%')

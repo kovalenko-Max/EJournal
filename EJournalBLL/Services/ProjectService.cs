@@ -33,7 +33,7 @@ namespace EJournalBLL
 
         public List<Project> GetAllProjects()
         {
-            List<ProjectDTO> projectDTO = ProjectRepository.GetProjects();
+            List<ProjectDTO> projectDTO = ProjectRepository.GetAllProjects();
             List<Project> project = ObjectMapper.Mapper.Map<List<Project>>(projectDTO);
             return project;
         }

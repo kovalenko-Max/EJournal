@@ -9,7 +9,7 @@ namespace EJournalDAL.Repository
 {
     public interface IProjectRepository
     {
-        public List<ProjectDTO> GetProjects();
+        public List<ProjectDTO> GetAllProjects();
         public ProjectDTO GetProject(int id);
         public int AddProject(ProjectDTO project);
         public void UpdateProject(ProjectDTO project);

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [EJournal].[SearchStudentCours]
+﻿CREATE PROCEDURE [EJournal].[SearchByStudentGroup]
 	@Name NVARCHAR(50)
 AS
 SELECT
@@ -14,6 +14,5 @@ SELECT
 FROM [EJournal].[Students] S
 LEFT JOIN [EJournal].[GroupStudents] GS on GS.IdStudents = S.Id
 LEFT JOIN [EJournal].[Groups] G on G.Id = GS.IdGroup
-LEFT JOIN [EJournal].[Courses] C on C.Id = G.IdCourse
 WHERE S.IsDelete = 0
-	AND C.[Name] like ('%' + LTRIM(RTRIM(@Name))+ '%')
+	AND G.[Name] like ('%' + LTRIM(RTRIM(@Name))+ '%')

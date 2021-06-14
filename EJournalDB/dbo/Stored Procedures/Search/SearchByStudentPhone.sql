@@ -1,5 +1,5 @@
-﻿CREATE PROCEDURE [EJournal].[SearchStudentsEmail]
-@Email NVARCHAR(100)
+﻿CREATE PROCEDURE [EJournal].[SearchByStudentPhone]
+@Phone NVARCHAR(50)
 AS
 	SELECT [Id]
 	,[Name]
@@ -12,4 +12,4 @@ AS
 	,[AgreementNumber]
 FROM [EJournal].[Students]
 WHERE IsDelete = 0
-	AND Email like '%' + @Email + '%';
+	AND [Phone] like ('%' + LTRIM(RTRIM(@Phone))+ '%')
