@@ -11,12 +11,12 @@
             <RowDefinition Height="45*"/>
             <RowDefinition Height="47*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.RowSpan="2">
-            <TextBlock Text="Project name:"/>
+        <StackPanel Background="#2c333d" Grid.RowSpan="2">
+            <TextBlock Foreground="White" Text="Project name:"/>
             <TextBox x:Name="ProjectNameTextBox" MaxLength="50"/>
-            <TextBlock Text="Description:"/>
+            <TextBlock Foreground="White" Text="Description:"/>
             <TextBox x:Name="DescriptionTextBox" Height="74" TextWrapping="Wrap" MaxLength="150"/>
-            <Button x:Name="AcceptButton" Content="Аccept" Width="86" Margin="0,10,0,0" HorizontalAlignment="Center" Click="Button_AcceptProject_Click"/>
+            <Button Background="White" x:Name="AcceptButton" Content="Аccept" Width="86" Margin="0,10,0,0" HorizontalAlignment="Center" Click="Button_AcceptProject_Click"/>
         </StackPanel>
     </Grid>
 </Window>

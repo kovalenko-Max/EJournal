@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Dialog Window" Height="156" Width="250">
-    <StackPanel>
+    <StackPanel Background="#2c333d">
         <TextBlock x:Name="TitleTextBlock"/>
-        <TextBox x:Name="NameTextBox"/>
-        <TextBlock x:Name="ComboBoxNameTextBlock" Text="Course:"/>
+        <TextBox x:Name="NameTextBox" Height="22" TextChanged="NameTextBox_TextChanged"/>
+        <TextBlock Foreground="White" x:Name="ComboBoxNameTextBlock" Text="Course:"/>
         <ComboBox x:Name="CourseComboBox" IsEditable="True"/>
         <DockPanel >
-            <Button DockPanel.Dock="Right" x:Name="AcceptButton" Content="Аccept" Width="90" Height="20" HorizontalAlignment="Right" Margin="2,2,2,2"/>
+            <Button Background="White" DockPanel.Dock="Right" x:Name="AcceptButton" Content="Аccept" Width="90" Height="20" HorizontalAlignment="Right" Margin="2,2,2,2"/>
             <Button DockPanel.Dock="Right" x:Name="DeleteButton" Content="Delete" Width="60" Height="20" HorizontalAlignment="Right" Background="White" Margin="2,2,2,2" IsEnabled="False" Visibility="Hidden"/>
         </DockPanel>
     </StackPanel>
