@@ -152,13 +152,14 @@
                                 <TabItem Header = "Project groups">
                                     <Grid Grid.Row="1" Grid.Column="1" Background="AliceBlue" ShowGridLines="True">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="75" MinHeight="75"/>
-                                            <RowDefinition Height="480*"/>
+                                            <RowDefinition Height="90" MinHeight="75"/>
+                                            <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <Canvas>
-                                            <TextBox MaxLength="30" x:Name="TeamNameTextBox" Canvas.Left="10" Canvas.Top="7" Width="195"/>
-                                            <Button Background="White" Content="Create team" Width="85" Height="33" Margin="2,2,2,2" Click="Button_CreateTeam_Click" Canvas.Left="10" Canvas.Top="32"/>
-                                            <Button Background="White" x:Name="Button_EditProjectGroup" Content="Edit team" Width="85" Height="33" Margin="2,2,2,2" Click="Button_EditProjectGroup_Click" Canvas.Left="118" Canvas.Top="32" RenderTransformOrigin="0.52,0.581" />
+                                            <Label Content="Enter new project group name" Canvas.Left="13" Canvas.Top="-1"/>
+                                            <TextBox MaxLength="30" x:Name="TeamNameTextBox" Canvas.Left="10" Canvas.Top="7" Width="195" Margin="2,15,2,2"/>
+                                            <Button Background="White" Content="Create team" Width="85" Height="33" Margin="2,15,2,2" Click="Button_CreateTeam_Click" Canvas.Left="10" Canvas.Top="32"/>
+                                            <Button Background="White" x:Name="Button_EditProjectGroup" Content="Edit team" Width="85" Height="33" Margin="2,15,2,2" Click="Button_EditProjectGroup_Click" Canvas.Left="118" Canvas.Top="32" RenderTransformOrigin="0.52,0.581" />
                                             <Button x:Name="Button_DeleteProjectGroup" Content="Delete team" Background="IndianRed" Width="75" Height="25" Margin="2,2,2,2" Click="Button_DeleteProjectGroup_Click" RenderTransformOrigin="2,1.276" Canvas.Left="305" Canvas.Top="4" IsEnabled="False"/>
                                         </Canvas>
 
